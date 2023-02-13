@@ -1,0 +1,86 @@
+// Desktop headings
+.text {
+    color: $black;
+    &-5xl {
+        font-weight: 500;
+        color: $black;
+        font-size: 48px;
+        line-height: 48px;
+    }
+    &-4xl {
+        font-weight: 500;
+        color: $black;
+        font-size: 36px;
+        line-height: 40px;
+    }
+    &-3xl {
+        font-weight: 500;
+        color: $black;
+        font-size: 30px;
+        line-height: 36px;
+    }
+    &-2xl {
+        font-weight: 500;
+        color: $black;
+        font-size: 24px;
+        line-height: 32px;
+    }
+    &-xl {
+        font-weight: 500;
+        color: $black;
+        font-size: 20px;
+        line-height: 28px;
+    }
+    &--green {
+        color: $B600;
+    }
+}
+
+// Mobile headings
+@media screen and (max-width: 660px) {
+    .text {
+        &-5xl {
+            font-size: 36px;
+            line-height: 40px;
+        }
+        &-4xl {
+            font-size: 30px;
+            line-height: 36px;
+        }
+        &-3xl {
+            font-size: 24px;
+            line-height: 32px;
+        }
+        &-2xl {
+            font-size: 20px;
+            line-height: 28px;
+        }
+    }
+}
+
+// Body text
+.text {
+    font-weight: 400;
+    &-lg {
+        font-size: 18px;
+        line-height: 28px;
+    }
+    &-base {
+        font-size: 16px;
+        line-height: 24px;
+    }
+    &-sm {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    &-xs {
+        font-size: 12px;
+        line-height: 16px;
+    }
+    &--semibold {
+        font-weight: 500;
+        &--capitalise {
+            text-transform: capitalize;
+        }
+    }
+}

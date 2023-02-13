@@ -1,0 +1,29 @@
+.dogovor {
+    margin-bottom: 22px;
+
+    &__title {
+        margin-bottom: 24px;
+    }
+
+    &__list {
+       margin-top: 24px;
+       
+        &--column {
+            flex-direction: column;
+        
+        }
+        
+        &-title {
+            margin-bottom: 14px;
+            margin-top: 24px;
+        }
+
+        &-item {
+            margin-bottom: 24px;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+.ur {
+    &__title {
+    }
+
+    &__banner {
+        margin-top: 24px;
+        margin-bottom: 80px;
+    }
+
+    &__subtitle {
+        max-width: 800px;
+    }
+
+    &__text {
+        max-width: 930px;
+        &--short {
+            max-width: 700px;
+            line-height: 2;
+        }
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: 1.5fr 2fr;
+        grid-gap: 30px;
+        margin: 24px 0;
+    }
+
+    &__title-sm {
+        margin-bottom: 80px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .ur {
+        &__list {
+            grid-template-columns: 1fr;
+            grid-gap: 16px;
+        }
+    }
+}

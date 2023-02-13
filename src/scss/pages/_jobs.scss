@@ -1,0 +1,23 @@
+.jobs {
+    margin-bottom: 22px;
+    &__title {
+        margin-bottom: 24px;
+    }
+
+    &__list {
+        &-terms {
+            margin-bottom: 6px;
+        }
+
+        &-title {
+            margin-bottom: 14px;
+            margin-top: 24px;
+        }
+        &-item {
+            margin-bottom: 24px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

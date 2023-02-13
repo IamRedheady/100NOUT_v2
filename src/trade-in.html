@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100NOUT</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
@@ -262,40 +263,78 @@
                 </a>
             </li>
         </ul>
-        <div class="menu">
-            <div class="menu__banner">
-                <img class="menu__banner-img menu__banner-img--base" src="./images/menu-b-base.jpg" alt="Баннер">
-                <img class="menu__banner-img menu__banner-img--long" src="./images/menu-b-long.jpg" alt="Баннер">
-            </div>
-            <div class="menu__top">
-                <h2 class="menu__top-title text text-sm text--semibold">
-                    Каталог
+        <main class="main">
+            <section class="layout trade-in">
+                <h1 class="trade-in__title text-5xl">
+                    Trade-in
+                </h1>
+                <div class="trade-in__banner banner">
+                    <img class="banner-xl" src="./images/banners/xl1.png" alt="Баннер">
+                    <img class="banner-l" src="./images/banners/l1.png" alt="Баннер">
+                    <img class="banner-m" src="./images/banners/m1.png" alt="Баннер">
+                    <img class="banner-s" src="./images/banners/s1.png" alt="Баннер">
+                    <img class="banner-xs" src="./images/banners/xs1.png" alt="Баннер">
+                </div>
+                <h2 class="trade-in__subtitle text-4xl">
+                    Принесите старую технику в наш магазин по программе <a href="#"
+                        class="link link-primary">«Trade-in»</a> и купите новый девайс по специальным
+                    условиям
                 </h2>
-                <ul class="menu__list">
-                    <li class="menu__list-item">
-                        <button class="menu__list-item-btn text text-sm text--semibold btn js-menu-level-1">
-                            Компьютерная техника
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE" stroke-width="1.3"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
+                <h2 class="trade-in__subtitle trade-in__subtitle--mt text-4xl">
+                    Как работает «Trade-in»?
+                </h2>
+                <ul class="trade-in__list">
+                    <li class="trade-in__list-item">
+                        <div class="card">
+                            <h3 class="card__title text-3xl">
+                                Сделайте оценку товара
+                            </h3>
+                            <p class="card__text text-lg">
+                                Онлайн и в магазине. Свяжитесь с нами по телефону или в чате и узнайте стоимость вашей
+                                техники.
+                            </p>
+                        </div>
                     </li>
-                    <li class="menu__list-item">
-                        <button class="menu__list-item-btn text text-sm text--semibold btn js-menu-level-1">
-                            Смартфоны, ТВ
-                            и электроника
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE" stroke-width="1.3"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
+                    <li class="trade-in__list-item">
+                        <div class="card">
+                            <h3 class="card__title text-3xl">
+                                Получите скидку
+                            </h3>
+                            <p class="card__text text-lg">
+                                Стоимость старой техники будет зачтена в счет покупки новой.
+                            </p>
+                        </div>
                     </li>
                 </ul>
-            </div>
-        </div>
+                <p class="trade-in__text text-lg">
+                    Хотите что-то уточнить? Спросите у нас по телефонам <a class="text link link-secondary"
+                        href="tel:+375 33 375 74 00">+375 33 375 74 00</a>, <a class="text link link-secondary"
+                        href="tel:+375 44 415 74 00">+375 44 415 74 00</a> или напишите в чат на сайте.
+                </p>
+                <div class="trade-in__map map">
+                    <h2 class="map__title">
+                        Как к нам добраться
+                    </h2>
+                    <div class="map__body">
+                        <div class="map__frame">
+                            <script type="text/javascript" charset="utf-8" async
+                                src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A31b2aac7a7f8d32a102e30f0c3b09e68125073b9717ea50e6307d314fbb80737&amp;width=100%25&amp;height=100%&amp;lang=ru_RU&amp;scroll=false"></script>
+                        </div>
+                        <div class="map__card card">
+                            <h2 class="card__title text-3xl">
+                                Адрес нашего шоурума
+                            </h2>
+                            <p class="card__text text text-lg">
+                                220114, Минск, метро Московская, Проспект Независимости д. 94
+                            </p>
+                            <p class="card__text card__text--mt text text-lg text--semibold">
+                                Время работы 10:00 до 20:00
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
         <footer class="footer">
             <div class="footer__body layout">
                 <ul class="footer__list">

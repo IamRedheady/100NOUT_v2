@@ -1,0 +1,129 @@
+.company {
+    &__banner {
+        margin-top: 24px;
+        margin-bottom: 80px;
+    }
+
+    &__subtitle {
+        margin-bottom: 36px;
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 24px;
+        margin-bottom: 36px;
+
+        &-item {
+            &-card {
+                padding-left: 28px;
+                padding-right: 28px;
+            }
+        }
+    }
+
+    &__content {
+        &-text {
+            margin-bottom: 10px;
+        }
+
+        &-thanks {
+            margin-top: 80px;
+            text-align: center;
+
+            &-item {
+                display: flex;
+                max-width: 700px;
+                margin: auto;
+                padding-left: 40px;
+            }
+
+            &-text {
+                margin-top: 27px;
+                margin-right: 14px;
+
+                &-color {
+                    color: #50b83c;
+                }
+            }
+
+            &-logo {
+                &-img {
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .company {
+        &__list {
+            &-item {
+                &-card {
+                    padding: 24px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .company {
+        &__banner {
+            margin-bottom: 60px;
+        }
+
+        &__content {
+            &-thanks {
+                margin-top: 60px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .company {
+        &__banner {
+            margin-bottom: 60px;
+        }
+
+        &__content {
+            &-thanks {
+                margin-top: 60px;
+
+                &-item {
+                    display: block;
+                    padding-left: 0;
+                }
+
+                &-text {
+                    margin-top: 0;
+                    margin-right: 0;
+                    margin-bottom: 24px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .company {
+        margin-bottom: 0px;
+
+        &__banner {
+            margin-bottom: 36px;
+        }
+
+        &__subtitle {
+            font-size: 20px;
+        }
+
+        &__content {
+            &-thanks {
+                &-text {
+                    margin-bottom: 16px;
+                }
+            }
+        }
+    }
+}

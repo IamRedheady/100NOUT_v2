@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100NOUT</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
@@ -262,40 +263,501 @@
                 </a>
             </li>
         </ul>
-        <div class="menu">
-            <div class="menu__banner">
-                <img class="menu__banner-img menu__banner-img--base" src="./images/menu-b-base.jpg" alt="Баннер">
-                <img class="menu__banner-img menu__banner-img--long" src="./images/menu-b-long.jpg" alt="Баннер">
-            </div>
-            <div class="menu__top">
-                <h2 class="menu__top-title text text-sm text--semibold">
-                    Каталог
-                </h2>
-                <ul class="menu__list">
-                    <li class="menu__list-item">
-                        <button class="menu__list-item-btn text text-sm text--semibold btn js-menu-level-1">
-                            Компьютерная техника
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE" stroke-width="1.3"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
+        <main class="main">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+            <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+            <section class="catalog layout">
+                <ul class="breads">
+                    <li class="breads__item">
+                        <a href="#" class="breads__item-link text text-sm link">
+                            Главная
+                        </a>
                     </li>
-                    <li class="menu__list-item">
-                        <button class="menu__list-item-btn text text-sm text--semibold btn js-menu-level-1">
-                            Смартфоны, ТВ
-                            и электроника
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE" stroke-width="1.3"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
+                    <li class="breads__item">
+                        <a href="#" class="breads__item-link text text-sm link">
+                            Компьютерная техника
+                        </a>
+                    </li>
+                    <li class="breads__item">
+                        <span class="breads__item-text breads__item-text--disabled text text-sm">
+                            Ноутбуки
+                        </span>
                     </li>
                 </ul>
-            </div>
-        </div>
+                <div class="catalog__top">
+                    <h1 class="catalog__title text-5xl">
+                        Ноутбуки
+                    </h1>
+                    <span class="catalog__count text-lg">240 товаров</span>
+                </div>
+                <div class="catalog__banner banner">
+                    <img class="banner-xl" src="./images/banners/xl1.png" alt="Баннер">
+                    <img class="banner-l" src="./images/banners/l1.png" alt="Баннер">
+                    <img class="banner-m" src="./images/banners/m1.png" alt="Баннер">
+                    <img class="banner-s" src="./images/banners/s1.png" alt="Баннер">
+                    <img class="banner-xs" src="./images/banners/xs1.png" alt="Баннер">
+                </div>
+                <div class="catalog__pre">
+                    <ul class="catalog__pre-list">
+                        <li class="catalog__pre-list-item">
+                            <button type="button" class="catalog__pre-list-item-btn btn btn-secondary">
+                                Ноутбуки Dell
+                            </button>
+                        </li>
+                        <li class="catalog__pre-list-item">
+                            <button type="button" class="catalog__pre-list-item-btn btn btn-secondary">
+                                Ноутбуки HP
+                            </button>
+                        </li>
+                        <li class="catalog__pre-list-item">
+                            <button type="button" class="catalog__pre-list-item-btn btn btn-secondary">
+                                Ноутбуки Apple
+                            </button>
+                        </li>
+                        <li class="catalog__pre-list-item">
+                            <button type="button" class="catalog__pre-list-item-btn btn btn-secondary">
+                                128GB
+                            </button>
+                        </li>
+                    </ul>
+                    <a href="#" class="catalog__pre-link btn btn-primary">
+                        Прайс-лист
+                    </a>
+                </div>
+                <input type="radio" class="catalog__mode-input" name="catalog-mode" id="content-base" checked>
+                <input type="radio" class="catalog__mode-input" name="catalog-mode" id="content-column">
+                <div class="catalog__body">
+                    <div class="catalog__filter">
+                        <!-- Filter Here -->
+                    </div>
+                    <div class="catalog__content">
+                        <div class="catalog__content-top">
+                            <div class="catalog__sort">
+                                <div class="dropdown js-dropdown">
+                                    <button type="button" class="dropdown__btn">
+                                        <span class="text-base text">По новизне</span>
+                                        <svg class="dropdown__arrow" width="20" height="20" viewBox="0 0 20 20"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.70711 7.29289L10 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68342 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z"
+                                                fill="#B8B8B8" />
+                                        </svg>
+                                    </button>
+                                    <ul class="dropdown__list">
+                                        <li class="dropdown__list-item">
+                                            <button type="button" class="dropdown__list-item-btn text-sm">
+                                                По новизне
+                                            </button>
+                                        </li>
+                                        <li class="dropdown__list-item">
+                                            <button type="button" class="dropdown__list-item-btn text-sm">
+                                                По цене ↑
+                                            </button>
+                                        </li>
+                                        <li class="dropdown__list-item">
+                                            <button type="button" class="dropdown__list-item-btn text-sm">
+                                                По цене ↓
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="catalog__mode">
+                                <label for="content-base" class="catalog__mode-btn btn btn-icon btn-secondary">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5 3C3.89543 3 3 3.89543 3 5V7C3 8.10457 3.89543 9 5 9H7C8.10457 9 9 8.10457 9 7V5C9 3.89543 8.10457 3 7 3H5Z"
+                                            fill="#A3A3A3" />
+                                        <path
+                                            d="M5 11C3.89543 11 3 11.8954 3 13V15C3 16.1046 3.89543 17 5 17H7C8.10457 17 9 16.1046 9 15V13C9 11.8954 8.10457 11 7 11H5Z"
+                                            fill="#A3A3A3" />
+                                        <path
+                                            d="M11 5C11 3.89543 11.8954 3 13 3H15C16.1046 3 17 3.89543 17 5V7C17 8.10457 16.1046 9 15 9H13C11.8954 9 11 8.10457 11 7V5Z"
+                                            fill="#A3A3A3" />
+                                        <path
+                                            d="M11 13C11 11.8954 11.8954 11 13 11H15C16.1046 11 17 11.8954 17 13V15C17 16.1046 16.1046 17 15 17H13C11.8954 17 11 16.1046 11 15V13Z"
+                                            fill="#A3A3A3" />
+                                    </svg>
+                                </label>
+                                <label for="content-column" class="catalog__mode-btn btn btn-icon btn-secondary">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M3 4C3 3.44772 3.44772 3 4 3H16C16.5523 3 17 3.44772 17 4C17 4.55228 16.5523 5 16 5H4C3.44772 5 3 4.55228 3 4ZM3 8C3 7.44772 3.44772 7 4 7H16C16.5523 7 17 7.44772 17 8C17 8.55228 16.5523 9 16 9H4C3.44772 9 3 8.55228 3 8ZM3 12C3 11.4477 3.44772 11 4 11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H4C3.44772 13 3 12.5523 3 12ZM3 16C3 15.4477 3.44772 15 4 15H16C16.5523 15 17 15.4477 17 16C17 16.5523 16.5523 17 16 17H4C3.44772 17 3 16.5523 3 16Z"
+                                            fill="#A3A3A3" />
+                                    </svg>
+                                </label>
+                            </div>
+                        </div>
+                        <ul class="catalog__list">
+                            <li class="catalog__list-item">
+                                <div class="product">
+                                    <span class="product__tag product__tag--green">
+                                        Новинка
+                                    </span>
+                                    <div class="product__swiper js-product-swiper">
+                                        <div class='swiper-wrapper'>
+                                            <div class='swiper-slide'>
+                                                <a href="#" class="product__pic">
+                                                    <img src="./images/pr1.png" alt="Фото" class="product__pic-img">
+                                                </a>
+                                            </div>
+                                            <div class='swiper-slide'>
+                                                <a href="#" class="product__pic">
+                                                    <img src="./images/pr2.png" alt="Фото" class="product__pic-img">
+                                                </a>
+                                            </div>
+                                            <div class='swiper-slide'>
+                                                <a href="#" class="product__pic">
+                                                    <img src="./images/pr3.png" alt="Фото" class="product__pic-img">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product__center">
+                                        <a href="#" class="product__title">
+                                            Конвектор Royal Clima Verona Econo REC–VE15 0M
+                                        </a>
+                                        <p class="product__status product__status--in-stock">
+                                            В наличии
+                                        </p>
+                                        <ul class="product__info">
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Диагональ экрана:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    15,6
+                                                </p>
+                                            </li>
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Модель процессора:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    Intel Pentium N3510
+                                                </p>
+                                            </li>
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Разрешение экрана:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    HD 1366х768
+                                                </p>
+                                            </li>
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Графический адаптер:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    встроенный
+                                                </p>
+                                            </li>
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Оперативная память, ГБ:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    ГБ: 4
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="product__box">
+                                        <div class="product__actions">
+                                            <p class="product__price">
+                                                890
+                                                <span>BYN</span>
+                                            </p>
+                                            <p class="product__price-old">
+                                                1290
+                                            </p>
+                                            <button class="product__btn btn btn-icon btn-tooltip active"
+                                                name="Добавить в сравнение">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F"
+                                                        stroke-width="1.2" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg>
+                                            </button>
+                                            <button class="product__btn btn btn-icon btn-tooltip active"
+                                                name="Добавить в избранное">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z"
+                                                        stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <a href="#" class="product__buy btn btn-primary">
+                                            В корзину
+                                        </a>
+                                        <div class="product__tags">
+                                            <div class="product__tags-label product__tags-label--new">
+                                                Как новый
+                                            </div>
+                                            <div class="product__tags-label product__tags-label--in-stock">
+                                                В магазине
+                                            </div>
+                                            <div class="product__tags-label product__tags-label--used">
+                                                В рассрочку
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="catalog__list-item">
+                                <div class="product">
+                                    <span class="product__tag product__tag--green">
+                                        Новинка
+                                    </span>
+                                    <div class="product__swiper js-product-swiper">
+                                        <div class='swiper-wrapper'>
+                                            <div class='swiper-slide'>
+                                                <a href="#" class="product__pic">
+                                                    <img src="./images/pr1.png" alt="Фото" class="product__pic-img">
+                                                </a>
+                                            </div>
+                                            <div class='swiper-slide'>
+                                                <a href="#" class="product__pic">
+                                                    <img src="./images/pr2.png" alt="Фото" class="product__pic-img">
+                                                </a>
+                                            </div>
+                                            <div class='swiper-slide'>
+                                                <a href="#" class="product__pic">
+                                                    <img src="./images/pr3.png" alt="Фото" class="product__pic-img">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product__center">
+                                        <a href="#" class="product__title">
+                                            Б/у LG GA-B 509 CMQM DoorCooling+LG
+                                        </a>
+                                        <p class="product__status product__status--in-stock">
+                                            В наличии
+                                        </p>
+                                        <ul class="product__info">
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Диагональ экрана:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    15,6
+                                                </p>
+                                            </li>
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Модель процессора:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    Intel Pentium N3510
+                                                </p>
+                                            </li>
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Разрешение экрана:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    HD 1366х768
+                                                </p>
+                                            </li>
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Графический адаптер:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    встроенный
+                                                </p>
+                                            </li>
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Оперативная память, ГБ:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    ГБ: 4
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="product__box">
+                                        <div class="product__actions">
+                                            <p class="product__price">
+                                                890
+                                                <span>BYN</span>
+                                            </p>
+                                            <p class="product__price-old">
+                                                1290
+                                            </p>
+                                            <button class="product__btn btn btn-icon btn-tooltip">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F"
+                                                        stroke-width="1.2" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg>
+                                            </button>
+                                            <button class="product__btn btn btn-icon btn-tooltip">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z"
+                                                        stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <a href="#" class="product__buy btn btn-primary">
+                                            В корзину
+                                        </a>
+                                        <div class="product__tags">
+                                            <div class="product__tags-label product__tags-label--new">
+                                                Как новый
+                                            </div>
+                                            <div class="product__tags-label product__tags-label--in-stock">
+                                                В магазине
+                                            </div>
+                                            <div class="product__tags-label product__tags-label--used">
+                                                В рассрочку
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="catalog__list-item">
+                                <div class="product">
+                                    <span class="product__tag product__tag--green">
+                                        Новинка
+                                    </span>
+                                    <div class="product__swiper js-product-swiper">
+                                        <div class='swiper-wrapper'>
+                                            <div class='swiper-slide'>
+                                                <a href="#" class="product__pic">
+                                                    <img src="./images/pr1.png" alt="Фото" class="product__pic-img">
+                                                </a>
+                                            </div>
+                                            <div class='swiper-slide'>
+                                                <a href="#" class="product__pic">
+                                                    <img src="./images/pr2.png" alt="Фото" class="product__pic-img">
+                                                </a>
+                                            </div>
+                                            <div class='swiper-slide'>
+                                                <a href="#" class="product__pic">
+                                                    <img src="./images/pr3.png" alt="Фото" class="product__pic-img">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product__center">
+                                        <a href="#" class="product__title">
+                                            Б/у LG GA-B 509 CMQM DoorCooling+LG
+                                        </a>
+                                        <p class="product__status product__status--in-stock">
+                                            В наличии
+                                        </p>
+                                        <ul class="product__info">
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Диагональ экрана:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    15,6
+                                                </p>
+                                            </li>
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Модель процессора:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    Intel Pentium N3510
+                                                </p>
+                                            </li>
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Разрешение экрана:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    HD 1366х768
+                                                </p>
+                                            </li>
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Графический адаптер:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    встроенный
+                                                </p>
+                                            </li>
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
+                                                    Оперативная память, ГБ:
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    ГБ: 4
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="product__box">
+                                        <div class="product__actions">
+                                            <p class="product__price">
+                                                890
+                                                <span>BYN</span>
+                                            </p>
+                                            <p class="product__price-old">
+                                                1290
+                                            </p>
+                                            <button class="product__btn btn btn-icon btn-tooltip">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F"
+                                                        stroke-width="1.2" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg>
+                                            </button>
+                                            <button class="product__btn btn btn-icon btn-tooltip">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z"
+                                                        stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <a href="#" class="product__buy btn btn-primary">
+                                            В корзину
+                                        </a>
+                                        <div class="product__tags">
+                                            <div class="product__tags-label product__tags-label--new">
+                                                Как новый
+                                            </div>
+                                            <div class="product__tags-label product__tags-label--in-stock">
+                                                В магазине
+                                            </div>
+                                            <div class="product__tags-label product__tags-label--used">
+                                                В рассрочку
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <script>
+                            const productGalery = new Swiper(".js-product-swiper", {
+                                effect: "fade",
+                            })
+                        </script>
+
+                    </div>
+                </div>
+            </section>
+        </main>
         <footer class="footer">
             <div class="footer__body layout">
                 <ul class="footer__list">
@@ -457,5 +919,3 @@
         </footer>
     </div>
 </body>
-
-</html>

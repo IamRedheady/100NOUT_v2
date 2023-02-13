@@ -1,0 +1,37 @@
+.payment {
+    &__title {
+        margin-bottom: 24px;
+    }
+
+    &__text {
+    }
+
+    &__list {
+        margin-top: 24px;
+        margin-bottom: 24px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 24px;
+    }
+    
+    &__credit {
+        .card {
+            position: relative;
+            overflow: hidden;
+        }
+        &-cards {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            max-width: 465px;
+            background: url("./../images/p2.png") no-repeat;
+            background-size: 100% 100%;
+            &-img {
+                width: 100%;
+            }
+        }
+
+        &-cards-pic {
+        }
+    }
+}

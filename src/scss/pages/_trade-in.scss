@@ -1,0 +1,65 @@
+.trade-in {
+    &__banner {
+        margin-top: 24px;
+        margin-bottom: 80px;
+    }
+
+    &__subtitle {
+        margin-top: 80px;
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: 2fr 1.3fr;
+        grid-gap: 24px;
+        margin-bottom: 36px;
+        &-item {
+            &:first-child {
+                .card {
+                    position: relative;
+                    overflow: hidden;
+                    padding-right: 170px;
+                    &::after {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        background: url("./../images/t1.png");
+                        background-size: 100% 100%;
+                        width: 144px;
+                        height: 114px;
+                        z-index: 0;
+                    }
+                }
+            }
+            &:last-child {
+                .card {
+                    position: relative;
+                    overflow: hidden;
+                    padding-right: 120px;
+                    &::after {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        background: url("./../images/t2.png");
+                        background-size: 100% 100%;
+                        width: 123px;
+                        height: 103px;
+                        z-index: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .trade-in {
+        &__list {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+}

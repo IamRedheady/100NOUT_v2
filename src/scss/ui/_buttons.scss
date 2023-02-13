@@ -1,0 +1,83 @@
+.btn {
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px 16px;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+    max-width: min-content;
+    &-primary {
+        background-color: #50b83c;
+        color: #ffffff;
+        &:hover {
+            background-color: #439a32;
+        }
+    }
+    &-secondary {
+        background-color: #efeeed;
+        color: #474747;
+        &:hover {
+            background-color: #dedede;
+        }
+    }
+    &_icon {
+        &-left {
+            svg {
+                margin-right: 9px;
+            }
+        }
+        &-right {
+            svg {
+                margin-left: 9px;
+            }
+        }
+    }
+    &-icon {
+        padding: 10px;
+    }
+
+    &_big {
+        padding: 16px;
+    }
+
+    &_small {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        padding: 8px 12px;
+
+        & .btn-icon {
+            padding: 6px;
+        }
+    }
+    &-tooltip {
+        position: relative;
+        &::before {
+            content: attr(name);
+            display: block;
+            position: absolute;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: $white;
+            opacity: 0;
+            pointer-events: none;
+            background: $N700;
+            box-shadow: 0px 3px 8px rgba(45, 77, 108, 0.15);
+            border-radius: 4px;
+            z-index: 1;
+            padding: 5px 10px;
+            left: 90%;
+            top: 90%;
+        }
+        &:hover::before {
+            transition: opacity 0.2s ease;
+            transition-delay: 1.3s;
+            opacity: 1;
+        }
+    }
+}

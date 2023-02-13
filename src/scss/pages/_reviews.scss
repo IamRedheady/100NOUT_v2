@@ -1,0 +1,163 @@
+.reviews {
+    margin-bottom: 22px;
+    
+    &__title {
+        margin-bottom: 24px;
+    }
+
+    &__intro {
+
+        &-card {
+            background: #f7f7f6;
+            border-radius: 12px;
+
+            &-text {
+                padding-top: 36px;
+                padding-left: 36px;
+                padding-bottom: 36px;
+            }
+
+            &-pic {
+                float: right;
+                padding-top: 15px;
+                padding-right: 15px;
+            }
+        }
+    }
+
+    &__body {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 24px;
+    }
+
+    &__list {
+        margin-top: 24px;
+        margin-bottom: 24px;
+        display: grid;
+        grid-template-columns: 1;
+        grid-gap: 24px;
+
+        &-item {
+            height: fit-content;
+            margin-top: 0px;
+
+            &-pic {
+                margin-right: 14px;
+                width: 56px;
+                height: 56px;
+                
+                &-img {
+                    border-radius: 50%;
+                    margin-right: 14px;
+                }
+            }
+        }
+    }
+
+    &__card { 
+        display: flex;
+    }
+
+    &__content {
+
+        &-title {
+            margin-bottom: 6px;
+        }
+    }
+}
+
+
+@media screen and (max-width: 960px) {
+    .reviews {
+       
+        &__intro {
+    
+            &-card {
+    
+                &-text {
+                    padding-top: 24px;
+                    padding-left: 24px;
+                    padding-bottom: 24px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    
+    .reviews {
+        margin-bottom: 12px;
+
+        &__intro {
+
+            &-card {
+                margin-bottom: 24px;
+    
+                &-text {
+                    padding-right: 132px;
+        
+                }
+            }
+        } 
+
+        &__body {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        &__list {
+        margin-top: 0px;
+        margin-bottom: 14px;
+        grid-gap: 14px;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    
+    .reviews {
+
+        &__intro {
+
+            &-card {
+                margin-bottom: 24px;
+    
+                &-text {
+                    padding-right: 24px;
+        
+                }
+    
+                &-pic {
+                    
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    
+    .reviews {
+    
+        &__column {
+            max-width: 280px;
+        }
+
+        &__card { 
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__list {
+
+            &-item {
+
+                &-pic {
+                    margin-right: 0 ;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}

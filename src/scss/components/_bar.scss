@@ -1,0 +1,75 @@
+.bar {
+    position: fixed;
+    bottom: 0;
+    background: #ffffff;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    width: 100%;
+    z-index: 1;
+    &__item {
+        &-link {
+            &-favorite {
+                position: relative;
+                .favorite-empty {
+                    bottom: auto;
+                    top: -70px;
+                    width: 250px;
+                    padding: 13px 24px;
+                    text-align: left;
+                    &__title {
+                        margin-bottom: 0;
+                        width: 100%;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 17px;
+                    }
+                    &__subtitle {
+                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 14px;
+                        width: 100%;
+                    }
+                }
+                &:hover {
+                    .favorite-empty {
+                        opacity: 1;
+                    }
+                }
+            }
+            &-to-cart {
+                position: relative;
+                .to-cart-empty {
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 17px;
+                    flex-direction: row;
+                    bottom: auto;
+                    top: -100px;
+                    right: auto;
+                    padding: 5px 20px;
+                    width: 250px;
+                    left: calc(50% - 125px);
+                    svg {
+                        margin-bottom: 0;
+                        margin-right: 15px;
+                    }
+                }
+                &:hover .to-cart-empty {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &__item-link {
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .bar {
+        display: none;
+    }
+}

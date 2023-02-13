@@ -1,0 +1,39 @@
+.link {
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    &-primary {
+        color: $B600;
+        &:hover {
+            color: $B700;
+        }
+        &_disabled {
+            color: $N400;
+            pointer-events: none;
+        }
+    }
+    &-secondary {
+        color: $N600;
+        &:hover {
+            color: $B700;
+        }
+        &_disabled {
+            color: $N400;
+            pointer-events: none;
+        }
+    }
+    &_default {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    &_big {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    &_small {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+    }
+}

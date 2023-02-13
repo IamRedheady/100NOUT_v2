@@ -1,0 +1,32 @@
+@import "./variables";
+@import "./normalize";
+@import "./base";
+
+// DELETE
+@import "./old";
+// DELETE
+
+// UI
+@import "./ui/ui";
+@import "./ui/elements";
+
+// Components
+@import "./components/header";
+@import "./components/bar";
+@import "./components/footer";
+@import "./components/product";
+
+// Pages
+@import "./pages/home";
+@import "./pages/contacts";
+@import "./pages/trade-in";
+@import "./pages/ur";
+@import "./pages/404";
+@import "./pages/dop";
+@import "./pages/payments";
+@import "./pages/jobs";
+@import "./pages/dogovor";
+@import "./pages/reviews";
+@import "./pages/obmen";
+@import "./pages/company";
+@import "./pages/catalog";

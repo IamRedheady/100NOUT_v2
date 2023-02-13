@@ -1,0 +1,90 @@
+.dop {
+    &__title {
+    }
+
+    &__banner {
+        margin-top: 24px;
+        margin-bottom: 80px;
+    }
+
+    &__subtitle {
+    }
+
+    &__text {
+        margin-bottom: 36px;
+    }
+
+    &__title-sm {
+        margin-bottom: 80px;
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: 1.4fr 2fr;
+        grid-gap: 30px;
+        margin-bottom: 14px;
+        &-item {
+            &--first {
+                position: relative;
+                overflow: hidden;
+                padding-right: 130px;
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    right: 0;
+                    background: url("./../images/d1.png");
+                    background-size: 100% 100%;
+                    width: 130px;
+                    height: 105px;
+                    bottom: calc(50% - 52.5px);
+                }
+            }
+            &--last {
+                position: relative;
+                overflow: hidden;
+                padding-right: 140px;
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    right: 10px;
+                    background: url("./../images/d2.png");
+                    background-size: 100% 100%;
+                    width: 130px;
+                    height: 105px;
+                    bottom: calc(50% - 52.5px);
+                }
+            }
+        }
+    }
+
+    &__link {
+        margin-bottom: 36px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .dop {
+        &__list {
+            grid-template-columns: 1fr;
+            grid-gap: 14px;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .dop {
+        &__list {
+            &-item {
+                &--first,
+                &--last {
+                    padding-right: 80px;
+                    &::after {
+                        right: -50px;
+                    }
+                }
+            }
+        }
+    }
+}

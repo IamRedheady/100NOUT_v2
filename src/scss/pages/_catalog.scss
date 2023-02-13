@@ -1,0 +1,133 @@
+.catalog {
+    &__top {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 24px;
+    }
+
+    &__title {
+    }
+
+    &__count {
+    }
+
+    &__banner {
+    }
+
+    &__pre {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 24px;
+        &-list {
+            display: flex;
+            &-item {
+                margin-right: 12px;
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    &__pre-list {
+    }
+
+    &__pre-list-item {
+    }
+
+    &__pre-list-item-btn {
+    }
+
+    &__pre-link {
+    }
+
+    &__body {
+        display: flex;
+        margin-top: 24px;
+    }
+
+    &__filter {
+        min-width: 240px;
+    }
+
+    &__content {
+        width: 100%;
+        margin-left: 24px;
+    }
+
+    &__content-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    &__sort {
+    }
+
+    &__mode {
+        display: flex;
+        align-items: center;
+        &-btn {
+            cursor: pointer;
+            &:first-child {
+                margin-right: 6px;
+            }
+        }
+    }
+
+    &__mode-btn {
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 25px;
+        margin-top: 12px;
+    }
+
+    &__list-item {
+    }
+}
+
+#content-base:checked ~ .catalog__body .catalog__mode-btn:first-child path,
+#content-column:checked ~ .catalog__body .catalog__mode-btn:last-child path {
+    fill: $N900;
+}
+.layout {
+}
+
+.text-5xl {
+}
+.text-lg {
+}
+.banner {
+}
+.banner-xl {
+}
+.banner-l {
+}
+.banner-m {
+}
+.banner-s {
+}
+.banner-xs {
+}
+.btn {
+}
+.btn-secondary {
+}
+.btn-primary {
+}
+
+.btn-icon {
+}
+
+.swiper-wrapper {
+}
+.swiper-slide {
+}
+.btn-tooltip {
+}
