@@ -312,6 +312,7 @@
 .dropdown {
     min-width: 200px;
     position: relative;
+    z-index: 3;
     &__btn {
         display: flex;
         align-items: center;

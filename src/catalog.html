@@ -8,6 +8,27 @@
     <title>100NOUT</title>
 </head>
 
+<script>
+    const changePhotos = (e, productClass) => {
+        if (window.innerWidth > 1000) {
+            const slides = document.querySelectorAll(`.${productClass} .swiper-slide`)
+
+            const currentArray = slides
+            const currentWidth = e.target.offsetWidth
+            const currentCursorPosition = e.layerX
+            const currentLayers = currentArray.length
+            const currentLayerWidth = currentWidth / currentArray.length
+            const dots = document.querySelectorAll(`.${productClass} .swiper-pagination-bullet`)
+            const currentDot = dots[Math.ceil(currentCursorPosition / currentLayerWidth) - 1]
+
+            if (currentDot !== undefined && !currentDot.classList.contains("swiper-pagination-bullet-active")) {
+                currentDot.click()
+                console.log("click")
+            }
+        }
+    }
+</script>
+
 <body>
     <div class="page" id="page">
         <header class="header layout">
@@ -392,27 +413,40 @@
                         </div>
                         <ul class="catalog__list">
                             <li class="catalog__list-item">
-                                <div class="product">
+                                <div class="product js-product-01">
                                     <span class="product__tag product__tag--green">
                                         Новинка
                                     </span>
-                                    <div class="product__swiper js-product-swiper">
-                                        <div class='swiper-wrapper'>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="./images/pr1.png" alt="Фото" class="product__pic-img">
-                                                </a>
+                                    <div class="product__swiper-wrap"
+                                        onmousemove="changePhotos(event, 'js-product-01')">
+                                        <div class="product__swiper js-product-swiper">
+                                            <div class='swiper-wrapper'>
+                                                <div class='swiper-slide'>
+                                                    <a href="#" class="product__pic">
+                                                        <img src="./images/pr1.png" alt="Фото" class="product__pic-img"
+                                                            loading="lazy">
+                                                        <div class="swiper-lazy-preloader ">
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class='swiper-slide'>
+                                                    <a href="#" class="product__pic">
+                                                        <img src="./images/pr2.png" alt="Фото" class="product__pic-img"
+                                                            loading="lazy">
+                                                        <div class="swiper-lazy-preloader ">
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class='swiper-slide'>
+                                                    <a href="#" class="product__pic">
+                                                        <img src="./images/pr3.png" alt="Фото" class="product__pic-img"
+                                                            loading="lazy">
+                                                        <div class="swiper-lazy-preloader ">
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="./images/pr2.png" alt="Фото" class="product__pic-img">
-                                                </a>
-                                            </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="./images/pr3.png" alt="Фото" class="product__pic-img">
-                                                </a>
-                                            </div>
+                                            <div class="swiper-pagination"></div>
                                         </div>
                                     </div>
                                     <div class="product__center">
@@ -422,48 +456,61 @@
                                         <p class="product__status product__status--in-stock">
                                             В наличии
                                         </p>
-                                        <ul class="product__info">
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Диагональ экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    15,6
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Модель процессора:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    Intel Pentium N3510
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Разрешение экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    HD 1366х768
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Графический адаптер:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    встроенный
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Оперативная память, ГБ:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    ГБ: 4
-                                                </p>
-                                            </li>
-                                        </ul>
+                                        <div class="product__info-wrap">
+                                            <ul class="product__info">
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Диагональ экрана:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        15,6
+                                                    </p>
+                                                </li>
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Модель процессора:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        Intel Pentium N3510
+                                                    </p>
+                                                </li>
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Разрешение экрана:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        HD 1366х768
+                                                    </p>
+                                                </li>
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Графический адаптер:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        встроенный
+                                                    </p>
+                                                </li>
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Оперативная память, ГБ:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        ГБ: 4
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                            <div class="product__tags">
+                                                <div class="product__tags-label product__tags-label--new">
+                                                    Как новый
+                                                </div>
+                                                <div class="product__tags-label product__tags-label--in-stock">
+                                                    В магазине
+                                                </div>
+                                                <div class="product__tags-label product__tags-label--used">
+                                                    В рассрочку
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="product__box">
                                         <div class="product__actions">
@@ -497,93 +544,119 @@
                                         <a href="#" class="product__buy btn btn-primary">
                                             В корзину
                                         </a>
-                                        <div class="product__tags">
-                                            <div class="product__tags-label product__tags-label--new">
-                                                Как новый
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--in-stock">
-                                                В магазине
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--used">
-                                                В рассрочку
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
+                                <script>
+                                    const productClass = ".js-product-01"
+                                    const productGalery01 = new Swiper(`${productClass} .js-product-swiper`, {
+                                        effect: "fade",
+                                        lazy: true,
+                                        pagination: {
+                                            el: `${productClass} .swiper-pagination`,
+                                            clickable: true,
+                                        },
+                                    })
+                                </script>
                             </li>
                             <li class="catalog__list-item">
-                                <div class="product">
+                                <div class="product js-product-02">
                                     <span class="product__tag product__tag--green">
                                         Новинка
                                     </span>
-                                    <div class="product__swiper js-product-swiper">
-                                        <div class='swiper-wrapper'>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="./images/pr1.png" alt="Фото" class="product__pic-img">
-                                                </a>
+                                    <div class="product__swiper-wrap"
+                                        onmousemove="changePhotos(event, 'js-product-02')">
+                                        <div class="product__swiper js-product-swiper">
+                                            <div class='swiper-wrapper'>
+                                                <div class='swiper-slide'>
+                                                    <a href="#" class="product__pic">
+                                                        <img src="./images/pr1.png" alt="Фото" class="product__pic-img"
+                                                            loading="lazy">
+                                                        <div class="swiper-lazy-preloader ">
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class='swiper-slide'>
+                                                    <a href="#" class="product__pic">
+                                                        <img src="./images/pr2.png" alt="Фото" class="product__pic-img"
+                                                            loading="lazy">
+                                                        <div class="swiper-lazy-preloader ">
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class='swiper-slide'>
+                                                    <a href="#" class="product__pic">
+                                                        <img src="./images/pr3.png" alt="Фото" class="product__pic-img"
+                                                            loading="lazy">
+                                                        <div class="swiper-lazy-preloader ">
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="./images/pr2.png" alt="Фото" class="product__pic-img">
-                                                </a>
-                                            </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="./images/pr3.png" alt="Фото" class="product__pic-img">
-                                                </a>
-                                            </div>
+                                            <div class="swiper-pagination"></div>
                                         </div>
                                     </div>
                                     <div class="product__center">
                                         <a href="#" class="product__title">
-                                            Б/у LG GA-B 509 CMQM DoorCooling+LG
+                                            Конвектор Royal Clima Verona Econo REC–VE15 0M
                                         </a>
                                         <p class="product__status product__status--in-stock">
                                             В наличии
                                         </p>
-                                        <ul class="product__info">
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Диагональ экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    15,6
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Модель процессора:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    Intel Pentium N3510
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Разрешение экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    HD 1366х768
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Графический адаптер:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    встроенный
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Оперативная память, ГБ:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    ГБ: 4
-                                                </p>
-                                            </li>
-                                        </ul>
+                                        <div class="product__info-wrap">
+                                            <ul class="product__info">
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Диагональ экрана:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        15,6
+                                                    </p>
+                                                </li>
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Модель процессора:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        Intel Pentium N3510
+                                                    </p>
+                                                </li>
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Разрешение экрана:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        HD 1366х768
+                                                    </p>
+                                                </li>
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Графический адаптер:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        встроенный
+                                                    </p>
+                                                </li>
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Оперативная память, ГБ:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        ГБ: 4
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                            <div class="product__tags">
+                                                <div class="product__tags-label product__tags-label--new">
+                                                    Как новый
+                                                </div>
+                                                <div class="product__tags-label product__tags-label--in-stock">
+                                                    В магазине
+                                                </div>
+                                                <div class="product__tags-label product__tags-label--used">
+                                                    В рассрочку
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="product__box">
                                         <div class="product__actions">
@@ -594,7 +667,8 @@
                                             <p class="product__price-old">
                                                 1290
                                             </p>
-                                            <button class="product__btn btn btn-icon btn-tooltip">
+                                            <button class="product__btn btn btn-icon btn-tooltip active"
+                                                name="Добавить в сравнение">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F"
@@ -602,7 +676,8 @@
                                                         stroke-linejoin="round" />
                                                 </svg>
                                             </button>
-                                            <button class="product__btn btn btn-icon btn-tooltip">
+                                            <button class="product__btn btn btn-icon btn-tooltip active"
+                                                name="Добавить в избранное">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -615,93 +690,119 @@
                                         <a href="#" class="product__buy btn btn-primary">
                                             В корзину
                                         </a>
-                                        <div class="product__tags">
-                                            <div class="product__tags-label product__tags-label--new">
-                                                Как новый
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--in-stock">
-                                                В магазине
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--used">
-                                                В рассрочку
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
+                                <script>
+                                    const productClass2 = ".js-product-02"
+                                    const productGalery02 = new Swiper(`${productClass2} .js-product-swiper`, {
+                                        effect: "fade",
+                                        lazy: true,
+                                        pagination: {
+                                            el: `${productClass2} .swiper-pagination`,
+                                            clickable: true,
+                                        },
+                                    })
+                                </script>
                             </li>
                             <li class="catalog__list-item">
-                                <div class="product">
+                                <div class="product js-product-03">
                                     <span class="product__tag product__tag--green">
                                         Новинка
                                     </span>
-                                    <div class="product__swiper js-product-swiper">
-                                        <div class='swiper-wrapper'>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="./images/pr1.png" alt="Фото" class="product__pic-img">
-                                                </a>
+                                    <div class="product__swiper-wrap"
+                                        onmousemove="changePhotos(event, 'js-product-03')">
+                                        <div class="product__swiper js-product-swiper">
+                                            <div class='swiper-wrapper'>
+                                                <div class='swiper-slide'>
+                                                    <a href="#" class="product__pic">
+                                                        <img src="./images/pr1.png" alt="Фото" class="product__pic-img"
+                                                            loading="lazy">
+                                                        <div class="swiper-lazy-preloader ">
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class='swiper-slide'>
+                                                    <a href="#" class="product__pic">
+                                                        <img src="./images/pr2.png" alt="Фото" class="product__pic-img"
+                                                            loading="lazy">
+                                                        <div class="swiper-lazy-preloader ">
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class='swiper-slide'>
+                                                    <a href="#" class="product__pic">
+                                                        <img src="./images/pr3.png" alt="Фото" class="product__pic-img"
+                                                            loading="lazy">
+                                                        <div class="swiper-lazy-preloader ">
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="./images/pr2.png" alt="Фото" class="product__pic-img">
-                                                </a>
-                                            </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="./images/pr3.png" alt="Фото" class="product__pic-img">
-                                                </a>
-                                            </div>
+                                            <div class="swiper-pagination"></div>
                                         </div>
                                     </div>
                                     <div class="product__center">
                                         <a href="#" class="product__title">
-                                            Б/у LG GA-B 509 CMQM DoorCooling+LG
+                                            Конвектор Royal Clima Verona Econo REC–VE15 0M
                                         </a>
                                         <p class="product__status product__status--in-stock">
                                             В наличии
                                         </p>
-                                        <ul class="product__info">
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Диагональ экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    15,6
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Модель процессора:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    Intel Pentium N3510
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Разрешение экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    HD 1366х768
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Графический адаптер:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    встроенный
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Оперативная память, ГБ:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    ГБ: 4
-                                                </p>
-                                            </li>
-                                        </ul>
+                                        <div class="product__info-wrap">
+                                            <ul class="product__info">
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Диагональ экрана:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        15,6
+                                                    </p>
+                                                </li>
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Модель процессора:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        Intel Pentium N3510
+                                                    </p>
+                                                </li>
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Разрешение экрана:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        HD 1366х768
+                                                    </p>
+                                                </li>
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Графический адаптер:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        встроенный
+                                                    </p>
+                                                </li>
+                                                <li class="product__info-item">
+                                                    <p class="product__info-item-name">
+                                                        Оперативная память, ГБ:
+                                                    </p>
+                                                    <p class="product__info-item-val">
+                                                        ГБ: 4
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                            <div class="product__tags">
+                                                <div class="product__tags-label product__tags-label--new">
+                                                    Как новый
+                                                </div>
+                                                <div class="product__tags-label product__tags-label--in-stock">
+                                                    В магазине
+                                                </div>
+                                                <div class="product__tags-label product__tags-label--used">
+                                                    В рассрочку
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="product__box">
                                         <div class="product__actions">
@@ -712,7 +813,8 @@
                                             <p class="product__price-old">
                                                 1290
                                             </p>
-                                            <button class="product__btn btn btn-icon btn-tooltip">
+                                            <button class="product__btn btn btn-icon btn-tooltip active"
+                                                name="Добавить в сравнение">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F"
@@ -720,7 +822,8 @@
                                                         stroke-linejoin="round" />
                                                 </svg>
                                             </button>
-                                            <button class="product__btn btn btn-icon btn-tooltip">
+                                            <button class="product__btn btn btn-icon btn-tooltip active"
+                                                name="Добавить в избранное">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -733,27 +836,21 @@
                                         <a href="#" class="product__buy btn btn-primary">
                                             В корзину
                                         </a>
-                                        <div class="product__tags">
-                                            <div class="product__tags-label product__tags-label--new">
-                                                Как новый
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--in-stock">
-                                                В магазине
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--used">
-                                                В рассрочку
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
+                                <script>
+                                    const productClass3 = ".js-product-03"
+                                    const productGalery03 = new Swiper(`${productClass3} .js-product-swiper`, {
+                                        effect: "fade",
+                                        lazy: true,
+                                        pagination: {
+                                            el: `${productClass3} .swiper-pagination`,
+                                            clickable: true,
+                                        },
+                                    })
+                                </script>
                             </li>
                         </ul>
-                        <script>
-                            const productGalery = new Swiper(".js-product-swiper", {
-                                effect: "fade",
-                            })
-                        </script>
-
                     </div>
                 </div>
             </section>

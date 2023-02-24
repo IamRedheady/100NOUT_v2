@@ -3,6 +3,8 @@
     position: relative;
     width: 100%;
     max-width: 280px;
+    background: $white;
+    border: 1px solid transparent;
     &__tag {
         position: absolute;
         left: 14px;
@@ -21,20 +23,27 @@
     }
 
     &__swiper {
-        overflow: hidden;
-        margin-bottom: 14px;
-        border-radius: 8px;
+        position: relative;
+        &-wrap {
+            display: block;
+            overflow: hidden;
+            max-width: 266px;
+            height: 215px;
+            margin-bottom: 14px;
+            border-radius: 8px;
+        }
     }
 
     &__pic {
-        width: 269px;
-        height: 215px;
+        width: 100%;
+        height: 100%;
         display: block;
-
         &-img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            position: relative;
+            z-index: 12;
         }
     }
 
@@ -82,10 +91,50 @@
     }
 
     &__info {
-        display: none;
+        margin-bottom: 12px;
+        &-wrap {
+            display: none;
+            position: absolute;
+            top: calc(100% - 10px);
+            left: -1px;
+            width: calc(100% + 2px);
+            padding: 6px;
+            background-color: $white;
+            border: 1px solid $N100;
+            border-top: none;
+            border-radius: 8px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding-top: 12px;
+        }
+    }
+
+    &:hover {
+        border: 1px solid $N100;
+        box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+    }
+
+    &:hover &__info-wrap {
+        display: block;
     }
 
     &__info-item {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: $black;
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 4px;
+        margin-bottom: 4px;
+        border-bottom: 1px solid $N100;
+        &:last-child {
+            padding-bottom: 0;
+            margin-bottom: 0;
+            border: none;
+        }
     }
 
     &__info-item-name {
@@ -143,10 +192,12 @@
     &__buy {
         max-width: 100%;
         margin-top: 14px;
+        position: relative;
+        z-index: 1;
     }
 
     &__tags {
-        display: none;
+        display: flex;
         flex-wrap: nowrap;
         overflow-x: scroll;
         &-label {
@@ -185,5 +236,17 @@
     }
 
     &__tags-label--orange {
+    }
+    .swiper-lazy-preloader {
+        border-color: $B500;
+        border-top-color: transparent;
+    }
+    .swiper-pagination {
+        pointer-events: none;
+        display: none;
+    }
+
+    .swiper-slide {
+        pointer-events: none !important;
     }
 }
