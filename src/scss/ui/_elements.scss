@@ -280,6 +280,8 @@
 .breads {
     display: flex;
     white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
     &__item {
         display: flex;
         align-items: center;
@@ -362,5 +364,11 @@
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .dropdown {
+        min-width: 140px;
     }
 }
