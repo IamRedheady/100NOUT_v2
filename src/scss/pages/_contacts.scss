@@ -46,3 +46,17 @@
         }
     }
 }
+
+@media screen and (max-width: 680px) {
+	.contacts {
+		&__map-adress {
+			bottom: 0;
+			width: 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+
+
+
