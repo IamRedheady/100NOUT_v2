@@ -5,6 +5,7 @@
     max-width: 280px;
     background: $white;
     border: 1px solid transparent;
+    border-radius: 8px;
     &__tag {
         position: absolute;
         left: 14px;
@@ -197,15 +198,15 @@
 
     &__buy {
         max-width: 100%;
-        margin-top: 14px;
         position: relative;
         z-index: 1;
+        margin-bottom: 12px;
     }
 
     &__tags {
         display: flex;
         flex-wrap: nowrap;
-        overflow-x: scroll;
+        overflow-x: auto;
         &-label {
             font-weight: 400;
             font-size: 12px;

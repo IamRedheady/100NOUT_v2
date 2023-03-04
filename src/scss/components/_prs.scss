@@ -1,0 +1,41 @@
+.prs {
+    &__title {
+        margin-bottom: 40px;
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 12px;
+        overflow: hidden;
+    }
+
+    &__list-item {
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .prs {
+        &__list {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .prs {
+        &__list {
+            display: flex;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            margin-left: -20px;
+            margin-right: -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            .product {
+                min-width: 269px;
+                max-width: 269px;
+            }
+        }
+    }
+}

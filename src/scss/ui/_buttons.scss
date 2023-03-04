@@ -73,6 +73,11 @@
             padding: 5px 10px;
             left: 90%;
             top: 90%;
+            @media screen and (max-width: 1200px) {
+                left: auto;
+                right: 0;
+                top: 100%;
+            }
         }
         &:hover::before {
             transition: opacity 0.2s ease;

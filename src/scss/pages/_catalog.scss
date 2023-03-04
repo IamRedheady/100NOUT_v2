@@ -121,6 +121,17 @@
             &:hover {
                 box-shadow: none;
             }
+            &__buy {
+                position: absolute;
+                margin-bottom: 0;
+                bottom: 6px;
+                width: 100%;
+                max-width: 261px;
+                right: 6px;
+            }
+            &__actions {
+                margin-bottom: 64px;
+            }
             &__center {
                 margin-left: 12px;
                 margin-right: auto;
@@ -262,6 +273,7 @@
             }
         }
         .product {
+            padding-bottom: 48px;
             &__swiper {
                 &-wrap {
                     height: 34vw;
@@ -277,6 +289,9 @@
             }
             &__buy {
                 max-width: max-content;
+                position: absolute;
+                bottom: 6px;
+                margin-bottom: 0;
             }
             &__status {
                 order: 3;
@@ -304,6 +319,21 @@
         .catalog__list {
             .product {
                 padding-right: 40px;
+                padding-bottom: 6px;
+                &__buy {
+                    position: static;
+                    order: 2;
+                    margin-top: auto;
+                    max-width: 100%;
+                    margin-bottom: 0;
+                }
+                &__title {
+                    height: 100%;
+                    max-height: 56px;
+                }
+                &__actions {
+                    margin-bottom: 6px;
+                }
                 &__box {
                     position: absolute;
                     max-width: calc(100% - 12px);
@@ -321,8 +351,12 @@
                 }
                 &__info {
                     display: block;
+                    order: 1;
                     &-wrap {
                         order: 3;
+                        display: flex;
+                        flex-direction: column;
+                        height: 100%;
                     }
                 }
                 &__title {
@@ -333,20 +367,11 @@
                     width: 100%;
                     margin-right: 40px;
                 }
-                &__buy {
-                    max-width: 451px;
-                    width: 100%;
-                    margin-left: auto;
-                    margin-right: auto;
-                }
                 &__tags {
                     left: 6px;
                     right: auto;
-                    bottom: 68px;
+                    bottom: 72px;
                     top: auto;
-                }
-                &__buy {
-                    margin-top: 0;
                 }
                 &__swiper {
                     &-wrap {
@@ -392,8 +417,12 @@
                         margin-right: 12px;
                         max-width: 46%;
                         width: 100%;
-                        height: 42vw;
+                        height: 190px;
                     }
+                }
+                &__tags {
+                    bottom: auto;
+                    top: 202px;
                 }
                 &__box {
                     padding-right: 0;
@@ -401,6 +430,7 @@
                 &__actions {
                     margin-right: 12px;
                     max-width: 46%;
+                    margin-bottom: 0;
                 }
                 &__status {
                     margin-bottom: 0;
@@ -414,6 +444,7 @@
     .catalog {
         &__list {
             grid-template-columns: repeat(1, 1fr);
+            grid-gap: 24px;
         }
         &__sort {
             margin-left: 4px;
@@ -452,7 +483,7 @@
                 &__title {
                     font-size: 3vw;
                     line-height: 4.5vw;
-                    height: 10.3vw;
+                    height: 11.3vw;
                     &::after {
                         height: 5vw;
                     }
@@ -467,11 +498,15 @@
                     bottom: 12vw;
                 }
                 &__center {
-                    margin-bottom: 11vw;
+                }
+                &__actions {
+                    margin-bottom: 0;
                 }
                 &__swiper {
                     &-wrap {
                         margin-bottom: 18vw;
+                        max-width: 44.2%;
+                        height: 39vw;
                     }
                 }
                 &__status {
@@ -484,14 +519,18 @@
                     line-height: 3vw;
                 }
                 &__buy {
-                    font-size: 3vw;
+                    font-size: 2.5vw;
                     line-height: 3vw;
+                    border-radius: 5px;
                 }
                 &__info-item {
                     font-size: 2.5vw;
                     line-height: 3vw;
                 }
                 &__tags {
+                    height: auto;
+                    bottom: auto;
+                    top: 42vw;
                     &-label {
                         font-size: 1.7vw;
                         line-height: 2vw;
