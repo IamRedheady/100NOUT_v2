@@ -195,7 +195,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 660px) {
     .map {
         margin-top: 64px;
         margin-bottom: 64px;
@@ -211,7 +211,9 @@
         &__card {
             background: $white;
             border: 1px solid #efeeed;
-            margin-top: -40px;
+            margin-top: 0;
+						width: 100%;
+						max-width: 100%;
         }
     }
 }

@@ -1,4 +1,6 @@
 .trade-in {
+	margin-bottom: 0;
+
     &__banner {
         margin-top: 24px;
         margin-bottom: 80px;
@@ -70,6 +72,12 @@
 
 @media screen and (max-width: 1000px) {
     .trade-in {
+			margin-bottom: 0px;
+
+			&__banner {
+        margin-bottom: 60px;
+    	}
+
         &__list {
             grid-template-columns: repeat(1, 1fr);
 						grid-gap: 14px;
@@ -87,11 +95,6 @@
 
 @media screen and (max-width: 680px) {
 	.trade-in {
-		&__map-adress {
-			bottom: 0;
-			width: 100%;
-			max-width: 100%;
-		}
 	}
 }
 
@@ -100,6 +103,7 @@
 			&__list {
 					grid-template-columns: repeat(1, 1fr);
 					grid-gap: 14px;
+					margin-bottom: 24px;
 			}
 
 			&__subtitle {

@@ -508,14 +508,13 @@
 @media screen and (max-width: 1200px) {
     .advantage {
         &__list {
-            width: 942px;
 
             &-item {
-                width: 307px;
+                width: 100%;
             }
 
             &-card {
-                width: 307px;
+                width: auto;
 
                 &-guarantee {
                     &-pic {
@@ -528,9 +527,11 @@
                     }
 
                     &-subtitle {
+                        width: 100%;
                     }
 
                     &-text {
+                        width: 100%;
                     }
                 }
 
@@ -538,18 +539,17 @@
                     padding: 0;
 
                     &-subtitle {
-                        width: 205px;
-                        margin-right: 51px;
-                        margin-left: 51px;
+                        width: 100%;
                     }
 
                     &-text {
-                        margin-right: 17px;
-                        margin-left: 17px;
-                        width: 273px;
+                        width: 100%;
                     }
 
                     &-pic {
+											left: 53px;
+											top: 0px;
+
                         &-img {
                         }
                     }
@@ -560,15 +560,17 @@
 
                 &-photos {
                     padding-left: 10.5px;
-                    padding-right: 10.5px;
+                    padding-right: 10.5px;	
 
-                    &-subtitle {
-                        width: 286px;
-                    }
+										&-subtitle {
+											width: 100%;
+									}
 
-                    &-text {
-                        width: 282px;
-                    }
+									&-text {
+											width: auto;
+											margin-left: 30px;
+											margin-right: 30px;
+									}
 
                     &-pic {
                         left: 42px;
@@ -586,19 +588,17 @@
 @media screen and (max-width: 1000px) {
     .advantage {
         &__list {
-            max-width: 620px;
+            max-width: 100%;
             display: grid;
             grid-template-columns: repeat(1, 1fr);
             grid-gap: 14px;
 
             &-item {
-                width: 620px;
                 height: 139px;
             }
 
             &-card {
-                width: 620px;
-                height: 139px;
+                height: 140px;
                 text-align: left;
                 padding: 24px;
 
@@ -606,7 +606,7 @@
                     &-pic {
                         width: 234px;
                         height: 165.34px;
-                        left: 390px;
+												right: 5px;
                         bottom: -33px;
 
                         &-img {
@@ -616,7 +616,8 @@
                     &-gradient {
                         width: 320px;
                         height: 320px;
-                        left: 448px;
+                        left: auto;
+												right: -40px;
                         top: 78px;
                         background: linear-gradient(180deg, #f9f047 0%, #0fd850 100%);
                         filter: blur(180px);
@@ -652,7 +653,8 @@
                         transform: rotate(40deg);
                         width: 206.26px;
                         height: 133.81px;
-                        left: 385px;
+                        left: auto;
+												right: 0;
                         top: 33px;
 
                         &-img {
@@ -662,7 +664,8 @@
                     &-gradient {
                         width: 194px;
                         height: 194px;
-                        left: 483px;
+                        left: auto;
+												right: -30px;
                         top: 70px;
                         background: linear-gradient(180deg, #256eb0 0%, #eca5b3 100%);
                         filter: blur(65px);
@@ -678,19 +681,22 @@
                     &-text {
                         max-width: 330px;
                         max-height: 72px;
+												margin: 0;
                     }
 
                     &-pic {
                         width: 236.98px;
                         height: 226.85px;
-                        left: 410px;
+                        left: auto;
+												right: -25px;
                         top: 34px;
                     }
 
                     &-gradient {
                         width: 155.39px;
                         height: 155.39px;
-                        left: 590px;
+                        left: auto;
+												right: -50px;
                         top: 46.49px;
                         background: linear-gradient(180deg, #00c9ff 0%, #92fe9d 100%);
                         filter: blur(65px);
@@ -704,21 +710,13 @@
 @media screen and (max-width: 680px) {
     .advantage {
         &__list {
-            max-width: 460px;
-
-            &-item {
-                max-width: 460px;
-            }
-
+  
             &-card {
-                max-width: 460px;
 
                 &-guarantee {
                     &-pic {
-                        width: 177.26px;
-                        height: 125.18px;
-                        left: 300px;
-                        top: 39px;
+                        width: 178px;
+                        height: 125px;
 
                         &-img {
                         }
@@ -727,8 +725,6 @@
                     &-gradient {
                         width: 130px;
                         height: 130px;
-                        left: 392px;
-                        top: 54px;
                         background: linear-gradient(180deg, #f9f047 0%, #0fd850 100%);
                         filter: blur(55.0637px);
                     }
@@ -748,9 +744,9 @@
                     }
 
                     &-pic {
-                        width: 153.27px;
-                        height: 99.43px;
-                        left: 300px;
+                        width: 154px;
+                        height: 100px;
+                        right: 0;
                         top: 60px;
 
                         &-img {
@@ -760,8 +756,6 @@
                     &-gradient {
                         width: 129px;
                         height: 129px;
-                        left: 381px;
-                        top: 52px;
                         background: linear-gradient(180deg, #256eb0 0%, #eca5b3 100%);
                         filter: blur(60.7609px);
                     }
@@ -775,17 +769,14 @@
                     }
 
                     &-pic {
-                        width: 175.12px;
-                        height: 160.06px;
-                        left: 310px;
+                        width: 175px;
+                        height: 160px;
                         top: 65px;
                     }
 
                     &-gradient {
-                        width: 155.39px;
-                        height: 155.39px;
-                        left: 453.85px;
-                        top: 45px;
+                        width: 156px;
+                        height: 156px;
                         background: linear-gradient(180deg, #00c9ff 0%, #92fe9d 100%);
                     }
                 }
@@ -797,28 +788,26 @@
 @media screen and (max-width: 520px) {
     .advantage {
         &__list {
-            width: 300px;
+            width: 100%;
 
             &-item {
-                width: 300px;
                 height: 205px;
             }
 
             &-card {
-                width: 300px;
                 height: 205px;
 
                 &-guarantee {
                     &-pic {
                         width: 150px;
-                        left: 160px;
+                        left: auto;
                         top: 120px;
                     }
 
                     &-gradient {
                         width: 130px;
                         height: 130px;
-                        left: 204px;
+                        left: auto;
                         top: 135px;
                         background: linear-gradient(180deg, #f9f047 0%, #0fd850 100%);
                         filter: blur(55.0637px);
@@ -828,7 +817,7 @@
                     }
 
                     &-text {
-                        width: 250px;
+                        width: 100%;
                     }
                 }
 
@@ -841,16 +830,17 @@
                     }
 
                     &-pic {
-                        width: 150.66px;
-                        height: 125.09px;
-                        left: 145px;
+                        width: 151px;
+                        height: 125px;
+                        left: auto;
                         top: 135px;
+												transform: rotate(25deg);
                     }
 
                     &-gradient {
                         width: 165px;
                         height: 165px;
-                        left: 178px;
+                        left: auto;
                         top: 116px;
                         background: linear-gradient(180deg, #256eb0 0%, #eca5b3 100%);
                         filter: blur(60.7609px);
@@ -866,16 +856,16 @@
                     }
 
                     &-pic {
-                        width: 175.12px;
-                        height: 160.06px;
-                        left: 166px;
+                        width: 175px;
+                        height: 160px;
+                        left: auto;
                         top: 130px;
                     }
 
                     &-gradient {
-                        width: 155.39px;
-                        height: 155.39px;
-                        left: 283.85px;
+                        width: 156px;
+                        height: 156x;
+                        left: auto;
                         top: 115px;
                         background: linear-gradient(180deg, #00c9ff 0%, #92fe9d 100%);
                         filter: blur(65px);

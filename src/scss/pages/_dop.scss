@@ -1,5 +1,5 @@
 .dop {
-
+	margin-bottom: 22px;
   &__title {
   }
 
@@ -97,8 +97,16 @@
     &__list {
     	grid-template-columns: 1fr;
       grid-gap: 14px;
+
+			&-column {
+				margin-bottom: 14px;
+			}
     }
     
+		&__text {
+			margin-bottom: 24px;
+		}
+
 		&__subtitle {
 			margin-top: 60px;
 
@@ -107,14 +115,22 @@
 			}
 		}
 
+		&__title-sm {
+			margin-bottom: 60px;
+		}
+
 		&__banner {
 			margin-top: 24px;
 			margin-bottom: 60px;
 		}
+
+		&__link {
+			margin-bottom: 24px;
+		}
 	}
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 520px) {
   .dop {
     &__list {
       &-item {
@@ -135,6 +151,10 @@
 
 		&__text {
 			margin-bottom: 14px;
+
+			&-lg {
+				margin-bottom: 24px;
+			}
 		}
 
 		&__title-sm {

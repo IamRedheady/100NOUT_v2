@@ -1,10 +1,18 @@
 .jobs {
+	.card__list--column .card__list-item {
+		margin-bottom: 0px;
+	}
     margin-bottom: 22px;
     &__title {
         margin-bottom: 24px;
     }
 
+		&__text {
+			margin-bottom: 0px;
+		}
+
     &__list {
+	
         &-terms {
             margin-bottom: 6px;
         }
@@ -18,10 +26,6 @@
             &:last-child {
                 margin-bottom: 0;
             }
-
-						&-text {
-						margin-bottom: 0px;
-						}
         }
     }
 }
