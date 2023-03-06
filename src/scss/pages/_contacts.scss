@@ -1,5 +1,5 @@
 .contacts {
-    margin-bottom: 22px;
+	margin-bottom: 22px;
 
     &__list {
         display: grid;
@@ -25,15 +25,17 @@
             }
         }
     }
-    &__map {
-        &-title {
-            margin-bottom: 24px;
-        }
-    }
+		&__map {
 
-    &__card {
-        max-height: 190px;
-    }
+			&-title {
+				margin-bottom: 24px;
+			}
+		}
+
+		&__card {
+			max-height: 190px;
+
+		}
 }
 
 @media screen and (max-width: 1200px) {
@@ -46,35 +48,48 @@
         }
     }
 
-    .contacts {
-        &__list {
-            display: flex;
-            grid-template-columns: repeat(2, 1fr);
-            grid-gap: 24px;
-            margin-top: 24px;
-        }
+		.contacts {
 
-        &__card {
-            &-socials {
-                min-width: 388px;
-            }
+			&__list {
+        display: flex;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 24px;
+        margin-top: 24px;
+			}
+			
+			&__card {
 
-            &-info {
-                min-width: auto;
-            }
-        }
-    }
+				&-socials {
+					min-width: 388px;
+				}
+				
+			&-info {
+				min-width: auto;
+			}
+		}
+	}
 }
 
 @media screen and (max-width: 1000px) {
     .contacts {
         &__list {
-            display: grid;
+						display: grid;
             grid-template-columns: repeat(1, 1fr);
-            grid-gap: 16px;
-        }
+						grid-gap: 16px;
+					}
         &__list-item-card--back {
             padding-right: 100px;
         }
     }
 }
+
+@media screen and (max-width: 680px) {
+	.contacts {
+		&__map {
+		}
+	}
+}
+
+
+
+
