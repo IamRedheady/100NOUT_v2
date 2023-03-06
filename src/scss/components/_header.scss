@@ -1,6 +1,8 @@
 .header {
     padding-top: 20px;
     padding-bottom: 20px;
+    position: relative;
+    z-index: 10;
     &__logo {
         display: flex;
         align-items: center;
@@ -12,6 +14,26 @@
 
     &__menu-toggle {
         margin-left: 20px;
+        svg {
+            transition: all 0.3s ease;
+            path {
+                transition: all 0.3s ease;
+            }
+        }
+        &.active {
+            svg {
+                transform: scale(1.2);
+                path:nth-child(1) {
+                    transform: rotate(45deg) translate(3.5px, -4.5px);
+                }
+                path:nth-child(2) {
+                    opacity: 0;
+                }
+                path:nth-child(3) {
+                    transform: rotate(-45deg) translate(-10.5px, -1.5px);
+                }
+            }
+        }
     }
 
     &__search {

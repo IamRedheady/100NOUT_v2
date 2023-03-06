@@ -37,6 +37,17 @@
                 width: 100% !important;
             }
         }
+        .swiper-pagination {
+            display: block;
+            pointer-events: all;
+        }
+        .swiper-pagination-bullet {
+            opacity: 1;
+            background-color: $N200;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: $N400;
+        }
     }
 
     &__pic {

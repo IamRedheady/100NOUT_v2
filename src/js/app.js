@@ -5,6 +5,7 @@ import '../scss/app.scss';
 // Elements
 import "./elements/dropdown";
 import "./elements/intro";
+import "./elements/menu";
 const changePhotos = (e, productClass) => {
     if (window.innerWidth > 1000) {
         const slides = document.querySelectorAll(`.${productClass} .swiper-slide`)

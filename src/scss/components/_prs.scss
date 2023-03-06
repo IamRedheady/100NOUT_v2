@@ -7,10 +7,22 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 12px;
-        overflow: hidden;
     }
 
     &__list-item {
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .prs {
+        .product {
+            &__swiper {
+                .swiper-pagination {
+                    display: block;
+                    pointer-events: all;
+                }
+            }
+        }
     }
 }
 
@@ -18,6 +30,46 @@
     .prs {
         &__list {
             grid-template-columns: repeat(3, 1fr);
+        }
+        .product {
+            padding-bottom: 54px;
+            &__center {
+                display: flex;
+                flex-direction: column;
+            }
+            &__title {
+                order: 2;
+                margin-top: 8px;
+            }
+            &__buy {
+                max-width: max-content;
+                position: absolute;
+                bottom: 6px;
+                margin-bottom: 0;
+            }
+            &__status {
+                order: 3;
+                margin-bottom: 14px;
+            }
+            &__info {
+                display: none;
+                &-wrap {
+                    display: block;
+                    position: static;
+                    background: none;
+                    border: none;
+                    box-shadow: none;
+                    padding: 0;
+                    order: 1;
+                }
+            }
+            &__tags {
+                display: none;
+            }
+            &:hover {
+                box-shadow: none;
+                border-color: transparent;
+            }
         }
     }
 }
@@ -35,7 +87,18 @@
             .product {
                 min-width: 269px;
                 max-width: 269px;
+                border: 1px solid #f7f7f6;
+                border-radius: 8px;
             }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .prs {
+        .product {
+            border: 1px solid #f7f7f6;
+            border-radius: 8px;
         }
     }
 }

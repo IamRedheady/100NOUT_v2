@@ -1,12 +1,11 @@
 .reviews {
     margin-bottom: 22px;
-    
+
     &__title {
         margin-bottom: 24px;
     }
 
     &__intro {
-
         &-card {
             background: #f7f7f6;
             border-radius: 12px;
@@ -46,35 +45,33 @@
                 margin-right: 14px;
                 width: 56px;
                 height: 56px;
-                
+                min-width: 56px;
+
                 &-img {
                     border-radius: 50%;
                     margin-right: 14px;
+                    width: 100%;
+                    height: 100%;
                 }
             }
         }
     }
 
-    &__card { 
+    &__card {
         display: flex;
     }
 
     &__content {
-
         &-title {
             margin-bottom: 6px;
         }
     }
 }
 
-
 @media screen and (max-width: 960px) {
     .reviews {
-       
         &__intro {
-    
             &-card {
-    
                 &-text {
                     padding-top: 24px;
                     padding-left: 24px;
@@ -86,50 +83,42 @@
 }
 
 @media screen and (max-width: 640px) {
-    
     .reviews {
         margin-bottom: 12px;
 
         &__intro {
-
             &-card {
                 margin-bottom: 24px;
-    
+
                 &-text {
                     padding-right: 132px;
-        
                 }
             }
-        } 
+        }
 
         &__body {
             grid-template-columns: repeat(1, 1fr);
         }
 
         &__list {
-        margin-top: 0px;
-        margin-bottom: 14px;
-        grid-gap: 14px;
+            margin-top: 0px;
+            margin-bottom: 14px;
+            grid-gap: 14px;
         }
     }
 }
 
 @media screen and (max-width: 480px) {
-    
     .reviews {
-
         &__intro {
-
             &-card {
                 margin-bottom: 24px;
-    
+
                 &-text {
                     padding-right: 24px;
-        
                 }
-    
+
                 &-pic {
-                    
                 }
             }
         }
@@ -137,24 +126,20 @@
 }
 
 @media screen and (max-width: 320px) {
-    
     .reviews {
-    
         &__column {
             max-width: 280px;
         }
 
-        &__card { 
+        &__card {
             display: flex;
             flex-direction: column;
         }
 
         &__list {
-
             &-item {
-
                 &-pic {
-                    margin-right: 0 ;
+                    margin-right: 0;
                     margin-bottom: 10px;
                 }
             }

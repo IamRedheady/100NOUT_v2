@@ -1,5 +1,5 @@
 .trade-in {
-	margin-bottom: 0;
+    margin-bottom: 0;
 
     &__banner {
         margin-top: 24px;
@@ -57,75 +57,67 @@
         }
     }
 
-	&__text {
+    &__text {
+        &-font {
+            font-weight: 600;
+        }
 
-		&-font {
-			font-weight: 600;
-		}
-
-		&-sm {
-			font-size: 14px;
-      line-height: 20px;
-		}
-	}
+        &-sm {
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
 }
 
 @media screen and (max-width: 1000px) {
     .trade-in {
-			margin-bottom: 0px;
+        margin-bottom: 0px;
 
-			&__banner {
-        margin-bottom: 60px;
-    	}
+        &__banner {
+            margin-bottom: 60px;
+        }
 
         &__list {
             grid-template-columns: repeat(1, 1fr);
-						grid-gap: 14px;
+            grid-gap: 14px;
         }
 
-				&__subtitle {
-					margin-top: 60px;
-			}
+        &__subtitle {
+            margin-top: 60px;
+        }
 
-			&__map {
-				margin-top: 60px;
-			}
+        &__map {
+            margin-top: 60px;
+        }
     }
 }
 
 @media screen and (max-width: 680px) {
-	.trade-in {
-	}
+    .trade-in {
+    }
 }
 
 @media screen and (max-width: 520px) {
-	.trade-in {
-			&__list {
-					grid-template-columns: repeat(1, 1fr);
-					grid-gap: 14px;
-					margin-bottom: 24px;
-			}
+    .trade-in {
+        &__list {
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 14px;
+            margin-bottom: 24px;
+        }
 
-			&__subtitle {
-				margin-top: 60px;
-		}
+        &__subtitle {
+            margin-top: 60px;
+        }
 
-		&__map {
-			margin-top: 60px;
-		}
+        &__map {
+            margin-top: 60px;
+        }
 
-		&__text {
-
-			&-sm {
-				font-size: 14px;
-				line-height: 20px;
-			}
-		}	
-	}	
+        &__text {
+            &-sm {
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
 }
-
-
-
-
-
-
