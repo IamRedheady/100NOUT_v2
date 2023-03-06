@@ -38,16 +38,10 @@
         grid-gap: 24px;
         margin-bottom: 14px;
 
-        &-text {
-            margin-bottom: 12px;
-
-            &-lg {
-                margin-bottom: 4px;
-
-                &-conditions {
-                    margin-bottom: 24px;
-                }
-            }
+        &-text,
+        .card__list--column .card__list-item {
+            margin-top: 12px;
+            margin-bottom: 0 !important;
         }
 
         &-item {
@@ -123,8 +117,6 @@
         margin-bottom: 14px;
 
         &-text {
-            margin-bottom: 12px;
-
             &-lg {
                 margin-bottom: 4px;
 
@@ -225,10 +217,10 @@
                 }
             }
         }
-
-        &__link {
-            margin-bottom: 36px;
-        }
+    }
+    &__link {
+        margin-bottom: 36px;
+        margin-top: 14px;
     }
 }
 
