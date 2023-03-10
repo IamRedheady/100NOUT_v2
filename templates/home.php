@@ -11,7 +11,7 @@
 
                                         <?php while( has_sub_field('slajder_bannerov') ): ?>
                                             <div class='swiper-slide'>
-                                                <div class="intro__pic" style="border-radius: 15px; overflow: hidden;">
+                                                <a href="<?php the_sub_field('intro-ssylka'); ?>" class="intro__pic" style="border-radius: 15px; overflow: hidden;">
                                                     <img src="<?php the_sub_field('izobrazhenie_bannera_xl'); ?>" alt="Фото"
                                                         class="intro__pic-img intro__pic-img-xl">
                                                     <img src="<?php the_sub_field('izobrazhenie_bannera_l'); ?>" alt="Фото"
@@ -22,7 +22,7 @@
                                                         class="intro__pic-img intro__pic-img-s">
                                                     <img src="<?php the_sub_field('izobrazhenie_bannera_xs'); ?>" alt="Фото"
                                                         class="intro__pic-img intro__pic-img-xs">
-                                                </div>
+                                                </a>
                                             </div>
                                     
                                         <?php endwhile; ?>
@@ -116,735 +116,19 @@
                     <h2 class="prs__title text-4xl">
                         Смартфоны Apple
                     </h2>
-                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-                    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-                    <ul class="prs__list hide-scroll">
-                        <li class="prs__list-item">
-                            <div class="product js-product-01">
-                                <span class="product__tag product__tag--green">
-                                    Новинка
-                                </span>
-                                <div class="product__swiper-wrap"
-                                    onmouseleave="onLeaveProductPhoto(event, 'js-product-01')"
-                                    onmousemove="changePhotos(event, 'js-product-01')">
-                                    <div class="product__swiper js-product-swiper">
-                                        <div class='swiper-wrapper'>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr1.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr2.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr3.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-pagination"></div>
-                                    </div>
-                                </div>
-                                <div class="product__center">
-                                    <a href="#" class="product__title">
-                                        Конвектор Royal Clima Verona Econo REC–VE15 0M
-                                    </a>
-                                    <p class="product__status product__status--in-stock">
-                                        В наличии
-                                    </p>
-                                    <div class="product__info-wrap">
-                                        <a href="#" class="product__buy btn btn-primary">
-                                            В корзину
-                                        </a>
-                                        <ul class="product__info">
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Диагональ экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    15,6
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Модель процессора:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    Intel Pentium N3510
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Разрешение экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    HD 1366х768
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Графический адаптер:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    встроенный
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Оперативная память, ГБ:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    ГБ: 4
-                                                </p>
-                                            </li>
-                                        </ul>
-                                        <div class="product__tags hide-scroll">
-                                            <div class="product__tags-label product__tags-label--new">
-                                                Как новый
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--in-stock">
-                                                В магазине
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--credit">
-                                                В рассрочку
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__box">
-                                    <div class="product__actions">
-                                        <p class="product__price">
-                                            890
-                                            <span>BYN</span>
-                                        </p>
-                                        <p class="product__price-old">
-                                            1290
-                                        </p>
-                                        <button class="product__btn btn btn-icon btn-tooltip active"
-                                            name="Добавить в сравнение">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F" stroke-width="1.2"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </button>
-                                        <button class="product__btn btn btn-icon btn-tooltip active"
-                                            name="Добавить в избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z"
-                                                    stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <script>
-                                const productGalery01 = new Swiper(`.js-product-01 .js-product-swiper`, {
-                                    effect: "fade",
-                                    lazy: true,
-                                    pagination: {
-                                        el: `.js-product-01 .swiper-pagination`,
-                                        clickable: true,
-                                    },
-                                })
-                            </script>
-                        </li>
-                        <li class="prs__list-item">
-                            <div class="product js-product-02">
-                                <span class="product__tag product__tag--green">
-                                    Новинка
-                                </span>
-                                <div class="product__swiper-wrap" onmousemove="changePhotos(event, 'js-product-02')">
-                                    <div class="product__swiper js-product-swiper">
-                                        <div class='swiper-wrapper'>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr1.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr2.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr3.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-pagination"></div>
-                                    </div>
-                                </div>
-                                <div class="product__center">
-                                    <a href="#" class="product__title">
-                                        Конвектор Royal Clima Verona Econo REC–VE15 0M
-                                    </a>
-                                    <p class="product__status product__status--in-stock">
-                                        В наличии
-                                    </p>
-                                    <div class="product__info-wrap">
-                                        <a href="#" class="product__buy btn btn-primary">
-                                            В корзину
-                                        </a>
-                                        <ul class="product__info">
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Диагональ экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    15,6
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Модель процессора:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    Intel Pentium N3510
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Разрешение экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    HD 1366х768
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Графический адаптер:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    встроенный
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Оперативная память, ГБ:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    ГБ: 4
-                                                </p>
-                                            </li>
-                                        </ul>
-                                        <div class="product__tags hide-scroll">
-                                            <div class="product__tags-label product__tags-label--new">
-                                                Как новый
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--in-stock">
-                                                В магазине
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--credit">
-                                                В рассрочку
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__box">
-                                    <div class="product__actions">
-                                        <p class="product__price">
-                                            890
-                                            <span>BYN</span>
-                                        </p>
-                                        <p class="product__price-old">
-                                            1290
-                                        </p>
-                                        <button class="product__btn btn btn-icon btn-tooltip active"
-                                            name="Добавить в сравнение">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F" stroke-width="1.2"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </button>
-                                        <button class="product__btn btn btn-icon btn-tooltip active"
-                                            name="Добавить в избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z"
-                                                    stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <script>
-                                const productGalery02 = new Swiper(`.js-product-02 .js-product-swiper`, {
-                                    effect: "fade",
-                                    lazy: true,
-                                    pagination: {
-                                        el: `.js-product-02 .swiper-pagination`,
-                                        clickable: true,
-                                    },
-                                })
-                            </script>
-                        </li>
-                        <li class="prs__list-item">
-                            <div class="product js-product-03">
-                                <span class="product__tag product__tag--green">
-                                    Новинка
-                                </span>
-                                <div class="product__swiper-wrap" onmousemove="changePhotos(event, 'js-product-03')">
-                                    <div class="product__swiper js-product-swiper">
-                                        <div class='swiper-wrapper'>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr1.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr2.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr3.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-pagination"></div>
-                                    </div>
-                                </div>
-                                <div class="product__center">
-                                    <a href="#" class="product__title">
-                                        Конвектор Royal Clima Verona Econo REC–VE15 0M
-                                    </a>
-                                    <p class="product__status product__status--in-stock">
-                                        В наличии
-                                    </p>
-                                    <div class="product__info-wrap">
-                                        <a href="#" class="product__buy btn btn-primary">
-                                            В корзину
-                                        </a>
-                                        <ul class="product__info">
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Диагональ экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    15,6
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Модель процессора:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    Intel Pentium N3510
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Разрешение экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    HD 1366х768
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Графический адаптер:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    встроенный
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Оперативная память, ГБ:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    ГБ: 4
-                                                </p>
-                                            </li>
-                                        </ul>
-                                        <div class="product__tags hide-scroll">
-                                            <div class="product__tags-label product__tags-label--new">
-                                                Как новый
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--in-stock">
-                                                В магазине
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--credit">
-                                                В рассрочку
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__box">
-                                    <div class="product__actions">
-                                        <p class="product__price">
-                                            890
-                                            <span>BYN</span>
-                                        </p>
-                                        <p class="product__price-old">
-                                            1290
-                                        </p>
-                                        <button class="product__btn btn btn-icon btn-tooltip active"
-                                            name="Добавить в сравнение">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F" stroke-width="1.2"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </button>
-                                        <button class="product__btn btn btn-icon btn-tooltip active"
-                                            name="Добавить в избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z"
-                                                    stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <script>
-                                const productGalery03 = new Swiper(`.js-product-03 .js-product-swiper`, {
-                                    effect: "fade",
-                                    lazy: true,
-                                    pagination: {
-                                        el: `.js-product-03 .swiper-pagination`,
-                                        clickable: true,
-                                    },
-                                })
-                            </script>
-                        </li>
-                        <li class="prs__list-item">
-                            <div class="product js-product-04">
-                                <span class="product__tag product__tag--green">
-                                    Новинка
-                                </span>
-                                <div class="product__swiper-wrap" onmousemove="changePhotos(event, 'js-product-04')">
-                                    <div class="product__swiper js-product-swiper">
-                                        <div class='swiper-wrapper'>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr1.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr2.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr3.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-pagination"></div>
-                                    </div>
-                                </div>
-                                <div class="product__center">
-                                    <a href="#" class="product__title">
-                                        Конвектор Royal Clima Verona Econo REC–VE15 0M
-                                    </a>
-                                    <p class="product__status product__status--in-stock">
-                                        В наличии
-                                    </p>
-                                    <div class="product__info-wrap">
-                                        <a href="#" class="product__buy btn btn-primary">
-                                            В корзину
-                                        </a>
-                                        <ul class="product__info">
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Диагональ экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    15,6
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Модель процессора:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    Intel Pentium N3510
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Разрешение экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    HD 1366х768
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Графический адаптер:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    встроенный
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Оперативная память, ГБ:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    ГБ: 4
-                                                </p>
-                                            </li>
-                                        </ul>
-                                        <div class="product__tags hide-scroll">
-                                            <div class="product__tags-label product__tags-label--new">
-                                                Как новый
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--in-stock">
-                                                В магазине
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--credit">
-                                                В рассрочку
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__box">
-                                    <div class="product__actions">
-                                        <p class="product__price">
-                                            890
-                                            <span>BYN</span>
-                                        </p>
-                                        <p class="product__price-old">
-                                            1290
-                                        </p>
-                                        <button class="product__btn btn btn-icon btn-tooltip active"
-                                            name="Добавить в сравнение">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F" stroke-width="1.2"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </button>
-                                        <button class="product__btn btn btn-icon btn-tooltip active"
-                                            name="Добавить в избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z"
-                                                    stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <script>
-                                const productGalery04 = new Swiper(`.js-product-04 .js-product-swiper`, {
-                                    effect: "fade",
-                                    lazy: true,
-                                    pagination: {
-                                        el: `.js-product-04 .swiper-pagination`,
-                                        clickable: true,
-                                    },
-                                })
-                            </script>
-                        </li>
-                        <li class="prs__list-item">
-                            <div class="product js-product-05">
-                                <span class="product__tag product__tag--green">
-                                    Новинка
-                                </span>
-                                <div class="product__swiper-wrap" onmousemove="changePhotos(event, 'js-product-05')">
-                                    <div class="product__swiper js-product-swiper">
-                                        <div class='swiper-wrapper'>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr1.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr2.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class='swiper-slide'>
-                                                <a href="#" class="product__pic">
-                                                    <img src="<?php nout_image_directory() ?>pr3.png" alt="Фото" class="product__pic-img"
-                                                        loading="lazy">
-                                                    <div class="swiper-lazy-preloader ">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-pagination"></div>
-                                    </div>
-                                </div>
-                                <div class="product__center">
-                                    <a href="#" class="product__title">
-                                        Конвектор Royal Clima Verona Econo REC–VE15 0M
-                                    </a>
-                                    <p class="product__status product__status--in-stock">
-                                        В наличии
-                                    </p>
-                                    <div class="product__info-wrap">
-                                        <a href="#" class="product__buy btn btn-primary">
-                                            В корзину
-                                        </a>
-                                        <ul class="product__info">
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Диагональ экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    15,6
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Модель процессора:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    Intel Pentium N3510
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Разрешение экрана:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    HD 1366х768
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Графический адаптер:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    встроенный
-                                                </p>
-                                            </li>
-                                            <li class="product__info-item">
-                                                <p class="product__info-item-name">
-                                                    Оперативная память, ГБ:
-                                                </p>
-                                                <p class="product__info-item-val">
-                                                    ГБ: 4
-                                                </p>
-                                            </li>
-                                        </ul>
-                                        <div class="product__tags hide-scroll">
-                                            <div class="product__tags-label product__tags-label--new">
-                                                Как новый
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--in-stock">
-                                                В магазине
-                                            </div>
-                                            <div class="product__tags-label product__tags-label--credit">
-                                                В рассрочку
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__box">
-                                    <div class="product__actions">
-                                        <p class="product__price">
-                                            890
-                                            <span>BYN</span>
-                                        </p>
-                                        <p class="product__price-old">
-                                            1290
-                                        </p>
-                                        <button class="product__btn btn btn-icon btn-tooltip active"
-                                            name="Добавить в сравнение">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F" stroke-width="1.2"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </button>
-                                        <button class="product__btn btn btn-icon btn-tooltip active"
-                                            name="Добавить в избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z"
-                                                    stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <script>
-                                const productGalery05 = new Swiper(`.js-product-05 .js-product-swiper`, {
-                                    effect: "fade",
-                                    lazy: true,
-                                    pagination: {
-                                        el: `.js-product-05 .swiper-pagination`,
-                                        clickable: true,
-                                    },
-                                })
-                            </script>
-                        </li>
+                    <ul class="prs__list prs__list-2334 hide-scroll">
+                        <?php 
+                            nout_show_products_by_id(2334);
+                            ?>
                     </ul>
                 </section>
-                <div class="categories layout">
+                <section class="categories layout">
                     <h2 class="categories__title text-4xl">Категории товаров</h2>
                     <ul class="categories__list">
                         <li class="categories__list-item">
                             <a href="" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="images/home_categories-1.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>home_categories-1.svg" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -856,7 +140,7 @@
                         <li class="categories__list-item">
                             <a href="" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="images/home_categories-2.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>home_categories-2.svg" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -868,7 +152,7 @@
                         <li class="categories__list-item">
                             <a href="" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="images/home_categories-3.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>home_categories-3.svg" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -880,7 +164,7 @@
                         <li class="categories__list-item">
                             <a href="" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="images/home_categories-4.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>home_categories-4.svg" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -892,7 +176,7 @@
                         <li class="categories__list-item">
                             <a href="" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="images/home_categories-5.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>home_categories-5.svg" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -904,7 +188,7 @@
                         <li class="categories__list-item">
                             <a href="" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="images/home_categories-6.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>home_categories-6.svg" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -916,7 +200,7 @@
                         <li class="categories__list-item">
                             <a href="" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="images/home_categories-7.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>home_categories-7.svg" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -928,7 +212,7 @@
                         <li class="categories__list-item">
                             <a href="" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="images/home_categories-8.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>home_categories-8.svg" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -940,7 +224,7 @@
                         <li class="categories__list-item">
                             <a href="" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="images/home_categories-9.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>home_categories-9.svg" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -952,7 +236,7 @@
                         <li class="categories__list-item">
                             <a href="" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="images/home_categories-10.svg" alt="Фото"
+                                    <img src="<?php nout_image_directory();?>home_categories-10.svg" alt="Фото"
                                         class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
@@ -963,8 +247,28 @@
                             </a>
                         </li>
                     </ul>
-                </div>
-                <div class="advantage layout">
+                </section>
+                <section class="prs layout">
+                    <h2 class="prs__title text-4xl">
+                        Новинки
+                    </h2>
+                    <ul class="prs__list prs__list-2334 hide-scroll">
+                        <?php 
+                                nout_show_products_new();
+                            ?>
+                    </ul>
+                </section>
+                <section class="prs layout">
+                    <h2 class="prs__title text-4xl">
+                        Рекомендуемые товары
+                    </h2>
+                    <ul class="prs__list prs__list-2334 hide-scroll">
+                        <?php 
+                                nout_show_products_related();
+                            ?>
+                    </ul>
+                </section>
+                <section class="advantage layout">
                     <h2 class="advantage__title text-4xl">Наши преимущества</h2>
                     <ul class="advantage__list">
                         <li class="advantage__list-item">
@@ -977,7 +281,7 @@
                                 </div>
                                 <div class="advantage__list-card-guarantee-pic">
                                     <img class="advantage__list-card-guarantee-pic-img"
-                                        src="images/home_advantage-1.svg" alt="Фото">
+                                        src="<?php nout_image_directory();?>home_advantage-1.svg" alt="Фото">
                                 </div>
                             </div>
                         </li>
@@ -986,7 +290,7 @@
                                 <div class="advantage__list-card-upgrade-gradient">
                                 </div>
                                 <div class="advantage__list-card-upgrade-pic">
-                                    <img class="advantage__list-card-upgrade-pic-img" src="images/home_advantage-2.svg"
+                                    <img class="advantage__list-card-upgrade-pic-img" src="<?php nout_image_directory();?>home_advantage-2.svg"
                                         alt="Фото">
                                 </div>
                                 <h4 class="text-2xl advantage__list-card-upgrade-subtitle">Апгрейд техники</h4>
@@ -1004,13 +308,55 @@
                                 <div class="advantage__list-card-photos-gradient">
                                 </div>
                                 <div class="advantage__list-card-photos-pic">
-                                    <img class="advantage__list-card-photos-pic-img" src="images/home_advantage-3.svg"
+                                    <img class="advantage__list-card-photos-pic-img" src="<?php nout_image_directory();?>home_advantage-3.svg"
                                         alt="Фото">
                                 </div>
                             </div>
                         </li>
                     </ul>
-                </div>
+                </section>
+                <section class="prs layout">
+                    <h2 class="prs__title text-4xl">
+                    Ноутбуки Dell
+                    </h2>
+                    <ul class="prs__list prs__list-2334 hide-scroll">
+                        <?php 
+                            nout_show_products_by_id(2316);
+                            ?>
+                    </ul>
+                </section>
+                <section class="layout hide-s">
+                    <h1 class="hide-s text-5xl" style="display: none;">
+                        Подписывайтесь на наш телеграм
+                    </h1>
+                    <a href="https://t.me/stonoutby" class="hide-s__banner banner">
+                        <img class="banner-xl" src="<?php nout_image_directory();?>tgb/xl1.jpg" alt="Баннер">
+                        <img class="banner-l" src="<?php nout_image_directory();?>tgb/l1.jpg" alt="Баннер">
+                        <img class="banner-m" src="<?php nout_image_directory();?>tgb/m1.jpg" alt="Баннер">
+                        <img class="banner-s" src="<?php nout_image_directory();?>tgb/s1.jpg" alt="Баннер">
+                        <img class="banner-xs" src="<?php nout_image_directory();?>tgb/xs1.jpg" alt="Баннер">
+                    </a>
+                </section>
+                <section class="prs layout">
+                    <h2 class="prs__title text-4xl">
+                    Смартфоны Samsung
+                    </h2>
+                    <ul class="prs__list prs__list-2334 hide-scroll">
+                        <?php 
+                            nout_show_products_by_id(2444);
+                            ?>
+                    </ul>
+                </section>
+                <section class="prs layout">
+                    <h2 class="prs__title text-4xl">
+                    Ноутбуки HP
+                    </h2>
+                    <ul class="prs__list prs__list-2334 hide-scroll">
+                        <?php 
+                            nout_show_products_by_id(2318);
+                            ?>
+                    </ul>
+                </section>
             </div>
 
 <?php get_footer();

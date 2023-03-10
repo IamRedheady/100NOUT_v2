@@ -1,6 +1,6 @@
 @keyframes slide-in-left {
     0% {
-        transform: translateX(-1000px);
+        transform: translateX(-50vw);
         // opacity: 0;
     }
     100% {
@@ -33,19 +33,20 @@
         // opacity: 1;
     }
     100% {
-        transform: translateX(-1000px);
+        transform: translateX(-100vw);
         // opacity: 0;
     }
 }
 
 .menu {
-    position: absolute;
-    top: 80px;
+    position: fixed;
+    top: 84px;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 84px);
     z-index: 11;
     display: none;
+    overflow: hidden;
     &.active {
         display: block;
     }
@@ -112,6 +113,8 @@
         z-index: 1;
         margin-bottom: 24px;
         height: 102px;
+        border-radius: 8px;
+        overflow: hidden;
         &-img {
             width: 100%;
             height: 100%;
@@ -213,6 +216,9 @@
     }
 
     &__sub-list {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: calc(100vh - 250px);
     }
 
     &__sub-list-item {
@@ -222,6 +228,7 @@
 @media screen and (max-width: 960px) {
     .menu {
         top: 143px;
+        height: calc(100% - 71.5px);
         &__inner {
             padding-left: 0;
         }
@@ -246,7 +253,8 @@
                         margin-left: 20px;
                         a {
                             svg {
-                                min-width: min-content;
+                                min-width: 15px;
+                                max-width: 15px;
                             }
                             margin-left: -20px;
                             margin-right: 0;
@@ -321,6 +329,12 @@
             &-list {
                 padding-left: 20px;
                 padding-right: 20px;
+                height: calc(100vh - 180px);
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+                &::-webkit-scrollbar {
+                    width: 0;
+                }
             }
             &-title {
                 display: flex;
@@ -343,6 +357,12 @@
 
 @media screen and (max-width: 480px) {
     .menu {
-        top: 84px;
+        top: 64px;
+        height: calc(100% - 32px);
+        &__sub {
+            &-list {
+                height: calc(100vh - 200px);
+            }
+        }
     }
 }

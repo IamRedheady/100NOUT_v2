@@ -60,6 +60,7 @@
             object-fit: cover;
             position: relative;
             z-index: 12;
+            border-radius: 8px;
         }
     }
 
@@ -267,10 +268,23 @@
 
     .swiper-slide {
         pointer-events: none !important;
+        transition: opacity 0.3s ease;
+    }
+
+    .swiper-initialized {
+        .swiper-slide {
+            opacity: 0 !important;
+            &-active {
+                opacity: 1 !important;
+            }
+        }
     }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 960px) {
     .product {
+        .swiper-slide {
+            pointer-events: all !important;
+        }
     }
 }

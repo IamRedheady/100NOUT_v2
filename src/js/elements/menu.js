@@ -11,36 +11,43 @@ const mobileTitle1 = document.querySelectorAll(".js-menu-title-1")
 const mobileTitle2 = document.querySelectorAll(".js-menu-title-2")
 const menuToggle = document.querySelectorAll(".js-menu-toggle")
 const menu = document.querySelector(".js-menu")
+const page = document.querySelector("body")
+
+const closeMenu = () => {
+    menu.classList.add("quit")
+    setTimeout(() => {
+        menu.classList.remove("quit")
+        menu.classList.remove("active")
+
+        menuToggle.forEach(btn => {
+            btn.classList.remove("active")
+        })
+        menu1Items.forEach((item, i) => {
+            item.classList.remove("active")
+            menu1List[i].classList.remove("active")
+        })
+        menu2Items.forEach((item, i) => {
+            item.classList.remove("active")
+            menu2List[i].classList.remove("active")
+        })
+        menuTop.classList.remove("active")
+        if (window.innerWidth < 960) {
+            menuSubWrap1.classList.remove("active")
+        } else {
+            menu1Items[0].classList.add("active")
+            menuSubWrap1.classList.add("active")
+            menu1List[0].classList.add("active")
+        }
+        menuBannerBase.classList.remove("long")
+        menuSubWrap2.classList.remove("active")
+    }, 500)
+}
 
 
 menuToggle.forEach(btn => {
     btn.addEventListener("click", () => {
         if (btn.classList.contains("active")) {
-            menu.classList.add("quit")
-            setTimeout(() => {
-                menu.classList.remove("quit")
-                menu.classList.remove("active")
-            }, 500)
-            menuToggle.forEach(btn => {
-                btn.classList.remove("active")
-            })
-            menu1Items.forEach((item, i) => {
-                item.classList.remove("active")
-                menu1List[i].classList.remove("active")
-            })
-            menu2Items.forEach((item, i) => {
-                item.classList.remove("active")
-                menu2List[i].classList.remove("active")
-            })
-            menuTop.classList.remove("active")
-            if (window.innerWidth < 960) {
-                menuSubWrap1.classList.remove("active")
-            } else {
-                menu1Items[0].classList.add("active")
-                menuSubWrap1.classList.add("active")
-                menu1List[0].classList.add("active")
-            }
-            menuSubWrap2.classList.remove("active")
+            closeMenu()
         } else {
             btn.classList.add("active")
             menu.classList.add("active")
@@ -50,14 +57,7 @@ menuToggle.forEach(btn => {
 
 menu.addEventListener("click", (e) => {
     if (e.target.classList.contains("menu") || e.target.classList.contains("menu__inner")) {
-        menu.classList.add("quit")
-        setTimeout(() => {
-            menu.classList.remove("quit")
-            menu.classList.remove("active")
-        }, 500)
-        menuToggle.forEach(btn => {
-            btn.classList.remove("active")
-        })
+        closeMenu()
     }
 })
 
@@ -94,11 +94,18 @@ if (window.innerWidth > 960) {
 
     menu2Items.forEach((item, index) => {
         item.addEventListener("mouseenter", () => {
-            clearItems2()
-            item.classList.add("active")
-            menu2List[index].classList.add("active")
-            menuSubWrap2.classList.add("active")
-            menuBannerBase.classList.add("long")
+            const childCount = menu2List[index].children[1].childElementCount
+            if (childCount !== 0) {
+                clearItems2()
+                item.classList.add("active")
+                menu2List[index].classList.add("active")
+                menuSubWrap2.classList.add("active")
+                menuBannerBase.classList.add("long")
+            } else {
+                menuSubWrap2.classList.remove("active")
+                menuBannerBase.classList.remove("long")
+                clearItems2()
+            }
         })
     })
 
@@ -152,9 +159,12 @@ if (window.innerWidth > 960) {
 
     menu2Items.forEach((item, index) => {
         item.addEventListener("click", (e) => {
-            e.preventDefault()
-            menu2List[index].classList.add("active")
-            menuSubWrap2.classList.add("active")
+            const childCount = menu2List[index].children[1].childElementCount
+            if (childCount !== 0) {
+                e.preventDefault()
+                menu2List[index].classList.add("active")
+                menuSubWrap2.classList.add("active")
+            }
         })
     })
 

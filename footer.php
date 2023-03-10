@@ -53,7 +53,7 @@
                                     </a>
                                 </li>
                                 <li class="footer__nav-item">
-                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                    <a href="/trade-in/" class="footer__nav-item-link link link_big link-secondary text">
                                         Trade-in
                                     </a>
                                 </li>
@@ -63,7 +63,7 @@
                                     </a>
                                 </li>
                                 <li class="footer__nav-item">
-                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                    <a href="/obmen-i-vozvrat/" class="footer__nav-item-link link link_big link-secondary text">
                                         Обмен и возврат
                                     </a>
                                 </li>
@@ -77,17 +77,17 @@
                         <nav class="footer__nav">
                             <ul class="footer__nav-list">
                                 <li class="footer__nav-item">
-                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                    <a href="/o-kompanii/" class="footer__nav-item-link link link_big link-secondary text">
                                         О компании
                                     </a>
                                 </li>
                                 <li class="footer__nav-item">
-                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                    <a href="/vakansii/" class="footer__nav-item-link link link_big link-secondary text">
                                         Вакансии
                                     </a>
                                 </li>
                                 <li class="footer__nav-item">
-                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                    <a href="/dogovor-oferty/" class="footer__nav-item-link link link_big link-secondary text">
                                         Оферта
                                     </a>
                                 </li>
@@ -105,7 +105,7 @@
                         </h3>
                         <nav class="footer__nav">
                             <ul class="footer__nav-list">
-                                <li class="footer__nav-item">
+                                <!-- <li class="footer__nav-item">
                                     <a href="#" class="footer__nav-item-link link link_big link-secondary text">
                                         Скупка техники
                                     </a>
@@ -114,18 +114,23 @@
                                     <a href="#" class="footer__nav-item-link link link_big link-secondary text">
                                         Подарочные сертификаты
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="footer__nav-item">
-                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                    <a href="/dso/" class="footer__nav-item-link link link_big link-secondary text">
                                         Сервисное обслуживание
                                     </a>
                                 </li>
                                 <li class="footer__nav-item">
-                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
-                                        Покупайте как юрлицо
+                                    <a href="/politika-konfidenczialnosti/" class="footer__nav-item-link link link_big link-secondary text">
+                                        Политика конфиденциальности
                                     </a>
                                 </li>
                                 <li class="footer__nav-item">
+                                    <a href="/yur-liczam/" class="footer__nav-item-link link link_big link-secondary text">
+                                        Покупайте как юрлицо
+                                    </a>
+                                </li>
+                                <!-- <li class="footer__nav-item">
                                     <a href="#" class="footer__nav-item-link link link_big link-secondary text">
                                         Ремонт техники
                                     </a>
@@ -134,7 +139,7 @@
                                     <a href="#" class="footer__nav-item-link link link_big link-secondary text">
                                         Блог
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </nav>
                     </li>

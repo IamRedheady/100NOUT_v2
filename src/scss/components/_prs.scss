@@ -89,6 +89,9 @@
                 max-width: 269px;
                 border: 1px solid #f7f7f6;
                 border-radius: 8px;
+                &:hover {
+                    border: 1px solid #f7f7f6;
+                }
             }
         }
     }

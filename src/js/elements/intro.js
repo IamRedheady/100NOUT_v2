@@ -22,16 +22,7 @@ const introSlider = new Swiper('.intro-slider .swiper-container', {
     },
     pagination: {
         el: '.intro-slider .swiper-pagination',
-        dynamicBullets: true,
         clickable: true
     },
-    breakpoints: {
-        // when window width is >= 320px
-        620: {
-            pagination: {
-                dynamicBullets: false
-            }
-        },
-    }
 });
 

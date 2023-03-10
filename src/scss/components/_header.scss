@@ -1,8 +1,4 @@
 .header {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    position: relative;
-    z-index: 10;
     &__logo {
         display: flex;
         align-items: center;
@@ -10,6 +6,16 @@
     &__top {
         display: flex;
         align-items: center;
+    }
+    &--fixed {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: $white;
+        z-index: 11;
     }
 
     &__menu-toggle {
@@ -36,6 +42,12 @@
         }
     }
 
+    &__bottom {
+        margin-top: 40px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
     &__search {
         width: 100%;
         max-width: 450px;
@@ -43,7 +55,6 @@
         position: relative;
         height: 44px;
         margin-right: auto;
-        border: 1px solid $B500;
         &-toggle {
             display: none;
         }
@@ -181,7 +192,6 @@
         &__to-call-toggle,
         &__to-cart,
         &__favorite,
-        &__search,
         &__menu-toggle {
             display: none;
         }
@@ -191,8 +201,13 @@
             width: auto;
         }
 
-        &__search-toggle {
-            display: flex;
+        &__search {
+            max-width: 44px;
+            margin: 0;
+        }
+        &--fixed {
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
     }
 }

@@ -21,10 +21,45 @@
 </head>
 
 <!-- HEAD SCRIPTS FOR SITE -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
 <script>
-    const changePhotos = (e, productClass) => {
-        if (window.innerWidth > 1160) {
+    const onInitProductByTouch = (e, productClass) => {
+        const product = document.querySelector(`.${productClass}`)
+
+        if (product.dataset.swiper == 'false') {
+            product.dataset.swiper = "true"
+            const productGalery = new Swiper(`.${productClass} .js-product-swiper`, {
+                effect: "fade",
+                lazy: true,
+                pagination: {
+                    el: `.${productClass} .swiper-pagination`,
+                    clickable: true,
+                },
+            })
+
+            const dots = document.querySelectorAll(`.${productClass} .swiper-pagination-bullet`)
+            setTimeout(() => {
+                dots[1].click()
+            }, 50);
+        }
+    }
+
+    const onInitProductByMouse = (e, productClass) => {
+        const product = document.querySelector(`.${productClass}`)
+
+        if (product.dataset.swiper == 'false') {
+            product.dataset.swiper = "true"
+            const productGalery = new Swiper(`.${productClass} .js-product-swiper`, {
+                effect: "fade",
+                lazy: true,
+                pagination: {
+                    el: `.${productClass} .swiper-pagination`,
+                    clickable: true,
+                },
+            })
+        } else {
             const slides = document.querySelectorAll(`.${productClass} .swiper-slide`)
 
             const currentArray = slides
@@ -49,12 +84,244 @@
     }
 </script>
 
+<!-- Search Styles -->
+<style>
+    .dgwt-wcas-sf-wrapp input[type="search"].dgwt-wcas-search-input {
+        border: 1px solid #50B83C;
+        border-radius: 8px;
+        height: 44px;
+        color: #21201F;
+    }
+    .dgwt-wcas-search-wrapp .dgwt-wcas-sf-wrapp .dgwt-wcas-search-submit::before {
+        display: none;
+    }
+    .dgwt-wcas-search-wrapp .dgwt-wcas-sf-wrapp .dgwt-wcas-search-submit, .dgwt-wcas-om-bar .dgwt-wcas-om-return{
+        border-radius: 8px;
+    }
+    .dgwt-wcas-search-wrapp .dgwt-wcas-sf-wrapp:hover .dgwt-wcas-search-submit:hover, .dgwt-wcas-om-bar .dgwt-wcas-om-return:hover{
+        background-color: #439a32;
+        opacity: 1;
+    }
+  
+    .dgwt-wcas-sf-wrapp input[type="search"].dgwt-wcas-search-input::placeholder {
+        font-style: normal;
+        color: #707070;
+        opacity: 1;
+    }
+    .dgwt-wcas-open .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input {
+        border-radius: 8px;
+    }
+   .dgwt-wcas-search-wrapp .dgwt-wcas-sf-wrapp input[type="search"].dgwt-wcas-search-input:hover, .dgwt-wcas-search-wrapp .dgwt-wcas-sf-wrapp input[type="search"].dgwt-wcas-search-input:focus {
+        box-shadow: none;
+        border-color: #50B83C;
+    }
+    .dgwt-wcas-suggestions-wrapp {
+        border-radius: 8px;
+        border: none;
+    }
+    .dgwt-wcas-suggestion-cat .dgwt-wcas-st-breadcrumbs {
+        display: none;
+    }
+    .dgwt-wcas-has-headings .dgwt-wcas-suggestion-headline .dgwt-wcas-st {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: #A3A3A3;
+        text-transform: none;
+        border: none;
+        margin-top: 14px;
+    }
+    .dgwt-wcas-suggestion {
+        padding: 6px 10px;
+    }
+    .dgwt-wcas-st {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        color: #21201F;
+        position: relative;
+    }
+    .dgwt-wcas-st-title {
+        height: 20px;
+        overflow: hidden;
+    }
+    .dgwt-wcas-suggestion strong {
+        font-weight: 600;
+    }
+    .dgwt-wcas-sku {
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 16px;
+        color: #A3A3A3;
+    }
+    .dgwt-wcas-si {
+        min-width: 40px;
+        height: 40px;
+        width: 40px;
+    }
+    .dgwt-wcas-si img {
+        max-height: 100%;
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
+        padding: 0;
+    }
+    .dgwt-wcas-sp {
+        padding: 0;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .dgwt-wcas-st::after {
+        content: "";
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.3) 0%, #ffffff 86.21%);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 40px;
+        height: 100%;
+        display: block;
+    }
+    .dgwt-wcas-suggestion-product.dgwt-wcas-suggestion-selected .dgwt-wcas-st::after {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.3) 0%, #eee 86.21%);
+    }
+
+    .dgwt-wcas-sp ins {
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #21201F;
+        text-decoration: none;
+    }
+    .dgwt-wcas-sp del {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        color: #CCCCCC;
+        opacity: 1;
+    }
+    .dgwt-wcas-has-headings .dgwt-wcas-suggestion.dgwt-wcas-suggestion-tax.dgwt-wcas-suggestion-selected, .dgwt-wcas-has-headings .dgwt-wcas-suggestion.dgwt-wcas-suggestion-tax:hover {
+        text-decoration: none;
+    }
+
+    .dgwt-wcas-sf-wrapp button.dgwt-wcas-search-submit {
+        min-width: 44px;
+    }
+
+    .dgwt-wcas-darkened-overlay>div {
+        top: 84px !important;
+    }
+
+    @media screen and (max-width: 960px) {
+        .dgwt-wcas-suggestions-wrapp {
+            left: 20px !important;
+            width: calc(100vw - 40px) !important;
+        }
+        .dgwt-wcas-darkened-overlay>div {
+        top: 143px !important;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .dgwt-wcas-darkened-overlay>div {
+        top: 54px !important;
+        }
+        .dgwt-wcas-search-input {
+            display: none !important;
+        }
+        .dgwt-wcas-sf-wrapp button.dgwt-wcas-search-submit {
+            width: 44px;
+            min-width: 44px;
+            padding: 0 0px;
+            height: 44px;
+            position: relative;
+        }
+        /* .dgwt-wcas-suggestions-wrapp { 
+            min-width: 44px;
+            max-width: 44px;
+        } */
+        .dgwt-wcas-overlay-mobile  .dgwt-wcas-search-input {
+            display: block !important;
+        }
+        .dgwt-wcas-overlay-mobile-on .dgwt-wcas-suggestions-wrapp {
+            top: 85px !important;
+        }
+        .dgwt-wcas-suggestion {
+            padding: 6px 20px;
+        }
+        .dgwt-wcas-om-bar {
+            flex-direction: row-reverse;
+            padding: 10px 20px;
+            height: 65px;
+        }
+        .dgwt-wcas-om-return {
+            background: #50B83C !important;
+            border-radius: 8px !important;
+            overflow: hidden;
+            position: relative !important;
+            margin-left: 6px !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dgwt-wcas-om-return svg {
+            display: none;
+        }
+
+        .dgwt-wcas-om-return::before {
+            content: "";
+            background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 18L18 6M6 6L18 18' stroke='white' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
+
+    }
+</style>
+
+<!-- Cookie Styles -->
+<style>
+    .cc-floating.cc-theme-classic {
+        padding: 15px;
+        border-radius: 8px;
+    }
+    .cc-theme-classic .cc-btn:last-child {
+        min-width: 100%;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: #FFFFFF;
+        transition: all .3s ease;
+        border-radius: 8px;
+    }
+    .cc-theme-classic .cc-btn:last-child:hover {
+        background-color: #439A32;
+    }
+    .cc-animate.cc-revoke.cc-bottom {
+        display: none;
+    }
+    .cc-floating .cc-message {
+        font-weight: 400;
+font-size: 14px;
+line-height: 20px;
+text-align: center;
+color: #FFFFFF;
+    }
+.cc-link {
+    display: none;
+}
+</style>
+
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page">
 <div class="page" id="page">
         <header class="header layout">
-            <div class="header__top">
+        <div class="header--fixed">
+        <div class="header__top layout">
                 <a href="/" class="header__logo">
                     <svg width="151" height="44" viewBox="0 0 151 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -85,11 +352,7 @@
                     </span>
                 </button>
                 <div class="header__search">
-                    <!-- Поиск -->
-                    <p class="header__search-front text text-base">
-                        Искать товары, например <a class="link link-primary" href="#">Apple</a><span>, </span><a
-                            class="link link-primary" href="#">Lenovo</a>
-                    </p>
+                    <?php echo do_shortcode('[fibosearch]'); ?>
                 </div>
                 <button class="header__to-call-toggle btn btn-secondary btn_icon-left">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,48 +379,64 @@
                         </span>
                     </span>
                 </a>
-                <a href="/cart" class="header__to-cart btn btn-secondary btn_icon-left">
+                <?php 
+                     global $woocommerce;
+                     $c_total = $woocommerce->cart->total;
+                ?>
+                <a href="/cart" class="header__to-cart btn <?php if($c_total == 0) {echo 'btn-secondary';} else {echo 'btn-primary';}?> btn_icon-left">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M3 1C2.44772 1 2 1.44772 2 2C2 2.55228 2.44772 3 3 3H4.21922L4.52478 4.22224C4.52799 4.23637 4.5315 4.25039 4.5353 4.26429L5.89253 9.69321L4.99995 10.5858C3.74002 11.8457 4.63235 14 6.41416 14H15C15.5522 14 16 13.5523 16 13C16 12.4477 15.5522 12 15 12L6.41417 12L7.41416 11H14C14.3788 11 14.725 10.786 14.8944 10.4472L17.8944 4.44721C18.0494 4.13723 18.0329 3.76909 17.8507 3.47427C17.6684 3.17945 17.3466 3 17 3H6.28078L5.97014 1.75746C5.85885 1.3123 5.45887 1 5 1H3Z"
-                            fill="#21201F" />
+                            fill="<?php if($c_total == 0) {echo '#21201F';} else {echo '#fff';}?>" />
                         <path
                             d="M16 16.5C16 17.3284 15.3284 18 14.5 18C13.6716 18 13 17.3284 13 16.5C13 15.6716 13.6716 15 14.5 15C15.3284 15 16 15.6716 16 16.5Z"
-                            fill="#21201F" />
+                            fill="<?php if($c_total == 0) {echo '#21201F';} else {echo '#fff';}?>" />
                         <path
                             d="M6.5 18C7.32843 18 8 17.3284 8 16.5C8 15.6716 7.32843 15 6.5 15C5.67157 15 5 15.6716 5 16.5C5 17.3284 5.67157 18 6.5 18Z"
-                            fill="#21201F" />
+                            fill="<?php if($c_total == 0) {echo '#21201F';} else {echo '#fff';}?>" />
                     </svg>
-                    <span>
-                        Корзина
-                    </span>
-                    <span class="to-cart-empty">
-                        <svg width="110" height="74" viewBox="0 0 110 74" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M94.5687 1H15.4317C11.4378 1 8.2002 4.23765 8.2002 8.2315V62.1685C8.2002 66.1623 11.4378 69.4 15.4317 69.4H94.5687C98.5625 69.4 101.8 66.1623 101.8 62.1685V8.2315C101.8 4.23765 98.5625 1 94.5687 1Z"
-                                stroke="#A3A3A3" stroke-width="2" stroke-linejoin="round" />
-                            <path d="M1 73H109" stroke="#A3A3A3" stroke-width="2" stroke-miterlimit="10"
-                                stroke-linecap="round" />
-                            <g clip-path="url(#clip0_2764_3815)">
-                                <path
-                                    d="M66.9567 52.3615C67.0888 51.0495 66.9178 49.7269 66.4545 48.4778C65.9913 47.2288 65.2459 46.0806 64.2659 45.1061C63.2858 44.1317 62.0924 43.3524 60.7616 42.8176C59.4307 42.2829 57.9915 42.0045 56.5353 42.0001C55.0792 41.9956 53.6379 42.2653 52.3031 42.7919C50.9683 43.3185 49.7692 44.0905 48.7819 45.059C47.7946 46.0274 47.0407 47.1711 46.5682 48.4173C46.0957 49.6635 45.9148 50.985 46.0371 52.2978L48.489 52.1109C48.3954 51.1057 48.5338 50.0938 48.8956 49.1397C49.2574 48.1855 49.8346 47.3099 50.5906 46.5684C51.3465 45.8269 52.2646 45.2358 53.2866 44.8326C54.3086 44.4294 55.4121 44.2229 56.5271 44.2263C57.642 44.2297 58.7439 44.4429 59.7629 44.8523C60.7819 45.2617 61.6956 45.8584 62.446 46.6045C63.1964 47.3506 63.7671 48.2297 64.1218 49.1861C64.4764 50.1424 64.6074 51.155 64.5063 52.1596L66.9567 52.3615Z"
-                                    fill="#A3A3A3" />
-                                <path
-                                    d="M32.0182 22.6373C31.9634 23.1897 32.0344 23.7466 32.227 24.2725C32.4195 24.7984 32.7292 25.2819 33.1365 25.6922C33.5438 26.1024 34.0398 26.4306 34.5928 26.6557C35.1459 26.8809 35.7441 26.9981 36.3492 27C36.9544 27.0018 37.5533 26.8883 38.1081 26.6666C38.6628 26.4448 39.1611 26.1198 39.5714 25.712C39.9817 25.3042 40.295 24.8227 40.4914 24.298C40.6878 23.7733 40.7629 23.2169 40.7121 22.6641L39.6932 22.7428C39.7321 23.166 39.6745 23.5921 39.5242 23.9938C39.3738 24.3956 39.1339 24.7643 38.8198 25.0765C38.5056 25.3887 38.1241 25.6376 37.6993 25.8073C37.2746 25.9771 36.816 26.064 36.3527 26.0626C35.8893 26.0612 35.4314 25.9714 35.0079 25.799C34.5844 25.6266 34.2047 25.3754 33.8928 25.0613C33.581 24.7471 33.3438 24.377 33.1964 23.9743C33.049 23.5716 32.9946 23.1452 33.0366 22.7223L32.0182 22.6373Z"
-                                    fill="#A3A3A3" />
-                                <path
-                                    d="M69.0182 22.6373C68.9634 23.1897 69.0344 23.7466 69.227 24.2725C69.4195 24.7984 69.7292 25.2819 70.1365 25.6922C70.5438 26.1024 71.0398 26.4306 71.5928 26.6557C72.1459 26.8809 72.7441 26.9981 73.3492 27C73.9544 27.0018 74.5533 26.8883 75.1081 26.6666C75.6628 26.4448 76.1611 26.1198 76.5714 25.712C76.9817 25.3042 77.295 24.8227 77.4914 24.298C77.6878 23.7733 77.7629 23.2169 77.7121 22.6641L76.6932 22.7428C76.7321 23.166 76.6745 23.5921 76.5242 23.9938C76.3738 24.3956 76.1339 24.7643 75.8198 25.0765C75.5056 25.3887 75.1241 25.6376 74.6993 25.8073C74.2746 25.9771 73.816 26.064 73.3527 26.0626C72.8893 26.0612 72.4314 25.9714 72.0079 25.799C71.5844 25.6266 71.2047 25.3754 70.8928 25.0613C70.581 24.7471 70.3438 24.377 70.1964 23.9743C70.049 23.5716 69.9946 23.1452 70.0366 22.7223L69.0182 22.6373Z"
-                                    fill="#A3A3A3" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_2764_3815">
-                                    <rect width="46" height="31" fill="white" transform="translate(32 22)" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        В вашей корзине пока пусто
-                    </span>
+                    <?php
+                        if ($c_total == 0) {
+                            ?>
+                            <span>
+                                Корзина
+                            </span>
+                            <span class="to-cart-empty">
+                                <svg width="110" height="74" viewBox="0 0 110 74" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M94.5687 1H15.4317C11.4378 1 8.2002 4.23765 8.2002 8.2315V62.1685C8.2002 66.1623 11.4378 69.4 15.4317 69.4H94.5687C98.5625 69.4 101.8 66.1623 101.8 62.1685V8.2315C101.8 4.23765 98.5625 1 94.5687 1Z"
+                                        stroke="#A3A3A3" stroke-width="2" stroke-linejoin="round" />
+                                    <path d="M1 73H109" stroke="#A3A3A3" stroke-width="2" stroke-miterlimit="10"
+                                        stroke-linecap="round" />
+                                    <g clip-path="url(#clip0_2764_3815)">
+                                        <path
+                                            d="M66.9567 52.3615C67.0888 51.0495 66.9178 49.7269 66.4545 48.4778C65.9913 47.2288 65.2459 46.0806 64.2659 45.1061C63.2858 44.1317 62.0924 43.3524 60.7616 42.8176C59.4307 42.2829 57.9915 42.0045 56.5353 42.0001C55.0792 41.9956 53.6379 42.2653 52.3031 42.7919C50.9683 43.3185 49.7692 44.0905 48.7819 45.059C47.7946 46.0274 47.0407 47.1711 46.5682 48.4173C46.0957 49.6635 45.9148 50.985 46.0371 52.2978L48.489 52.1109C48.3954 51.1057 48.5338 50.0938 48.8956 49.1397C49.2574 48.1855 49.8346 47.3099 50.5906 46.5684C51.3465 45.8269 52.2646 45.2358 53.2866 44.8326C54.3086 44.4294 55.4121 44.2229 56.5271 44.2263C57.642 44.2297 58.7439 44.4429 59.7629 44.8523C60.7819 45.2617 61.6956 45.8584 62.446 46.6045C63.1964 47.3506 63.7671 48.2297 64.1218 49.1861C64.4764 50.1424 64.6074 51.155 64.5063 52.1596L66.9567 52.3615Z"
+                                            fill="#A3A3A3" />
+                                        <path
+                                            d="M32.0182 22.6373C31.9634 23.1897 32.0344 23.7466 32.227 24.2725C32.4195 24.7984 32.7292 25.2819 33.1365 25.6922C33.5438 26.1024 34.0398 26.4306 34.5928 26.6557C35.1459 26.8809 35.7441 26.9981 36.3492 27C36.9544 27.0018 37.5533 26.8883 38.1081 26.6666C38.6628 26.4448 39.1611 26.1198 39.5714 25.712C39.9817 25.3042 40.295 24.8227 40.4914 24.298C40.6878 23.7733 40.7629 23.2169 40.7121 22.6641L39.6932 22.7428C39.7321 23.166 39.6745 23.5921 39.5242 23.9938C39.3738 24.3956 39.1339 24.7643 38.8198 25.0765C38.5056 25.3887 38.1241 25.6376 37.6993 25.8073C37.2746 25.9771 36.816 26.064 36.3527 26.0626C35.8893 26.0612 35.4314 25.9714 35.0079 25.799C34.5844 25.6266 34.2047 25.3754 33.8928 25.0613C33.581 24.7471 33.3438 24.377 33.1964 23.9743C33.049 23.5716 32.9946 23.1452 33.0366 22.7223L32.0182 22.6373Z"
+                                            fill="#A3A3A3" />
+                                        <path
+                                            d="M69.0182 22.6373C68.9634 23.1897 69.0344 23.7466 69.227 24.2725C69.4195 24.7984 69.7292 25.2819 70.1365 25.6922C70.5438 26.1024 71.0398 26.4306 71.5928 26.6557C72.1459 26.8809 72.7441 26.9981 73.3492 27C73.9544 27.0018 74.5533 26.8883 75.1081 26.6666C75.6628 26.4448 76.1611 26.1198 76.5714 25.712C76.9817 25.3042 77.295 24.8227 77.4914 24.298C77.6878 23.7733 77.7629 23.2169 77.7121 22.6641L76.6932 22.7428C76.7321 23.166 76.6745 23.5921 76.5242 23.9938C76.3738 24.3956 76.1339 24.7643 75.8198 25.0765C75.5056 25.3887 75.1241 25.6376 74.6993 25.8073C74.2746 25.9771 73.816 26.064 73.3527 26.0626C72.8893 26.0612 72.4314 25.9714 72.0079 25.799C71.5844 25.6266 71.2047 25.3754 70.8928 25.0613C70.581 24.7471 70.3438 24.377 70.1964 23.9743C70.049 23.5716 69.9946 23.1452 70.0366 22.7223L69.0182 22.6373Z"
+                                            fill="#A3A3A3" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_2764_3815">
+                                            <rect width="46" height="31" fill="white" transform="translate(32 22)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                В вашей корзине пока пусто
+                            </span>
+                            <?php
+                        } else {
+                            ?>
+                            <span>
+                                <?php echo $c_total;?>
+                            </span>
+                            <?php
+                        }
+                        ?>
                 </a>
                 <button class="header__search-toggle btn btn-icon btn-primary">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -167,6 +446,7 @@
                     </svg>
                 </button>
             </div>
+        </div>
             <div class="header__bottom">
                 <nav class="header__nav">
                     <ul class="header__nav-list">
@@ -193,17 +473,22 @@
                     </ul>
                     <ul class="header__nav-list">
                         <li class="header__nav-list-item">
-                            <a class="link link_big link-secondary text" href="#">
+                            <a class="link link_big link-secondary text" href="/yur-liczam/">
                                 Покупайте как юрлицо
                             </a>
                         </li>
-                        <li class="header__nav-list-item">
+                        <!-- <li class="header__nav-list-item">
                             <a class="link link_big link-secondary text" href="#">
                                 Скупка техники
                             </a>
+                        </li> -->
+                        <li class="header__nav-list-item">
+                            <a class="link link_big link-secondary text" href="/o-kompanii/">
+                                О компании
+                            </a>
                         </li>
                         <li class="header__nav-list-item">
-                            <a class="link link_big link-secondary text" href="#">
+                            <a class="link link_big link-secondary text" href="/trade-in/">
                                 Trade-in
                             </a>
                         </li>
@@ -238,19 +523,22 @@
                 </button>
             </li>
             <li class="bar__item">
-                <a href="#" class="bar__item-link bar__item-link-to-cart btn btn-secondary btn-icon">
+                <a href="<?php if($c_total == 0) {echo '##';} else {echo '/cart';}?>" class="bar__item-link bar__item-link-to-cart btn <?php if($c_total == 0) {echo 'btn-secondary';} else {echo 'btn-primary';}?> btn-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M3.60039 1.2002C2.93765 1.2002 2.40039 1.73745 2.40039 2.4002C2.40039 3.06294 2.93765 3.6002 3.60039 3.6002H5.06346L5.43013 5.06689C5.43398 5.08384 5.43819 5.10067 5.44275 5.11734L7.07142 11.632L6.00033 12.7031C4.48842 14.215 5.55921 16.8002 7.69739 16.8002H18.0003C18.6631 16.8002 19.2003 16.2629 19.2003 15.6002C19.2003 14.9375 18.6631 14.4002 18.0003 14.4002L7.69739 14.4002L8.89739 13.2002H16.8004C17.2549 13.2002 17.6704 12.9434 17.8737 12.5368L21.4737 5.33685C21.6597 4.96487 21.6398 4.5231 21.4212 4.16932C21.2025 3.81554 20.8163 3.6002 20.4004 3.6002H7.53732L7.16456 2.10915C7.03101 1.57495 6.55103 1.2002 6.00039 1.2002H3.60039Z"
-                            fill="#21201F" />
+                            fill="<?php if($c_total == 0) {echo '#21201F';} else {echo '#fff';}?>" />
                         <path
                             d="M19.2004 19.8002C19.2004 20.7943 18.3945 21.6002 17.4004 21.6002C16.4063 21.6002 15.6004 20.7943 15.6004 19.8002C15.6004 18.8061 16.4063 18.0002 17.4004 18.0002C18.3945 18.0002 19.2004 18.8061 19.2004 19.8002Z"
-                            fill="#21201F" />
+                            fill="<?php if($c_total == 0) {echo '#21201F';} else {echo '#fff';}?>" />
                         <path
                             d="M7.80039 21.6002C8.7945 21.6002 9.60039 20.7943 9.60039 19.8002C9.60039 18.8061 8.7945 18.0002 7.80039 18.0002C6.80628 18.0002 6.00039 18.8061 6.00039 19.8002C6.00039 20.7943 6.80628 21.6002 7.80039 21.6002Z"
-                            fill="#21201F" />
+                            fill="<?php if($c_total == 0) {echo '#21201F';} else {echo '#fff';}?>" />
                     </svg>
-                    <span class="to-cart-empty">
+                    <?php 
+                        if ($c_total == 0) {
+                            ?>
+                                 <span class="to-cart-empty">
                         <svg width="110" height="74" viewBox="0 0 110 74" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -277,6 +565,9 @@
                         </svg>
                         В вашей корзине пока пусто
                     </span>
+                            <?php
+                        }
+                    ?>
                 </a>
             </li>
             <li class="bar__item">
@@ -319,7 +610,7 @@
                     <div class="menu__mobile">
                         <ul class="menu__mobile-list">
                             <li class="menu__mobile-list-item">
-                                <button type="button" class="btn btn_icon-left text-sm js-mobile-menu-btn">
+                                <button type="button" class="btn btn_icon-left text text-sm js-mobile-menu-btn">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M3.33325 5H16.6666M3.33325 10H16.6666M3.33325 15H16.6666"
@@ -331,7 +622,7 @@
                                 </button>
                             </li>
                             <li class="menu__mobile-list-item">
-                                <a href="#" class="btn btn_icon-left text-sm text">
+                                <a href="/oplata/" class="btn btn_icon-left text-sm text">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -343,7 +634,7 @@
                                 </a>
                             </li>
                             <li class="menu__mobile-list-item">
-                                <a href="#" class="btn btn_icon-left text-sm text">
+                                <a href="/dostavka/" class="btn btn_icon-left text-sm text">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -354,7 +645,7 @@
                                 </a>
                             </li>
                             <li class="menu__mobile-list-item">
-                                <a href="#" class="btn btn_icon-left text-sm text">
+                                <a href="/otzyvy/" class="btn btn_icon-left text-sm text">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -366,7 +657,7 @@
                                 </a>
                             </li>
                             <li class="menu__mobile-list-item">
-                                <a href="#" class="btn btn_icon-left text-sm text">
+                                <a href="/kontakty/" class="btn btn_icon-left text-sm text">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -379,7 +670,7 @@
                                 </a>
                             </li>
                             <li class="menu__mobile-list-item">
-                                <a href="#" class="btn btn_icon-left text-sm text">
+                                <a href="/yur-liczam/" class="btn btn_icon-left text-sm text">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -394,7 +685,7 @@
                                     Покупайте как юрлицо
                                 </a>
                             </li>
-                            <li class="menu__mobile-list-item">
+                            <!-- <li class="menu__mobile-list-item">
                                 <a href="#" class="btn btn_icon-left text-sm text">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -416,7 +707,7 @@
                                     </svg>
                                     Подарочные сертификаты
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <div class="menu__cols">
@@ -435,251 +726,14 @@
                                 </h2>
                             </div>
                             <ul class="menu__list">
-                                <li class="menu__list-item">
-                                    <a href=""
-                                        class="menu__list-item-btn text text-sm text--semibold btn js-menu-level-1">
-                                        Компьютерная техника
-                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li class="menu__list-item">
-                                    <a href="#"
-                                        class="menu__list-item-btn text text-sm text--semibold btn js-menu-level-1">
-                                        Смартфоны, ТВ и электроника
-                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </a>
-                                </li>
+                                <?php nout_menu_top_level() ?>
                             </ul>
                         </div>
                         <div class="menu__sub-wrap js-menu__sub-wrap-level-1">
-                            <div class="menu__sub js-menu-sub-level-1">
-                                <div class="menu__sub-title-wrap">
-                                    <button class="btn btn-icon js-menu-title-1">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M9.70711 14.7071C9.31658 15.0976 8.68342 15.0976 8.29289 14.7071L4.29289 10.7071C3.90237 10.3166 3.90237 9.68342 4.29289 9.29289L8.29289 5.29289C8.68342 4.90237 9.31658 4.90237 9.70711 5.29289C10.0976 5.68342 10.0976 6.31658 9.70711 6.70711L7.41421 9L15 9C15.5523 9 16 9.44772 16 10C16 10.5523 15.5523 11 15 11H7.41421L9.70711 13.2929C10.0976 13.6834 10.0976 14.3166 9.70711 14.7071Z"
-                                                fill="#21201F" />
-                                        </svg>
-                                    </button>
-                                    <a href="#" class="menu__sub-title text text-sm text--semibold">
-                                        Компьютерная техника
-                                    </a>
-                                </div>
-                                <ul class="menu__sub-list">
-                                    <li class="menu__sub-list-item">
-                                        <a href=""
-                                            class="menu__list-item-btn text text-sm text--semibold btn js-menu-level-2">
-                                            Ноутбуки
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li class="menu__sub-list-item">
-                                        <a href="#"
-                                            class="menu__list-item-btn text text-sm text--semibold btn js-menu-level-2">
-                                            Таблеты
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu__sub js-menu-sub-level-1">
-                                <div class="menu__sub-title-wrap">
-                                    <button class="btn btn-icon js-menu-title-1">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M9.70711 14.7071C9.31658 15.0976 8.68342 15.0976 8.29289 14.7071L4.29289 10.7071C3.90237 10.3166 3.90237 9.68342 4.29289 9.29289L8.29289 5.29289C8.68342 4.90237 9.31658 4.90237 9.70711 5.29289C10.0976 5.68342 10.0976 6.31658 9.70711 6.70711L7.41421 9L15 9C15.5523 9 16 9.44772 16 10C16 10.5523 15.5523 11 15 11H7.41421L9.70711 13.2929C10.0976 13.6834 10.0976 14.3166 9.70711 14.7071Z"
-                                                fill="#21201F" />
-                                        </svg>
-                                    </button>
-                                    <a href="#" class="menu__sub-title text text-sm text--semibold">
-                                        Смартфоны, ТВ и электроника
-                                    </a>
-                                </div>
-                                <ul class="menu__sub-list">
-                                    <li class="menu__sub-list-item">
-                                        <a href="#"
-                                            class="menu__list-item-btn text text-sm text--semibold btn js-menu-level-2">
-                                            Телефоны
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <?php nout_menu_second_level() ?>
                         </div>
                         <div class="menu__sub-wrap js-menu__sub-wrap-level-2">
-                            <div class="menu__sub js-menu-sub-level-2">
-                                <div class="menu__sub-title-wrap">
-                                    <button class="btn btn-icon js-menu-title-2">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M9.70711 14.7071C9.31658 15.0976 8.68342 15.0976 8.29289 14.7071L4.29289 10.7071C3.90237 10.3166 3.90237 9.68342 4.29289 9.29289L8.29289 5.29289C8.68342 4.90237 9.31658 4.90237 9.70711 5.29289C10.0976 5.68342 10.0976 6.31658 9.70711 6.70711L7.41421 9L15 9C15.5523 9 16 9.44772 16 10C16 10.5523 15.5523 11 15 11H7.41421L9.70711 13.2929C10.0976 13.6834 10.0976 14.3166 9.70711 14.7071Z"
-                                                fill="#21201F" />
-                                        </svg>
-                                    </button>
-                                    <a href="#" class="menu__sub-title text text-sm text--semibold">
-                                        Ноутбуки
-                                    </a>
-                                </div>
-                                <ul class="menu__sub-list">
-                                    <li class="menu__sub-list-item">
-                                        <a href="#" class="menu__list-item-btn text text-sm text--semibold btn">
-                                            Apple
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li class="menu__sub-list-item">
-                                        <a href="#" class="menu__list-item-btn text text-sm text--semibold btn">
-                                            Samsung
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li class="menu__sub-list-item">
-                                        <a href="#" class="menu__list-item-btn text text-sm text--semibold btn">
-                                            Таблеты, уак
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li class="menu__sub-list-item">
-                                        <a href="#" class="menu__list-item-btn text text-sm text--semibold btn">
-                                            Таблеты, уак, бобики
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu__sub js-menu-sub-level-2">
-                                <div class="menu__sub-title-wrap">
-                                    <button class="btn btn-icon js-menu-title-2">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M9.70711 14.7071C9.31658 15.0976 8.68342 15.0976 8.29289 14.7071L4.29289 10.7071C3.90237 10.3166 3.90237 9.68342 4.29289 9.29289L8.29289 5.29289C8.68342 4.90237 9.31658 4.90237 9.70711 5.29289C10.0976 5.68342 10.0976 6.31658 9.70711 6.70711L7.41421 9L15 9C15.5523 9 16 9.44772 16 10C16 10.5523 15.5523 11 15 11H7.41421L9.70711 13.2929C10.0976 13.6834 10.0976 14.3166 9.70711 14.7071Z"
-                                                fill="#21201F" />
-                                        </svg>
-                                    </button>
-                                    <a href="#" class="menu__sub-title text text-sm text--semibold">
-                                        Таблеты
-                                    </a>
-                                </div>
-                                <ul class="menu__sub-list">
-                                    <li class="menu__sub-list-item">
-                                        <a href="#" class="menu__list-item-btn text text-sm text--semibold btn">
-                                            Apple
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li class="menu__sub-list-item">
-                                        <a href="#" class="menu__list-item-btn text text-sm text--semibold btn">
-                                            Samsung
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li class="menu__sub-list-item">
-                                        <a href="#" class="menu__list-item-btn text text-sm text--semibold btn">
-                                            Таблеты, уак
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li class="menu__sub-list-item">
-                                        <a href="#" class="menu__list-item-btn text text-sm text--semibold btn">
-                                            Таблеты, уак, бобики
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu__sub js-menu-sub-level-2">
-                                <div class="menu__sub-title-wrap">
-                                    <button class="btn btn-icon js-menu-title-2">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M9.70711 14.7071C9.31658 15.0976 8.68342 15.0976 8.29289 14.7071L4.29289 10.7071C3.90237 10.3166 3.90237 9.68342 4.29289 9.29289L8.29289 5.29289C8.68342 4.90237 9.31658 4.90237 9.70711 5.29289C10.0976 5.68342 10.0976 6.31658 9.70711 6.70711L7.41421 9L15 9C15.5523 9 16 9.44772 16 10C16 10.5523 15.5523 11 15 11H7.41421L9.70711 13.2929C10.0976 13.6834 10.0976 14.3166 9.70711 14.7071Z"
-                                                fill="#21201F" />
-                                        </svg>
-                                    </button>
-                                    <a href="#" class="menu__sub-title text text-sm text--semibold">
-                                        Телефоны
-                                    </a>
-                                </div>
-                                <ul class="menu__sub-list">
-                                    <li class="menu__sub-list-item">
-                                        <a href="#" class="menu__list-item-btn text text-sm text--semibold btn">
-                                            Apple
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li class="menu__sub-list-item">
-                                        <a href="#" class="menu__list-item-btn text text-sm text--semibold btn">
-                                            Samsung
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.25 2.91683L9.33333 7.00016L5.25 11.0835" stroke="#DEDEDE"
-                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <?php nout_menu_third_level() ?>
                         </div>
                     </div>
                 </div>
