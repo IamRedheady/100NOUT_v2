@@ -16,11 +16,22 @@
                 padding-bottom: 36px;
             }
 
-            &-pic {
-                float: right;
-                padding-top: 15px;
-                padding-right: 15px;
-            }
+						&--logo {
+							position: relative;
+                overflow: hidden;
+                padding-right: 250px;
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    right: 20px;
+                    background: url("./../images/logo 100NOUT.svg");
+                    background-size: 100% 100%;
+                    width: 240px;
+										height: 182px;
+                    bottom: calc(50% - 100px);
+                }
+						}
         }
     }
 
@@ -68,7 +79,7 @@
     }
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1000px) {
     .reviews {
         &__intro {
             &-card {
@@ -82,7 +93,7 @@
     }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 660px) {
     .reviews {
         margin-bottom: 12px;
 
@@ -91,8 +102,24 @@
                 margin-bottom: 24px;
 
                 &-text {
-                    padding-right: 132px;
                 }
+
+								&--logo {
+										position: relative;
+										overflow: hidden;
+										padding-right: 180px;
+										&::after {
+												content: "";
+												display: block;
+												position: absolute;
+												right: 20px;
+												background: url("./../images/logo 100NOUT.svg");
+												background-size: 100% 100%;
+												width: 180px;
+												height: 150px;
+												bottom: calc(50% - 100px);
+										}
+								}
             }
         }
 

@@ -1,5 +1,5 @@
 .trade-in {
-    margin-bottom: 0;
+    margin-bottom: 22px;
 
     &__banner {
         margin-top: 24px;
@@ -71,7 +71,7 @@
 
 @media screen and (max-width: 1000px) {
     .trade-in {
-        margin-bottom: 0px;
+        margin-bottom: 38px;
 
         &__banner {
             margin-bottom: 60px;
@@ -80,6 +80,7 @@
         &__list {
             grid-template-columns: repeat(1, 1fr);
             grid-gap: 14px;
+						margin-bottom: 24px;
         }
 
         &__subtitle {
@@ -94,16 +95,37 @@
 
 @media screen and (max-width: 680px) {
     .trade-in {
+			margin-bottom: 16px;
+
+			&__list {
+        &-item {
+            &:first-child {
+                .card {
+                    // padding-right: 150px;
+
+                    &::after {
+                    }
+                }
+							}
+						}
+					}
     }
 }
 
 @media screen and (max-width: 520px) {
     .trade-in {
+			margin-bottom: 36px;
         &__list {
             grid-template-columns: repeat(1, 1fr);
             grid-gap: 14px;
             margin-bottom: 24px;
-        }
+
+						&-item {
+							&-text {
+							padding-right: 70px;
+							}
+						}
+				}
 
         &__subtitle {
             margin-top: 60px;

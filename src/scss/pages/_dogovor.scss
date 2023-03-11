@@ -30,8 +30,8 @@
 
 .policy{
 	margin-bottom: 22px;
-	
-	&__title {
+
+	&__subtitle {
 		margin-top: 24px;
 
 		&-sm {
@@ -39,3 +39,15 @@
 		}
 	}
 }
+
+@media screen and (max-width: 480px) {
+	.policy {
+		&__title {
+			font-size: 24px;
+			line-height: 32px;
+		}
+	}
+}
+
+
+
