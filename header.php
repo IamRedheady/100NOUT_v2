@@ -39,10 +39,10 @@
                 },
             })
 
-            const dots = document.querySelectorAll(`.${productClass} .swiper-pagination-bullet`)
-            setTimeout(() => {
-                dots[1].click()
-            }, 50);
+            // const dots = document.querySelectorAll(`.${productClass} .swiper-pagination-bullet`)
+            // setTimeout(() => {
+            //     dots[1].click()
+            // }, 500);
         }
     }
 

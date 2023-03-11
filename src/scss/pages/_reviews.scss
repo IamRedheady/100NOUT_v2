@@ -14,24 +14,25 @@
                 padding-top: 36px;
                 padding-left: 36px;
                 padding-bottom: 36px;
-            }
-
-						&--logo {
-							position: relative;
-                overflow: hidden;
-                padding-right: 250px;
                 &::after {
                     content: "";
                     display: block;
-                    position: absolute;
-                    right: 20px;
+                    // position: absolute;
+                    // right: 20px;
                     background: url("./../images/logo 100NOUT.svg");
                     background-size: 100% 100%;
                     width: 240px;
-										height: 182px;
-                    bottom: calc(50% - 100px);
+                    height: 182px;
+                    // bottom: calc(50% - 100px);
+                    float: right;
                 }
-						}
+            }
+
+            &--logo {
+                position: relative;
+                overflow: hidden;
+                // padding-right: 250px;
+            }
         }
     }
 
@@ -104,22 +105,22 @@
                 &-text {
                 }
 
-								&--logo {
-										position: relative;
-										overflow: hidden;
-										padding-right: 180px;
-										&::after {
-												content: "";
-												display: block;
-												position: absolute;
-												right: 20px;
-												background: url("./../images/logo 100NOUT.svg");
-												background-size: 100% 100%;
-												width: 180px;
-												height: 150px;
-												bottom: calc(50% - 100px);
-										}
-								}
+                &--logo {
+                    position: relative;
+                    overflow: hidden;
+                    padding-right: 180px;
+                    &::after {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        right: 20px;
+                        background: url("./../images/logo 100NOUT.svg");
+                        background-size: 100% 100%;
+                        width: 180px;
+                        height: 150px;
+                        bottom: calc(50% - 100px);
+                    }
+                }
             }
         }
 

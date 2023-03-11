@@ -24,7 +24,7 @@
         }
 
         &-color {
-            color: #50b83c;
+            color: $B600;
         }
     }
 
@@ -263,12 +263,12 @@
 }
 
 @media screen and (max-width: 680px) {
-	.dop { 
-		&__title {
-			font-size: 34px;
-			line-height: 38px;
-		}
-	}
+    .dop {
+        &__title {
+            font-size: 34px;
+            line-height: 38px;
+        }
+    }
 }
 
 @media screen and (max-width: 520px) {
@@ -306,7 +306,3 @@
         }
     }
 }
-
-
-
-
