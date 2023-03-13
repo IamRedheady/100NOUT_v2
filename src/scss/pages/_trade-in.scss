@@ -20,7 +20,7 @@
                 .card {
                     position: relative;
                     overflow: hidden;
-                    padding-right: 170px;
+                    padding-right: 160px;
                     &::after {
                         content: "";
                         display: block;
@@ -101,8 +101,6 @@
         &-item {
             &:first-child {
                 .card {
-                    // padding-right: 150px;
-
                     &::after {
                     }
                 }
@@ -121,10 +119,30 @@
             margin-bottom: 24px;
 
 						&-item {
-							&-text {
-							padding-right: 70px;
+							&:first-child {
+									.card {
+											padding-right: 70px;
+											&::after {
+													right: -35px;
+													bottom: -10px;
+													width: 121px;
+													height: 97px;
+											}
+									}
 							}
-						}
+
+							&:last-child {
+									.card {
+											padding-right: 70px;
+											&::after {
+													right: -20px;
+													bottom: 0;
+													width: 114px;
+													height: 97px;
+											}
+									}
+							}
+					}
 				}
 
         &__subtitle {
@@ -141,6 +159,14 @@
                 line-height: 20px;
             }
         }
+
+				&__card {
+
+					&-text {
+						max-width: 300px;
+					}
+				}
+
         .card {
             &__text,
             &__title {
@@ -153,3 +179,18 @@
         padding-right: 20px;
     }
 }
+
+@media screen and (max-width: 370px) {
+	.trade-in { 
+		&__card {
+			&-text {
+				padding-right: 25px;
+			}
+		}
+	}
+}
+
+
+// 340px 
+
+
