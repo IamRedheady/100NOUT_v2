@@ -248,16 +248,7 @@
                         </li>
                     </ul>
                 </section>
-                <section class="prs layout">
-                    <h2 class="prs__title text-4xl">
-                        Новинки
-                    </h2>
-                    <ul class="prs__list prs__list-2334 hide-scroll">
-                        <?php 
-                                nout_show_products_new();
-                            ?>
-                    </ul>
-                </section>
+                <?php nout_show_products_new(); ?>
                 <section class="prs layout">
                     <h2 class="prs__title text-4xl">
                         Рекомендуемые товары

@@ -64,7 +64,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                     $arrCount = 0;
                     if($photos_ids) {
                         foreach ( $photos_ids as $photo_id ) { 
-                            if ( $arrCount != 0) {
+                            if ( $arrCount != 0 and $arrCount < 5) {
                             ?>
                             <div class='swiper-slide'>
                                 <a href="<?php echo $link;?>" class="product__pic">

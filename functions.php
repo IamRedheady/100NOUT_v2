@@ -204,8 +204,6 @@ if( function_exists('acf_add_options_page') ) {
 }
 
 // Menu And Navigation
-
-
 function nout_menu_top_level() {
     $cats = get_field('kategorii', 'option');
     foreach ($cats as $cat) {
@@ -443,12 +441,23 @@ function nout_show_products_new() {
         );
     $wc_query = new WP_Query( $args );
     if ($wc_query->have_posts()) {
+        ?>
+            <section class="prs layout">
+                <h2 class="prs__title text-4xl">
+                    Новинки
+                </h2>
+                <ul class="prs__list prs__list-2334 hide-scroll">
+        <?php
         while ($wc_query->have_posts()) {
             $wc_query->the_post();
     
             wc_get_template_part( 'content', 'product-prs' );
            
         }
+        ?>
+             </ul>
+        </section>
+        <?php
     }
     wp_reset_postdata();
 }
@@ -687,4 +696,12 @@ add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
 
 });
 
+// К-во товаров
+add_filter("loop_shop_per_page", create_function("$cols", "return 15;"), 20);
+
+add_filter("loop_shop_per_page", function ($cols) {
+
+	return 15;
+	
+}, 20);
 

@@ -47,38 +47,7 @@ get_header( 'shop' );
                 <?php woocommerce_page_title(); ?>
             </h1>
             <span class="catalog__count text-lg">
-                <?php 
-                    $cate = get_queried_object();
-                    $cateID = $cate->term_id;
-
-                    $category = get_term( $cateID, 'product_cat' );
-
-                    $args = array('post_type' => 'product', 
-                                    'post_status' => 'publish',  
-                                    'tax_query' => array(
-                                        array(
-                                            'taxonomy' => 'product_cat',
-                                            'field'    => 'id',
-                                            'terms'    => $cateID,
-                                        )
-                                    )
-                                );
-                    $products = new WP_Query( $args );
-
-                    $p_count = $products->found_posts;
-                    $p_count_last = substr($p_count,-1);
-                    echo $p_count;
-
-                    if ($p_count_last == 1) {
-                        echo " товар";
-                    } elseif ($p_count_last < 5 and $p_count_last > 1) {
-                        echo " товара";
-                    } else {
-                        echo " товаров";
-                    }
-
-
-                ?>
+                <?php woocommerce_result_count();?>
             </span>
         </div>
         <!-- <div class="catalog__banner banner">
@@ -122,7 +91,7 @@ get_header( 'shop' );
                 ?>
                     <div class="catalog__body">
                         <div class="catalog__filter">
-                            <?php echo do_shortcode('[pwf_filter id="73903"]');?>
+                            <?php echo do_shortcode('[wpf-filters id=1]');?>
                         </div>
                         <div class="catalog__content">
                             <div class="catalog__content-top">
@@ -136,7 +105,7 @@ get_header( 'shop' );
                                 </button>
                                 <div class="catalog__sort">
                                     <div class="dropdown js-dropdown">
-                                        <button type="button" class="dropdown__btn">
+                                        <button type="button" class="dropdown__btn js-current-sort">
                                             <span class="text-base text">По новизне</span>
                                             <svg class="dropdown__arrow" width="20" height="20" viewBox="0 0 20 20"
                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -147,18 +116,18 @@ get_header( 'shop' );
                                         </button>
                                         <ul class="dropdown__list">
                                             <li class="dropdown__list-item">
-                                                <button type="button" class="dropdown__list-item-btn text-sm">
+                                                <button type="button" class="dropdown__list-item-btn text-sm js-select-sort" data-val="date">
                                                     По новизне
                                                 </button>
                                             </li>
                                             <li class="dropdown__list-item">
-                                                <button type="button" class="dropdown__list-item-btn text-sm">
-                                                    По цене ↑
+                                                <button type="button" class="dropdown__list-item-btn text-sm js-select-sort" data-val="price-desc">
+                                                    По цене ↓
                                                 </button>
                                             </li>
                                             <li class="dropdown__list-item">
-                                                <button type="button" class="dropdown__list-item-btn text-sm">
-                                                    По цене ↓
+                                                <button type="button" class="dropdown__list-item-btn text-sm js-select-sort" data-val="price">
+                                                    По цене ↑
                                                 </button>
                                             </li>
                                         </ul>

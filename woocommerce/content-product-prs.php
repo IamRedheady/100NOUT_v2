@@ -29,7 +29,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 }
 ?>
  <li class="prs__list-item">
-    <div class="product js-product-<?php echo $product_id; ?>">
+    <div class="product js-product-<?php echo $product_id; ?>"  data-swiper="false">
         <?php 
              $right_now = date("Y-m-d H:i:s");
              $product_date = $product->get_date_created();
@@ -45,7 +45,9 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         <!-- onclick="location.href='<?php echo $link;?>'" -->
         <div class="product__swiper-wrap"
             onmouseleave="onLeaveProductPhoto(event, 'js-product-<?php echo $product_id; ?>')"
-            onmousemove="changePhotos(event, 'js-product-<?php echo $product_id; ?>')">
+            onmousemove="onInitProductByMouse(event, 'js-product-<?php echo $product_id; ?>')"
+            ontouchstart="onInitProductByTouch(event, 'js-product-<?php echo $product_id; ?>')"
+            >
             <div class="product__swiper js-product-swiper">
                 <div class='swiper-wrapper'>
                     <div class='swiper-slide'>
@@ -60,7 +62,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                     $arrCount = 0;
                     if($photos_ids) {
                         foreach ( $photos_ids as $photo_id ) { 
-                            if ( $arrCount != 0) {
+                            if ( $arrCount != 0  and $arrCount < 5) {
                             ?>
                             <div class='swiper-slide'>
                                 <a href="<?php echo $link;?>" class="product__pic">
@@ -242,14 +244,4 @@ if ( empty( $product ) || ! $product->is_visible() ) {
             </div>
         </div>
     </div>
-    <script>
-        const productGalery<?php echo $product_id; ?> = new Swiper(`.js-product-<?php echo $product_id; ?> .js-product-swiper`, {
-            effect: "fade",
-            lazy: true,
-            pagination: {
-                el: `.js-product-<?php echo $product_id; ?> .swiper-pagination`,
-                clickable: true,
-            },
-        })
-    </script>
 </li>

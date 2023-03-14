@@ -106,6 +106,10 @@
     }
 }
 
+input.catalog__mode-input[type="radio"] {
+    display: none;
+}
+
 #content-base:checked ~ .catalog__body .catalog__mode-btn:first-child path,
 #content-column:checked ~ .catalog__body .catalog__mode-btn:last-child path {
     fill: $N900;

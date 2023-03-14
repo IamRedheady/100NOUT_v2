@@ -11,12 +11,21 @@ if (dropdowns) {
             console.log(menu)
         })
 
-        menuItems.forEach(item => {
+        menuItems.forEach((item, index) => {
             const listBtn = item.children[0]
+
             listBtn.addEventListener("click", () => {
+                const sortFilters = document.querySelectorAll("[data-filter-type='wpfSortBy'] input")
+
+                sortFilters[index].click()
+
                 btn.children[0].innerHTML = listBtn.innerHTML
                 dropdown.classList.toggle("active")
             })
+
+            if (document.querySelectorAll("[data-filter-type='wpfSortBy'] input")[index].checked) {
+                btn.children[0].innerHTML = listBtn.innerHTML
+            }
         })
     })
 }

@@ -212,6 +212,10 @@
         top: 84px !important;
     }
 
+    .dgwt-wcas-search-wrapp.dgwt-wcas-search-darkoverl-on .dgwt-wcas-search-form {
+        background-color: transparent;
+    }
+
     @media screen and (max-width: 960px) {
         .dgwt-wcas-suggestions-wrapp {
             left: 20px !important;
@@ -305,16 +309,293 @@
     }
     .cc-floating .cc-message {
         font-weight: 400;
-font-size: 14px;
-line-height: 20px;
-text-align: center;
-color: #FFFFFF;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        color: #FFFFFF;
     }
-.cc-link {
-    display: none;
-}
+    .cc-link {
+        display: none;
+    }
+    .cc-revoke {
+        display: none;
+    }
+    @media screen and (max-width: 480px) and (orientation: portrait), screen and (max-width: 736px) and (orientation: landscape) {
+        .cc-window.cc-floating {
+            max-width: 170px;
+            left: 20px;
+            bottom: 70px;
+        }
+    }
 </style>
 
+<!-- WooBeeWoo Product Filter -->
+<style>
+    div.wpfMainWrapper {
+        background: #F7F7F6;
+        border-radius: 6px;
+        padding: 24px;
+        position: sticky !important;
+        top: 90px;
+        height: auto;
+        max-height: calc(100vh - 100px);
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    div.wpfMainWrapper::-webkit-scrollbar {
+        width: 0;
+    }
+    .wpfFilterWrapper {
+        margin: 0 !important;
+        padding: 0 !important;
+        margin-bottom: 24px !important;
+    }
+    .wfpTitle {
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        line-height: 20px !important;
+        color: #161D25 !important;
+    }
+    .ui-slider.ui-widget-content span.ui-slider-handle {
+        background: #FFFFFF;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
+        border: none !important;
+        border-radius: 100px;
+        width: 24px;
+        height: 24px;
+        top: calc(50% - 12px);
+        outline: none;
+    }
+    .ui-slider.ui-widget-content .ui-slider-handle:hover, .ui-slider.ui-widget-content span.ui-slider-handle.ui-state-hover, .ui-slider.ui-widget-content span.ui-slider-handle.ui-state-active,.ui-slider.ui-widget-content span.ui-slider-handle.ui-state-focus {
+        border: none !important;
+        outline: none;
+    }
+    div.ui-slider.ui-widget-content:not(.iris-slider-offset) {
+        background: #DEDEDE;
+        border-radius: 10px;
+        border: none;
+        height: 4px;
+    }
+    .ui-slider-horizontal div.ui-slider-range {
+        background: #69C856 !important;
+        border-radius: 10px;
+    }
+    .wpfCurrencySymbol {
+        display: none;
+    }
+    .wpfFilterDelimeter {
+        display: none;
+    }
+    .wpfPriceRangeField {
+        width: 100% !important;
+    }
+    .wpfFilterWrapper[data-filter-type="wpfPrice"] div.wpfFilterContent {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .wpfFilterWrapper div.ui-slider-horizontal {
+        width: calc(100% - 20px);
+    }
+    .wpfFilterWrapper[data-filter-type="wpfPrice"] .wpfTitleToggle {
+        display: none;
+    }
+    .wpfFilterWrapper[data-filter-type="wpfPrice"] .wpfFilterTitle {
+        pointer-events: none;
+    }
+    .wpfFilterWrapper[data-filter-type="wpfSortBy"] {
+        display: none;
+    }
+    input.wpfPriceRangeField#wpfMinPrice, input.wpfPriceRangeField#wpfMaxPrice {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: rgba(33, 32, 31, 1);
+        padding: 7px;
+        height: auto;
+        border: 1px solid #B8B8B8;
+        border-radius: 8px;
+        background: #fff;
+    }
+    input.wpfPriceRangeField#wpfMinPrice:hover, input.wpfPriceRangeField#wpfMaxPrice:hover,input.wpfPriceRangeField#wpfMinPrice:focus, input.wpfPriceRangeField#wpfMaxPrice:focus, {
+        border-color: #50B83C !important;
+    }
+    input.wpfPriceRangeField#wpfMinPrice {
+        margin-right: 4px;
+    }
+    .wpfFilterWrapper div.wpfPriceInputs {
+        margin-top: 24px;
+    }
+    .wpfFilterWrapper div.wpfFilterTaxNameWrapper {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #474747;
+    }
+    .wpfFilterVerScroll li label {
+        margin-bottom: 8px;
+    }
+    div.wpfFilterWrapper span.wpfCheckbox label {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    .wpfFilterWrapper .wpfCheckbox label::before {
+        border: 1px solid #A3A3A3;
+        border-radius: 6px;
+    }
+    ul.wpfFilterVerScroll {
+        margin-top: 14px;
+    }
+    ul.wpfFilterVerScroll::-webkit-scrollbar-track {
+        background-color: transparent;
+        border: none;
+    }
+    ul.wpfFilterVerScroll::-webkit-scrollbar-thumb {
+        background-color: #DEDEDE;
+        border: none;
+        box-shadow: none;
+        border-radius: 10px;
+    }
+    ul.wpfFilterVerScroll::-webkit-scrollbar {
+        width: 4px;
+    }
+    i.wpfTitleToggle::before {
+        display: none;
+    }
+    .wpfFilterWrapper i.wpfTitleToggle {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    i.wpfTitleToggle::after {
+        content: "";
+        background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.292893 0.292893C0.683417 -0.097631 1.31658 -0.097631 1.70711 0.292893L5 3.58579L8.29289 0.292893C8.68342 -0.0976311 9.31658 -0.0976311 9.70711 0.292893C10.0976 0.683417 10.0976 1.31658 9.70711 1.70711L5.70711 5.70711C5.31658 6.09763 4.68342 6.09763 4.29289 5.70711L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683418 0.292893 0.292893Z' fill='%23A3A3A3'/%3E%3C/svg%3E%0A");
+        width: 10px;
+        height: 6px;
+        display: block;
+        transition: transform .3s ease;
+    }
+    i.wpfTitleToggle.fa-minus::after {
+        transform: rotate(-180deg);
+    }
+    button.wpfClearButton.wpfButton {
+        margin: 0;
+        width: 100%;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #474747;
+        background-color: #EFEEED;
+        border-radius: 8px;
+        text-transform: none;
+        padding: 0;
+        min-height: 44px;
+    }
+    button.wpfClearButton.wpfButton:hover {
+        background-color: #DEDEDE;
+    }
+    .wpfSearchWrapper input.wpfSearchFieldsFilter::placeholder {
+        color: #B8B8B8;
+    }
+    .wpfSearchWrapper input.wpfSearchFieldsFilter {
+        background: #FFFFFF;
+        border: 1px solid #B8B8B8;
+        border-radius: 8px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: #474747;
+        padding-left: 38px;
+        padding-right: 20px;
+        height: 36px;
+    }
+    .wpfSearchWrapper input.wpfSearchFieldsFilter:focus,.wpfSearchWrapper input.wpfSearchFieldsFilter:hover {
+        border-color: #50B83C;
+    }
+    .wpfSearchWrapper {
+        position: relative;
+    }
+    .wpfSearchWrapper::before {
+        content: "";
+        display: block;
+        background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M7.33464 2.33317C4.57321 2.33317 2.33464 4.57175 2.33464 7.33317C2.33464 10.0946 4.57321 12.3332 7.33464 12.3332C10.0961 12.3332 12.3346 10.0946 12.3346 7.33317C12.3346 4.57175 10.0961 2.33317 7.33464 2.33317ZM0.667969 7.33317C0.667969 3.65127 3.65274 0.666504 7.33464 0.666504C11.0165 0.666504 14.0013 3.65127 14.0013 7.33317C14.0013 8.87376 13.4787 10.2923 12.6012 11.4212L17.0906 15.9106C17.416 16.236 17.416 16.7637 17.0906 17.0891C16.7651 17.4145 16.2375 17.4145 15.912 17.0891L11.4227 12.5997C10.2938 13.4773 8.87523 13.9998 7.33464 13.9998C3.65274 13.9998 0.667969 11.0151 0.667969 7.33317Z' fill='%23B8B8B8'/%3E%3C/svg%3E%0A");
+        background-size: 100% 100%;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        left: 11.5px;
+        top: calc(50% - 8px);
+        pointer-events: none;
+    }
+    .wpfValue, span.wpfFilterWrapper div.wpfFilterTaxNameWrapper {
+        display: block;
+    }
+    ul.wpfFilterVerScroll li label {
+        display: flex;
+    }
+    ul.wpfFilterVerScroll li label .wpfCheckbox {
+        margin-top: 2.5px;
+    }
+    .wpfFilterWrapper div.wpfFilterTaxNameWrapper {
+        display: block;
+    }
+    
+    @-webkit-keyframes rotate-center {
+    0% {
+        -webkit-transform: rotate(0);
+                transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+    }
+    @keyframes rotate-center {
+    0% {
+        -webkit-transform: rotate(0);
+                transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+    }
+
+    ul.products .spinner, .la-spinner, .wpfIconPreview .spinner, .wpfLoaderIconTemplate .spinner, .woobewoo-filter-loader.spinner {
+        background-image: url("data:image/svg+xml,%3Csvg width='222' height='223' viewBox='0 0 222 223' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath opacity='0.15' fill-rule='evenodd' clip-rule='evenodd' d='M37 111.501C37 152.37 70.1309 185.501 111 185.501C151.869 185.501 185 152.37 185 111.501C185 70.6319 151.869 37.501 111 37.501C70.1309 37.501 37 70.6319 37 111.501ZM18.5 111.501C18.5 162.587 59.9137 204.001 111 204.001C162.086 204.001 203.5 162.587 203.5 111.501C203.5 60.4146 162.086 19.001 111 19.001C59.9137 19.001 18.5 60.4146 18.5 111.501Z' fill='%2369C856'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M185 111.501C185 70.6319 151.869 37.501 111 37.501C70.1309 37.501 37 70.6319 37 111.501C37 116.61 32.8586 120.751 27.75 120.751C22.6414 120.751 18.5 116.61 18.5 111.501C18.5 60.4146 59.9137 19.001 111 19.001C162.086 19.001 203.5 60.4146 203.5 111.501C203.5 162.587 162.086 204.001 111 204.001C105.891 204.001 101.75 199.86 101.75 194.751C101.75 189.642 105.891 185.501 111 185.501C151.869 185.501 185 152.37 185 111.501Z' fill='url(%23paint0_linear_5584_27935)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_5584_27935' x1='106.375' y1='111.501' x2='37' y2='111.501' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%236366F1'/%3E%3Cstop offset='1' stop-color='%236366F1' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A") !important;
+        background-size: 100% 100% !important;
+        -webkit-animation: rotate-center 1s linear infinite both !important;
+        animation: rotate-center 1s linear infinite both !important;
+    }
+</style>
+
+<!-- LMP PLUGIN Styles -->
+<style>
+    .lmp_products_loading {
+        background-image: url("data:image/svg+xml,%3Csvg width='222' height='223' viewBox='0 0 222 223' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath opacity='0.15' fill-rule='evenodd' clip-rule='evenodd' d='M37 111.501C37 152.37 70.1309 185.501 111 185.501C151.869 185.501 185 152.37 185 111.501C185 70.6319 151.869 37.501 111 37.501C70.1309 37.501 37 70.6319 37 111.501ZM18.5 111.501C18.5 162.587 59.9137 204.001 111 204.001C162.086 204.001 203.5 162.587 203.5 111.501C203.5 60.4146 162.086 19.001 111 19.001C59.9137 19.001 18.5 60.4146 18.5 111.501Z' fill='%2369C856'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M185 111.501C185 70.6319 151.869 37.501 111 37.501C70.1309 37.501 37 70.6319 37 111.501C37 116.61 32.8586 120.751 27.75 120.751C22.6414 120.751 18.5 116.61 18.5 111.501C18.5 60.4146 59.9137 19.001 111 19.001C162.086 19.001 203.5 60.4146 203.5 111.501C203.5 162.587 162.086 204.001 111 204.001C105.891 204.001 101.75 199.86 101.75 194.751C101.75 189.642 105.891 185.501 111 185.501C151.869 185.501 185 152.37 185 111.501Z' fill='url(%23paint0_linear_5584_27935)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_5584_27935' x1='106.375' y1='111.501' x2='37' y2='111.501' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%236366F1'/%3E%3Cstop offset='1' stop-color='%236366F1' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A") !important;
+        background-size: 100% 100% !important;
+        -webkit-animation: rotate-center 1s linear infinite both !important;
+        animation: rotate-center 1s linear infinite both !important;
+        width: 50px;
+        height: 50px;
+    }
+    .lmp_products_loading i.fa {
+        display: none;
+    }
+    .catalog__list  .lmp_products_loading {
+        display: none;
+    }
+</style>
+
+<!-- Woocommerce Styles -->
+<style>
+    .woocommerce-pagination {
+        display: none !important;
+    }
+</style>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page">
