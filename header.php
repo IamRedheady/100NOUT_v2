@@ -14,7 +14,7 @@
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
 	<?php wp_head(); ?>
@@ -332,20 +332,18 @@
 <!-- WooBeeWoo Product Filter -->
 <style>
     div.wpfMainWrapper {
-        background: #F7F7F6;
-        border-radius: 6px;
-        padding: 24px;
-        position: sticky !important;
-        top: 90px;
-        height: auto;
-        max-height: calc(100vh - 100px);
+        height: 100%;
         overflow-y: scroll;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+        padding-bottom: 0;
+        -ms-overflow-style: none !important;
+        scrollbar-width: none !important;
     }
     div.wpfMainWrapper::-webkit-scrollbar {
-        width: 0;
+        width: 0 !important;
+        height: 0 !important;
+        display: none;
     }
+    div.wpfMainWrapper
     .wpfFilterWrapper {
         margin: 0 !important;
         padding: 0 !important;
@@ -417,6 +415,10 @@
         border-radius: 8px;
         background: #fff;
     }
+    div.wpfFilterContent div.ui-slider.ui-widget-content:not(.iris-slider-offset) {
+        width: 84%;
+        margin-left: 14px;
+    }
     input.wpfPriceRangeField#wpfMinPrice:hover, input.wpfPriceRangeField#wpfMaxPrice:hover,input.wpfPriceRangeField#wpfMinPrice:focus, input.wpfPriceRangeField#wpfMaxPrice:focus, {
         border-color: #50B83C !important;
     }
@@ -481,6 +483,23 @@
     i.wpfTitleToggle.fa-minus::after {
         transform: rotate(-180deg);
     }
+    button.wpfFilterButton.wpfButton {
+        margin: 0;
+        width: 100%;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #fff;
+        background-color: #50B83C;
+        border-radius: 8px;
+        text-transform: none;
+        padding: 0;
+        min-height: 44px;
+    }
+    button.wpfFilterButton.wpfButton:hover {
+        background-color: #439A32;
+    }
+
     button.wpfClearButton.wpfButton {
         margin: 0;
         width: 100%;
@@ -569,6 +588,125 @@
         background-size: 100% 100% !important;
         -webkit-animation: rotate-center 1s linear infinite both !important;
         animation: rotate-center 1s linear infinite both !important;
+    }
+    div.wpfFilterWrapper span.wpfCheckbox input[type="checkbox"]:checked + label::before {
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_5605_10415)'%3E%3Crect width='20' height='20' rx='6' fill='%2369C856'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15.0611 5.42238C15.5183 5.73229 15.6376 6.35411 15.3277 6.81124L10.2432 14.3112C10.0771 14.5562 9.8111 14.715 9.51671 14.745C9.22232 14.7749 8.92977 14.673 8.71777 14.4665L4.80234 10.6536C4.40667 10.2683 4.39827 9.6352 4.78358 9.23953C5.16888 8.84386 5.80199 8.83546 6.19766 9.22077L9.25771 12.2007L13.6723 5.68895C13.9822 5.23182 14.604 5.11247 15.0611 5.42238Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_5605_10415'%3E%3Crect width='20' height='20' rx='6' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A") !important;
+        background-size: 110% !important;
+        border: 1px solid #69C856 !important;
+        background-position: -1px -1px !important;
+    }
+
+    .wpfFilterButtons {
+        display: none;
+    }
+
+    .wpfFilterWrapper ~ .wpfFilterButtons {
+        display: block;
+    }
+
+    @media screen and (max-width: 1200px) {
+        div.wpfMainWrapper {
+            position: static;
+            top: 0;
+            max-height: 100%;
+        }
+
+        div.wpfFilterContent div.ui-slider.ui-widget-content:not(.iris-slider-offset) {
+            width: calc(100% - 30px);
+        }
+
+        div.wpfFilterButtons {
+            display: block;
+            position: fixed;
+            right: 20px;
+            top: 28px;
+            z-index: 11;
+            min-width: auto;
+        }
+
+        .wpfFilterButtons button.wpfClearButton.wpfButton {
+            padding: 0;
+            min-height: auto;
+            min-width: auto;
+            background: none;
+            width: auto;
+            font-size: 14px;
+            line-height: 20px;
+            color: #50B83C;
+        }
+
+        .wpfFilterButtons button.wpfClearButton.wpfButton:hover {
+            color: #439A32;
+        }
+
+
+        .wpfFilterWrapper ~ .wpfFilterButtons {
+            display: none;
+        }
+
+        ul.wpfFilterVerScroll {
+            max-height: 100% !important;
+        }
+        .wpfCheckboxHier ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .wpfFilterVerScroll li {
+            position: relative;
+        }
+        div.wpfFilterWrapper span.wpfCheckbox label {
+            position: absolute !important;
+            left: 0;
+            top: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .wpfFilterVerScroll li label {
+            margin-bottom: 0 !important;
+        }
+        .wpfDisplay {
+            position: relative;
+            z-index: 1;
+        }
+        span.wpfValue {
+            padding: 8px 12px !important;
+        }
+        .wpfFilterWrapper div.wpfFilterTaxNameWrapper {
+            padding: 0 !important;
+        }
+        div.wpfFilterWrapper .wpfCheckbox label::before {
+            border: none !important;
+            background-color: #EFEEED !important;
+        }
+        .wpfFilterWrapper ul:not(.wpfButtonsFilter) li {
+            margin: 4px !important;
+            margin-left: 0 !important;
+            margin-right: 8px !important;
+        }
+        div.wpfFilterWrapper span.wpfCheckbox input[type="checkbox"]:checked + label::before {
+            background-image: none !important;
+            background-color: #69C856 !important;
+            border: none !important;
+        }
+        div.wpfFilterWrapper span.wpfCheckbox input[type="checkbox"]:checked ~ label::after {
+            content: "" !important;
+            position: absolute !important;
+            z-index: 10;
+            right: 8px;
+            left: auto !important;
+            top: 50% !important;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 11L11 1M1 1L11 11' stroke='white' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+            background-size: 100% 100%;
+            width: 10px !important;
+            height: 10px !important;
+            display: block !important;
+        }
+        ul.wpfFilterVerScroll li label:has(input[type="checkbox"]:checked) .wpfFilterTaxNameWrapper {
+            color: #fff;
+        }
+        ul.wpfFilterVerScroll li label:has(input[type="checkbox"]:checked) .wpfValue {
+            padding-right: 38px !important;
+        }
     }
 </style>
 

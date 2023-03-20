@@ -332,6 +332,10 @@
         transition: transform 0.3s ease;
     }
 
+    &.active &__btn {
+        border: 1px solid #69c856;
+    }
+
     &.active &__arrow {
         transform: rotate(180deg);
     }

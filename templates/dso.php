@@ -21,10 +21,8 @@
                     то есть производственных неисправностей.
                 </p>
                 <h3 class="dop__title-sm text-3xl">
-                    Действует только на категории: <a class="link link-primary" href="#">Ноутбуки,</a> <a
-                        class="link link-primary" href="#">Телефоны,</a> <a class="link link-primary"
-                        href="#">Планшеты,</a> <a class="link link-primary" href="#">Пк,</a> <a
-                        class="link link-primary" href="#">Моноблоки</a>
+                    Действует только на категории: <br/> 
+										<span class="dop__text-color">Ноутбуки, Телефоны, Планшеты, ПК, Моноблоки</span>
                 </h3>
                 <h2 class="dop__subtitle text-4xl">
                     Как это работает?

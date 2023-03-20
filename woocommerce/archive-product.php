@@ -57,7 +57,7 @@ get_header( 'shop' );
             <img class="banner-s" src="<?php echo nout_image_directory();?>banners/s1.png" alt="Баннер">
             <img class="banner-xs" src="<?php echo nout_image_directory();?>banners/xs1.png" alt="Баннер">
         </div> -->
-        <div class="catalog__pre hide-scroll">
+        <!-- <div class="catalog__pre hide-scroll">
             <ul class="catalog__pre-list">
                 <li class="catalog__pre-list-item">
                     <button type="button" class="catalog__pre-list-item-btn btn btn-secondary">
@@ -83,19 +83,30 @@ get_header( 'shop' );
             <a href="#" class="catalog__pre-link btn btn-primary">
                 Прайс-лист
             </a>
-        </div>
+        </div> -->
         <input type="radio" class="catalog__mode-input" name="catalog-mode" id="content-base" checked>
         <input type="radio" class="catalog__mode-input" name="catalog-mode" id="content-column">
         <?php
             if ( wc_get_loop_prop( 'total' ) ) {
                 ?>
                     <div class="catalog__body">
-                        <div class="catalog__filter">
+                        <div class="catalog__filter js-catalog-filter">
+                            <button class="catalog__filter-close btn btn-secondary btn-icon js-filter-toggle">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L6 4.58579L10.2929 0.292893C10.6834 -0.0976311 11.3166 -0.0976311 11.7071 0.292893C12.0976 0.683417 12.0976 1.31658 11.7071 1.70711L7.41421 6L11.7071 10.2929C12.0976 10.6834 12.0976 11.3166 11.7071 11.7071C11.3166 12.0976 10.6834 12.0976 10.2929 11.7071L6 7.41421L1.70711 11.7071C1.31658 12.0976 0.683417 12.0976 0.292893 11.7071C-0.0976311 11.3166 -0.0976311 10.6834 0.292893 10.2929L4.58579 6L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z" fill="#707070"/>
+                                </svg>
+                            </button>
+                            <p class="catalog__filter-title text-3xl">
+                                Фильтры
+                            </p>
                             <?php echo do_shortcode('[wpf-filters id=1]');?>
+                            <button type="button" class="catalog__filter-btn btn btn-primary js-filter-toggle">
+                                Применить фильтр
+                            </button>
                         </div>
                         <div class="catalog__content">
                             <div class="catalog__content-top">
-                                <button class="catalog__btn-filter btn btn-primary"><span>Фильтры</span><svg width="20"
+                                <button class="catalog__btn-filter btn btn-primary js-filter-toggle"><span>Фильтры</span><svg width="20"
                                         height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M14.9993 9.99967L16.666 9.99967M14.9993 9.99967C14.9993 9.0792 14.2532 8.33301 13.3327 8.33301C12.4122 8.33301 11.666 9.0792 11.666 9.99967M14.9993 9.99967C14.9993 10.9201 14.2532 11.6663 13.3327 11.6663C12.4122 11.6663 11.666 10.9201 11.666 9.99967M4.99935 4.99967C4.99935 5.92015 5.74554 6.66634 6.66602 6.66634C7.58649 6.66634 8.33268 5.92015 8.33268 4.99967M4.99935 4.99967C4.99935 4.0792 5.74554 3.33301 6.66602 3.33301C7.58649 3.33301 8.33268 4.0792 8.33268 4.99967M4.99935 4.99967L3.33268 4.99967M8.33268 4.99967L16.666 4.99967M11.666 9.99967L3.33268 9.99967M4.99935 14.9997C4.99935 15.9201 5.74554 16.6663 6.66602 16.6663C7.58649 16.6663 8.33268 15.9201 8.33268 14.9997M4.99935 14.9997C4.99935 14.0792 5.74554 13.333 6.66602 13.333C7.58649 13.333 8.33268 14.0792 8.33268 14.9997M4.99935 14.9997L3.33268 14.9997M8.33268 14.9997L16.666 14.9997"
@@ -116,17 +127,17 @@ get_header( 'shop' );
                                         </button>
                                         <ul class="dropdown__list">
                                             <li class="dropdown__list-item">
-                                                <button type="button" class="dropdown__list-item-btn text-sm js-select-sort" data-val="date">
+                                                <button type="button" class="dropdown__list-item-btn text-sm js-select-sort text" data-val="date">
                                                     По новизне
                                                 </button>
                                             </li>
                                             <li class="dropdown__list-item">
-                                                <button type="button" class="dropdown__list-item-btn text-sm js-select-sort" data-val="price-desc">
+                                                <button type="button" class="dropdown__list-item-btn text-sm js-select-sort text" data-val="price-desc">
                                                     По цене ↓
                                                 </button>
                                             </li>
                                             <li class="dropdown__list-item">
-                                                <button type="button" class="dropdown__list-item-btn text-sm js-select-sort" data-val="price">
+                                                <button type="button" class="dropdown__list-item-btn text-sm js-select-sort text" data-val="price">
                                                     По цене ↑
                                                 </button>
                                             </li>

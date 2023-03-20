@@ -60,6 +60,24 @@
     &__filter {
         max-width: 240px;
         width: 100%;
+        background: #f7f7f6;
+        border-radius: 6px;
+        padding: 24px;
+        position: sticky;
+        top: 90px;
+        height: auto;
+        max-height: calc(100vh - 100px);
+        // overflow-y: scroll;
+        // -ms-overflow-style: none;
+        // scrollbar-width: none;
+        &-btn {
+            max-width: 100%;
+            display: none;
+        }
+        &-title,
+        &-close {
+            display: none;
+        }
     }
 
     &__content {
@@ -100,6 +118,18 @@
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 25px;
         margin-top: 12px;
+        position: relative;
+        .wpfPreview {
+            margin: 0 auto;
+            width: 70px;
+            position: absolute;
+            z-index: 10;
+            left: calc(50% - 35px);
+            top: 24px;
+        }
+        &:has(.wpfPreview) + .lmp_products_loading {
+            display: none;
+        }
     }
 
     &__list-item {
@@ -146,6 +176,7 @@ input.catalog__mode-input[type="radio"] {
                     margin-bottom: 0;
                 }
             }
+
             &__box {
                 display: flex;
                 flex-direction: column;
@@ -220,6 +251,43 @@ input.catalog__mode-input[type="radio"] {
         }
         &__filter {
             display: none;
+            &-title {
+                position: absolute;
+                top: 20px;
+                width: calc(100% - 40px);
+                text-align: center;
+                left: 20px;
+                display: block;
+            }
+            &-close {
+                position: absolute;
+                left: 20px;
+                top: 20px;
+                display: flex;
+                z-index: 1;
+            }
+            &-btn {
+                display: block;
+                position: fixed;
+                bottom: 20px;
+                width: calc(100% - 40px);
+                left: 20px;
+                text-align: center;
+            }
+            &.active {
+                display: block;
+                position: fixed;
+                left: 0;
+                top: 0;
+                max-width: 100%;
+                width: 100%;
+                z-index: 13;
+                height: 100vh;
+                max-height: 100%;
+                padding-bottom: 84px;
+                padding-top: 74px;
+                animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            }
         }
         &__content {
             margin-left: 0;
