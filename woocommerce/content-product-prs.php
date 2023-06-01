@@ -23,6 +23,15 @@ $link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $pr
 $product_id = $product->get_id();
 $photos_ids = $product->get_gallery_image_ids();
 
+$productNameSost = "";
+if ($product->get_attribute('sostoyanie') == "новый") {
+    $productNameSost = "Новый ".$product->get_name()."";
+} else if ($product->get_attribute('sostoyanie') == "5") {
+    $productNameSost = "".$product->get_name().", отличное состояние";
+} else {
+    $productNameSost = "Б/у ".$product->get_name()."";
+}
+
 // Ensure visibility.
 if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
@@ -42,17 +51,17 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                 <?php
              }
         ?>
-        <!-- onclick="location.href='<?php echo $link;?>'" -->
+
         <div class="product__swiper-wrap"
             onmouseleave="onLeaveProductPhoto(event, 'js-product-<?php echo $product_id; ?>')"
             onmousemove="onInitProductByMouse(event, 'js-product-<?php echo $product_id; ?>')"
             ontouchstart="onInitProductByTouch(event, 'js-product-<?php echo $product_id; ?>')"
             >
             <div class="product__swiper js-product-swiper">
-                <div class='swiper-wrapper'>
+                <div class='swiper-wrapper' onclick="onProductClick('<?php echo $link;?>')">
                     <div class='swiper-slide'>
                         <a href="<?php echo $link;?>" class="product__pic">
-                            <img src="<?php if ($p_image_url) { echo $p_image_url;} else {echo "https://100nout.redheady.ru/wp-content/uploads/2023/03/zagl.svg";}?>" alt="Фото" class="product__pic-img"
+                            <img src="<?php if ($p_image_url) { echo $p_image_url;} else {echo "https://100nout.by/wp-content/uploads/2023/03/zagl.png";}?>" alt="Фото" class="product__pic-img"
                                 loading="lazy">
                             <div class="swiper-lazy-preloader ">
                             </div>
@@ -83,7 +92,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         </div>
         <div class="product__center">
             <a href="<?php echo $link;?>" class="product__title">
-                <?php echo $product->get_name();?>
+                <?php echo $productNameSost;?>
             </a>
             <?php 
                 $status = $product->get_status();
@@ -97,67 +106,38 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                 <?php woocommerce_template_loop_add_to_cart(); ?>
                 <ul class="product__info">
                     <?php 
-                        if ($product->get_attribute('diagonal-ekrana')) {
-                            ?>
-                             <li class="product__info-item">
-                                <p class="product__info-item-name">
-                                    Диагональ экрана:
-                                </p>
-                                <p class="product__info-item-val">
-                                    <?php echo $product->get_attribute('diagonal-ekrana')?>
-                                </p>
-                            </li>
-                            <?php
-                        }
-                        if ($product->get_attribute('model-proczessora')) {
-                            ?>
-                             <li class="product__info-item">
-                                <p class="product__info-item-name">
-                                    Модель процессора:
-                                </p>
-                                <p class="product__info-item-val">
-                                    <?php echo $product->get_attribute('model-proczessora')?>
-                                </p>
-                            </li>
-                            <?php
-                        }
-                        if ($product->get_attribute('razreshenie-ekrana')) {
-                            ?>
-                             <li class="product__info-item">
-                                <p class="product__info-item-name">
-                                    Разрешение экрана:
-                                </p>
-                                <p class="product__info-item-val">
-                                    <?php echo $product->get_attribute('razreshenie-ekrana')?>
-                                </p>
-                            </li>
-                            <?php
-                        }
-                        if ($product->get_attribute('graficheskij-adapter')) {
-                            ?>
-                             <li class="product__info-item">
-                                <p class="product__info-item-name">
-                                    Графический адаптер:
-                                </p>
-                                <p class="product__info-item-val">
-                                    <?php echo $product->get_attribute('graficheskij-adapter')?>
-                                </p>
-                            </li>
-                            <?php
-                        }
-                        if ($product->get_attribute('operativnaya-pamyat')) {
-                            ?>
-                             <li class="product__info-item">
-                                <p class="product__info-item-name">
-                                    Оперативная память, ГБ:
-                                </p>
-                                <p class="product__info-item-val">
-                                    <?php echo $product->get_attribute('operativnaya-pamyat')?>
-                                </p>
-                            </li>
-                            <?php
-                        }
-                    ?>
+                        if( get_field('harakteristiki', 'option') ): ?>
+
+                            <?php while( has_sub_field('harakteristiki', 'option') ): 
+                                $productAttrCats = get_sub_field('kategoriya_tovarov');
+                                $currentCat = $product->get_category_ids()[0];
+
+                                if (in_array($currentCat, $productAttrCats)) {
+                                     if( get_sub_field('atributy', 'option') ) {
+                                        while( has_sub_field('atributy', 'option') ): ?>
+                                            <?php
+                                                $attrSlug = get_sub_field('slug_atributa', 'option');
+                                                if ($product->get_attribute($attrSlug)) {
+                                                    ?>
+                                                     <li class="product__info-item">
+                                                        <p class="product__info-item-name">
+                                                            <?php
+                                                            echo wc_attribute_label( 'pa_'.$attrSlug );?>
+                                                        </p>
+                                                        <p class="product__info-item-val">
+                                                            <?php echo $product->get_attribute($attrSlug)?>
+                                                        </p>
+                                                    </li>
+                                                    <?php
+                                                }
+                                            ?>
+                                        <?php endwhile; 
+                                    }
+                                }
+                                ?>                        
+                            <?php endwhile; ?>
+                        
+                        <?php endif; ?>
                 </ul>
                 <div class="product__tags hide-scroll">
                     <?php
@@ -217,30 +197,14 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         <div class="product__box">
             <div class="product__actions">
                 <p class="product__price">
-                    <?php echo $product->get_price();?>
+                    <?php echo number_format($product->get_price(), 0, '', ' ');?>
                     <span>BYN</span>
                 </p>
                 <p class="product__price-old">
                     <?php echo $product->get_regular_price();?>
                 </p>
-                <button class="product__btn btn btn-icon btn-tooltip active"
-                    name="Добавить в сравнение">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F" stroke-width="1.2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </button>
-                <button class="product__btn btn btn-icon btn-tooltip active"
-                    name="Добавить в избранное">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z"
-                            stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
+                <?php echo do_shortcode('[br_compare_button]');?>
+                <?php echo do_shortcode('[ti_wishlists_addtowishlist]');?>
             </div>
         </div>
     </div>

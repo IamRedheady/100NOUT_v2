@@ -105,12 +105,12 @@
                         </h3>
                         <nav class="footer__nav">
                             <ul class="footer__nav-list">
-                                <!-- <li class="footer__nav-item">
-                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                <li class="footer__nav-item">
+                                    <a href="https://skypim.100nout.by/" target="_blank" class="footer__nav-item-link link link_big link-secondary text">
                                         Скупка техники
                                     </a>
                                 </li>
-                                <li class="footer__nav-item">
+                                <!-- <li class="footer__nav-item">
                                     <a href="#" class="footer__nav-item-link link link_big link-secondary text">
                                         Подарочные сертификаты
                                     </a>
@@ -170,8 +170,7 @@
                 </ul>
                 <p class="footer__copyright text-xs">
                     <span>
-                        © 2022 «100NOUT.BY», ИП Валько Денис Валерьевич УНП 291558723, Брестская обл. г. Барановичи ул.
-                        Репина д. 58
+                    © 2023 100nout.by, ООО «СТОНОУТБУКОВ», УНП 193664989, Минск, ул. Богдановича д. 124 пом. 6Н
                     </span>
                 </p>
             </div>

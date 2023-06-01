@@ -1,6 +1,4 @@
 .contacts {
-	margin-bottom: 22px;
-
     &__list {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -25,58 +23,68 @@
             }
         }
     }
-		&__map {
+    &__map {
+        &-title {
+            margin-bottom: 24px;
+        }
+    }
 
-			&-title {
-				margin-bottom: 24px;
-			}
-		}
-
-		&__card {
-			max-height: 190px;
-
-		}
+    &__card {
+        max-height: 190px;
+    }
+    .card {
+        &__title {
+            span {
+                color: $B600;
+                &:hover {
+                    color: $B600;
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 1200px) {
     .contacts__list-item-card--back {
         overflow: hidden;
+        padding-right: 100px;
         &::after {
             width: 133px;
             height: 120px;
             right: -10px;
         }
+        .card-title {
+            white-space: nowrap;
+        }
     }
 
-		.contacts {
+    .contacts {
+        &__list {
+            display: flex;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 24px;
+            margin-top: 24px;
+        }
 
-			&__list {
-        display: flex;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 24px;
-        margin-top: 24px;
-			}
-			
-			&__card {
+        &__card {
+            &-socials {
+                min-width: 388px;
+            }
 
-				&-socials {
-					min-width: 388px;
-				}
-				
-			&-info {
-				min-width: auto;
-			}
-		}
-	}
+            &-info {
+                min-width: auto;
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 1000px) {
     .contacts {
         &__list {
-						display: grid;
+            display: grid;
             grid-template-columns: repeat(1, 1fr);
-						grid-gap: 16px;
-					}
+            grid-gap: 16px;
+        }
         &__list-item-card--back {
             padding-right: 100px;
         }
@@ -84,12 +92,8 @@
 }
 
 @media screen and (max-width: 680px) {
-	.contacts {
-		&__map {
-		}
-	}
+    .contacts {
+        &__map {
+        }
+    }
 }
-
-
-
-

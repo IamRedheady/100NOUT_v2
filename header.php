@@ -15,15 +15,58 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
-
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="date=no">
+    <meta name="format-detection" content="address=no">
+    <meta name="format-detection" content="email=no">
 	<?php wp_head(); ?>
 </head>
 
 <!-- HEAD SCRIPTS FOR SITE -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
+   ym(89452498, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true,
+        ecommerce:"dataLayer"
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/89452498" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','G-550SPQSRDB');</script>
+<!-- End Google Tag Manager -->
+<script src="<?php echo get_template_directory_uri();?>/dist/swiper/swiper-bundle.min.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-10908582157"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-10908582157');
+</script>
+<!-- Event snippet for put_cart conversion page -->
+<script>
+  gtag('event', 'conversion', {
+      'send_to': 'AW-10908582157/gU96CNXSjcIDEI2Cz9Eo',
+      'value': 2.0,
+      'currency': 'USD'
+  });
+</script>
 <script>
     const onInitProductByTouch = (e, productClass) => {
         const product = document.querySelector(`.${productClass}`)
@@ -58,6 +101,7 @@
                     el: `.${productClass} .swiper-pagination`,
                     clickable: true,
                 },
+
             })
         } else {
             const slides = document.querySelectorAll(`.${productClass} .swiper-slide`)
@@ -80,6 +124,83 @@
         if (window.innerWidth > 1160) {
             const dots = document.querySelectorAll(`.${productClass} .swiper-pagination-bullet`)
             dots[0].click()
+        }
+    }
+
+    const onProductClick = (link) => {
+        if (window.innerWidth > 1160) { 
+            location.href = link 
+        }
+    }
+
+    // Favorite 
+    const checkFavorite = () => {
+        document.querySelectorAll(".header__favorite").forEach(btn=>{
+            if (document.querySelector(".wishlist_products_counter").classList.contains("wishlist-counter-with-products")) {
+                btn.classList.add("active")
+                btn.setAttribute("href", "/wishlist")
+            } else {
+                btn.classList.remove("active")
+                btn.setAttribute("href", "")
+            }
+        })
+    }
+
+    const onProductFavorite = (e) => {
+        const favoriteBtn = e.target.previousElementSibling.previousElementSibling
+        favoriteBtn.click()
+        favoriteBtn.classList.add("loading")
+        setTimeout(()=>{
+            favoriteBtn.classList.remove("loading")
+        }, 300)
+        setTimeout(() => {
+            checkFavorite()
+        }, 500);
+    }
+
+    window.onload = () => {
+        setTimeout(() => {
+            checkFavorite()
+        }, 1000);
+    }
+</script>
+
+<!-- TI WISHLIST -->
+<style>
+    .tinvwl-product-in-list + .tinv-wishlist-clear + .btn path {
+    stroke: #D72F09;
+    fill: #D72F09;
+    }
+    .tinvwl_add_to_wishlist_button + .tinv-wishlist-clear + .btn svg {
+        transition: transform .2s cubic-bezier(0.71, 0.34, 0.08, 1.02);
+    }
+    .tinvwl_add_to_wishlist_button.loading + .tinv-wishlist-clear + .btn svg {
+       transform: scale(.8);
+    }
+    .tinvwl-product-in-list + .tinv-wishlist-clear + .btn::before {
+        content: "Убрать из избранного";
+    }
+    .tinvwl_add_to_wishlist_button {
+        display: none;
+    }
+</style>
+
+<!-- Mini Cart Script -->
+<script>
+    const onCartClose = () => {
+        const cartP = document.querySelector(".js-cartP")
+        const body = document.querySelector("body")
+        cartP.classList.add("quit")
+        setTimeout(() => {
+            cartP.classList.remove("quit")
+            cartP.classList.remove("active")
+            body.classList.remove("scroll-disabled")
+        }, 500);
+    }
+
+    const onCartCloseBack = (e) => {
+        if (e.target.classList.contains("active")) {
+            onCartClose()
         }
     }
 </script>
@@ -119,9 +240,9 @@
         border-radius: 8px;
         border: none;
     }
-    .dgwt-wcas-suggestion-cat .dgwt-wcas-st-breadcrumbs {
+    /* .dgwt-wcas-suggestion-cat .dgwt-wcas-st-breadcrumbs {
         display: none;
-    }
+    } */
     .dgwt-wcas-has-headings .dgwt-wcas-suggestion-headline .dgwt-wcas-st {
         font-weight: 400;
         font-size: 14px;
@@ -209,7 +330,7 @@
     }
 
     .dgwt-wcas-darkened-overlay>div {
-        top: 84px !important;
+        top: 74px !important;
     }
 
     .dgwt-wcas-search-wrapp.dgwt-wcas-search-darkoverl-on .dgwt-wcas-search-form {
@@ -718,7 +839,9 @@
         -webkit-animation: rotate-center 1s linear infinite both !important;
         animation: rotate-center 1s linear infinite both !important;
         width: 50px;
-        height: 50px;
+        height: 80px;
+        margin-top: 80px;
+        margin-bottom: 80px;
     }
     .lmp_products_loading i.fa {
         display: none;
@@ -734,13 +857,157 @@
         display: none !important;
     }
 </style>
+
+<!-- Attribute Groups -->
+<style>
+    .shop_attributes tr, .shop_attributes tr td {
+        display: flex;
+        align-items: flex-start;
+    }
+    .woocommerce-group-attributes-layout-1 {
+        background: none;
+    }
+    .woocommerce-group-attributes-layout-1 .attribute_group_row {
+        border: none;
+    }
+    .shop_attributes tr.alt, .shop_attributes tr.alt td {
+        background-color: transparent !important;
+    }
+    .woocommerce table.shop_attributes.woocommerce-group-attributes-layout-1 th, .woocommerce table.shop_attributes.woocommerce-group-attributes-layout-2 th, .woocommerce table.shop_attributes.woocommerce-group-attributes-layout-3 th {
+        padding: 0;
+    }
+    .attribute_group_name {
+        font-style: normal;
+        font-weight: 600 !important;
+        font-size: 18px;
+        line-height: 28px !important;
+        color: #21201F;
+    }
+    /* .woocommerce table.shop_attributes th {
+        width: auto;
+    } */
+    .attribute_group_name {
+        width: 100% !important;
+    }
+    th.attribute_name {
+        font-style: normal;
+        font-weight: 400 !important;
+        font-size: 14px;
+        line-height: 20px !important;
+        color: #5C5C5C;
+    }
+    .attribute_group_row_other, .attribute_row_other {
+        display: none !important;
+    }
+    .woocommerce table.shop_attributes {
+        width: 100%;
+    }
+    .woocommerce table.shop_attributes.woocommerce-group-attributes-layout-1 .attribute_row > td {
+        width: 100%;
+    }
+    .attribute_value a {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: #21201F;
+        margin-left: 4px;
+        display: flex;
+    }
+    .attribute_group_row {
+        margin-bottom: 10px;
+    }
+    .shop_attributes tr {
+        margin-bottom: 6px;
+    }
+</style>
+
+<!-- Контактная форма -->
+<style>
+    .wpcf7-spinner {
+        display: none;
+    }
+    .wpcf7-form .btn + br {
+        display: none;
+    }
+    .wpcf7 form .wpcf7-response-output {
+        border: none;
+        font-size: 12px;
+    line-height: 14px;
+    margin: 0;
+    color: #000;
+    padding: 0;
+    margin-top: 2px;
+    }
+</style>
+
+<!-- Compare -->
+<style>
+    .br_compare_added svg path {
+        stroke: #439A32; 
+    }
+    a.br_compare_button {
+        padding: 6px;
+        margin-top: 0 !important;
+    }
+    .br_compare_added:before {
+        content: "Перейти в сравнение";
+    }
+</style>
+
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+
+<style>
+    @media screen and (max-width: 480px) {
+        .b24-widget-button-position-bottom-right {
+            right: 15px;
+            bottom: 70px;
+        }
+        .b24-widget-button-pulse-animate {
+            display: none;
+        }
+        .b24-widget-button-inner-mask {
+            display: none;
+        }
+    }
+</style>
+<!-- Битрикс форма чата и поддержки -->
+<script>
+        (function(w,d,u){
+                var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
+                var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+        })(window,document,'https://cdn-ru.bitrix24.ru/b16077710/crm/site_button/loader_5_r5xxwz.js');
+</script>
+
+<!-- Ajax удаление товаров из корзины с кнопки из карточки товара -->
+<style>
+    .js-remove-links {
+        display: none;
+    }
+</style>
+<div class="js-remove-links">
+    <?php 
+        foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+            $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+            $product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+
+            if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_widget_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+                ?>
+                <span class="js-remove-link" data-id="<?php echo $_product->get_id();?>" data-url="<?php
+                    echo esc_url( wc_get_cart_remove_url( $cart_item_key ) );
+                    ?>" data-item-key="<?php echo $cart_item_key;?>"></span>
+                <?php
+            }
+        }
+    ?>
+</div>
+
 <div id="page">
 <div class="page" id="page">
         <header class="header layout">
-        <div class="header--fixed">
-        <div class="header__top layout">
+            <div class="header--fixed">
+            <div class="header__top layout">
                 <a href="/" class="header__logo">
                     <svg width="151" height="44" viewBox="0 0 151 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -773,7 +1040,7 @@
                 <div class="header__search">
                     <?php echo do_shortcode('[fibosearch]'); ?>
                 </div>
-                <button class="header__to-call-toggle btn btn-secondary btn_icon-left">
+                <button class="header__to-call-toggle btn btn-secondary btn_icon-left js-popup-btn" data-popup="1">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M7.93919 9.29682L10.73 12.0945C11.0325 12.3978 11.5805 12.4411 12.191 12.1553C13.7447 11.5434 14.2616 11.3942 14.5567 11.6901L17.7647 14.906C18.1439 15.2862 18.0427 15.9194 17.6187 16.3445C15.4168 18.5518 11.8378 18.5518 9.63592 16.3445L3.64316 10.3369C1.45228 8.1406 1.45228 4.58739 3.64316 2.39108C4.07617 1.95701 4.74112 1.85021 5.13462 2.24468L8.34266 5.46065C8.62071 5.73939 8.47162 6.25857 7.86454 7.80549C7.58232 8.40933 7.62754 8.9844 7.93919 9.29682Z"
@@ -783,26 +1050,12 @@
                         Заказать звонок
                     </span>
                 </button>
-                <a href="#" class="header__favorite btn btn-secondary btn-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M3.80628 6.20569C5.68079 4.33118 8.71999 4.33118 10.5945 6.20569L12.0004 7.61158L13.4063 6.20569C15.2808 4.33118 18.32 4.33118 20.1945 6.20569C22.069 8.08021 22.069 11.1194 20.1945 12.9939L12.0004 21.188L3.80628 12.9939C1.93176 11.1194 1.93176 8.08021 3.80628 6.20569Z"
-                            fill="#21201F" />
-                    </svg>
-                    <span class="favorite-empty">
-                        <span class="favorite-empty__title">
-                            В избранном пусто
-                        </span>
-                        <span class="favorite-empty__subtitle">
-                            Добавляйте товары с помощью ❤️
-                        </span>
-                    </span>
-                </a>
+                <?php echo do_shortcode('[ti_wishlist_products_counter]');?>
                 <?php 
                      global $woocommerce;
-                     $c_total = $woocommerce->cart->total;
+                     $c_total = number_format($woocommerce->cart->subtotal, 0, '', ' ');
                 ?>
-                <a href="/cart" class="header__to-cart btn <?php if($c_total == 0) {echo 'btn-secondary';} else {echo 'btn-primary';}?> btn_icon-left">
+                <a href="<?php if($c_total == 0) {echo '##';} else {echo '/cart';}?>" class="header__to-cart btn <?php if($c_total == 0) {echo 'btn-secondary';} else {echo 'btn-primary';}?> btn_icon-left">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M3 1C2.44772 1 2 1.44772 2 2C2 2.55228 2.44772 3 3 3H4.21922L4.52478 4.22224C4.52799 4.23637 4.5315 4.25039 4.5353 4.26429L5.89253 9.69321L4.99995 10.5858C3.74002 11.8457 4.63235 14 6.41416 14H15C15.5522 14 16 13.5523 16 13C16 12.4477 15.5522 12 15 12L6.41417 12L7.41416 11H14C14.3788 11 14.725 10.786 14.8944 10.4472L17.8944 4.44721C18.0494 4.13723 18.0329 3.76909 17.8507 3.47427C17.6684 3.17945 17.3466 3 17 3H6.28078L5.97014 1.75746C5.85885 1.3123 5.45887 1 5 1H3Z"
@@ -865,7 +1118,7 @@
                     </svg>
                 </button>
             </div>
-        </div>
+            </div>
             <div class="header__bottom">
                 <nav class="header__nav">
                     <ul class="header__nav-list">
@@ -896,16 +1149,16 @@
                                 Покупайте как юрлицо
                             </a>
                         </li>
-                        <!-- <li class="header__nav-list-item">
-                            <a class="link link_big link-secondary text" href="#">
+                        <li class="header__nav-list-item">
+                            <a class="link link_big link-secondary text" href="https://skypim.100nout.by/" target="_blank">
                                 Скупка техники
                             </a>
-                        </li> -->
-                        <li class="header__nav-list-item">
+                        </li>
+                        <!-- <li class="header__nav-list-item">
                             <a class="link link_big link-secondary text" href="/o-kompanii/">
                                 О компании
                             </a>
-                        </li>
+                        </li> -->
                         <li class="header__nav-list-item">
                             <a class="link link_big link-secondary text" href="/trade-in/">
                                 Trade-in
@@ -917,7 +1170,7 @@
         </header>
         <ul class="bar">
             <li class="bar__item">
-                <a href="#" class="bar__item-link btn btn-secondary btn-icon">
+                <a href="/" class="bar__item-link btn btn-secondary btn-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M12.8489 2.75137C12.3803 2.28275 11.6205 2.28275 11.1519 2.75137L2.75186 11.1514C2.28323 11.62 2.28323 12.3798 2.75186 12.8484C3.22049 13.3171 3.98029 13.3171 4.44892 12.8484L4.80039 12.497V20.3999C4.80039 21.0626 5.33765 21.5999 6.00039 21.5999H8.40039C9.06313 21.5999 9.60039 21.0626 9.60039 20.3999V17.9999C9.60039 17.3372 10.1376 16.7999 10.8004 16.7999H13.2004C13.8631 16.7999 14.4004 17.3372 14.4004 17.9999V20.3999C14.4004 21.0626 14.9376 21.5999 15.6004 21.5999H18.0004C18.6631 21.5999 19.2004 21.0626 19.2004 20.3999V12.497L19.5519 12.8484C20.0205 13.3171 20.7803 13.3171 21.2489 12.8484C21.7175 12.3798 21.7175 11.62 21.2489 11.1514L12.8489 2.75137Z"
@@ -926,7 +1179,7 @@
                 </a>
             </li>
             <li class="bar__item">
-                <button type="button" href="#"
+                <button type="button"
                     class="bar__item-link btn btn-secondary btn-icon js-menu-toggle bar__menu-toggle">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -990,33 +1243,34 @@
                 </a>
             </li>
             <li class="bar__item">
-                <a href="#" class="bar__item-link btn btn-secondary btn-icon">
+                <button type="button" class="bar__item-link btn btn-secondary btn-icon js-popup-btn" data-popup="1">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M9.52742 11.1561L12.8764 14.5133C13.2394 14.8773 13.897 14.9293 14.6296 14.5863C16.494 13.852 17.1143 13.673 17.4684 14.028L21.3181 17.8871C21.7731 18.3433 21.6517 19.1032 21.1428 19.6133C18.5005 22.2621 14.2058 22.2621 11.5635 19.6133L4.37219 12.4042C1.74312 9.76863 1.74312 5.50477 4.37219 2.8692C4.89179 2.34832 5.68974 2.22015 6.16194 2.69352L10.0116 6.55268C10.3452 6.88717 10.1663 7.51019 9.43784 9.36649C9.09918 10.0911 9.15344 10.7812 9.52742 11.1561Z"
                             fill="#21201F" />
                     </svg>
-                </a>
+                </button>
             </li>
             <li class="bar__item">
-                <a href="#" class="bar__item-link btn btn-secondary btn-icon bar__item-link-favorite">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M3.80628 6.20569C5.68079 4.33118 8.71999 4.33118 10.5945 6.20569L12.0004 7.61158L13.4063 6.20569C15.2808 4.33118 18.32 4.33118 20.1945 6.20569C22.069 8.08021 22.069 11.1194 20.1945 12.9939L12.0004 21.188L3.80628 12.9939C1.93176 11.1194 1.93176 8.08021 3.80628 6.20569Z"
-                            fill="#21201F" />
-                    </svg>
-
-                    <span class="favorite-empty">
-                        <span class="favorite-empty__title">
-                            В избранном пусто
-                        </span>
-                        <span class="favorite-empty__subtitle">
-                            Добавляйте товары с&nbsp;помощью ❤️
-                        </span>
-                    </span>
-                </a>
+                <?php echo do_shortcode('[ti_wishlist_products_counter]');?>
             </li>
         </ul>
+        <div class="cartP js-cartP" onclick="onCartCloseBack(event)">
+            <div class="cartP__inner">
+                <div class="cartP__container hide-scroll">
+                    <button class="cartP__btn btn-icon" onclick="onCartClose()">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 13L13 1M1 1L13 13" stroke="#8F8F8F" stroke-width="1.2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <h3 class="cartP__title text-3xl">
+                        Товар добавлен в корзину
+                    </h3>
+                    <?php woocommerce_mini_cart();?>
+                </div>
+            </div>
+        </div>
         <div class="menu js-menu">
             <div class="menu__inner layout">
                 <div class="menu__content">
@@ -1104,8 +1358,8 @@
                                     Покупайте как юрлицо
                                 </a>
                             </li>
-                            <!-- <li class="menu__mobile-list-item">
-                                <a href="#" class="btn btn_icon-left text-sm text">
+                            <li class="menu__mobile-list-item">
+                                <a href="https://skypim.100nout.by/" class="btn btn_icon-left text-sm text" target="_blank">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1115,7 +1369,7 @@
                                     Скупка техники
                                 </a>
                             </li>
-                            <li class="menu__mobile-list-item">
+                            <!-- <li class="menu__mobile-list-item">
                                 <a href="#" class="btn btn_icon-left text-sm text">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -1154,6 +1408,29 @@
                         <div class="menu__sub-wrap js-menu__sub-wrap-level-2">
                             <?php nout_menu_third_level() ?>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="popup js-popup" data-popup="1">
+            <div class="popup__container">
+                <button class="popup__btn btn btn-icon js-popup-btn" data-popup="1" type="button">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M1.15128 1.15128C1.61991 0.682647 2.3797 0.682647 2.84833 1.15128L7.9998 6.30275L13.1513 1.15128C13.6199 0.682647 14.3797 0.682647 14.8483 1.15128C15.317 1.61991 15.317 2.3797 14.8483 2.84833L9.69686 7.9998L14.8483 13.1513C15.317 13.6199 15.317 14.3797 14.8483 14.8483C14.3797 15.317 13.6199 15.317 13.1513 14.8483L7.9998 9.69686L2.84833 14.8483C2.3797 15.317 1.61991 15.317 1.15128 14.8483C0.682647 14.3797 0.682647 13.6199 1.15128 13.1513L6.30275 7.9998L1.15128 2.84833C0.682647 2.3797 0.682647 1.61991 1.15128 1.15128Z"
+                            fill="#474747" />
+                    </svg>
+                </button>
+                <div class="popup__pic">
+                    <img src="<?php nout_image_directory() ?>popup-pic.png" alt="Фото" class="popup__pic-img">
+                </div>
+                <div class="popup__content">
+                    <div class="popup__form">
+                        <h3 class="popup__form-title text-2xl">
+                            Укажите контактные данные
+                        </h3>
+                        <p class="popup__form-subtitle text text-base">В ближайшее время мы с вами свяжемся</p>
+                        <?php echo do_shortcode('[contact-form-7 id="74310" title="Контактная форма 1"]');?>
                     </div>
                 </div>
             </div>

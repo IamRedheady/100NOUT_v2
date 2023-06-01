@@ -1,6 +1,4 @@
 .trade-in {
-    margin-bottom: 22px;
-
     &__banner {
         margin-top: 24px;
         margin-bottom: 80px;
@@ -8,6 +6,14 @@
 
     &__subtitle {
         margin-top: 80px;
+        .link {
+            &:hover {
+                color: $B600;
+            }
+        }
+        span {
+            white-space: nowrap;
+        }
     }
 
     &__list {
@@ -67,12 +73,13 @@
             line-height: 20px;
         }
     }
+    .map {
+        margin-bottom: 0;
+    }
 }
 
 @media screen and (max-width: 1000px) {
     .trade-in {
-        margin-bottom: 38px;
-
         &__banner {
             margin-bottom: 60px;
         }
@@ -80,7 +87,7 @@
         &__list {
             grid-template-columns: repeat(1, 1fr);
             grid-gap: 14px;
-						margin-bottom: 24px;
+            margin-bottom: 24px;
         }
 
         &__subtitle {
@@ -95,55 +102,52 @@
 
 @media screen and (max-width: 680px) {
     .trade-in {
-			margin-bottom: 16px;
-
-			&__list {
-        &-item {
-            &:first-child {
-                .card {
-                    &::after {
+        &__list {
+            &-item {
+                &:first-child {
+                    .card {
+                        &::after {
+                        }
                     }
                 }
-							}
-						}
-					}
+            }
+        }
     }
 }
 
 @media screen and (max-width: 520px) {
     .trade-in {
-			margin-bottom: 36px;
         &__list {
             grid-template-columns: repeat(1, 1fr);
             grid-gap: 14px;
             margin-bottom: 24px;
 
-						&-item {
-							&:first-child {
-									.card {
-											padding-right: 70px;
-											&::after {
-													right: -35px;
-													bottom: -10px;
-													width: 121px;
-													height: 97px;
-											}
-									}
-							}
+            &-item {
+                &:first-child {
+                    .card {
+                        padding-right: 70px;
+                        &::after {
+                            right: -35px;
+                            bottom: -10px;
+                            width: 121px;
+                            height: 97px;
+                        }
+                    }
+                }
 
-							&:last-child {
-									.card {
-											padding-right: 70px;
-											&::after {
-													right: -20px;
-													bottom: 0;
-													width: 114px;
-													height: 97px;
-											}
-									}
-							}
-					}
-				}
+                &:last-child {
+                    .card {
+                        padding-right: 70px;
+                        &::after {
+                            right: -20px;
+                            bottom: 0;
+                            width: 114px;
+                            height: 97px;
+                        }
+                    }
+                }
+            }
+        }
 
         &__subtitle {
             margin-top: 60px;
@@ -160,12 +164,11 @@
             }
         }
 
-				&__card {
-
-					&-text {
-						max-width: 300px;
-					}
-				}
+        &__card {
+            &-text {
+                max-width: 300px;
+            }
+        }
 
         .card {
             &__text,
@@ -176,21 +179,16 @@
         }
     }
     .trade-in__list-item:first-child .card {
-        padding-right: 20px;
+        padding-right: 60px;
     }
 }
 
 @media screen and (max-width: 370px) {
-	.trade-in { 
-		&__card {
-			&-text {
-				padding-right: 25px;
-			}
-		}
-	}
+    .trade-in {
+        &__card {
+            &-text {
+                padding-right: 25px;
+            }
+        }
+    }
 }
-
-
-// 340px 
-
-

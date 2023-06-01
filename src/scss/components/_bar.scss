@@ -34,34 +34,6 @@
     }
     &__item {
         &-link {
-            &-favorite {
-                position: relative;
-                .favorite-empty {
-                    bottom: auto;
-                    top: -70px;
-                    width: 250px;
-                    padding: 13px 24px;
-                    text-align: left;
-                    &__title {
-                        margin-bottom: 0;
-                        width: 100%;
-                        font-weight: 500;
-                        font-size: 14px;
-                        line-height: 17px;
-                    }
-                    &__subtitle {
-                        font-weight: 400;
-                        font-size: 12px;
-                        line-height: 14px;
-                        width: 100%;
-                    }
-                }
-                &:hover {
-                    .favorite-empty {
-                        opacity: 1;
-                    }
-                }
-            }
             &-to-cart {
                 position: relative;
                 .to-cart-empty {
@@ -75,6 +47,7 @@
                     padding: 5px 20px;
                     width: 250px;
                     left: calc(50% - 125px);
+                    transition: opacity 0.3s ease;
                     svg {
                         margin-bottom: 0;
                         margin-right: 15px;
@@ -82,6 +55,8 @@
                 }
                 &:hover .to-cart-empty {
                     opacity: 1;
+                    animation: fade-out 1s ease both;
+                    animation-delay: 2s;
                 }
             }
         }
@@ -94,5 +69,41 @@
 @media screen and (min-width: 480px) {
     .bar {
         display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .bar {
+        .header__favorite {
+            display: flex;
+            margin: 0;
+            position: relative;
+            .favorite-empty {
+                bottom: auto;
+                top: -70px;
+                width: 260px;
+                padding: 13px 24px;
+                text-align: left;
+                &__title {
+                    margin-bottom: 0;
+                    width: 100%;
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 17px;
+                }
+                &__subtitle {
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 14px;
+                    width: 100%;
+                }
+            }
+            &:hover {
+                .favorite-empty {
+                    animation: fade-out 1s ease both;
+                    animation-delay: 2s;
+                }
+            }
+        }
     }
 }

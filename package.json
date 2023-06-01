@@ -82,6 +82,7 @@
   },
   "target": "web",
   "dependencies": {
+    "imask": "^6.4.3",
     "swiper": "^9.1.0"
   }
 }

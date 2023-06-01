@@ -10,14 +10,13 @@
                                 Связь с нами
                             </h2>
                             <p class="card__text text text-lg">
-                                Операторы-консультанты доступны по номерам телефонов в рабочее время магазина с 9:00 до
-                                21:00
+                                Операторы-консультанты доступны по номерам телефонов в рабочее время магазина с&nbsp;9:00&nbsp;до&nbsp;21:00
                             </p>
                             <ul class="card__list">
                                 <li class="card__list-item">
-                                    <a href="tel:+375 44 574 74 00" class="card__list-item-link text text-base link link-secondary">
+                                    <a href="tel:+375 44 415 74 00" class="card__list-item-link text text-base link link-secondary">
                                         <img src="<?php nout_image_directory() ?>Image.png" alt="Фото">
-                                        +375 44 574 74 00
+                                        +375 44 415 74 00
                                     </a>
                                 </li>
                                 <li class="card__list-item">
@@ -66,8 +65,7 @@
                     </h2>
                     <div class="map__body">
                         <div class="map__frame">
-                            <script type="text/javascript" charset="utf-8" async
-                                src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A31b2aac7a7f8d32a102e30f0c3b09e68125073b9717ea50e6307d314fbb80737&amp;width=100%25&amp;height=100%&amp;lang=ru_RU&amp;scroll=false"></script>
+                        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A31b2aac7a7f8d32a102e30f0c3b09e68125073b9717ea50e6307d314fbb80737&amp;width=100%25&amp;height=100%25&amp;lang=ru_RU&amp;scroll=false"></script>
                         </div>
                         <div class="map__card card contacts__map-adress">
                             <h2 class="card__title text-3xl">
@@ -89,13 +87,12 @@
                                 Юридическая информация
                             </h2>
                             <p class="card__text card__text--lh text text-lg">
-                                ИП Валько Денис Валерьевич<br>
-                                Адрес: Брестская обл. г. Барановичи ул. Репина д. 58 кв. 10
-                                УНП 291558723<br>
-                                Номер счета (IBAN): р/с BY75 MTBK 3013 0001 0933 0005 2882
-                                Код банка (BIC): MTBKBY22 <br>
-                                ЗАО «МТБанк», УНП 100394906, г. Минск ул. Толстого д. 10,
-                                Тел: +37544–415–74–00, +37533–375–74–00
+                            ООО «СТОНОУТБУКОВ» <br>
+                            Директор Метельский Дмитрий Константинович, действующий на основании Устава
+                            г.Минск, ул.Богдановича д.124 пом.6Н<br>
+                            УНП 193664989 <br>
+                            BY27OLMP30120090289740000933 в OLMPBY2X <br>
+                            +375297621592
                             </p>
                         </div>
                     </li>

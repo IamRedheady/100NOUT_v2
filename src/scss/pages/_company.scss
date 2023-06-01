@@ -20,6 +20,14 @@
                 padding-right: 28px;
             }
         }
+
+        &-content {
+            img {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+            }
+        }
     }
 
     &__content {
@@ -127,4 +135,3 @@
         }
     }
 }
-

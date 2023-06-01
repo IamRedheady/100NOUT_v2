@@ -91,7 +91,7 @@
                     <ul class="intro__list">
                         <li class="intro__list-item">
                             <a class="link text-lg link-primary"
-                                href="/product-category/smartfony-tv-i-jelektronika/smartfony-telefony/?proizvoditel=apple">
+                                href="/product-category/smartfony-tv-i-elektronika/smartfony-telefony/smartfony/apple/">
                                 <img src="<?php nout_image_directory() ?>i-list-00.png" alt="Б/у техника Apple">
                                 <span>Б/у техника Apple</span>
                             </a>
@@ -113,9 +113,9 @@
                     </ul>
                 </section>
                 <section class="prs layout">
-                    <h2 class="prs__title text-4xl">
+                    <a href="<?php echo get_category_link( 2334 );?>" class="prs__title text-4xl">
                         Смартфоны Apple
-                    </h2>
+                    </a>
                     <ul class="prs__list prs__list-2334 hide-scroll">
                         <?php 
                             nout_show_products_by_id(2334);
@@ -126,9 +126,9 @@
                     <h2 class="categories__title text-4xl">Категории товаров</h2>
                     <ul class="categories__list">
                         <li class="categories__list-item">
-                            <a href="" class="categories__card">
+                            <a href="/product-category/kompjuternaja-tehnika/noutbuki/" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="<?php nout_image_directory();?>home_categories-1.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>hc1.png" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -138,9 +138,9 @@
                             </a>
                         </li>
                         <li class="categories__list-item">
-                            <a href="" class="categories__card">
+                            <a href="/product-category/bytovaya-tehnika/" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="<?php nout_image_directory();?>home_categories-2.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>hc6.png" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -150,9 +150,9 @@
                             </a>
                         </li>
                         <li class="categories__list-item">
-                            <a href="" class="categories__card">
+                            <a href="/product-category/smartfony-tv-i-elektronika/smartfony-telefony/smartfony/" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="<?php nout_image_directory();?>home_categories-3.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>hc2.png" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -162,9 +162,9 @@
                             </a>
                         </li>
                         <li class="categories__list-item">
-                            <a href="" class="categories__card">
+                            <a href="/product-category/periferiya-i-aksessuary/" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="<?php nout_image_directory();?>home_categories-4.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>hc7.png" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -174,9 +174,9 @@
                             </a>
                         </li>
                         <li class="categories__list-item">
-                            <a href="" class="categories__card">
+                            <a href="/product-category/smartfony-tv-i-elektronika/naushniki-i-garnitury/" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="<?php nout_image_directory();?>home_categories-5.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>hc3.png" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -186,9 +186,9 @@
                             </a>
                         </li>
                         <li class="categories__list-item">
-                            <a href="" class="categories__card">
+                            <a href="/product-category/komplektuyushhie-dlya-noutbukov/" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="<?php nout_image_directory();?>home_categories-6.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>hc8.png" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -198,9 +198,9 @@
                             </a>
                         </li>
                         <li class="categories__list-item">
-                            <a href="" class="categories__card">
+                            <a href="/product-category/smartfony-tv-i-elektronika/planshety-elektronnye-knigi/planshety/" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="<?php nout_image_directory();?>home_categories-7.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>hc4.png" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -210,9 +210,9 @@
                             </a>
                         </li>
                         <li class="categories__list-item">
-                            <a href="" class="categories__card">
+                            <a href="/product-category/zapchasti-dlya-noutbukov/" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="<?php nout_image_directory();?>home_categories-8.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>hc9.png" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -222,9 +222,9 @@
                             </a>
                         </li>
                         <li class="categories__list-item">
-                            <a href="" class="categories__card">
+                            <a href="/product-category/smartfony-tv-i-elektronika/televizory-proigryvateli/" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="<?php nout_image_directory();?>home_categories-9.svg" alt="Фото" class="categories__card-pic-img">
+                                    <img src="<?php nout_image_directory();?>hc5.png" alt="Фото" class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
                                     <span class="categories__content-text text-base">
@@ -234,9 +234,9 @@
                             </a>
                         </li>
                         <li class="categories__list-item">
-                            <a href="" class="categories__card">
+                            <a href="/product-category/komplektuyushhie-dlya-noutbukov/akkumulyatory-dlya-noutbukov/" class="categories__card">
                                 <div class="categories__card-pic">
-                                    <img src="<?php nout_image_directory();?>home_categories-10.svg" alt="Фото"
+                                    <img src="<?php nout_image_directory();?>hc10.png" alt="Фото"
                                         class="categories__card-pic-img">
                                 </div>
                                 <div class="categories__content">
@@ -299,7 +299,7 @@
                                 <div class="advantage__list-card-photos-gradient">
                                 </div>
                                 <div class="advantage__list-card-photos-pic">
-                                    <img class="advantage__list-card-photos-pic-img" src="<?php nout_image_directory();?>home_advantage-3.svg"
+                                    <img class="advantage__list-card-photos-pic-img" src="<?php nout_image_directory();?>home-new-pic.png"
                                         alt="Фото">
                                 </div>
                             </div>
@@ -307,31 +307,31 @@
                     </ul>
                 </section>
                 <section class="prs layout">
-                    <h2 class="prs__title text-4xl">
+                    <a href="<?php echo get_category_link( 2316 );?>" class="prs__title text-4xl">
                     Ноутбуки Dell
-                    </h2>
-                    <ul class="prs__list prs__list-2334 hide-scroll">
+                    </a>
+                    <ul class="prs__list hide-scroll">
                         <?php 
                             nout_show_products_by_id(2316);
                             ?>
                     </ul>
                 </section>
                 <section class="layout hide-s">
-                    <h1 class="hide-s text-5xl" style="display: none;">
+                    <h2 class="hide-s text-5xl" style="display: none;">
                         Подписывайтесь на наш телеграм
-                    </h1>
+                    </h2>
                     <a href="https://t.me/stonoutby" class="hide-s__banner banner">
-                        <img class="banner-xl" src="<?php nout_image_directory();?>tgb/xl1.jpg" alt="Баннер">
-                        <img class="banner-l" src="<?php nout_image_directory();?>tgb/l1.jpg" alt="Баннер">
-                        <img class="banner-m" src="<?php nout_image_directory();?>tgb/m1.jpg" alt="Баннер">
-                        <img class="banner-s" src="<?php nout_image_directory();?>tgb/s1.jpg" alt="Баннер">
-                        <img class="banner-xs" src="<?php nout_image_directory();?>tgb/xs1.jpg" alt="Баннер">
+                        <img class="banner-xl" src="<?php nout_image_directory();?>tgb/sm/xl1.jpg" alt="Баннер">
+                        <img class="banner-l" src="<?php nout_image_directory();?>tgb/sm/l1.jpg" alt="Баннер">
+                        <img class="banner-m" src="<?php nout_image_directory();?>tgb/sm/m1.jpg" alt="Баннер">
+                        <img class="banner-s" src="<?php nout_image_directory();?>tgb/sm/s1.jpg" alt="Баннер">
+                        <img class="banner-xs" src="<?php nout_image_directory();?>tgb/sm/xs1.jpg" alt="Баннер">
                     </a>
                 </section>
                 <section class="prs layout">
-                    <h2 class="prs__title text-4xl">
+                    <a href="<?php echo get_category_link( 2444 );?>" class="prs__title text-4xl">
                     Смартфоны Samsung
-                    </h2>
+                    </a>
                     <ul class="prs__list prs__list-2334 hide-scroll">
                         <?php 
                             nout_show_products_by_id(2444);
@@ -339,14 +339,26 @@
                     </ul>
                 </section>
                 <section class="prs layout">
-                    <h2 class="prs__title text-4xl">
+                    <a href="<?php echo get_category_link( 2318 );?>" class="prs__title text-4xl">
                     Ноутбуки HP
-                    </h2>
+                    </a>
                     <ul class="prs__list prs__list-2334 hide-scroll">
                         <?php 
                             nout_show_products_by_id(2318);
                             ?>
                     </ul>
+                </section>
+                <section class="layout hide-s">
+                    <h2 class="hide-s text-5xl" style="display: none;">
+                        Подписывайтесь на наш телеграм
+                    </h2>
+                    <a href="https://t.me/stonoutby" class="hide-s__banner banner">
+                        <img class="banner-xl" src="<?php nout_image_directory();?>tgb2/sm/xl.jpg" alt="Баннер">
+                        <img class="banner-l" src="<?php nout_image_directory();?>tgb2/sm/l.jpg" alt="Баннер">
+                        <img class="banner-m" src="<?php nout_image_directory();?>tgb2/sm/m.jpg" alt="Баннер">
+                        <img class="banner-s" src="<?php nout_image_directory();?>tgb2/sm/s.jpg" alt="Баннер">
+                        <img class="banner-xs" src="<?php nout_image_directory();?>tgb2/sm/xs.jpg" alt="Баннер">
+                    </a>
                 </section>
             </div>
 

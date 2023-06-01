@@ -69,9 +69,24 @@
     &__favorite {
         margin: 0 8px;
         position: relative;
+        transition: none;
         &:hover .favorite-empty {
             opacity: 1;
         }
+        path {
+            transition: none;
+        }
+    }
+
+    &__favorite.active {
+        background-color: #f6522e;
+        path {
+            fill: $white;
+        }
+    }
+
+    .wishlist-counter-with-products + &__favorite .favorite-empty {
+        display: none;
     }
 
     &__nav {
@@ -206,8 +221,8 @@
             margin: 0;
         }
         &--fixed {
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 8px;
+            padding-bottom: 8px;
         }
     }
 }

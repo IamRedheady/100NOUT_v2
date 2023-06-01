@@ -20,25 +20,7 @@ defined( 'ABSPATH' ) || exit;
 get_header( 'shop' );
 ?>
   <section class="catalog layout">
-    <ul class="breads hide-scroll">
-        <li class="breads__item">
-            <a href="#" class="breads__item-link text text-sm link">
-                Главная
-            </a>
-        </li>
-        <li class="breads__item">
-            <a href="#" class="breads__item-link text text-sm link">
-                Компьютерная техника
-            </a>
-        </li>
-        <li class="breads__item">
-            <span class="breads__item-text breads__item-text--disabled text text-sm">
-                Ноутбуки
-            </span>
-        </li>
-    </ul>
-        <!-- <div class="catalog__inner">
-            <?php echo woocommerce_breadcrumb();?> -->
+    <?php echo woocommerce_breadcrumb();?>
     <?php
     if ( woocommerce_product_loop() ) {
     ?>
@@ -57,40 +39,40 @@ get_header( 'shop' );
             <img class="banner-s" src="<?php echo nout_image_directory();?>banners/s1.png" alt="Баннер">
             <img class="banner-xs" src="<?php echo nout_image_directory();?>banners/xs1.png" alt="Баннер">
         </div> -->
-        <!-- <div class="catalog__pre hide-scroll">
-            <ul class="catalog__pre-list">
-                <li class="catalog__pre-list-item">
-                    <button type="button" class="catalog__pre-list-item-btn btn btn-secondary">
-                        Ноутбуки Dell
-                    </button>
-                </li>
-                <li class="catalog__pre-list-item">
-                    <button type="button" class="catalog__pre-list-item-btn btn btn-secondary">
-                        Ноутбуки HP
-                    </button>
-                </li>
-                <li class="catalog__pre-list-item">
-                    <button type="button" class="catalog__pre-list-item-btn btn btn-secondary">
-                        Ноутбуки Apple
-                    </button>
-                </li>
-                <li class="catalog__pre-list-item">
-                    <button type="button" class="catalog__pre-list-item-btn btn btn-secondary">
-                        128GB
-                    </button>
-                </li>
-            </ul>
-            <a href="#" class="catalog__pre-link btn btn-primary">
-                Прайс-лист
-            </a>
-        </div> -->
+        <style>
+            .catalog__pre:has(.swiper-button-lock) {
+                padding: 0;
+            }
+        </style>
+        <div class="catalog__pre">
+            <?php
+            $cat = get_term_by( 'slug', get_query_var('product_cat'), 'product_cat' );
+            $cat_id = $cat->term_id;
+            
+            if( get_field('filtry_kategorii', 'term_' . $cat_id) ): ?>
+                <div class="catalog__pre-list-wrap js-swiper-pre-list">
+                    <div class="swiper-button-prev"></div>
+                    <div class="catalog__pre-list swiper-wrapper">
+                    <?php while( has_sub_field('filtry_kategorii', 'term_' . $cat_id) ): ?>
+                        <div class="catalog__pre-list-item swiper-slide">
+                            <a href="<?php the_sub_field('pre-ssylka', 'term_' . $cat_id); ?>" class="catalog__pre-list-item-btn btn btn-secondary">
+                                <?php the_sub_field('pre-nazvanie', 'term_' . $cat_id); ?>
+                            </a>
+                        </div>
+                    <?php endwhile; ?>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            
+            <?php endif; ?>
+        </div>
         <input type="radio" class="catalog__mode-input" name="catalog-mode" id="content-base" checked>
         <input type="radio" class="catalog__mode-input" name="catalog-mode" id="content-column">
         <?php
             if ( wc_get_loop_prop( 'total' ) ) {
                 ?>
                     <div class="catalog__body">
-                        <div class="catalog__filter js-catalog-filter">
+                        <div class="catalog__filter js-catalog-filter hide-scroll">
                             <button class="catalog__filter-close btn btn-secondary btn-icon js-filter-toggle">
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L6 4.58579L10.2929 0.292893C10.6834 -0.0976311 11.3166 -0.0976311 11.7071 0.292893C12.0976 0.683417 12.0976 1.31658 11.7071 1.70711L7.41421 6L11.7071 10.2929C12.0976 10.6834 12.0976 11.3166 11.7071 11.7071C11.3166 12.0976 10.6834 12.0976 10.2929 11.7071L6 7.41421L1.70711 11.7071C1.31658 12.0976 0.683417 12.0976 0.292893 11.7071C-0.0976311 11.3166 -0.0976311 10.6834 0.292893 10.2929L4.58579 6L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z" fill="#707070"/>
@@ -145,6 +127,9 @@ get_header( 'shop' );
                                     </div>
                                 </div>
                                 <div class="catalog__mode">
+                                    <?php 
+                                        echo do_shortcode('[pricelist output="pdf" sel_category="'.$cat_id.'" company="100NOUT.BY"]');
+                                    ?>
                                     <label for="content-base" class="catalog__mode-btn btn btn-icon btn-secondary">
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -184,6 +169,13 @@ get_header( 'shop' );
                                 ?>
                             </ul>
                         </div>
+                    </div>
+                    <div class="catalog__content-desc text-base">
+                        <?php
+                            $prod_term    =    get_term($cat_id,'product_cat');
+                            $description=    $prod_term->description;
+                            echo $description;
+                        ?>                  
                     </div>
                 <?php
             }

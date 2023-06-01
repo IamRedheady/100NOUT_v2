@@ -7,9 +7,10 @@
     font-size: 16px;
     line-height: 24px;
     padding: 10px 16px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
     white-space: nowrap;
     max-width: min-content;
+    cursor: pointer;
     &-primary {
         background-color: #50b83c;
         color: #ffffff;
@@ -36,8 +37,23 @@
             }
         }
     }
+    &-preloader {
+        svg {
+            display: none;
+        }
+        &.active {
+            opacity: 0.8;
+            svg {
+                display: block;
+                animation: rotate-90-cw 0.4s linear infinite both;
+            }
+        }
+    }
     &-icon {
         padding: 10px;
+        svg {
+            pointer-events: none;
+        }
     }
 
     &_big {
@@ -81,8 +97,52 @@
         }
         &:hover::before {
             transition: opacity 0.2s ease;
-            transition-delay: 1.3s;
+            transition-delay: 0.5s;
             opacity: 1;
         }
+        &-white {
+            position: relative;
+            &::before {
+                content: "";
+                width: 130%;
+                height: 130%;
+                left: -15%;
+                top: -15%;
+                display: block;
+                position: absolute;
+            }
+            &-body {
+                background: #ffffff;
+                border-radius: 8px;
+                padding: 12px 16px;
+                position: absolute;
+                right: 0;
+                top: 110%;
+                z-index: 3;
+                box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.15), 0px 0px 1px -1px rgba(0, 0, 0, 0.4);
+                width: 217px;
+                opacity: 0;
+                pointer-events: none;
+                p {
+                    white-space: pre-wrap;
+                }
+            }
+            &:hover &-body {
+                transition: opacity 0.2s ease;
+                transition-delay: 0.5s;
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+    }
+}
+
+// CF7
+form.submitting .btn-preloader {
+    opacity: 0.8;
+    pointer-events: none;
+    svg {
+        display: block;
+        animation: rotate-360-cw 0.4s linear infinite both;
     }
 }

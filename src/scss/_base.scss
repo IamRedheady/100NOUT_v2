@@ -14,6 +14,9 @@ html {
 
 section {
     margin-bottom: 120px;
+    &:last-child {
+        margin-bottom: 0;
+    }
 }
 
 h1 {
@@ -42,6 +45,12 @@ html {
         padding-left: 20px;
         padding-right: 20px;
     }
+    section {
+        margin-bottom: 80px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 }
 
 .hide-scroll {
@@ -62,10 +71,16 @@ html {
     .main {
         margin-top: 143px;
     }
+    section {
+        margin-bottom: 60px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 }
 
 @media screen and (max-width: 480px) {
     .main {
-        margin-top: 88px;
+        margin-top: 84px;
     }
 }

@@ -1,6 +1,4 @@
 .ur {
-    margin-bottom: 22px;
-
     &__title {
     }
 
@@ -80,8 +78,6 @@
 
 @media screen and (max-width: 1000px) {
     .ur {
-        margin-bottom: 18px;
-
         &__list {
             grid-template-columns: 1fr;
             grid-gap: 16px;

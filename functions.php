@@ -142,9 +142,14 @@ function nout_scripts() {
 
 	wp_enqueue_script( 'nout-js', get_template_directory_uri() . '/dist/js/app.js', array(), time(), true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wc-blocks-vendors-style');
+    wp_dequeue_style('wc-blocks-style');
+    wp_dequeue_style('font-awesome');
+    wp_dequeue_style('classic-theme-styles');
+    wp_dequeue_style('ct_public_css');
+    wp_dequeue_style('contact-form-7');
+
 }
 add_action( 'wp_enqueue_scripts', 'nout_scripts' );
 
@@ -405,6 +410,45 @@ function nout_show_products_by_id($cat_id) {
     wp_reset_postdata();
 }
 
+// Вывод товаров по ID категории в Мини коризне
+function nout_show_products_by_id_mini_cart($cat_id) {
+    $args = array(
+        'posts_per_page' => 3,    
+        'post_type' => 'product',
+        'orderby' => 'rand',
+        'order'   => 'DESC',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'id',
+                'terms'    => $cat_id,
+            ),
+        ),
+        'meta_query' => array(
+            'relation' => 'AND',
+             array(
+                            'key' => '_stock_status',
+                            'value' => 'instock',
+                            'compare' => '='
+            ),
+            //если есть фото
+            array(
+                            'key' => '_thumbnail_id'
+            ),
+ )
+        );
+    $wc_query = new WP_Query( $args );
+    if ($wc_query->have_posts()) {
+        while ($wc_query->have_posts()) {
+            $wc_query->the_post();
+    
+            wc_get_template_part( 'content', 'product-prs-mini-cart' );
+           
+        }
+    }
+    wp_reset_postdata();
+}
+
 // Вывод новых товаров
 function nout_show_products_new() {
     $args = array(
@@ -503,18 +547,6 @@ function nout_show_products_related() {
     wp_reset_postdata();
 }
 
-// Товар в корзине уже
-add_filter( 'woocommerce_is_purchasable', 'disable_add_to_cart_if_product_is_in_cart', 10, 2 );
-function disable_add_to_cart_if_product_is_in_cart ( 
-   $is_purchasable, $product ){
-  
-    if(WC()->cart->find_product_in_cart( WC()->cart->generate_cart_id( $product->get_id() ) )) {
-        return false;
-    }
-    
-    return $is_purchasable;
-}
-
 // Переподключение скриптов для Ajax кнопки доабвить/удалить товар из корзины
 function custom_wp_enqueue_scripts() {
     wp_deregister_script('wc-add-to-cart');
@@ -569,9 +601,9 @@ add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
 ?>
     <?php 
         global $woocommerce;
-        $c_total = $woocommerce->cart->total;
+        $c_total = number_format($woocommerce->cart->subtotal, 0, '', ' ');
     ?>
-    <a href="/cart" class="header__to-cart btn <?php if($c_total == 0) {echo 'btn-secondary';} else {echo 'btn-primary';}?> btn_icon-left">
+    <a href="<?php if($c_total == 0) {echo '##';} else {echo '/cart';}?>" class="header__to-cart btn <?php if($c_total == 0) {echo 'btn-secondary';} else {echo 'btn-primary';}?> btn_icon-left">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M3 1C2.44772 1 2 1.44772 2 2C2 2.55228 2.44772 3 3 3H4.21922L4.52478 4.22224C4.52799 4.23637 4.5315 4.25039 4.5353 4.26429L5.89253 9.69321L4.99995 10.5858C3.74002 11.8457 4.63235 14 6.41416 14H15C15.5522 14 16 13.5523 16 13C16 12.4477 15.5522 12 15 12L6.41417 12L7.41416 11H14C14.3788 11 14.725 10.786 14.8944 10.4472L17.8944 4.44721C18.0494 4.13723 18.0329 3.76909 17.8507 3.47427C17.6684 3.17945 17.3466 3 17 3H6.28078L5.97014 1.75746C5.85885 1.3123 5.45887 1 5 1H3Z"
@@ -639,7 +671,7 @@ add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
 ?>
     <?php 
         global $woocommerce;
-        $c_total = $woocommerce->cart->total;
+        $c_total = number_format($woocommerce->cart->subtotal, 0, '', ' ');
     ?>
     
     <a href="<?php if($c_total == 0) {echo '##';} else {echo '/cart';}?>" class="bar__item-link bar__item-link-to-cart btn <?php if($c_total == 0) {echo 'btn-secondary';} else {echo 'btn-primary';}?> btn-icon">
@@ -696,6 +728,141 @@ add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
 
 });
 
+add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
+
+    ob_start();
+?>
+    <?php 
+        global $woocommerce;
+        $c_total = number_format($woocommerce->cart->subtotal, 0, '', ' ');
+    ?>
+    
+    <div class="p-check-cart <?php 
+        global $woocommerce;
+        $c_total = $woocommerce->cart->subtotal;
+
+        if ($c_total == 0) {
+            echo 'p-cart-empty';
+        }
+    ?>"></div>
+
+   
+   <?php $fragments['div.p-check-cart'] = ob_get_clean();
+
+    return $fragments;
+
+});
+
+add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
+
+    ob_start();
+?>
+    <?php 
+        global $woocommerce;
+        $c_total = number_format($woocommerce->cart->subtotal, 0, '', ' ');
+    ?>
+    
+    <div class="js-remove-links">
+        <?php 
+            foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+                $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+                $product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+
+                if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_widget_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+                    ?>
+                   <span class="js-remove-link" data-id="<?php echo $_product->get_id();?>" data-url="<?php
+                    echo esc_url( wc_get_cart_remove_url( $cart_item_key ) );
+                    ?>" data-item-key="<?php echo $cart_item_key;?>"></span>
+                    <?php
+                }
+            }
+        ?>
+    </div>
+
+   
+   <?php $fragments['div.js-remove-links'] = ob_get_clean();
+
+    return $fragments;
+
+});
+
+add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
+
+    ob_start();
+?>
+    <?php 
+        global $woocommerce;
+        $c_total = number_format($woocommerce->cart->subtotal, 0, '', ' ');
+    ?>
+    
+    <div class="cartP js-cartP" onclick="onCartCloseBack(event)">
+        <div class="cartP__inner">
+            <div class="cartP__container hide-scroll">
+                <button class="cartP__btn btn-icon" onclick="onCartClose()">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13L13 1M1 1L13 13" stroke="#8F8F8F" stroke-width="1.2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <h3 class="cartP__title text-3xl">
+                    Товар добавлен в корзину
+                </h3>
+                <?php woocommerce_mini_cart();?>
+            </div>
+        </div>
+    </div>
+   
+   <?php $fragments['div.cartP'] = ob_get_clean();
+
+    return $fragments;
+
+});
+
+// Обновление корзины
+add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
+
+    ob_start();
+?>    
+    <div class="ordering__card php-cart">
+        <h2 class="ordering__card-title text-2xl">
+            Товары в заказе
+        </h2>
+        <?php echo do_shortcode('[woocommerce_cart]')?>
+    </div>
+   
+   <?php $fragments['div.php-cart'] = ob_get_clean();
+
+    return $fragments;
+
+});
+
+add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
+
+    ob_start();
+?>    
+    <div class="ordering__subtotal-content">
+        <p class="ordering__subtotal-row">
+            <span class="text text-lg">Товары:</span>
+            <span class="text text-lg text--semibold"><?php echo number_format(WC()->cart->subtotal - nout_get_dso_cost(), 0, '', ' '); ?> BYN</span>
+        </p>
+        <?php
+            if (nout_get_dso_cost() !== 0) {
+                ?>
+                <p class="ordering__subtotal-row">
+            <span class="text text-lg">Доп. гарантия:</span>
+            <span class="text text-lg text--semibold"><?php echo nout_get_dso_cost();?> BYN</span>
+        </p>
+                <?php
+            }
+        ?>
+    </div>
+   
+   <?php $fragments['div.ordering__subtotal-content'] = ob_get_clean();
+
+    return $fragments;
+
+});
+
 // К-во товаров
 add_filter("loop_shop_per_page", create_function("$cols", "return 15;"), 20);
 
@@ -705,3 +872,288 @@ add_filter("loop_shop_per_page", function ($cols) {
 	
 }, 20);
 
+add_filter( 'woocommerce_before_main_content', 'remove_breadcrumbs');
+function remove_breadcrumbs() {
+    if(is_product()) {
+        remove_action( 'woocommerce_before_main_content','woocommerce_breadcrumb', 20, 0);
+    }
+}
+
+add_action( 'template_redirect', 'nout_recently_viewed_product_cookie', 20 );
+ 
+function nout_recently_viewed_product_cookie() {
+ 
+	// если находимся не на странице товара, ничего не делаем
+	if ( ! is_product() ) {
+		return;
+	}
+ 
+ 
+	if ( empty( $_COOKIE[ 'woocommerce_recently_viewed_2' ] ) ) {
+		$viewed_products = array();
+	} else {
+		$viewed_products = (array) explode( '|', $_COOKIE[ 'woocommerce_recently_viewed_2' ] );
+	}
+ 
+	// добавляем в массив текущий товар
+	if ( ! in_array( get_the_ID(), $viewed_products ) ) {
+		$viewed_products[] = get_the_ID();
+	}
+ 
+	// нет смысла хранить там бесконечное количество товаров
+	if ( sizeof( $viewed_products ) > 15 ) {
+		array_shift( $viewed_products ); // выкидываем первый элемент
+	}
+ 
+ 	// устанавливаем в куки
+	wc_setcookie( 'woocommerce_recently_viewed_2', join( '|', $viewed_products ) );
+ 
+}
+ 
+function nout_recently_viewed_products() {
+ 
+	if( empty( $_COOKIE[ 'woocommerce_recently_viewed_2' ] ) ) {
+		$viewed_products = array();
+	} else {
+		$viewed_products = (array) explode( '|', $_COOKIE[ 'woocommerce_recently_viewed_2' ] );
+	}
+ 
+	if ( empty( $viewed_products ) ) {
+		return;
+	}
+ 
+	// надо ведь сначала отображать последние просмотренные
+	$viewed_products = array_reverse( array_map( 'absint', $viewed_products ) );
+ 
+	$product_ids = join( ",", $viewed_products );
+ 
+	// return do_shortcode( "[products ids='$product_ids']" );
+
+    $args = array(
+        'posts_per_page' => 8,    
+        'post_type' => 'product',
+        'orderby' => 'rand',
+        'order'   => 'DESC',
+        'post__in'  => $viewed_products,
+        'meta_query' => array(
+            'relation' => 'AND',
+             array(
+                            'key' => '_stock_status',
+                            'value' => 'instock',
+                            'compare' => '='
+            ),
+            //если есть фото
+            array(
+                            'key' => '_thumbnail_id'
+            ),
+        )
+        );
+    $wc_query = new WP_Query( $args );
+    if ($wc_query->have_posts()) {
+        ?>
+        <div class="prs prp__cats">
+            <h2 class="prs__title text-3xl" style="margin: 24px 0;">
+                Вы недавно смотрели
+            </h2>
+            <ul class="prs__list prs__list-2334 hide-scroll">
+            <?php
+                while ($wc_query->have_posts()) {
+                    $wc_query->the_post();
+            
+                    wc_get_template_part( 'content', 'product-prs' );
+                
+                }
+            ?>
+             </ul>
+    </div><?php
+    }
+    wp_reset_postdata();
+ 
+}
+
+add_filter( 'woocommerce_checkout_fields', 'truemisha_required_fields', 25 );
+ 
+function truemisha_required_fields( $fields ) {
+ 
+	// print_r( $fields ); exit // если хотите узнать названия полей
+	$fields[ 'billing' ][ 'billing_first_name' ][ 'required' ] = false; // необязательно
+	$fields[ 'billing' ][ 'billing_last_name' ][ 'required' ] = false; // необязательно
+	$fields[ 'billing' ][ 'billing_company' ][ 'required' ] = false; // обязательно
+    $fields[ 'billing' ][ 'billing_address_1' ][ 'required' ] = false; // обязательно
+    $fields[ 'billing' ][ 'billing_city' ][ 'required' ] = false; // обязательно
+    $fields[ 'billing' ][ 'billing_postcode' ][ 'required' ] = false; // обязательно
+ 
+	return $fields;
+ 
+}
+
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+  
+function custom_override_checkout_fields( $fields ) {
+  //unset($fields['billing']['billing_first_name']);// имя
+  //unset($fields['billing']['billing_last_name']);// фамилия
+  unset($fields['billing']['billing_company']); // компания
+//   unset($fields['billing']['billing_address_1']);//
+  unset($fields['billing']['billing_address_2']);//
+  unset($fields['billing']['billing_city']);
+  unset($fields['billing']['billing_postcode']);
+//   unset($fields['billing']['billing_country']);
+  unset($fields['billing']['billing_state']);
+  //unset($fields['billing']['billing_phone']);
+  //unset($fields['order']['order_comments']);
+  //unset($fields['billing']['billing_email']);
+  unset($fields['account']['account_username']);
+  unset($fields['account']['account_password']);
+  unset($fields['account']['account_password-2']);
+
+ 
+  unset($fields['billing']['billing_company']);// компания
+  unset($fields['billing']['billing_postcode']);// индекс 
+
+//   unset($fields['billing']['billing_country']);  //удаляем! тут хранится значение страны оплаты
+  unset($fields['shipping']['shipping_country']); ////удаляем! тут хранится значение страны доставки
+    return $fields;
+}
+
+function set_checked_wc_terms( $terms_is_checked ) {   
+    return true;   
+  }   
+add_filter( 'woocommerce_terms_is_checked_default', 'set_checked_wc_terms', 10 );
+
+// Редирект на страницу спасибо
+add_action( 'template_redirect', 'truemisha_redirect_to_thank_you' );
+ 
+function truemisha_redirect_to_thank_you() {
+ 
+	// если не страница "Заказ принят", то ничего не делаем
+	if( ! is_order_received_page() ) {
+		return;
+	}
+ 
+	// неплохо бы проверить статус заказа, не редиректим зафейленные заказы
+	if( isset( $_GET[ 'key' ] ) ) {
+		$order_id = wc_get_order_id_by_order_key( $_GET[ 'key' ] );
+		$order = wc_get_order( $order_id );
+		if( $order->has_status( 'failed' ) ) {
+			return;
+		}
+	}
+ 
+ 
+	wp_redirect( site_url( 'thank-you?order_id='.$_GET[ 'key' ].'' ) );
+	exit;
+ 
+}
+
+// Очистка корзины
+add_action('init', 'woocommerce_clear_cart_url');
+function woocommerce_clear_cart_url() {
+    global $woocommerce;
+    if( isset($_REQUEST['clear-cart']) ) {
+        $woocommerce->cart->empty_cart();
+    }
+}
+
+// Получение стоимости доп гарантии в корзине
+function nout_get_dso_cost() {
+    $dso_cost = 0;
+
+    $s_args_usl = array(
+        'status' => 'publish',
+        'limit' => 2000,
+        'tax_query' => array( array(
+            'taxonomy' => 'product_cat',
+            'field' => 'id',
+            'terms' => array( 2992 ),
+            'operator' => 'IN',
+        ) ),
+    );
+
+    $s_usl_products = wc_get_products($s_args_usl);
+
+    foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+        $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+    
+        foreach ($s_usl_products as $s_product) {
+            if ($s_product->get_id() == $_product->get_id()) {
+                $dso_cost = $dso_cost + intval($_product->get_price());
+            }
+        }
+    }
+
+    return $dso_cost;
+}
+
+// Прячем товары с 0 ценой
+add_action( 'woocommerce_product_query', 'themelocation_product_query' );
+function themelocation_product_query( $q ){
+$meta_query = $q->get( 'meta_query' );
+    $meta_query[] = array(
+                'key'       => '_price',
+                'value'     => 0,
+                'compare'   => '>'
+            );
+$q->set( 'meta_query', $meta_query );
+}
+
+// Отправка сообщения в тг о новом заказе
+add_action( 'woocommerce_order_status_changed', 'new_order_send_tg',  10, 3  );
+function new_order_send_tg( $order_id ) {
+    // $order = new WC_Order( $order_id );
+
+    $order = wc_get_order($order_id);
+    $data = $order->get_data();
+
+    if ($order->get_status() == 'processing') {
+        $msg = 'Магазин 100nout.by – Новый заказ!';
+
+    $msg .= '
+
+Новый заказ: WP-'.$order_id;
+
+    // Get and Loop Over Order Items
+    foreach ( $order->get_items() as $item_id => $item ) {
+        $product_name = $item->get_name();
+        $msg .= '
+
+Название продукта: '.$product_name;
+        // $msg .= 'Артикул продукта: '.$product->get_sku();
+        // $msg .= 'Артикул продукта: '.$total;
+    }
+    $msg .= '
+
+Стоимость: '.$order->get_total().' BYN';
+
+    $msg .= '
+
+Доставка: '.$order->get_shipping_method();
+
+$msg .= '
+
+Клиент: '.$order->get_billing_first_name();
+
+$msg .= '
+
+Телефон: '.$order->get_billing_phone();
+
+$msg .= '
+
+Email: '.$order->get_billing_email();
+
+$msg .= '
+
+Детали заказа: '. $data['customer_note'];
+
+    $new_msg = $msg;
+    $userId = '-1001933568755'; // 100NOUT группы id в телеграм
+    $myId = '192150244'; // Мой id в телеграм
+    $token = '5360345876:AAEyM_sckiSJyjD3ci4QLtPfstR4Uxn9tDk'; // Token бота
+
+    file_get_contents('https://api.telegram.org/bot'. $token .'/sendMessage?chat_id='. $userId .'&text=' . urlencode($new_msg) . ''); // Отправляем сообщение
+
+    file_get_contents('https://api.telegram.org/bot'. $token .'/sendMessage?chat_id='. $myId .'&text=' . urlencode($new_msg) . ''); // Отправляем сообщение
+    }
+}
+
+# Отменим `-scaled` размер - ограничение максимального размера картинки
+add_filter( 'big_image_size_threshold', '__return_zero' );

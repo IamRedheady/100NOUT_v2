@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100NOUT</title>
+</head>
+
+<script>
+    const onInitProductByTouch = (e, productClass) => {
+        const product = document.querySelector(`.${productClass}`)
+
+        if (product.dataset.swiper == 'false') {
+            product.dataset.swiper = "true"
+            const productGalery = new Swiper(`.${productClass} .js-product-swiper`, {
+                effect: "fade",
+                lazy: true,
+                pagination: {
+                    el: `.${productClass} .swiper-pagination`,
+                    clickable: true,
+                },
+            })
+
+            // const dots = document.querySelectorAll(`.${productClass} .swiper-pagination-bullet`)
+            // setTimeout(() => {
+            //     dots[1].click()
+            // }, 500);
+        }
+    }
+
+    const onInitProductByMouse = (e, productClass) => {
+        const product = document.querySelector(`.${productClass}`)
+
+        if (product.dataset.swiper == 'false') {
+            product.dataset.swiper = "true"
+            const productGalery = new Swiper(`.${productClass} .js-product-swiper`, {
+                effect: "fade",
+                lazy: true,
+                pagination: {
+                    el: `.${productClass} .swiper-pagination`,
+                    clickable: true,
+                },
+
+            })
+        } else {
+            const slides = document.querySelectorAll(`.${productClass} .swiper-slide`)
+
+            const currentArray = slides
+            const currentWidth = e.target.offsetWidth
+            const currentCursorPosition = e.layerX
+            const currentLayers = currentArray.length
+            const currentLayerWidth = currentWidth / currentArray.length
+            const dots = document.querySelectorAll(`.${productClass} .swiper-pagination-bullet`)
+            const currentDot = dots[Math.ceil(currentCursorPosition / currentLayerWidth) - 1]
+
+            if (currentDot !== undefined && !currentDot.classList.contains("swiper-pagination-bullet-active")) {
+                currentDot.click()
+            }
+        }
+    }
+
+    const onLeaveProductPhoto = (e, productClass) => {
+        if (window.innerWidth > 1160) {
+            const dots = document.querySelectorAll(`.${productClass} .swiper-pagination-bullet`)
+            dots[0].click()
+        }
+    }
+
+    const onProductClick = (link) => {
+        if (window.innerWidth > 1160) {
+            location.href = link
+        }
+    }
+</script>
+
+<!-- Оформление заказа 1/2 -->
+<script>
+    const onAddProductToCart = (e) => {
+        e.preventDefault()
+        console.log(e)
+        const cartP = document.querySelector(".js-cartP")
+        const body = document.querySelector("body")
+        body.classList.add("scroll-disabled")
+        cartP.classList.add("active")
+    }
+</script>
+
+
+
+<body>
+    <div class="page" id="page">
+        <header class="header layout">
+            <div class="header--fixed">
+                <div class="header__top layout">
+                    <a href="/" class="header__logo">
+                        <svg width="151" height="44" viewBox="0 0 151 44" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M61.072 30C60.9253 30 60.8007 29.956 60.698 29.868C60.61 29.7653 60.566 29.6407 60.566 29.494V17.174L56.914 19.99C56.7967 20.078 56.672 20.1147 56.54 20.1C56.408 20.0853 56.298 20.0193 56.21 19.902L55.638 19.176C55.55 19.044 55.5133 18.912 55.528 18.78C55.5573 18.648 55.6307 18.538 55.748 18.45L60.544 14.754C60.6467 14.6807 60.742 14.6367 60.83 14.622C60.918 14.6073 61.0133 14.6 61.116 14.6H62.238C62.3847 14.6 62.502 14.6513 62.59 14.754C62.678 14.842 62.722 14.9593 62.722 15.106V29.494C62.722 29.6407 62.678 29.7653 62.59 29.868C62.502 29.956 62.3847 30 62.238 30H61.072ZM71.3842 30.22C70.3722 30.22 69.5142 30.066 68.8102 29.758C68.1208 29.4353 67.5562 28.9953 67.1162 28.438C66.6762 27.8807 66.3535 27.2427 66.1482 26.524C65.9575 25.8053 65.8475 25.0427 65.8182 24.236C65.8035 23.84 65.7888 23.422 65.7742 22.982C65.7742 22.542 65.7742 22.102 65.7742 21.662C65.7888 21.2073 65.8035 20.7747 65.8182 20.364C65.8328 19.5573 65.9428 18.7947 66.1482 18.076C66.3682 17.3427 66.6908 16.7047 67.1162 16.162C67.5562 15.6047 68.1282 15.172 68.8322 14.864C69.5362 14.5413 70.3868 14.38 71.3842 14.38C72.3962 14.38 73.2468 14.5413 73.9362 14.864C74.6402 15.172 75.2122 15.6047 75.6522 16.162C76.0922 16.7047 76.4148 17.3427 76.6202 18.076C76.8402 18.7947 76.9575 19.5573 76.9722 20.364C76.9868 20.7747 76.9942 21.2073 76.9942 21.662C77.0088 22.102 77.0088 22.542 76.9942 22.982C76.9942 23.422 76.9868 23.84 76.9722 24.236C76.9575 25.0427 76.8402 25.8053 76.6202 26.524C76.4148 27.2427 76.0922 27.8807 75.6522 28.438C75.2268 28.9953 74.6622 29.4353 73.9582 29.758C73.2688 30.066 72.4108 30.22 71.3842 30.22ZM71.3842 28.35C72.5282 28.35 73.3715 27.976 73.9142 27.228C74.4715 26.4653 74.7575 25.4313 74.7722 24.126C74.8015 23.7007 74.8162 23.29 74.8162 22.894C74.8162 22.4833 74.8162 22.08 74.8162 21.684C74.8162 21.2733 74.8015 20.87 74.7722 20.474C74.7575 19.198 74.4715 18.1787 73.9142 17.416C73.3715 16.6387 72.5282 16.25 71.3842 16.25C70.2548 16.25 69.4115 16.6387 68.8542 17.416C68.3115 18.1787 68.0255 19.198 67.9962 20.474C67.9962 20.87 67.9888 21.2733 67.9742 21.684C67.9742 22.08 67.9742 22.4833 67.9742 22.894C67.9888 23.29 67.9962 23.7007 67.9962 24.126C68.0255 25.4313 68.3188 26.4653 68.8762 27.228C69.4335 27.976 70.2695 28.35 71.3842 28.35ZM85.349 30.22C84.337 30.22 83.479 30.066 82.775 29.758C82.0857 29.4353 81.521 28.9953 81.081 28.438C80.641 27.8807 80.3183 27.2427 80.113 26.524C79.9223 25.8053 79.8123 25.0427 79.783 24.236C79.7683 23.84 79.7537 23.422 79.739 22.982C79.739 22.542 79.739 22.102 79.739 21.662C79.7537 21.2073 79.7683 20.7747 79.783 20.364C79.7977 19.5573 79.9077 18.7947 80.113 18.076C80.333 17.3427 80.6557 16.7047 81.081 16.162C81.521 15.6047 82.093 15.172 82.797 14.864C83.501 14.5413 84.3517 14.38 85.349 14.38C86.361 14.38 87.2117 14.5413 87.901 14.864C88.605 15.172 89.177 15.6047 89.617 16.162C90.057 16.7047 90.3797 17.3427 90.585 18.076C90.805 18.7947 90.9223 19.5573 90.937 20.364C90.9517 20.7747 90.959 21.2073 90.959 21.662C90.9737 22.102 90.9737 22.542 90.959 22.982C90.959 23.422 90.9517 23.84 90.937 24.236C90.9223 25.0427 90.805 25.8053 90.585 26.524C90.3797 27.2427 90.057 27.8807 89.617 28.438C89.1917 28.9953 88.627 29.4353 87.923 29.758C87.2337 30.066 86.3757 30.22 85.349 30.22ZM85.349 28.35C86.493 28.35 87.3363 27.976 87.879 27.228C88.4363 26.4653 88.7223 25.4313 88.737 24.126C88.7663 23.7007 88.781 23.29 88.781 22.894C88.781 22.4833 88.781 22.08 88.781 21.684C88.781 21.2733 88.7663 20.87 88.737 20.474C88.7223 19.198 88.4363 18.1787 87.879 17.416C87.3363 16.6387 86.493 16.25 85.349 16.25C84.2197 16.25 83.3763 16.6387 82.819 17.416C82.2763 18.1787 81.9903 19.198 81.961 20.474C81.961 20.87 81.9537 21.2733 81.939 21.684C81.939 22.08 81.939 22.4833 81.939 22.894C81.9537 23.29 81.961 23.7007 81.961 24.126C81.9903 25.4313 82.2837 26.4653 82.841 27.228C83.3983 27.976 84.2343 28.35 85.349 28.35ZM94.7598 30C94.5985 30 94.4738 29.956 94.3858 29.868C94.2978 29.7653 94.2538 29.6407 94.2538 29.494V15.128C94.2538 14.9667 94.2978 14.842 94.3858 14.754C94.4738 14.6513 94.5985 14.6 94.7598 14.6H95.7718C95.9478 14.6 96.0798 14.644 96.1678 14.732C96.2558 14.8053 96.3072 14.864 96.3218 14.908L103.626 26.128V15.128C103.626 14.9667 103.67 14.842 103.758 14.754C103.846 14.6513 103.971 14.6 104.132 14.6H105.188C105.349 14.6 105.474 14.6513 105.562 14.754C105.665 14.842 105.716 14.9667 105.716 15.128V29.472C105.716 29.6187 105.665 29.7433 105.562 29.846C105.474 29.9487 105.357 30 105.21 30H104.154C103.993 30 103.868 29.956 103.78 29.868C103.707 29.78 103.655 29.7213 103.626 29.692L96.3438 18.582V29.494C96.3438 29.6407 96.2925 29.7653 96.1898 29.868C96.1018 29.956 95.9772 30 95.8158 30H94.7598ZM115.051 30.22C113.805 30.22 112.734 30.0073 111.839 29.582C110.945 29.142 110.255 28.4747 109.771 27.58C109.287 26.6707 109.016 25.534 108.957 24.17C108.943 23.5247 108.935 22.9087 108.935 22.322C108.935 21.7207 108.943 21.0973 108.957 20.452C109.016 19.1027 109.295 17.9807 109.793 17.086C110.307 16.1767 111.011 15.502 111.905 15.062C112.815 14.6073 113.863 14.38 115.051 14.38C116.254 14.38 117.303 14.6073 118.197 15.062C119.107 15.502 119.818 16.1767 120.331 17.086C120.845 17.9807 121.123 19.1027 121.167 20.452C121.197 21.0973 121.211 21.7207 121.211 22.322C121.211 22.9087 121.197 23.5247 121.167 24.17C121.123 25.534 120.852 26.6707 120.353 27.58C119.869 28.4747 119.18 29.142 118.285 29.582C117.391 30.0073 116.313 30.22 115.051 30.22ZM115.051 28.35C116.181 28.35 117.097 28.0127 117.801 27.338C118.52 26.6633 118.909 25.5707 118.967 24.06C118.997 23.4 119.011 22.8133 119.011 22.3C119.011 21.772 118.997 21.1853 118.967 20.54C118.938 19.528 118.747 18.7067 118.395 18.076C118.058 17.4453 117.603 16.9833 117.031 16.69C116.459 16.3967 115.799 16.25 115.051 16.25C114.333 16.25 113.687 16.3967 113.115 16.69C112.543 16.9833 112.081 17.4453 111.729 18.076C111.392 18.7067 111.201 19.528 111.157 20.54C111.143 21.1853 111.135 21.772 111.135 22.3C111.135 22.8133 111.143 23.4 111.157 24.06C111.216 25.5707 111.605 26.6633 112.323 27.338C113.042 28.0127 113.951 28.35 115.051 28.35ZM130.226 30.22C128.994 30.22 127.931 30 127.036 29.56C126.156 29.12 125.474 28.4527 124.99 27.558C124.521 26.6487 124.286 25.4827 124.286 24.06V15.128C124.286 14.9667 124.33 14.842 124.418 14.754C124.506 14.6513 124.631 14.6 124.792 14.6H125.914C126.075 14.6 126.2 14.6513 126.288 14.754C126.391 14.842 126.442 14.9667 126.442 15.128V24.104C126.442 25.5413 126.779 26.6047 127.454 27.294C128.129 27.9833 129.053 28.328 130.226 28.328C131.385 28.328 132.301 27.9833 132.976 27.294C133.665 26.6047 134.01 25.5413 134.01 24.104V15.128C134.01 14.9667 134.054 14.842 134.142 14.754C134.245 14.6513 134.369 14.6 134.516 14.6H135.66C135.807 14.6 135.924 14.6513 136.012 14.754C136.115 14.842 136.166 14.9667 136.166 15.128V24.06C136.166 25.4827 135.924 26.6487 135.44 27.558C134.971 28.4527 134.296 29.12 133.416 29.56C132.536 30 131.473 30.22 130.226 30.22ZM143.716 30C143.569 30 143.444 29.956 143.342 29.868C143.254 29.7653 143.21 29.6407 143.21 29.494V16.558H138.986C138.839 16.558 138.714 16.514 138.612 16.426C138.524 16.3233 138.48 16.1987 138.48 16.052V15.128C138.48 14.9667 138.524 14.842 138.612 14.754C138.714 14.6513 138.839 14.6 138.986 14.6H149.59C149.751 14.6 149.876 14.6513 149.964 14.754C150.066 14.842 150.118 14.9667 150.118 15.128V16.052C150.118 16.1987 150.066 16.3233 149.964 16.426C149.876 16.514 149.751 16.558 149.59 16.558H145.388V29.494C145.388 29.6407 145.336 29.7653 145.234 29.868C145.146 29.956 145.021 30 144.86 30H143.716Z"
+                                fill="#21201F"></path>
+                            <rect width="14.9434" height="14.9433" rx="1"
+                                transform="matrix(0.705932 -0.70828 0.708096 0.706116 3 17.5859)" fill="#58B741"></rect>
+                            <rect width="14.9434" height="14.9433" rx="1"
+                                transform="matrix(0.705932 -0.70828 0.708096 0.706116 26.8701 17.5859)" fill="#398025">
+                            </rect>
+                            <rect width="11.9547" height="11.9546" rx="1"
+                                transform="matrix(0.705932 -0.70828 0.708096 0.706116 16.9238 29.5586)" fill="#67D34D">
+                            </rect>
+                        </svg>
+                    </a>
+                    <button class="header__menu-toggle btn btn-primary btn_icon-left js-menu-toggle">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3 5C3 4.44772 3.44772 4 4 4H16C16.5523 4 17 4.44772 17 5C17 5.55228 16.5523 6 16 6H4C3.44772 6 3 5.55228 3 5Z"
+                                fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3 10C3 9.44772 3.44772 9 4 9H16C16.5523 9 17 9.44772 17 10C17 10.5523 16.5523 11 16 11H4C3.44772 11 3 10.5523 3 10Z"
+                                fill="white"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3 15C3 14.4477 3.44772 14 4 14H16C16.5523 14 17 14.4477 17 15C17 15.5523 16.5523 16 16 16H4C3.44772 16 3 15.5523 3 15Z"
+                                fill="white"></path>
+                        </svg>
+                        <span>
+                            Каталог
+                        </span>
+                    </button>
+                    <div class="header__search">
+                        <div
+                            class="dgwt-wcas-search-wrapp dgwt-wcas-has-submit woocommerce dgwt-wcas-style-solaris js-dgwt-wcas-layout-classic dgwt-wcas-layout-classic js-dgwt-wcas-mobile-overlay-enabled dgwt-wcas-search-darkoverl-mounted js-dgwt-wcas-search-darkoverl-mounted">
+                            <form class="dgwt-wcas-search-form" role="search" action="https://100nout.redheady.ru/"
+                                method="get">
+                                <div class="dgwt-wcas-sf-wrapp">
+                                    <label class="screen-reader-text" for="dgwt-wcas-search-input-1">Поиск
+                                        товаров</label>
+
+                                    <input id="dgwt-wcas-search-input-1" type="search" class="dgwt-wcas-search-input"
+                                        name="s" value="" placeholder="Искать товары, например Apple"
+                                        autocomplete="off">
+                                    <div class="dgwt-wcas-preloader" style="right: 44px;"></div>
+
+                                    <div class="dgwt-wcas-voice-search"></div>
+
+                                    <button type="submit" aria-label="Поиск" class="dgwt-wcas-search-submit"> <svg
+                                            class="dgwt-wcas-ico-magnifier" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            viewBox="0 0 51.539 51.361" xml:space="preserve">
+                                            <path
+                                                d="M51.539,49.356L37.247,35.065c3.273-3.74,5.272-8.623,5.272-13.983c0-11.742-9.518-21.26-21.26-21.26 S0,9.339,0,21.082s9.518,21.26,21.26,21.26c5.361,0,10.244-1.999,13.983-5.272l14.292,14.292L51.539,49.356z M2.835,21.082 c0-10.176,8.249-18.425,18.425-18.425s18.425,8.249,18.425,18.425S31.436,39.507,21.26,39.507S2.835,31.258,2.835,21.082z">
+                                            </path>
+                                        </svg>
+                                    </button>
+
+                                    <input type="hidden" name="post_type" value="product">
+                                    <input type="hidden" name="dgwt_wcas" value="1">
+
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <button class="header__to-call-toggle btn btn-secondary btn_icon-left">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M7.93919 9.29682L10.73 12.0945C11.0325 12.3978 11.5805 12.4411 12.191 12.1553C13.7447 11.5434 14.2616 11.3942 14.5567 11.6901L17.7647 14.906C18.1439 15.2862 18.0427 15.9194 17.6187 16.3445C15.4168 18.5518 11.8378 18.5518 9.63592 16.3445L3.64316 10.3369C1.45228 8.1406 1.45228 4.58739 3.64316 2.39108C4.07617 1.95701 4.74112 1.85021 5.13462 2.24468L8.34266 5.46065C8.62071 5.73939 8.47162 6.25857 7.86454 7.80549C7.58232 8.40933 7.62754 8.9844 7.93919 9.29682Z"
+                                fill="#21201F"></path>
+                        </svg>
+                        <span>
+                            Заказать звонок
+                        </span>
+                    </button>
+                    <a href="#" class="header__favorite btn btn-secondary btn-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3.80628 6.20569C5.68079 4.33118 8.71999 4.33118 10.5945 6.20569L12.0004 7.61158L13.4063 6.20569C15.2808 4.33118 18.32 4.33118 20.1945 6.20569C22.069 8.08021 22.069 11.1194 20.1945 12.9939L12.0004 21.188L3.80628 12.9939C1.93176 11.1194 1.93176 8.08021 3.80628 6.20569Z"
+                                fill="#21201F"></path>
+                        </svg>
+                        <span class="favorite-empty">
+                            <span class="favorite-empty__title">
+                                В избранном пусто
+                            </span>
+                            <span class="favorite-empty__subtitle">
+                                Добавляйте товары с&nbsp;помощью <img draggable="false" role="img" class="emoji"
+                                    alt="❤️" src="https://s.w.org/images/core/emoji/14.0.0/svg/2764.svg">
+                            </span>
+                        </span>
+                    </a>
+                    <a href="/cart" class="header__to-cart btn btn-primary btn_icon-left" style="opacity: 1;">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M3 1C2.44772 1 2 1.44772 2 2C2 2.55228 2.44772 3 3 3H4.21922L4.52478 4.22224C4.52799 4.23637 4.5315 4.25039 4.5353 4.26429L5.89253 9.69321L4.99995 10.5858C3.74002 11.8457 4.63235 14 6.41416 14H15C15.5522 14 16 13.5523 16 13C16 12.4477 15.5522 12 15 12L6.41417 12L7.41416 11H14C14.3788 11 14.725 10.786 14.8944 10.4472L17.8944 4.44721C18.0494 4.13723 18.0329 3.76909 17.8507 3.47427C17.6684 3.17945 17.3466 3 17 3H6.28078L5.97014 1.75746C5.85885 1.3123 5.45887 1 5 1H3Z"
+                                fill="#fff"></path>
+                            <path
+                                d="M16 16.5C16 17.3284 15.3284 18 14.5 18C13.6716 18 13 17.3284 13 16.5C13 15.6716 13.6716 15 14.5 15C15.3284 15 16 15.6716 16 16.5Z"
+                                fill="#fff"></path>
+                            <path
+                                d="M6.5 18C7.32843 18 8 17.3284 8 16.5C8 15.6716 7.32843 15 6.5 15C5.67157 15 5 15.6716 5 16.5C5 17.3284 5.67157 18 6.5 18Z"
+                                fill="#fff"></path>
+                        </svg>
+                        <span>
+                            790 </span>
+                    </a>
+
+
+
+
+                    <button class="header__search-toggle btn btn-icon btn-primary">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="header__bottom">
+                <nav class="header__nav">
+                    <ul class="header__nav-list">
+                        <li class="header__nav-list-item">
+                            <a class="link link_big link-secondary text" href="/oplata/">
+                                Оплата
+                            </a>
+                        </li>
+                        <li class="header__nav-list-item">
+                            <a class="link link_big link-secondary text" href="/dostavka/">
+                                Доставка
+                            </a>
+                        </li>
+                        <li class="header__nav-list-item">
+                            <a class="link link_big link-secondary text" href="/otzyvy/">
+                                Отзывы
+                            </a>
+                        </li>
+                        <li class="header__nav-list-item">
+                            <a class="link link_big link-secondary text" href="/kontakty/">
+                                Контакты
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="header__nav-list">
+                        <li class="header__nav-list-item">
+                            <a class="link link_big link-secondary text" href="/yur-liczam/">
+                                Покупайте как юрлицо
+                            </a>
+                        </li>
+                        <!-- <li class="header__nav-list-item">
+                                <a class="link link_big link-secondary text" href="#">
+                                    Скупка техники
+                                </a>
+                            </li> -->
+                        <li class="header__nav-list-item">
+                            <a class="link link_big link-secondary text" href="/o-kompanii/">
+                                О компании
+                            </a>
+                        </li>
+                        <li class="header__nav-list-item">
+                            <a class="link link_big link-secondary text" href="/trade-in/">
+                                Trade-in
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <ul class="bar">
+            <li class="bar__item">
+                <a href="#" class="bar__item-link btn btn-secondary btn-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12.8489 2.75137C12.3803 2.28275 11.6205 2.28275 11.1519 2.75137L2.75186 11.1514C2.28323 11.62 2.28323 12.3798 2.75186 12.8484C3.22049 13.3171 3.98029 13.3171 4.44892 12.8484L4.80039 12.497V20.3999C4.80039 21.0626 5.33765 21.5999 6.00039 21.5999H8.40039C9.06313 21.5999 9.60039 21.0626 9.60039 20.3999V17.9999C9.60039 17.3372 10.1376 16.7999 10.8004 16.7999H13.2004C13.8631 16.7999 14.4004 17.3372 14.4004 17.9999V20.3999C14.4004 21.0626 14.9376 21.5999 15.6004 21.5999H18.0004C18.6631 21.5999 19.2004 21.0626 19.2004 20.3999V12.497L19.5519 12.8484C20.0205 13.3171 20.7803 13.3171 21.2489 12.8484C21.7175 12.3798 21.7175 11.62 21.2489 11.1514L12.8489 2.75137Z"
+                            fill="#21201F" />
+                    </svg>
+                </a>
+            </li>
+            <li class="bar__item">
+                <a href="#" class="bar__item-link btn btn-secondary btn-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M3.59961 5.9998C3.59961 5.33706 4.13687 4.7998 4.79961 4.7998H19.1996C19.8624 4.7998 20.3996 5.33706 20.3996 5.9998C20.3996 6.66255 19.8624 7.1998 19.1996 7.1998H4.79961C4.13687 7.1998 3.59961 6.66255 3.59961 5.9998Z"
+                            fill="#21201F" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M3.59961 11.9998C3.59961 11.3371 4.13687 10.7998 4.79961 10.7998H19.1996C19.8624 10.7998 20.3996 11.3371 20.3996 11.9998C20.3996 12.6625 19.8624 13.1998 19.1996 13.1998H4.79961C4.13687 13.1998 3.59961 12.6625 3.59961 11.9998Z"
+                            fill="#21201F" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M3.59961 17.9998C3.59961 17.3371 4.13687 16.7998 4.79961 16.7998H19.1996C19.8624 16.7998 20.3996 17.3371 20.3996 17.9998C20.3996 18.6625 19.8624 19.1998 19.1996 19.1998H4.79961C4.13687 19.1998 3.59961 18.6625 3.59961 17.9998Z"
+                            fill="#21201F" />
+                    </svg>
+                </a>
+            </li>
+            <li class="bar__item">
+                <a href="#" class="bar__item-link bar__item-link-to-cart btn btn-secondary btn-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M3.60039 1.2002C2.93765 1.2002 2.40039 1.73745 2.40039 2.4002C2.40039 3.06294 2.93765 3.6002 3.60039 3.6002H5.06346L5.43013 5.06689C5.43398 5.08384 5.43819 5.10067 5.44275 5.11734L7.07142 11.632L6.00033 12.7031C4.48842 14.215 5.55921 16.8002 7.69739 16.8002H18.0003C18.6631 16.8002 19.2003 16.2629 19.2003 15.6002C19.2003 14.9375 18.6631 14.4002 18.0003 14.4002L7.69739 14.4002L8.89739 13.2002H16.8004C17.2549 13.2002 17.6704 12.9434 17.8737 12.5368L21.4737 5.33685C21.6597 4.96487 21.6398 4.5231 21.4212 4.16932C21.2025 3.81554 20.8163 3.6002 20.4004 3.6002H7.53732L7.16456 2.10915C7.03101 1.57495 6.55103 1.2002 6.00039 1.2002H3.60039Z"
+                            fill="#21201F" />
+                        <path
+                            d="M19.2004 19.8002C19.2004 20.7943 18.3945 21.6002 17.4004 21.6002C16.4063 21.6002 15.6004 20.7943 15.6004 19.8002C15.6004 18.8061 16.4063 18.0002 17.4004 18.0002C18.3945 18.0002 19.2004 18.8061 19.2004 19.8002Z"
+                            fill="#21201F" />
+                        <path
+                            d="M7.80039 21.6002C8.7945 21.6002 9.60039 20.7943 9.60039 19.8002C9.60039 18.8061 8.7945 18.0002 7.80039 18.0002C6.80628 18.0002 6.00039 18.8061 6.00039 19.8002C6.00039 20.7943 6.80628 21.6002 7.80039 21.6002Z"
+                            fill="#21201F" />
+                    </svg>
+                    <span class="to-cart-empty">
+                        <svg width="110" height="74" viewBox="0 0 110 74" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M94.5687 1H15.4317C11.4378 1 8.2002 4.23765 8.2002 8.2315V62.1685C8.2002 66.1623 11.4378 69.4 15.4317 69.4H94.5687C98.5625 69.4 101.8 66.1623 101.8 62.1685V8.2315C101.8 4.23765 98.5625 1 94.5687 1Z"
+                                stroke="#A3A3A3" stroke-width="2" stroke-linejoin="round"></path>
+                            <path d="M1 73H109" stroke="#A3A3A3" stroke-width="2" stroke-miterlimit="10"
+                                stroke-linecap="round"></path>
+                            <g clip-path="url(#clip0_2764_3815)">
+                                <path
+                                    d="M66.9567 52.3615C67.0888 51.0495 66.9178 49.7269 66.4545 48.4778C65.9913 47.2288 65.2459 46.0806 64.2659 45.1061C63.2858 44.1317 62.0924 43.3524 60.7616 42.8176C59.4307 42.2829 57.9915 42.0045 56.5353 42.0001C55.0792 41.9956 53.6379 42.2653 52.3031 42.7919C50.9683 43.3185 49.7692 44.0905 48.7819 45.059C47.7946 46.0274 47.0407 47.1711 46.5682 48.4173C46.0957 49.6635 45.9148 50.985 46.0371 52.2978L48.489 52.1109C48.3954 51.1057 48.5338 50.0938 48.8956 49.1397C49.2574 48.1855 49.8346 47.3099 50.5906 46.5684C51.3465 45.8269 52.2646 45.2358 53.2866 44.8326C54.3086 44.4294 55.4121 44.2229 56.5271 44.2263C57.642 44.2297 58.7439 44.4429 59.7629 44.8523C60.7819 45.2617 61.6956 45.8584 62.446 46.6045C63.1964 47.3506 63.7671 48.2297 64.1218 49.1861C64.4764 50.1424 64.6074 51.155 64.5063 52.1596L66.9567 52.3615Z"
+                                    fill="#A3A3A3"></path>
+                                <path
+                                    d="M32.0182 22.6373C31.9634 23.1897 32.0344 23.7466 32.227 24.2725C32.4195 24.7984 32.7292 25.2819 33.1365 25.6922C33.5438 26.1024 34.0398 26.4306 34.5928 26.6557C35.1459 26.8809 35.7441 26.9981 36.3492 27C36.9544 27.0018 37.5533 26.8883 38.1081 26.6666C38.6628 26.4448 39.1611 26.1198 39.5714 25.712C39.9817 25.3042 40.295 24.8227 40.4914 24.298C40.6878 23.7733 40.7629 23.2169 40.7121 22.6641L39.6932 22.7428C39.7321 23.166 39.6745 23.5921 39.5242 23.9938C39.3738 24.3956 39.1339 24.7643 38.8198 25.0765C38.5056 25.3887 38.1241 25.6376 37.6993 25.8073C37.2746 25.9771 36.816 26.064 36.3527 26.0626C35.8893 26.0612 35.4314 25.9714 35.0079 25.799C34.5844 25.6266 34.2047 25.3754 33.8928 25.0613C33.581 24.7471 33.3438 24.377 33.1964 23.9743C33.049 23.5716 32.9946 23.1452 33.0366 22.7223L32.0182 22.6373Z"
+                                    fill="#A3A3A3"></path>
+                                <path
+                                    d="M69.0182 22.6373C68.9634 23.1897 69.0344 23.7466 69.227 24.2725C69.4195 24.7984 69.7292 25.2819 70.1365 25.6922C70.5438 26.1024 71.0398 26.4306 71.5928 26.6557C72.1459 26.8809 72.7441 26.9981 73.3492 27C73.9544 27.0018 74.5533 26.8883 75.1081 26.6666C75.6628 26.4448 76.1611 26.1198 76.5714 25.712C76.9817 25.3042 77.295 24.8227 77.4914 24.298C77.6878 23.7733 77.7629 23.2169 77.7121 22.6641L76.6932 22.7428C76.7321 23.166 76.6745 23.5921 76.5242 23.9938C76.3738 24.3956 76.1339 24.7643 75.8198 25.0765C75.5056 25.3887 75.1241 25.6376 74.6993 25.8073C74.2746 25.9771 73.816 26.064 73.3527 26.0626C72.8893 26.0612 72.4314 25.9714 72.0079 25.799C71.5844 25.6266 71.2047 25.3754 70.8928 25.0613C70.581 24.7471 70.3438 24.377 70.1964 23.9743C70.049 23.5716 69.9946 23.1452 70.0366 22.7223L69.0182 22.6373Z"
+                                    fill="#A3A3A3"></path>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_2764_3815">
+                                    <rect width="46" height="31" fill="white" transform="translate(32 22)"></rect>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        В вашей корзине пока пусто
+                    </span>
+                </a>
+            </li>
+            <li class="bar__item">
+                <a href="#" class="bar__item-link btn btn-secondary btn-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M9.52742 11.1561L12.8764 14.5133C13.2394 14.8773 13.897 14.9293 14.6296 14.5863C16.494 13.852 17.1143 13.673 17.4684 14.028L21.3181 17.8871C21.7731 18.3433 21.6517 19.1032 21.1428 19.6133C18.5005 22.2621 14.2058 22.2621 11.5635 19.6133L4.37219 12.4042C1.74312 9.76863 1.74312 5.50477 4.37219 2.8692C4.89179 2.34832 5.68974 2.22015 6.16194 2.69352L10.0116 6.55268C10.3452 6.88717 10.1663 7.51019 9.43784 9.36649C9.09918 10.0911 9.15344 10.7812 9.52742 11.1561Z"
+                            fill="#21201F" />
+                    </svg>
+                </a>
+            </li>
+            <li class="bar__item">
+                <a href="#" class="bar__item-link btn btn-secondary btn-icon bar__item-link-favorite">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M3.80628 6.20569C5.68079 4.33118 8.71999 4.33118 10.5945 6.20569L12.0004 7.61158L13.4063 6.20569C15.2808 4.33118 18.32 4.33118 20.1945 6.20569C22.069 8.08021 22.069 11.1194 20.1945 12.9939L12.0004 21.188L3.80628 12.9939C1.93176 11.1194 1.93176 8.08021 3.80628 6.20569Z"
+                            fill="#21201F" />
+                    </svg>
+
+                    <span class="favorite-empty">
+                        <span class="favorite-empty__title">
+                            В избранном пусто
+                        </span>
+                        <span class="favorite-empty__subtitle">
+                            Добавляйте товары с&nbsp;помощью ❤️
+                        </span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+        <div class="cartP js-cartP">
+            <div class="cartP__inner hide-scroll">
+                <div class="cartP__container">
+                    <button class="cartP__btn btn-icon js-cartP-toggle">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 13L13 1M1 1L13 13" stroke="#8F8F8F" stroke-width="1.2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <h3 class="cartP__title text-3xl">
+                        Товар добавлен в корзину
+                    </h3>
+                    <div class="cartP__product">
+                        <a href="#" class="cartP__product-pic">
+                            <img src="./images/cartP.png" alt="Фото" class="cartP__product-pic-img">
+                        </a>
+                        <div class="cartP__product-content">
+                            <a href="#" class="cartP__product-title text text-lg text--semibold">
+                                Б/у LG GA-B 509 CMQM DoorCooling+LG
+                            </a>
+                            <div class="cartP__product-price text-3xl">
+                                <span>890</span><span class="cartP__product-price-currency text text-xs">BYN</span>
+                                <span class="cartP__product-price-old text text-xs">1290</span>
+                            </div>
+                            <a href="#" class="cartP__product-remove link link-secondary">
+                                Удалить
+                            </a>
+                            <div class="cartP__product-bottom">
+                                <p class="cartP__product-bottom-text text text-sm">
+                                    Защитите свою технику с пакетом дополнительного сервисного обслуживания
+                                </p>
+                                <a href="#" class="cartP__product-bottom-more btn btn-secondary">
+                                    Узнать больше
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cartP__related">
+                        <div class="prs">
+                            <h2 class="prs__title text-3xl">
+                                С этим товаром покупают
+                            </h2>
+                            <ul class="prs__list prs__list-2334 hide-scroll">
+                                <li class="prs__list-item">
+                                    <div class="product js-product-50464" data-swiper="true">
+                                        <div class="product__swiper-wrap"
+                                            onmouseleave="onLeaveProductPhoto(event, 'js-product-50464')"
+                                            onmousemove="onInitProductByMouse(event, 'js-product-50464')"
+                                            ontouchstart="onInitProductByTouch(event, 'js-product-50464')">
+                                            <div
+                                                class="product__swiper js-product-swiper swiper-fade swiper-initialized swiper-horizontal swiper-pointer-events swiper-watch-progress swiper-backface-hidden">
+                                                <div class="swiper-wrapper"
+                                                    onclick="onProductClick('https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-9/')"
+                                                    id="swiper-wrapper-b2d218c56f6f11ca" aria-live="polite"
+                                                    style="transition-duration: 0ms;">
+                                                    <div class="swiper-slide swiper-slide-visible swiper-slide-active"
+                                                        style="width: 266px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"
+                                                        role="group" aria-label="1 / 5">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-9/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0160y.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="swiper-slide swiper-slide-next"
+                                                        style="width: 266px; opacity: 0; transform: translate3d(-266px, 0px, 0px); transition-duration: 0ms;"
+                                                        role="group" aria-label="2 / 5">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-9/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0157.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="swiper-slide"
+                                                        style="width: 266px; opacity: 0; transform: translate3d(-532px, 0px, 0px); transition-duration: 0ms;"
+                                                        role="group" aria-label="3 / 5">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-9/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0158.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="swiper-slide"
+                                                        style="width: 266px; opacity: 0; transform: translate3d(-798px, 0px, 0px); transition-duration: 0ms;"
+                                                        role="group" aria-label="4 / 5">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-9/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0159.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="swiper-slide" role="group" aria-label="5 / 5"
+                                                        style="width: 266px; opacity: 0; transform: translate3d(-1064px, 0px, 0px); transition-duration: 0ms;">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-9/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0156-1.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
+                                                    <span
+                                                        class="swiper-pagination-bullet swiper-pagination-bullet-active"
+                                                        tabindex="0" role="button" aria-label="Go to slide 1"
+                                                        aria-current="true"></span><span
+                                                        class="swiper-pagination-bullet" tabindex="0" role="button"
+                                                        aria-label="Go to slide 2"></span><span
+                                                        class="swiper-pagination-bullet" tabindex="0" role="button"
+                                                        aria-label="Go to slide 3"></span><span
+                                                        class="swiper-pagination-bullet" tabindex="0" role="button"
+                                                        aria-label="Go to slide 4"></span><span
+                                                        class="swiper-pagination-bullet" tabindex="0" role="button"
+                                                        aria-label="Go to slide 5"></span>
+                                                </div>
+                                                <span class="swiper-notification" aria-live="assertive"
+                                                    aria-atomic="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="product__center">
+                                            <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-9/"
+                                                class="product__title">
+                                                Ноутбук Dell Latitude 14 7480 </a>
+                                            <p class="product__status product__status--in-stock">
+                                                В наличии </p>
+                                        </div>
+                                        <div class="product__box">
+                                            <div class="product__actions">
+                                                <p class="product__price">
+                                                    890 <span>BYN</span>
+                                                </p>
+                                                <p class="product__price-old">
+                                                    1000 </p>
+                                                <button class="product__btn btn btn-icon btn-tooltip active"
+                                                    name="Добавить в сравнение">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F"
+                                                            stroke-width="1.2" stroke-linecap="round"
+                                                            stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </button>
+                                                <button class="product__btn btn btn-icon btn-tooltip active"
+                                                    name="Добавить в избранное">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z"
+                                                            stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
+                                                            stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="prs__list-item">
+                                    <div class="product js-product-57790" data-swiper="false">
+
+                                        <div class="product__swiper-wrap"
+                                            onmouseleave="onLeaveProductPhoto(event, 'js-product-57790')"
+                                            onmousemove="onInitProductByMouse(event, 'js-product-57790')"
+                                            ontouchstart="onInitProductByTouch(event, 'js-product-57790')">
+                                            <div class="product__swiper js-product-swiper">
+                                                <div class="swiper-wrapper"
+                                                    onclick="onProductClick('https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-23/')">
+                                                    <div class="swiper-slide">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-23/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0047v.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-23/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0045-3.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-23/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0046-3.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-23/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0044-3.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-23/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0043-3.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-pagination"></div>
+                                            </div>
+                                        </div>
+                                        <div class="product__center">
+                                            <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-7480-23/"
+                                                class="product__title">
+                                                Ноутбук Dell Latitude 14 7480 </a>
+                                            <p class="product__status product__status--in-stock">
+                                                В наличии </p>
+                                        </div>
+                                        <div class="product__box">
+                                            <div class="product__actions">
+                                                <p class="product__price">
+                                                    790 <span>BYN</span>
+                                                </p>
+                                                <p class="product__price-old">
+                                                    900 </p>
+                                                <button class="product__btn btn btn-icon btn-tooltip active"
+                                                    name="Добавить в сравнение">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F"
+                                                            stroke-width="1.2" stroke-linecap="round"
+                                                            stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </button>
+                                                <button class="product__btn btn btn-icon btn-tooltip active"
+                                                    name="Добавить в избранное">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z"
+                                                            stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
+                                                            stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="prs__list-item">
+                                    <div class="product js-product-47924" data-swiper="false">
+
+                                        <div class="product__swiper-wrap"
+                                            onmouseleave="onLeaveProductPhoto(event, 'js-product-47924')"
+                                            onmousemove="onInitProductByMouse(event, 'js-product-47924')"
+                                            ontouchstart="onInitProductByTouch(event, 'js-product-47924')">
+                                            <div class="product__swiper js-product-swiper">
+                                                <div class="swiper-wrapper"
+                                                    onclick="onProductClick('https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-e7470-4/')">
+                                                    <div class="swiper-slide">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-e7470-4/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0035a-1.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-e7470-4/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0034-15.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-e7470-4/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0033-11.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-e7470-4/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0036-13.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-e7470-4/"
+                                                            class="product__pic">
+                                                            <img src="https://100nout.redheady.ru/wp-content/webp-express/webp-images/uploads/2023/03/dsc_0032-11.jpg.webp"
+                                                                alt="Фото" class="product__pic-img" loading="lazy">
+                                                            <div class="swiper-lazy-preloader">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-pagination"></div>
+                                            </div>
+                                        </div>
+                                        <div class="product__center">
+                                            <a href="https://100nout.redheady.ru/product/noutbuk-dell-latitude-14-e7470-4/"
+                                                class="product__title">
+                                                Ноутбук Dell Latitude 14 E7470 </a>
+                                            <p class="product__status product__status--in-stock">
+                                                В наличии </p>
+                                        </div>
+                                        <div class="product__box">
+                                            <div class="product__actions">
+                                                <p class="product__price">
+                                                    790 <span>BYN</span>
+                                                </p>
+                                                <p class="product__price-old">
+                                                    900 </p>
+                                                <button class="product__btn btn btn-icon btn-tooltip active"
+                                                    name="Добавить в сравнение">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M4 6H20M4 12H20M4 18H11" stroke="#21201F"
+                                                            stroke-width="1.2" stroke-linecap="round"
+                                                            stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </button>
+                                                <button class="product__btn btn btn-icon btn-tooltip active"
+                                                    name="Добавить в избранное">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z"
+                                                            stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
+                                                            stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="cartP__total">
+                        <div class="cartP__total-content">
+                            <p class="cartP__total-count text text-xs">В корзине 1 товар</p>
+                            <p class="cartP__total-sum">
+                                <span class="text text-lg">Итого:</span>
+                                <span class="text text-2xl text--semibold">890 BYN</span>
+                            </p>
+                        </div>
+                        <div class="cartP__total-actions">
+                            <button type="button" class="btn btn-secondary js-cartP-toggle">Продолжить покупки</button>
+                            <a href="/cart" class="btn btn-primary btn_icon-left"><svg width="16" height="17"
+                                    viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M1 0C0.447715 0 0 0.447715 0 1C0 1.55228 0.447715 2 1 2H2.21922L2.52478 3.22224C2.52799 3.23637 2.5315 3.25039 2.5353 3.26429L3.89253 8.69321L2.99995 9.58578C1.74002 10.8457 2.63235 13 4.41416 13H13C13.5522 13 14 12.5523 14 12C14 11.4477 13.5522 11 13 11L4.41417 11L5.41416 10H12C12.3788 10 12.725 9.786 12.8944 9.44721L15.8944 3.44721C16.0494 3.13723 16.0329 2.76909 15.8507 2.47427C15.6684 2.17945 15.3466 2 15 2H4.28078L3.97014 0.757464C3.85885 0.312297 3.45887 0 3 0H1Z"
+                                        fill="white" />
+                                    <path
+                                        d="M14 15.5C14 16.3284 13.3284 17 12.5 17C11.6716 17 11 16.3284 11 15.5C11 14.6716 11.6716 14 12.5 14C13.3284 14 14 14.6716 14 15.5Z"
+                                        fill="white" />
+                                    <path
+                                        d="M4.5 17C5.32843 17 6 16.3284 6 15.5C6 14.6716 5.32843 14 4.5 14C3.67157 14 3 14.6716 3 15.5C3 16.3284 3.67157 17 4.5 17Z"
+                                        fill="white" />
+                                </svg>
+                                Перейти в крозину</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <main class="main">
+            <section class="ordering layout">
+                <a href="#" class="btn btn_icon-left text text-base link link-secondary ordering__back">
+                    <svg width="18" height="8" viewBox="0 0 18 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.83333 7.33317L1.5 3.99984M1.5 3.99984L4.83333 0.666504M1.5 3.99984L16.5 3.99984"
+                            stroke="#8F8F8F" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Вернуться в каталог
+                </a>
+                <div class="ordering__top">
+                    <h1 class="ordering__title text-5xl">
+                        Корзина
+                    </h1>
+                    <a href="#" class="ordering__clear btn btn-secondary btn_icon-left">
+                        <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13.832 4.83333L13.1093 14.9521C13.047 15.8243 12.3212 16.5 11.4468 16.5H4.55056C3.67616 16.5 2.95043 15.8243 2.88813 14.9521L2.16536 4.83333M6.33203 8.16667V13.1667M9.66536 8.16667V13.1667M10.4987 4.83333V2.33333C10.4987 1.8731 10.1256 1.5 9.66536 1.5H6.33203C5.87179 1.5 5.4987 1.8731 5.4987 2.33333V4.83333M1.33203 4.83333H14.6654"
+                                stroke="#474747" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Очистить корзину
+                    </a>
+                </div>
+                <div class="ordering__body">
+                    <div class="ordering__content">
+                        <div class="ordering__card">
+                            <h2 class="ordering__card-title text-2xl">
+                                Товары в заказе
+                            </h2>
+                            <ul class="ordering__cart">
+                                <li class="ordering__cart-item">
+                                    <a href="#" class="ordering__cart-pic">
+                                        <img src="" alt="Фото" class="ordering__cart-pic-img">
+                                    </a>
+                                    <div class="ordering__cart-content">
+                                        <div class="ordering__cart-content-center">
+                                            <a href="#" class="ordering__cart-title text text-lg text--semibold">
+                                                Б/у LG GA-B 509 CMQM DoorCooling+LG
+                                            </a>
+                                            <p class="ordering__cart-sku text text-sm">
+                                                Код товара: <span class="ordering__cart-sku-num">0000.84470</span>
+                                            </p>
+                                            <div class="ordering__cart-dropdown">
+                                                <div class="dropdown js-dropdown">
+                                                    <button type="button" class="dropdown__btn">
+                                                        <span class="text-base text">Гарантия 30 дней</span>
+                                                        <svg class="dropdown__arrow" width="20" height="20"
+                                                            viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.70711 7.29289L10 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68342 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z"
+                                                                fill="#B8B8B8" />
+                                                        </svg>
+                                                    </button>
+                                                    <ul class="dropdown__list">
+                                                        <li class="dropdown__list-item">
+                                                            <button type="button"
+                                                                class="dropdown__list-item-btn text-sm">
+                                                                Гарантия 30 дней
+                                                            </button>
+                                                        </li>
+                                                        <li class="dropdown__list-item">
+                                                            <button type="button"
+                                                                class="dropdown__list-item-btn text-sm">
+                                                                Дополнительная гарантия на 3 месяца: +30 BYN
+                                                            </button>
+                                                        </li>
+                                                        <li class="dropdown__list-item">
+                                                            <button type="button"
+                                                                class="dropdown__list-item-btn text-sm">
+                                                                Дополнительная гарантия на 6 месяцев: +30 BYN
+                                                            </button>
+                                                        </li>
+                                                        <li class="dropdown__list-item">
+                                                            <button type="button"
+                                                                class="dropdown__list-item-btn text-sm">
+                                                                Дополнительная гарантия на 12 месяцев: +30 BYN
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <button class="btn btn-icon btn-tooltip" name="Доп гарантия">
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM8.00001 5C7.63113 5 7.3076 5.19922 7.13318 5.50073C6.85664 5.97879 6.24491 6.14215 5.76685 5.86561C5.28879 5.58906 5.12543 4.97733 5.40197 4.49927C5.91918 3.60518 6.88833 3 8.00001 3C9.65687 3 11 4.34315 11 6C11 7.30622 10.1652 8.41746 9.00001 8.82929V9C9.00001 9.55228 8.5523 10 8.00001 10C7.44773 10 7.00001 9.55228 7.00001 9V8C7.00001 7.44772 7.44773 7 8.00001 7C8.5523 7 9.00001 6.55228 9.00001 6C9.00001 5.44772 8.5523 5 8.00001 5ZM8 13C8.55228 13 9 12.5523 9 12C9 11.4477 8.55228 11 8 11C7.44772 11 7 11.4477 7 12C7 12.5523 7.44772 13 8 13Z"
+                                                            fill="#474747" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="ordering__cart-content-actions">
+                                            <div class="ordering__cart-price">
+                                                <p class="product__price">
+                                                    790 <span>BYN</span>
+                                                </p>
+                                                <p class="product__price-old">
+                                                    900 </p>
+                                            </div>
+                                            <div class="ordering__cart-btns">
+                                                <button type="button" class="btn btn-icon">
+                                                    <svg width="20" height="17" viewBox="0 0 20 17" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M2.31802 2.31802C0.56066 4.07538 0.56066 6.92462 2.31802 8.68198L10.0001 16.364L17.682 8.68198C19.4393 6.92462 19.4393 4.07538 17.682 2.31802C15.9246 0.56066 13.0754 0.56066 11.318 2.31802L10.0001 3.63609L8.68198 2.31802C6.92462 0.56066 4.07538 0.56066 2.31802 2.31802Z"
+                                                            stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="btn btn-icon">
+                                                    <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M16 5L15.1327 17.1425C15.0579 18.1891 14.187 19 13.1378 19H4.86224C3.81296 19 2.94208 18.1891 2.86732 17.1425L2 5M7 9V15M11 9V15M12 5V2C12 1.44772 11.5523 1 11 1H7C6.44772 1 6 1.44772 6 2V5M1 5H17"
+                                                            stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="ordering__cart-item">
+                                    <a href="#" class="ordering__cart-pic">
+                                        <img src="./images/cartP.png" alt="Фото" class="ordering__cart-pic-img">
+                                    </a>
+                                    <div class="ordering__cart-content">
+                                        <div class="ordering__cart-content-center">
+                                            <a href="#" class="ordering__cart-title text text-lg text--semibold">
+                                                Б/у LG GA-B 509 CMQM DoorCooling+LG
+                                            </a>
+                                            <p class="ordering__cart-sku text text-sm">
+                                                Код товара: <span class="ordering__cart-sku-num">0000.84470</span>
+                                            </p>
+                                            <div class="ordering__cart-dropdown">
+                                                <div class="dropdown js-dropdown">
+                                                    <button type="button" class="dropdown__btn">
+                                                        <span class="text-base text">Гарантия 30 дней</span>
+                                                        <svg class="dropdown__arrow" width="20" height="20"
+                                                            viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.70711 7.29289L10 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68342 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z"
+                                                                fill="#B8B8B8" />
+                                                        </svg>
+                                                    </button>
+                                                    <ul class="dropdown__list">
+                                                        <li class="dropdown__list-item">
+                                                            <button type="button"
+                                                                class="dropdown__list-item-btn text-sm">
+                                                                Гарантия 30 дней
+                                                            </button>
+                                                        </li>
+                                                        <li class="dropdown__list-item">
+                                                            <button type="button"
+                                                                class="dropdown__list-item-btn text-sm">
+                                                                Дополнительная гарантия на 3 месяца: +30 BYN
+                                                            </button>
+                                                        </li>
+                                                        <li class="dropdown__list-item">
+                                                            <button type="button"
+                                                                class="dropdown__list-item-btn text-sm">
+                                                                Дополнительная гарантия на 6 месяцев: +30 BYN
+                                                            </button>
+                                                        </li>
+                                                        <li class="dropdown__list-item">
+                                                            <button type="button"
+                                                                class="dropdown__list-item-btn text-sm">
+                                                                Дополнительная гарантия на 12 месяцев: +30 BYN
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <button class="btn btn-icon btn-tooltip" name="Доп гарантия">
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM8.00001 5C7.63113 5 7.3076 5.19922 7.13318 5.50073C6.85664 5.97879 6.24491 6.14215 5.76685 5.86561C5.28879 5.58906 5.12543 4.97733 5.40197 4.49927C5.91918 3.60518 6.88833 3 8.00001 3C9.65687 3 11 4.34315 11 6C11 7.30622 10.1652 8.41746 9.00001 8.82929V9C9.00001 9.55228 8.5523 10 8.00001 10C7.44773 10 7.00001 9.55228 7.00001 9V8C7.00001 7.44772 7.44773 7 8.00001 7C8.5523 7 9.00001 6.55228 9.00001 6C9.00001 5.44772 8.5523 5 8.00001 5ZM8 13C8.55228 13 9 12.5523 9 12C9 11.4477 8.55228 11 8 11C7.44772 11 7 11.4477 7 12C7 12.5523 7.44772 13 8 13Z"
+                                                            fill="#474747" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="ordering__cart-content-actions">
+                                            <div class="ordering__cart-price">
+                                                <p class="product__price">
+                                                    790 <span>BYN</span>
+                                                </p>
+                                                <p class="product__price-old">
+                                                    900 </p>
+                                            </div>
+                                            <div class="ordering__cart-btns">
+                                                <button type="button" class="btn btn-icon">
+                                                    <svg width="20" height="17" viewBox="0 0 20 17" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M2.31802 2.31802C0.56066 4.07538 0.56066 6.92462 2.31802 8.68198L10.0001 16.364L17.682 8.68198C19.4393 6.92462 19.4393 4.07538 17.682 2.31802C15.9246 0.56066 13.0754 0.56066 11.318 2.31802L10.0001 3.63609L8.68198 2.31802C6.92462 0.56066 4.07538 0.56066 2.31802 2.31802Z"
+                                                            stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="btn btn-icon">
+                                                    <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M16 5L15.1327 17.1425C15.0579 18.1891 14.187 19 13.1378 19H4.86224C3.81296 19 2.94208 18.1891 2.86732 17.1425L2 5M7 9V15M11 9V15M12 5V2C12 1.44772 11.5523 1 11 1H7C6.44772 1 6 1.44772 6 2V5M1 5H17"
+                                                            stroke="#21201F" stroke-width="1.2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="ordering__subtotal">
+                            <p class="ordering__subtotal-name text-2xl">
+                                Итого
+                            </p>
+                            <div class="ordering__subtotal-content">
+                                <p class="ordering__subtotal-row">
+                                    <span class="text text-lg">Товары:</span>
+                                    <span class="text text-lg text--semibold">2 145 BYN</span>
+                                </p>
+                                <p class="ordering__subtotal-row">
+                                    <span class="text text-lg">Доп. гарантия:</span>
+                                    <span class="text text-lg text--semibold">2 30 BYN</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="ordering__card">
+                            <div class="ordering__card-inner">
+                                <h2 class="ordering__card-title text-2xl">
+                                    Выберите способ получения
+                                </h2>
+                                <a href="#" class="ordering__card-link btn btn_icon-right link link-secondary">
+                                    Подробнее о способах доставки
+                                    <svg width="9" height="14" viewBox="0 0 9 14" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M0.912046 13.4224C0.586609 13.097 0.586609 12.5694 0.912046 12.2439L6.15612 6.99984L0.912046 1.75576C0.586609 1.43032 0.586609 0.902685 0.912046 0.577249C1.23748 0.251811 1.76512 0.251811 2.09056 0.577249L7.92389 6.41058C8.24933 6.73602 8.24933 7.26366 7.92389 7.58909L2.09056 13.4224C1.76512 13.7479 1.23748 13.7479 0.912046 13.4224Z"
+                                            fill="#8F8F8F" />
+                                    </svg>
+
+                                </a>
+                            </div>
+                            <div class="ordering__grid">
+                                <label class="ordering__label">
+                                    <input value="0" type="radio" name="orderDelivery" checked>
+                                    <span class="ordering__label-circle"></span>
+                                    <span class="ordering__label-content">
+                                        <span class="ordering__label-title text text-base">
+                                            Доставка по Минску: 10 BYN
+                                        </span>
+                                        <span class="ordering__label-subtitle text text-xs">
+                                            Завтра, до 21:00 (Возможна экспресс-доставка)
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="ordering__label">
+                                    <input value="1" type="radio" name="orderDelivery">
+                                    <span class="ordering__label-circle"></span>
+                                    <span class="ordering__label-content">
+                                        <span class="ordering__label-title text text-base">
+                                            Самовывоз
+                                        </span>
+                                        <span class="ordering__label-subtitle text text-xs">
+                                            Минск – сегодня, до 20:00
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="ordering__label">
+                                    <input value="2" type="radio" name="orderDelivery">
+                                    <span class="ordering__label-circle"></span>
+                                    <span class="ordering__label-content">
+                                        <span class="ordering__label-title text text-base">
+                                            Доставка по Беларуси: 20 BYN
+                                        </span>
+                                        <span class="ordering__label-subtitle text text-xs">
+                                            Курьером до 24 января
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="ordering__label">
+                                    <input value="3" type="radio" name="orderDelivery">
+                                    <span class="ordering__label-circle"></span>
+                                    <span class="ordering__label-content">
+                                        <span class="ordering__label-title text text-base">
+                                            Почтой по Беларуси: до 20 BYN
+                                        </span>
+                                        <span class="ordering__label-subtitle text text-xs">
+                                            Цена и срок зависит от выбранной почтовой службы
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="ordering__container js-address-container">
+                                <div class="ordering__card-inner">
+                                    <h2 class="ordering__card-title text-2xl">
+                                        Адрес доставки
+                                    </h2>
+                                    <label class="ordering__label-express js-express">
+                                        <input type="checkbox" name="express">
+                                        <span class="ordering__label-express-circle">
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_5658_10415)">
+                                                    <rect width="20" height="20" rx="6" fill="#69C856" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M15.0611 5.42238C15.5183 5.73229 15.6376 6.35411 15.3277 6.81124L10.2432 14.3112C10.0771 14.5562 9.8111 14.715 9.51671 14.745C9.22232 14.7749 8.92977 14.673 8.71777 14.4665L4.80234 10.6536C4.40667 10.2683 4.39827 9.6352 4.78358 9.23953C5.16888 8.84386 5.80199 8.83546 6.19766 9.22077L9.25771 12.2007L13.6723 5.68895C13.9822 5.23182 14.604 5.11247 15.0611 5.42238Z"
+                                                        fill="white" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_5658_10415">
+                                                        <rect width="20" height="20" rx="6" fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </span>
+                                        <span class="text text-base">Хочу экспресс-доставку в течение 2х часов: 20
+                                            BYN</span>
+                                    </label>
+                                </div>
+                                <div class="ordering__flex ordering__flex--address">
+                                    <div class="ordering__input-wrapper">
+                                        <label class="ordering__label-text required">
+                                            <input class="ordering__input js-address-input" type="text" name="address"
+                                                placeholder="Улица, номер дома">
+                                        </label>
+                                        <div class="ordering__input-results js-address-result"></div>
+                                    </div>
+                                    <div class="ordering__input-wrapper">
+                                        <input class="ordering__input" type="text" name="address" placeholder="Подъезд">
+                                    </div>
+                                    <div class="ordering__input-wrapper">
+                                        <input class="ordering__input" type="text" name="address" placeholder="Этаж">
+                                    </div>
+                                    <div class="ordering__input-wrapper">
+                                        <label class="ordering__label-text js-last-val">
+                                            <input class="ordering__input" type="text" name="address"
+                                                placeholder="Квартира">
+                                        </label>
+                                    </div>
+                                    <div class="ordering__input-wrapper">
+                                        <label class="ordering__label-text js-last-val">
+                                            <input class="ordering__input" type="text" name="address"
+                                                placeholder="Комментарий курьеру">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ordering__container js-map-container hide">
+                                <div class="ordering__container-map map">
+                                    <h2 class="map__title  ordering__container-map-title text-2xl">
+                                        Как к нам добраться
+                                    </h2>
+                                    <div class="map__body ordering__container-map-body">
+                                        <div class="map__frame">
+                                            <script type="text/javascript" charset="utf-8" async
+                                                src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A31b2aac7a7f8d32a102e30f0c3b09e68125073b9717ea50e6307d314fbb80737&amp;width=100%25&amp;height=100%&amp;lang=ru_RU&amp;scroll=false"></script>
+                                        </div>
+                                        <div class="map__card card">
+                                            <h2 class="card__title text-2xl">
+                                                Адрес нашего шоурума
+                                            </h2>
+                                            <p class="card__text text text-lg">
+                                                220114, Минск, метро Московская, Проспект Независимости д. 94
+                                            </p>
+                                            <p class="card__text card__text--mt text text-lg text--semibold">
+                                                Время работы 10:00 до 20:00
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 class="ordering__card-title text-2xl">
+                                Получатель
+                            </h2>
+                            <div class="ordering__flex ordering__flex--column">
+                                <div class="ordering__input-wrapper">
+                                    <label class="ordering__label-text required">
+                                        <input class="ordering__input js-input-name" type="text" name="orderContacts"
+                                            placeholder="Имя">
+                                    </label>
+                                </div>
+                                <div class="ordering__input-wrapper">
+                                    <label class="ordering__label-text">
+                                        <input class="ordering__input" type="text" name="orderContacts"
+                                            placeholder="Фамилия">
+                                    </label>
+                                </div>
+                                <div class="ordering__input-wrapper">
+                                    <label class="ordering__label-text required">
+                                        <input class="ordering__input js-input-email" type="text" name="orderContacts"
+                                            placeholder="E-mail">
+                                    </label>
+                                </div>
+                                <div class="ordering__input-wrapper">
+                                    <label class="ordering__label-text required">
+                                        <input class="ordering__input js-input-tel" type="text" name="orderContacts"
+                                            placeholder="Номер телефона">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ordering__card">
+                            <div class="ordering__card-inner">
+                                <h2 class="ordering__card-title text-2xl">
+                                    Способ оплаты
+                                </h2>
+                                <a href="#" class="ordering__card-link btn btn_icon-right link link-secondary">
+                                    Подробнее об оплате
+                                    <svg width="9" height="14" viewBox="0 0 9 14" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M0.912046 13.4224C0.586609 13.097 0.586609 12.5694 0.912046 12.2439L6.15612 6.99984L0.912046 1.75576C0.586609 1.43032 0.586609 0.902685 0.912046 0.577249C1.23748 0.251811 1.76512 0.251811 2.09056 0.577249L7.92389 6.41058C8.24933 6.73602 8.24933 7.26366 7.92389 7.58909L2.09056 13.4224C1.76512 13.7479 1.23748 13.7479 0.912046 13.4224Z"
+                                            fill="#8F8F8F" />
+                                    </svg>
+
+                                </a>
+                            </div>
+                            <div class="ordering__flex ordering__flex--column">
+                                <div class="ordering__input-wrapper">
+                                    <label class="ordering__label">
+                                        <input value="0" type="radio" name="orderPayment" checked>
+                                        <span class="ordering__label-circle"></span>
+                                        <span class="ordering__label-content">
+                                            <span class="ordering__label-title text text-base">
+                                                Наличными
+                                            </span>
+                                            <span class="ordering__label-subtitle text text-xs">
+                                                В нашем шоуруме или во время доставки
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="ordering__input-wrapper">
+                                    <label class="ordering__label">
+                                        <input value="1" type="radio" name="orderPayment">
+                                        <span class="ordering__label-circle"></span>
+                                        <span class="ordering__label-content">
+                                            <span class="ordering__label-title text text-base">
+                                                Рассрочка
+                                            </span>
+                                            <span class="ordering__label-subtitle text text-xs">
+                                                Картами рассрочки (Черепаха, Магнит, Халва и д.р.)
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="ordering__input-wrapper">
+                                    <label class="ordering__label">
+                                        <input value="2" type="radio" name="orderPayment">
+                                        <span class="ordering__label-circle"></span>
+                                        <span class="ordering__label-content">
+                                            <span class="ordering__label-title text text-base">
+                                                Безналичный расчёт
+                                            </span>
+                                            <span class="ordering__label-subtitle text text-xs">
+                                                Оплата на расчётный счёт или эквайринг
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="ordering__policy text text-base">
+                            Нажимая кнопку «Оформить заказ», я соглашаюсь <a href="#" class="link link-primary">
+                                с условиями заказа и доставки
+                            </a>, на обработку
+                            персональных данных в соответствии с <a href="#" class="link link-primary">
+                                Политикой обработки персональных данных
+                            </a> и на получение
+                            звонков в процессе обработки заказа.
+                        </p>
+                    </div>
+                    <div class="ordering__sum">
+                        <div class="ordering__card">
+                            <h2 class="ordering__card-title text-2xl">
+                                Итого
+                            </h2>
+                            <div class="ordering__sum-row">
+                                <p class="ordering__sum-row-name text text-lg">
+                                    Товары:
+                                </p>
+                                <p class="ordering__sum-row-val text text-lg text--semibold">
+                                    2 145 BYN
+                                </p>
+                            </div>
+                            <div class="ordering__sum-row">
+                                <p class="ordering__sum-row-name text text-lg">
+                                    Доставка:
+                                </p>
+                                <p class="ordering__sum-row-val text text-lg text--semibold">
+                                    Не выбрано
+                                </p>
+                            </div>
+                            <div class="ordering__sum-row">
+                                <p class="ordering__sum-row-name text text-lg">
+                                    Доп. гарантия:
+                                </p>
+                                <p class="ordering__sum-row-val text text-lg text--semibold">
+                                    30 BYN
+                                </p>
+                            </div>
+                            <div class="ordering__sum-final">
+                                <p class="ordering__sum-final-name text-lg text--semibold">
+                                    К оплате:
+                                </p>
+                                <p class="ordering__sum-final-val text-2xl">
+                                    2 150 BYN
+                                </p>
+                            </div>
+                            <button type="button" class="btn btn-primary js-order-submit">Оформить заказ</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="footer__body layout">
+                <ul class="footer__list">
+                    <li class="footer__list-item">
+                        <a href="#" class="footer__logo">
+                            <svg width="151" height="44" viewBox="0 0 151 44" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M61.072 30C60.9253 30 60.8007 29.956 60.698 29.868C60.61 29.7653 60.566 29.6407 60.566 29.494V17.174L56.914 19.99C56.7967 20.078 56.672 20.1147 56.54 20.1C56.408 20.0853 56.298 20.0193 56.21 19.902L55.638 19.176C55.55 19.044 55.5133 18.912 55.528 18.78C55.5573 18.648 55.6307 18.538 55.748 18.45L60.544 14.754C60.6467 14.6807 60.742 14.6367 60.83 14.622C60.918 14.6073 61.0133 14.6 61.116 14.6H62.238C62.3847 14.6 62.502 14.6513 62.59 14.754C62.678 14.842 62.722 14.9593 62.722 15.106V29.494C62.722 29.6407 62.678 29.7653 62.59 29.868C62.502 29.956 62.3847 30 62.238 30H61.072ZM71.3842 30.22C70.3722 30.22 69.5142 30.066 68.8102 29.758C68.1208 29.4353 67.5562 28.9953 67.1162 28.438C66.6762 27.8807 66.3535 27.2427 66.1482 26.524C65.9575 25.8053 65.8475 25.0427 65.8182 24.236C65.8035 23.84 65.7888 23.422 65.7742 22.982C65.7742 22.542 65.7742 22.102 65.7742 21.662C65.7888 21.2073 65.8035 20.7747 65.8182 20.364C65.8328 19.5573 65.9428 18.7947 66.1482 18.076C66.3682 17.3427 66.6908 16.7047 67.1162 16.162C67.5562 15.6047 68.1282 15.172 68.8322 14.864C69.5362 14.5413 70.3868 14.38 71.3842 14.38C72.3962 14.38 73.2468 14.5413 73.9362 14.864C74.6402 15.172 75.2122 15.6047 75.6522 16.162C76.0922 16.7047 76.4148 17.3427 76.6202 18.076C76.8402 18.7947 76.9575 19.5573 76.9722 20.364C76.9868 20.7747 76.9942 21.2073 76.9942 21.662C77.0088 22.102 77.0088 22.542 76.9942 22.982C76.9942 23.422 76.9868 23.84 76.9722 24.236C76.9575 25.0427 76.8402 25.8053 76.6202 26.524C76.4148 27.2427 76.0922 27.8807 75.6522 28.438C75.2268 28.9953 74.6622 29.4353 73.9582 29.758C73.2688 30.066 72.4108 30.22 71.3842 30.22ZM71.3842 28.35C72.5282 28.35 73.3715 27.976 73.9142 27.228C74.4715 26.4653 74.7575 25.4313 74.7722 24.126C74.8015 23.7007 74.8162 23.29 74.8162 22.894C74.8162 22.4833 74.8162 22.08 74.8162 21.684C74.8162 21.2733 74.8015 20.87 74.7722 20.474C74.7575 19.198 74.4715 18.1787 73.9142 17.416C73.3715 16.6387 72.5282 16.25 71.3842 16.25C70.2548 16.25 69.4115 16.6387 68.8542 17.416C68.3115 18.1787 68.0255 19.198 67.9962 20.474C67.9962 20.87 67.9888 21.2733 67.9742 21.684C67.9742 22.08 67.9742 22.4833 67.9742 22.894C67.9888 23.29 67.9962 23.7007 67.9962 24.126C68.0255 25.4313 68.3188 26.4653 68.8762 27.228C69.4335 27.976 70.2695 28.35 71.3842 28.35ZM85.349 30.22C84.337 30.22 83.479 30.066 82.775 29.758C82.0857 29.4353 81.521 28.9953 81.081 28.438C80.641 27.8807 80.3183 27.2427 80.113 26.524C79.9223 25.8053 79.8123 25.0427 79.783 24.236C79.7683 23.84 79.7537 23.422 79.739 22.982C79.739 22.542 79.739 22.102 79.739 21.662C79.7537 21.2073 79.7683 20.7747 79.783 20.364C79.7977 19.5573 79.9077 18.7947 80.113 18.076C80.333 17.3427 80.6557 16.7047 81.081 16.162C81.521 15.6047 82.093 15.172 82.797 14.864C83.501 14.5413 84.3517 14.38 85.349 14.38C86.361 14.38 87.2117 14.5413 87.901 14.864C88.605 15.172 89.177 15.6047 89.617 16.162C90.057 16.7047 90.3797 17.3427 90.585 18.076C90.805 18.7947 90.9223 19.5573 90.937 20.364C90.9517 20.7747 90.959 21.2073 90.959 21.662C90.9737 22.102 90.9737 22.542 90.959 22.982C90.959 23.422 90.9517 23.84 90.937 24.236C90.9223 25.0427 90.805 25.8053 90.585 26.524C90.3797 27.2427 90.057 27.8807 89.617 28.438C89.1917 28.9953 88.627 29.4353 87.923 29.758C87.2337 30.066 86.3757 30.22 85.349 30.22ZM85.349 28.35C86.493 28.35 87.3363 27.976 87.879 27.228C88.4363 26.4653 88.7223 25.4313 88.737 24.126C88.7663 23.7007 88.781 23.29 88.781 22.894C88.781 22.4833 88.781 22.08 88.781 21.684C88.781 21.2733 88.7663 20.87 88.737 20.474C88.7223 19.198 88.4363 18.1787 87.879 17.416C87.3363 16.6387 86.493 16.25 85.349 16.25C84.2197 16.25 83.3763 16.6387 82.819 17.416C82.2763 18.1787 81.9903 19.198 81.961 20.474C81.961 20.87 81.9537 21.2733 81.939 21.684C81.939 22.08 81.939 22.4833 81.939 22.894C81.9537 23.29 81.961 23.7007 81.961 24.126C81.9903 25.4313 82.2837 26.4653 82.841 27.228C83.3983 27.976 84.2343 28.35 85.349 28.35ZM94.7598 30C94.5985 30 94.4738 29.956 94.3858 29.868C94.2978 29.7653 94.2538 29.6407 94.2538 29.494V15.128C94.2538 14.9667 94.2978 14.842 94.3858 14.754C94.4738 14.6513 94.5985 14.6 94.7598 14.6H95.7718C95.9478 14.6 96.0798 14.644 96.1678 14.732C96.2558 14.8053 96.3072 14.864 96.3218 14.908L103.626 26.128V15.128C103.626 14.9667 103.67 14.842 103.758 14.754C103.846 14.6513 103.971 14.6 104.132 14.6H105.188C105.349 14.6 105.474 14.6513 105.562 14.754C105.665 14.842 105.716 14.9667 105.716 15.128V29.472C105.716 29.6187 105.665 29.7433 105.562 29.846C105.474 29.9487 105.357 30 105.21 30H104.154C103.993 30 103.868 29.956 103.78 29.868C103.707 29.78 103.655 29.7213 103.626 29.692L96.3438 18.582V29.494C96.3438 29.6407 96.2925 29.7653 96.1898 29.868C96.1018 29.956 95.9772 30 95.8158 30H94.7598ZM115.051 30.22C113.805 30.22 112.734 30.0073 111.839 29.582C110.945 29.142 110.255 28.4747 109.771 27.58C109.287 26.6707 109.016 25.534 108.957 24.17C108.943 23.5247 108.935 22.9087 108.935 22.322C108.935 21.7207 108.943 21.0973 108.957 20.452C109.016 19.1027 109.295 17.9807 109.793 17.086C110.307 16.1767 111.011 15.502 111.905 15.062C112.815 14.6073 113.863 14.38 115.051 14.38C116.254 14.38 117.303 14.6073 118.197 15.062C119.107 15.502 119.818 16.1767 120.331 17.086C120.845 17.9807 121.123 19.1027 121.167 20.452C121.197 21.0973 121.211 21.7207 121.211 22.322C121.211 22.9087 121.197 23.5247 121.167 24.17C121.123 25.534 120.852 26.6707 120.353 27.58C119.869 28.4747 119.18 29.142 118.285 29.582C117.391 30.0073 116.313 30.22 115.051 30.22ZM115.051 28.35C116.181 28.35 117.097 28.0127 117.801 27.338C118.52 26.6633 118.909 25.5707 118.967 24.06C118.997 23.4 119.011 22.8133 119.011 22.3C119.011 21.772 118.997 21.1853 118.967 20.54C118.938 19.528 118.747 18.7067 118.395 18.076C118.058 17.4453 117.603 16.9833 117.031 16.69C116.459 16.3967 115.799 16.25 115.051 16.25C114.333 16.25 113.687 16.3967 113.115 16.69C112.543 16.9833 112.081 17.4453 111.729 18.076C111.392 18.7067 111.201 19.528 111.157 20.54C111.143 21.1853 111.135 21.772 111.135 22.3C111.135 22.8133 111.143 23.4 111.157 24.06C111.216 25.5707 111.605 26.6633 112.323 27.338C113.042 28.0127 113.951 28.35 115.051 28.35ZM130.226 30.22C128.994 30.22 127.931 30 127.036 29.56C126.156 29.12 125.474 28.4527 124.99 27.558C124.521 26.6487 124.286 25.4827 124.286 24.06V15.128C124.286 14.9667 124.33 14.842 124.418 14.754C124.506 14.6513 124.631 14.6 124.792 14.6H125.914C126.075 14.6 126.2 14.6513 126.288 14.754C126.391 14.842 126.442 14.9667 126.442 15.128V24.104C126.442 25.5413 126.779 26.6047 127.454 27.294C128.129 27.9833 129.053 28.328 130.226 28.328C131.385 28.328 132.301 27.9833 132.976 27.294C133.665 26.6047 134.01 25.5413 134.01 24.104V15.128C134.01 14.9667 134.054 14.842 134.142 14.754C134.245 14.6513 134.369 14.6 134.516 14.6H135.66C135.807 14.6 135.924 14.6513 136.012 14.754C136.115 14.842 136.166 14.9667 136.166 15.128V24.06C136.166 25.4827 135.924 26.6487 135.44 27.558C134.971 28.4527 134.296 29.12 133.416 29.56C132.536 30 131.473 30.22 130.226 30.22ZM143.716 30C143.569 30 143.444 29.956 143.342 29.868C143.254 29.7653 143.21 29.6407 143.21 29.494V16.558H138.986C138.839 16.558 138.714 16.514 138.612 16.426C138.524 16.3233 138.48 16.1987 138.48 16.052V15.128C138.48 14.9667 138.524 14.842 138.612 14.754C138.714 14.6513 138.839 14.6 138.986 14.6H149.59C149.751 14.6 149.876 14.6513 149.964 14.754C150.066 14.842 150.118 14.9667 150.118 15.128V16.052C150.118 16.1987 150.066 16.3233 149.964 16.426C149.876 16.514 149.751 16.558 149.59 16.558H145.388V29.494C145.388 29.6407 145.336 29.7653 145.234 29.868C145.146 29.956 145.021 30 144.86 30H143.716Z"
+                                    fill="#454F5B" />
+                                <rect width="14.9434" height="14.9433" rx="1"
+                                    transform="matrix(0.705932 -0.70828 0.708096 0.706116 3 17.5859)" fill="#58B741" />
+                                <rect width="14.9434" height="14.9433" rx="1"
+                                    transform="matrix(0.705932 -0.70828 0.708096 0.706116 26.8711 17.5859)"
+                                    fill="#398025" />
+                                <rect width="11.9547" height="11.9546" rx="1"
+                                    transform="matrix(0.705932 -0.70828 0.708096 0.706116 16.9238 29.5586)"
+                                    fill="#67D34D" />
+                            </svg>
+                        </a>
+                        <p class="footer__work-time text-xs">
+                            Время работы с 9:00 до 21:00
+                        </p>
+                    </li>
+                    <li class="footer__list-item">
+                        <h3 class="footer__list-item-title text-lg text--semibold">
+                            Покупателям
+                        </h3>
+                        <nav class="footer__nav">
+                            <ul class="footer__nav-list">
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Оплата
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Доставка и самовывоз
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Trade-in
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Отзывы
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Обмен и возврат
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+                    <li class="footer__list-item">
+                        <h3 class="footer__list-item-title text-lg text--semibold">
+                            Компания
+                        </h3>
+                        <nav class="footer__nav">
+                            <ul class="footer__nav-list">
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        О компании
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Вакансии
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Оферта
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Контакты
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+                    <li class="footer__list-item">
+                        <h3 class="footer__list-item-title text-lg text--semibold">
+                            Полезная информация
+                        </h3>
+                        <nav class="footer__nav">
+                            <ul class="footer__nav-list">
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Скупка техники
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Подарочные сертификаты
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Сервисное обслуживание
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Покупайте как юрлицо
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Ремонт техники
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Блог
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+                    <li class="footer__list-item">
+                        <h3 class="footer__list-item-title text-lg text--semibold">
+                            Мы в соцсетях
+                        </h3>
+                        <nav class="footer__nav">
+                            <ul class="footer__nav-list">
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Инстаграм
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Телеграм
+                                    </a>
+                                </li>
+                                <li class="footer__nav-item">
+                                    <a href="#" class="footer__nav-item-link link link_big link-secondary text">
+                                        Вконтакте
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+                </ul>
+                <p class="footer__copyright text-xs">
+                    <span>
+                        © 2022 «100NOUT.BY», ИП Валько Денис Валерьевич УНП 291558723, Брестская обл. г. Барановичи ул.
+                        Репина д. 58
+                    </span>
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>

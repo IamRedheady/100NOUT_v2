@@ -70,6 +70,13 @@ jQuery(function ($) {
             $thisbutton.removeClass('added');
             $thisbutton.addClass('loading');
 
+            console.log($thisbutton)
+            if ($thisbutton.hasClass('js-cart-dso')) {
+                console.log($thisbutton.attr("data-parent-product_id"))
+                localStorage.setItem($thisbutton.attr("data-parent-product_id"), $thisbutton.attr('data-product_id'));
+                console.log(localStorage)
+            }
+
             // Allow 3rd parties to validate and quit early.
             if (false === $(document.body).triggerHandler('should_send_ajax_request.adding_to_cart', [$thisbutton])) {
                 $(document.body).trigger('ajax_request_not_sent.adding_to_cart', [false, false, $thisbutton]);
@@ -173,12 +180,24 @@ jQuery(function ($) {
 
             // // View cart text.
             if (fragments && !wc_add_to_cart_params.is_cart && $button.parent().find('.added_to_cart').length === 0) {
-                // $button.after('<a href="' + wc_add_to_cart_params.cart_url + '" class="product__buy btn btn-primary added_to_cart wc-forward" title="' +
-                //     wc_add_to_cart_params.i18n_view_cart + '">' + wc_add_to_cart_params.i18n_view_cart + '</a>');
-                $button.html("В корзине");
-                $button.removeClass('btn-primary');
-                $button.addClass('btn-secondary');
-                $button.attr("href", "/cart");
+                setTimeout(() => {
+                    const removeLinks = document.querySelectorAll(".js-remove-link");
+                    removeLinks.forEach(link => {
+                        if (link.dataset.id === $button.attr("data-product_id")) {
+                            $('a.product__buy[data-product_id="' + $button.attr("data-product_id") + '"]').html($('a.product__buy[data-product_id="' + $button.attr("data-product_id") + '"]').html().replace("В корзину", "Убрать из корзины"));
+                            $('a.product__buy[data-product_id="' + $button.attr("data-product_id") + '"]').addClass('btn-secondary remove js-remove-from-cart-prs');
+                            $('a.product__buy[data-product_id="' + $button.attr("data-product_id") + '"]').attr("href", link.dataset.url);
+                            $('a.product__buy[data-product_id="' + $button.attr("data-product_id") + '"]').removeClass("btn-primary button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart added");
+                            $('a.product__buy[data-product_id="' + $button.attr("data-product_id") + '"]').attr("data-cart_item_key", link.dataset.itemKey);
+                            $('a.product__buy[data-product_id="' + $button.attr("data-product_id") + '"]').attr("aria-label", "Убрать из корзины");
+                        }
+                    })
+
+                    const cartP = document.querySelector(".js-cartP")
+                    const body = document.querySelector("body")
+                    body.classList.add("scroll-disabled")
+                    cartP.classList.add("active")
+                }, 50);
             }
 
             $(document.body).trigger('wc_cart_button_updated', [$button]);
@@ -223,8 +242,6 @@ jQuery(function ($) {
         var product_id = $(this).attr("data-product_id"),
             cart_item_key = $(this).attr("data-cart_item_key");
 
-        e.target.setAttribute('href', `?add-to-cart=${product_id}`);
-
         $.ajax({
             type: 'POST',
             dataType: 'json',
@@ -248,5 +265,23 @@ jQuery(function ($) {
                 }
             }
         });
+
+        const btns = document.querySelectorAll(`a.product__buy[data-product_id="${product_id}"]`)
+
+        btns.forEach(btn => {
+            btn.setAttribute('href', `?add-to-cart=${product_id}`);
+            btn.classList.remove("btn-secondary")
+            btn.classList.remove("remove")
+            btn.classList.remove("js-remove-from-cart-prs")
+            btn.classList.add("btn-primary")
+            btn.classList.add("button")
+            btn.classList.add("wp-element-button")
+            btn.classList.add("product_type_simple")
+            btn.classList.add("add_to_cart_button")
+            btn.classList.add("ajax_add_to_cart")
+            btn.setAttribute("aria-label", "Добавить в корзину")
+
+            btn.innerHTML = btn.innerHTML.replace("Убрать из корзины", "В корзину")
+        })
     });
 });

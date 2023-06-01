@@ -1,168 +1,158 @@
 .thanks {
-	margin-bottom: 22px;
+    margin-bottom: 22px;
 
-	&__text {
-		margin-bottom: 14px;
-	}
+    &__text {
+        margin-bottom: 14px;
+    }
 
-	&__banner {
-		margin-top: 80px;
-	}
+    &__banner {
+        margin-top: 80px;
+    }
 }
 
 .order {
-	border: 1px solid #DEDEDE;
-	box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
-	border-radius: 8px;
-	padding: 36px;
-	margin-top: 36px;
-	margin-bottom: 36px;
+    border: 1px solid #dedede;
+    box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    padding: 36px;
+    margin-top: 36px;
+    margin-bottom: 36px;
 
-	&__title {
-		margin-bottom: 36px;
-	}
+    &__title {
+        margin-bottom: 36px;
+    }
 
-	&__subtitle {
-		margin-top: 36px;
-	}
+    &__subtitle {
+        margin-top: 36px;
+    }
 
-	&__list {
-		margin-top: 24px;
+    &__list {
+        margin-top: 24px;
 
-		&-content {
-			display: flex;
+        &-item {
+            margin-bottom: 24px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
 
-			&-guarantee {
-				display: flex;
+        &-content {
+            display: flex;
 
-				&-text {
-					margin-right: 10px;
-				}
-			}
+            &-guarantee {
+                display: flex;
 
-			&-pic {
-				width: 146px;
-				height: 128px;
-				margin-right: 14px;
+                &-text {
+                    margin-right: 10px;
+                }
+            }
 
-				&-img {
-					width: 100%;
-					height: 100%;
-				}
-			}
+            &-pic {
+                width: 146px;
+                height: 128px;
+                margin-right: 14px;
 
-			&-text {
+                &-img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
 
-				&-lg {
-					margin-bottom: 4px;
-				}
+            &-text {
+                &-lg {
+                    margin-bottom: 4px;
+                }
 
-				&-sm {
-					display: flex;
+                &-sm {
+                    display: flex;
 
-					&-code {
-						color: #5C5C5C;
-						margin-right: 4px;
-					}
-				}
-			}
-		}
+                    &-code {
+                        color: #5c5c5c;
+                        margin-right: 4px;
+                    }
+                }
+            }
+        }
 
-		&-subtitle {
-			margin-bottom: 14px;
-		}
-	}
-	
-	&__line {
-		max-width: 1088px	;
-		background-color: #DEDEDE;
-		color: #DEDEDE;
-		border: none;
-		height: 1px;
-		margin-top: 24px;
-		margin-bottom: 24px;
-	}
+        &-subtitle {
+            margin-bottom: 14px;
+        }
+    }
+
+    &__line {
+        max-width: 1088px;
+        background-color: #dedede;
+        color: #dedede;
+        border: none;
+        height: 1px;
+        margin-top: 24px;
+        margin-bottom: 24px;
+    }
 }
 
 @media screen and (max-width: 1000px) {
-	.order {
-		padding: 24px;
-	}
+    .order {
+        padding: 24px;
+    }
 }
 
 @media screen and (max-width: 680px) {
-	.order {
-		margin-bottom: 60px;
-		
+    .order {
+        margin-bottom: 60px;
 
-		&__title {
-			margin-bottom: 24px;
-		}
-	
-		&__subtitle {
-			margin-top: 24px;
-		}
+        &__title {
+            margin-bottom: 24px;
+        }
 
-		&__list {
-			margin-top: 14px;
+        &__subtitle {
+            margin-top: 24px;
+        }
 
-			&-subtitle {
-				margin-bottom: 18px;
-			}
-		}
-	}
+        &__list {
+            margin-top: 14px;
+
+            &-subtitle {
+                margin-bottom: 18px;
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 520px) {
+    .order {
+        &__list {
+            &-content {
+                &-guarantee {
+                    display: block;
 
-	.order {
-
-		&__list {
-	
-			&-content {
-	
-				&-guarantee {
-					display: block;
-	
-					&-text {
-						margin-right: 0px;
-						margin-bottom: 4px;
-					}
-				}
-			}
-		}
-	}
+                    &-text {
+                        margin-right: 0px;
+                        margin-bottom: 4px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 360px) {
+    .order {
+        &__list {
+            &-pic {
+                margin-right: 0px;
+                margin-bottom: 14px;
+            }
 
-	.order {
+            &-content {
+                display: block;
 
-		&__list {
-
-			&-pic {
-				margin-right: 0px;
-				margin-bottom: 14px;
-			}
-	
-			&-content {
-				display: block;
-
-				&-text {
-
-					&-sm {
-						margin-bottom: 24px;
-					}
-				}
-			}
-		}
-	}
+                &-text {
+                    &-sm {
+                        margin-bottom: 24px;
+                    }
+                }
+            }
+        }
+    }
 }
-
-
-
-
-
-
-
-

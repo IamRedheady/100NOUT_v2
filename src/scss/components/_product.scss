@@ -49,6 +49,19 @@
         .swiper-pagination-bullet-active {
             background-color: $N400;
         }
+        .swiper-slide {
+            opacity: 0;
+            background-color: #fff;
+            &-active {
+                opacity: 1;
+            }
+            &:first-child {
+                opacity: 1;
+            }
+            .swiper-lazy-preloader {
+                animation: swiper-preloader-spin 1s infinite linear;
+            }
+        }
     }
 
     &__pic {
@@ -62,6 +75,7 @@
             position: relative;
             z-index: 12;
             border-radius: 8px;
+            display: block;
         }
     }
 
@@ -178,6 +192,7 @@
         color: $black;
         display: flex;
         align-items: flex-start;
+        white-space: nowrap;
         span {
             font-weight: 400;
             font-size: 12px;
@@ -197,6 +212,7 @@
     }
 
     &__price-old {
+        white-space: nowrap;
     }
 
     &__btn {
@@ -214,6 +230,16 @@
         position: relative;
         z-index: 1;
         margin-bottom: 12px;
+        svg {
+            display: none;
+            margin-left: 5px;
+        }
+        &.loading {
+            svg {
+                display: block;
+                animation: rotate-360-cw 0.4s linear infinite both;
+            }
+        }
     }
 
     &__tags {
@@ -269,6 +295,10 @@
 
     .swiper-slide {
         pointer-events: none !important;
+    }
+
+    .swiper-wrapper {
+        cursor: pointer;
     }
 
     // .swiper-initialized {

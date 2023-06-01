@@ -1,4 +1,4 @@
-const dropdowns = document.querySelectorAll(".js-dropdown")
+let dropdowns = document.querySelectorAll(".js-dropdown")
 
 if (dropdowns) {
     dropdowns.forEach(dropdown => {
@@ -17,14 +17,17 @@ if (dropdowns) {
             listBtn.addEventListener("click", () => {
                 const sortFilters = document.querySelectorAll("[data-filter-type='wpfSortBy'] input")
 
-                sortFilters[index].click()
-
+                if (sortFilters.length !== 0) {
+                    sortFilters[index].click()
+                }
                 btn.children[0].innerHTML = listBtn.innerHTML
                 dropdown.classList.toggle("active")
             })
-
-            if (document.querySelectorAll("[data-filter-type='wpfSortBy'] input")[index].checked) {
-                btn.children[0].innerHTML = listBtn.innerHTML
+            console.log()
+            if (document.querySelectorAll("[data-filter-type='wpfSortBy'] input").length !== 0) {
+                if (document.querySelectorAll("[data-filter-type='wpfSortBy'] input")[index].checked) {
+                    btn.children[0].innerHTML = listBtn.innerHTML
+                }
             }
         })
     })

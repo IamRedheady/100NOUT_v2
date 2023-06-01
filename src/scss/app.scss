@@ -2,10 +2,6 @@
 @import "./normalize";
 @import "./base";
 
-// DELETE
-@import "./old";
-// DELETE
-
 // UI
 @import "./ui/animations";
 @import "./ui/ui";
@@ -18,6 +14,7 @@
 @import "./components/footer";
 @import "./components/product";
 @import "./components/prs";
+@import "./components/cartP";
 
 // Pages
 @import "./pages/home";
@@ -36,3 +33,4 @@
 @import "./pages/thanks";
 @import "./pages/delivery";
 @import "./pages/prp";
+@import "./pages/ordering";

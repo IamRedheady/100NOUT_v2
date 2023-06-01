@@ -1,4 +1,16 @@
 .prp {
+    &__price {
+    }
+
+    &__price-currency {
+    }
+
+    &__price-old {
+    }
+
+    &__buy {
+    }
+
     &__title {
         margin-top: 14px;
         margin-bottom: 4px;
@@ -35,7 +47,7 @@
     }
 
     &__thumbs {
-        max-height: 420px;
+        max-height: 426px;
         max-width: 73px;
         overflow: hidden;
         .swiper-slide {
@@ -49,13 +61,19 @@
                 object-fit: cover;
                 display: block;
             }
+            &-thumb {
+                border: 1px solid transparent;
+                &-active {
+                    border: 1px solid $B500;
+                }
+            }
         }
     }
 
     &__slider {
         width: 100%;
         max-width: 514px;
-        max-height: 420px;
+        max-height: 426px;
         overflow: hidden;
         margin-left: 14px;
         position: relative;
@@ -85,6 +103,8 @@
             width: 55px;
             height: 55px;
             left: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
             &::after {
                 content: "";
                 background-image: url("data:image/svg+xml,%3Csvg width='8' height='12' viewBox='0 0 8 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M6.90325 0.859802C7.30308 1.26203 7.30308 1.91164 6.90325 2.31386L3.25262 6.01605L6.90325 9.66668C7.30308 10.0689 7.30308 10.7185 6.90325 11.1207C6.70961 11.316 6.44603 11.4258 6.17106 11.4258C5.89609 11.4258 5.6325 11.316 5.43887 11.1207L1.06637 6.74824C0.871141 6.5546 0.761328 6.29102 0.761328 6.01605C0.761328 5.74108 0.871141 5.4775 1.06637 5.28386L5.43887 0.859802C5.6325 0.664574 5.89609 0.55476 6.17106 0.55476C6.44603 0.55476 6.70961 0.664574 6.90325 0.859802Z' fill='%23212B36'/%3E%3C/svg%3E%0A");
@@ -92,6 +112,12 @@
                 background-repeat: no-repeat;
                 width: 11px;
                 height: 13px;
+            }
+        }
+        &:hover {
+            .swiper-button-next,
+            .swiper-button-prev {
+                opacity: 1;
             }
         }
         .swiper-button-next {
@@ -116,7 +142,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
+            height: 100%;
             background-color: $white;
             z-index: 12;
             user-select: none;
@@ -137,9 +163,19 @@
             height: 100%;
             margin: auto;
             border-radius: 8px;
-            &:hover {
-                img {
-                    opacity: 0;
+            picture {
+                pointer-events: none;
+                width: 100%;
+                height: 100%;
+            }
+            .swiper-zoom-container {
+                cursor: zoom-in;
+                &.initZoom {
+                    cursor: zoom-out;
+                    source,
+                    img {
+                        opacity: 0;
+                    }
                 }
             }
         }
@@ -149,6 +185,12 @@
                 height: 100%;
                 object-fit: contain;
                 display: block;
+                pointer-events: none;
+            }
+        }
+        .swiper-slide-zoomed {
+            picture {
+                pointer-events: all;
             }
         }
         .swiper-button-next,
@@ -271,6 +313,10 @@
         &-top {
             display: flex;
             align-items: center;
+            margin-bottom: 14px;
+            .product__btn {
+                margin-left: auto;
+            }
         }
         &-card {
             &:last-child {
@@ -355,10 +401,10 @@
         margin-top: 25px;
     }
 
-    #prp1:checked ~ &__tabs-inner &__tabs-label:nth-child(1),
-    #prp2:checked ~ &__tabs-inner &__tabs-label:nth-child(2),
-    #prp3:checked ~ &__tabs-inner &__tabs-label:nth-child(3),
-    #prp4:checked ~ &__tabs-inner &__tabs-label:nth-child(4) {
+    #prp1:checked ~ &__tabs-inner &__tabs-label-1,
+    #prp2:checked ~ &__tabs-inner &__tabs-label-2,
+    #prp3:checked ~ &__tabs-inner &__tabs-label-3,
+    #prp4:checked ~ &__tabs-inner &__tabs-label-4 {
         color: $B600;
         border-color: $B500;
     }
@@ -386,6 +432,62 @@
                 margin-right: 0;
             }
         }
+    }
+    &__header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 11;
+        background-color: $white;
+        border: 1px solid #efeeed;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        &.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        @media screen and (max-width: 1200px) {
+            display: none;
+        }
+    }
+    &__header-inner {
+        display: flex;
+        align-items: center;
+        padding: 5px 0;
+        .product__buy {
+            max-width: min-content;
+            margin-top: 0;
+            margin-left: 24px;
+            margin-bottom: 0;
+        }
+    }
+
+    &__header-pic {
+        min-width: 86px;
+        width: 86px;
+        height: 70px;
+        border-radius: 8px;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__header-content {
+        margin-left: 14px;
+        margin-right: auto;
+    }
+
+    &__header-title {
+    }
+
+    &__header-status {
+        color: $B600;
     }
 }
 
@@ -508,10 +610,32 @@
             }
         }
     }
+    .prp__big-slider-thumbs {
+        width: 100%;
+        padding: 0 20px;
+    }
+    .prp__big-slider-pic {
+        overflow: hidden;
+        margin: 0 20px;
+        margin-top: 10px;
+        max-width: 100%;
+    }
 }
 
 @media screen and (max-width: 660px) {
     .prp {
+        &__big-slider {
+            .swiper-button-prev,
+            .swiper-button-next {
+                display: none;
+            }
+            // .swiper-slide-active.swiper-slide-zoomed {
+            //     img {
+            //         object-fit: initial;
+            //         height: auto;
+            //     }
+            // }
+        }
         &__slider {
             height: 67vw;
             .swiper-button-next,

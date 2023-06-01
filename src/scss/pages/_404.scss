@@ -4,18 +4,20 @@
     flex-direction: column;
     align-items: center;
     padding-top: 104px;
-    padding-bottom: 100px;
     max-width: 1001px;
+    margin-top: 120px;
     &__pic {
         margin-bottom: 15px;
     }
 
     &__title {
         margin-bottom: 10px;
+        text-align: center;
     }
 
     &__text {
         margin-bottom: 24px;
+        text-align: center;
     }
 
     &__link {
@@ -46,5 +48,6 @@
 @media screen and (max-width: 640px) {
     .not-found {
         max-width: 461px;
+        margin-top: 50px;
     }
 }
