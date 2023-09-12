@@ -1,0 +1,44 @@
+.skupka {
+    .advantages {
+        margin-bottom: 100px;
+    }
+
+    .advantages__wrapp {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        @media (max-width: 1160px) {
+            gap: 20px;
+        }
+    }
+    .advantages__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 280px;
+        height: 175px;
+        background-color: rgba(249, 250, 251, 1);
+        padding: 20px 40px;
+    }
+    .advantages__img {
+        margin-bottom: 15px;
+        img {
+            width: 54px;
+            height: 54px;
+        }
+    }
+    .advantages__name {
+        font-size: 20px;
+        color: rgba(22, 29, 37, 1);
+        margin-bottom: 10px;
+        font-weight: 400;
+    }
+    .advantages__discription {
+        color: rgba(69, 79, 91, 1);
+        font-size: 16px;
+        font-weight: 300;
+        max-width: 200px;
+    }
+}

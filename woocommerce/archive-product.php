@@ -97,7 +97,7 @@ get_header( 'shop' );
                                     </svg>
                                 </button>
                                 <div class="catalog__sort">
-                                    <div class="dropdown js-dropdown">
+                                    <div class="dropdown js-dropdown js-dropdown-wpf">
                                         <button type="button" class="dropdown__btn js-current-sort">
                                             <span class="text-base text">По новизне</span>
                                             <svg class="dropdown__arrow" width="20" height="20" viewBox="0 0 20 20"

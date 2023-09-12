@@ -1085,16 +1085,16 @@ function nout_get_dso_cost() {
 }
 
 // Прячем товары с 0 ценой
-add_action( 'woocommerce_product_query', 'themelocation_product_query' );
-function themelocation_product_query( $q ){
-$meta_query = $q->get( 'meta_query' );
-    $meta_query[] = array(
-                'key'       => '_price',
-                'value'     => 0,
-                'compare'   => '>'
-            );
-$q->set( 'meta_query', $meta_query );
-}
+// add_action( 'woocommerce_product_query', 'themelocation_product_query' );
+// function themelocation_product_query( $q ){
+// $meta_query = $q->get( 'meta_query' );
+//     $meta_query[] = array(
+//                 'key'       => '_price',
+//                 'value'     => 0,
+//                 'compare'   => '>'
+//             );
+// $q->set( 'meta_query', $meta_query );
+// }
 
 // Отправка сообщения в тг о новом заказе
 add_action( 'woocommerce_order_status_changed', 'new_order_send_tg',  10, 3  );
@@ -1157,3 +1157,9 @@ $msg .= '
 
 # Отменим `-scaled` размер - ограничение максимального размера картинки
 add_filter( 'big_image_size_threshold', '__return_zero' );
+
+
+add_filter('woocommerce_attribute', 'etx_rmv_attr_lnk');
+function etx_rmv_attr_lnk($att) {
+    return strip_tags($att);
+}

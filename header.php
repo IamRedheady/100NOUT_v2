@@ -19,6 +19,29 @@
     <meta name="format-detection" content="date=no">
     <meta name="format-detection" content="address=no">
     <meta name="format-detection" content="email=no">
+
+
+    <?php
+        // Скрытие архивов атрибутов от индексации
+        if (is_tax()) {
+            $taxonomy_slug = get_query_var('taxonomy');
+            if (mb_substr( $taxonomy_slug, 0, 3 ) === 'pa_') {
+                echo '<meta name="robot" content="noindex, nofollow">';
+            }
+        }
+
+    ?>
+
+
+    <!-- Google Tag Manager -->
+    <!-- 
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5FSCB3G');</script>
+	-->
+    <!-- End Google Tag Manager -->
 	<?php wp_head(); ?>
 </head>
 
@@ -46,8 +69,15 @@
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','G-550SPQSRDB');</script>
+})(window,document,'script','dataLayer','GTM-5FSCB3G');</script>
+
 <!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) --> 
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FSCB3G" 
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> 
+<!-- End Google Tag Manager (noscript) -->
+
 <script src="<?php echo get_template_directory_uri();?>/dist/swiper/swiper-bundle.min.js"></script>
 
 <!-- Google tag (gtag.js) -->
@@ -973,12 +1003,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
 </style>
 <!-- Битрикс форма чата и поддержки -->
-<script>
-        (function(w,d,u){
-                var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
-                var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
-        })(window,document,'https://cdn-ru.bitrix24.ru/b16077710/crm/site_button/loader_5_r5xxwz.js');
-</script>
+<?php 
+    if (is_page_template('templates/skupka.php')) {
+        ?>
+                <script>
+                    (function (w, d, u) {
+                        var s = d.createElement('script'); s.async = true; s.src = u + '?' + (Date.now() / 60000 | 0);
+                        var h = d.getElementsByTagName('script')[0]; h.parentNode.insertBefore(s, h);
+                    })(window, document, 'https://cdn-ru.bitrix24.ru/b16077710/crm/site_button/loader_3_990vyx.js');
+                </script>
+        <?php
+    } else {
+        ?>
+        <script>
+                (function(w,d,u){
+                        var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
+                        var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+                })(window,document,'https://cdn-ru.bitrix24.ru/b16077710/crm/site_button/loader_5_r5xxwz.js');
+        </script>
+        <?php
+
+    }
+?>
+
+<!-- Google Tag Manager (noscript) -->
+<!--
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FSCB3G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ -->
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- Ajax удаление товаров из корзины с кнопки из карточки товара -->
 <style>
@@ -1150,19 +1203,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </li>
                         <li class="header__nav-list-item">
-                            <a class="link link_big link-secondary text" href="https://skypim.100nout.by/" target="_blank">
+                            <a class="link link_big link-secondary text" href="/skupka-tehniki/">
                                 Скупка техники
                             </a>
                         </li>
-                        <!-- <li class="header__nav-list-item">
-                            <a class="link link_big link-secondary text" href="/o-kompanii/">
-                                О компании
-                            </a>
-                        </li> -->
                         <li class="header__nav-list-item">
                             <a class="link link_big link-secondary text" href="/trade-in/">
                                 Trade-in
                             </a>
+                        </li>
+                        <li class="header__nav-list-item">
+                        <div class="dropdown js-dropdown">
+                                        <button type="button" class="dropdown__btn">
+                                            <span class="text-base text">+375 44 415 74 00</span>
+                                            <svg class="dropdown__arrow" width="20" height="20" viewBox="0 0 20 20"
+                                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.70711 7.29289L10 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68342 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z"
+                                                    fill="#B8B8B8" />
+                                            </svg>
+                                        </button>
+                                        <ul class="dropdown__list">
+                                            <li class="dropdown__list-item">
+                                                <a href="tel:+375 44 415 74 00" class="dropdown__list-item-btn text-sm text">
+                                                    +375 44 415 74 00
+                                                </a>
+                                            </li>
+                                            <li class="dropdown__list-item">
+                                                <a href="tel:+375 33 375 74 00" class="dropdown__list-item-btn text-sm text">
+                                                +375 33 375 74 00
+                                                </a>
+                                            </li>
+                                            <li class="dropdown__list-item">
+                                                <a href="tel:+375 25 977 74 00" class="dropdown__list-item-btn text-sm text">
+                                                +375 25 977 74 00
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                         </li>
                     </ul>
                 </nav>
@@ -1359,7 +1437,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </a>
                             </li>
                             <li class="menu__mobile-list-item">
-                                <a href="https://skypim.100nout.by/" class="btn btn_icon-left text-sm text" target="_blank">
+                                <a href="/skupka-tehniki/" class="btn btn_icon-left text-sm text">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path

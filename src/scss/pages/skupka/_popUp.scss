@@ -1,0 +1,89 @@
+.skupka {
+    .popUp {
+        transform: translateY(-100%);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0%;
+        left: 0%;
+        background-color: rgba(46, 46, 46, 0.3);
+        z-index: 99999999999;
+        transition: all 0.3s ease 1ms;
+    }
+    .popUp__wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 100%;
+    }
+    .popUp__content {
+        position: relative;
+        max-width: 560px;
+        border-radius: 10px;
+    }
+
+    .close {
+        position: absolute;
+        right: 3%;
+        top: 5%;
+        cursor: pointer;
+    }
+    .close:hover .line1,
+    .close:hover .line2 {
+        background-color: #58b741;
+    }
+    .close__wrapper {
+        width: 20px;
+        height: 20px;
+        position: relative;
+    }
+    .line1,
+    .line2 {
+        position: absolute;
+        left: 0;
+        top: 0%;
+        width: 100%;
+        height: 1px;
+        background-color: #ffffff;
+    }
+    .line1 {
+        transform: rotate(45deg);
+    }
+    .line2 {
+        transform: rotate(-45deg);
+    }
+    ._active {
+        transform: translateY(0%);
+    }
+    .popUp__image {
+        padding: 0px 0px 26% 0px;
+
+        img {
+            border-radius: 20px 20px 0px 0px;
+        }
+    }
+    .form__popUp {
+        background-color: #ffffff;
+        border-radius: 0px 0px 20px 20px;
+        .b24-form-header {
+            border: none;
+            padding: 0px;
+            margin-bottom: 30px;
+        }
+        .b24-form-wrapper {
+            padding: 50px 100px;
+            border-radius: 0px 0px 20px 20px;
+            @media (max-width: 1200px) {
+                padding: calc(20px + (50 - 20) * (100vw - 375px) / (1200 - 375))
+                    calc(40px + (100 - 40) * (100vw - 375px) / (1200 - 375));
+            }
+        }
+        .b24-form-content {
+            padding: 0px;
+        }
+        .b24-form-header-title {
+            margin: 0px;
+        }
+    }
+}

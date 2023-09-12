@@ -69,7 +69,10 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
             <p class="text-sm prp__header-status">В наличии</p>
         </div>
         <p class="prp__price text text-3xl">
-        <?php echo number_format($product->get_price(), 0, '', ' ');?><span class="prp__price-currency text-xs">BYN</span>
+        <?php 
+                        if ($product->get_price()) {
+                            echo number_format($product->get_price(), 0, '', ' ');
+                        }?><span class="prp__price-currency text-xs">BYN</span>
         </p>
         <p class="prp__price-old text-xs">
             <?php echo $product->get_regular_price();?>
@@ -294,7 +297,10 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
                 <div class="prp__content-more-card">
                     <div class="prp__content-more-top">
                         <p class="prp__price text text-3xl">
-                        <?php echo number_format($product->get_price(), 0, '', ' ');?><span class="prp__price-currency text-xs">BYN</span>
+                        <?php 
+                        if ($product->get_price()) {
+                            echo number_format($product->get_price(), 0, '', ' ');
+                        }?><span class="prp__price-currency text-xs">BYN</span>
                         </p>
                         <p class="prp__price-old text-xs">
                             <?php echo $product->get_regular_price();?>
@@ -314,7 +320,7 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
                         <ul class="prp__content-more-list">
                             <li class="prp__content-more-list-item">
                                 <p class="text text-sm text--semibold">Забрать в магазине</p>
-                                <p class="text text-xs">Минск — сегодня, до 20:00</p>
+                                <p class="text text-xs">Минск — сегодня, до 21:00</p>
                             </li>
                             <li class="prp__content-more-list-item">
                                 <p class="text text-sm text--semibold">Доставка курьером</p>

@@ -199,7 +199,10 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         <div class="product__box">
             <div class="product__actions">
                 <p class="product__price">
-                <?php echo number_format($product->get_price(), 0, '', ' ');?>
+                <?php 
+                        if ($product->get_price()) {
+                            echo number_format($product->get_price(), 0, '', ' ');
+                        }?>
                     <span>BYN</span>
                 </p>
                 <p class="product__price-old">

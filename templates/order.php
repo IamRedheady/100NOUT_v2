@@ -115,7 +115,7 @@
                         <span class="ordering__label-circle"></span>
                         <span class="ordering__label-content">
                             <span class="ordering__label-title text text-base">
-                                Доставка по Беларуси: 20 BYN
+                                Доставка по Беларуси: 25 BYN
                             </span>
                             <span class="ordering__label-subtitle text text-xs">
                             <?php

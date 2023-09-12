@@ -16,7 +16,7 @@
             <div class="footer__body layout">
                 <ul class="footer__list">
                     <li class="footer__list-item">
-                        <a href="#" class="footer__logo">
+                        <a href="/" class="footer__logo">
                             <svg width="151" height="44" viewBox="0 0 151 44" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -106,7 +106,7 @@
                         <nav class="footer__nav">
                             <ul class="footer__nav-list">
                                 <li class="footer__nav-item">
-                                    <a href="https://skypim.100nout.by/" target="_blank" class="footer__nav-item-link link link_big link-secondary text">
+                                    <a href="/skupka-tehniki/" class="footer__nav-item-link link link_big link-secondary text">
                                         Скупка техники
                                     </a>
                                 </li>
@@ -150,17 +150,17 @@
                         <nav class="footer__nav">
                             <ul class="footer__nav-list">
                                 <li class="footer__nav-item">
-                                    <a href="https://www.instagram.com/100nout.by/" class="footer__nav-item-link link link_big link-secondary text">
+                                    <a href="https://www.instagram.com/100nout.by/" class="footer__nav-item-link link link_big link-secondary text" target="_blank">
                                         Инстаграм
                                     </a>
                                 </li>
                                 <li class="footer__nav-item">
-                                    <a href="https://t.me/stonoutby" class="footer__nav-item-link link link_big link-secondary text">
+                                    <a href="https://t.me/stonoutby" class="footer__nav-item-link link link_big link-secondary text" target="_blank">
                                         Телеграм
                                     </a>
                                 </li>
                                 <li class="footer__nav-item">
-                                    <a href="https://vk.com/stonout" class="footer__nav-item-link link link_big link-secondary text">
+                                    <a href="https://vk.com/stonout" class="footer__nav-item-link link link_big link-secondary text" target="_blank">
                                         Вконтакте
                                     </a>
                                 </li>
@@ -170,7 +170,7 @@
                 </ul>
                 <p class="footer__copyright text-xs">
                     <span>
-                    © 2023 100nout.by, ООО «СТОНОУТБУКОВ», УНП 193664989, Минск, ул. Богдановича д. 124 пом. 6Н
+                    © 2023 100nout.by, ООО «СТОНОУТБУКОВ» Директор Метельский Дмитрий Константинович, действующий на основании Устава. <br> Адрес: 220100, Беларусь, г Минск, ул Кульман, д. 15 литер Б 9/к. УНП 193664989
                     </span>
                 </p>
             </div>

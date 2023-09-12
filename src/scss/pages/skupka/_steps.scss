@@ -1,0 +1,97 @@
+.skupka {
+    .steps {
+        margin-bottom: calc(40px + (100 - 40) * (100vw - 375px) / (1200 - 375));
+        &__title {
+            font-weight: 500;
+            font-size: 35px;
+            line-height: 41px;
+            color: #161d25;
+            margin-bottom: 30px;
+        }
+
+        &__subtitle {
+            font-weight: 300;
+            font-size: 25px;
+            line-height: 30px;
+            color: #454f5b;
+            max-width: 790px;
+            margin-bottom: 50px;
+        }
+
+        &__list {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            &::after {
+                content: "";
+                background: #f4f6f8;
+                width: 85%;
+                height: 1px;
+                position: absolute;
+                top: 35px;
+                z-index: -1;
+            }
+            &-item {
+                &-num {
+                    background: #fff;
+                    width: 72px;
+                    height: 72px;
+                    font-weight: 400;
+                    font-size: 35px;
+                    line-height: 41px;
+                    color: #58b741;
+                    border: 1px solid #f4f6f8;
+                    border-radius: 100px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 15px;
+                    position: relative;
+                    z-index: 1;
+                }
+                &-title {
+                    font-weight: 400;
+                    font-size: 25px;
+                    line-height: 30px;
+                    color: #161d25;
+                    margin-bottom: 10px;
+                }
+                &-text {
+                    font-weight: 300;
+                    font-size: 18px;
+                    line-height: 18px;
+                    color: #454f5b;
+                    max-width: 320px;
+                }
+            }
+        }
+    }
+    .active-steps {
+        color: #ffff;
+        background: #58b741;
+    }
+    @media screen and (max-width: 1100px) {
+        .steps {
+            &__title {
+                font-size: 32px;
+                line-height: 35px;
+            }
+            &__subtitle {
+                font-size: 20px;
+                line-height: 26px;
+            }
+            &__list {
+                &::after {
+                    display: none;
+                }
+                flex-direction: column;
+                &-item {
+                    margin-bottom: 30px;
+                    &-text {
+                        max-width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
