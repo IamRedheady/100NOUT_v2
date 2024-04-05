@@ -326,6 +326,13 @@
                                               placeholder="Опишите ваш товар максимально подробно *"></textarea><br>
                                     <input class="tg-form-submit" type="submit" value="Отправить на оценку">
                                 </form>
+
+                                <div class="tg-form-modal">
+                                    <div class="tg-form-modal-wrap">
+                                        <div class="close_modal">+</div>
+                                        <div class="tg-form-modal-wrap-text">Спасибо за заявку!<br/> С вами свяжутся в течении 10 минут</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

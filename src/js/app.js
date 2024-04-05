@@ -43,10 +43,27 @@ function sendMessage(event) {
 }
 const formSubmit = document.querySelector(".js-tg-form");
 
+let popupBg = document.querySelector('.tg-form-modal');
+let popup = document.querySelector('.tg-form-modal-wrap'); 
+let closePopupButton = document.querySelector('.close_modal');
+
 formSubmit.addEventListener('submit', function (e) {
     e.preventDefault();
     sendMessage();
-    alert("Спасибо за заявку! С вами свяжутся в течении 10 минут");
+    popupBg.classList.add('active');
+    popup.classList.add('active'); а
+});
+
+closePopupButton.addEventListener('click',() => {
+    popupBg.classList.remove('active');
+    popup.classList.remove('active');
+});
+
+document.addEventListener('click', (e) => {
+    if(e.target === popupBg) {
+        popupBg.classList.remove('active');
+        popup.classList.remove('active');
+    }
 });
 
 // Elements
