@@ -35,19 +35,76 @@
     }
     .contacts__form {
         flex: 0 0 48%;
+        color: #5b7286;
         border-left: 1px solid rgba(229, 229, 229, 1);
         padding-left: 40px;
         @media (max-width: 769px) {
             border-left: none;
             padding-left: 0px;
         }
-        .b24-form-header-title {
-            color: black;
-            text-align: left;
+
+        .tg-form {
+            padding: 14px 31px;
+
+            input {
+                width: 100%;
+                margin-bottom: 10px;
+                border-radius: 4px;
+                height: 52px;
+                color: #5b7286;
+                padding: 17px;
+                background-color: #f9fafb;
+                letter-spacing: -0.3px;
+
+                &[type=submit] {
+                    max-width: 265px;
+                    background-color: #4a586e;
+                    color: white;
+                    margin-top: 20px;
+                    transition: all 0.5s ease;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #4a586eb3;
+                    }
+                }
+
+                &::placeholder {
+                    opacity: 0.5;
+                }
+            }
+
+            textarea {
+                height: 104px;
+                min-height: 52px;
+                padding: 23px 17px 17px 17px;
+                max-width: 100%;
+                min-width: 100%;
+                resize: vertical;
+                background-color: #f9fafb;
+                border: none;
+
+                &::placeholder {
+                    opacity: 0.5;
+                }
+            }
+        }
+
+        .tg-form-header {
+            padding: 0 31px;
+        }
+
+        .tg-form-title {
+            text-align: center;
+            letter-spacing: .6px;
+            margin-bottom: 9px;
+            font-weight: 600;
+            font-size: 24px;
         }
         .b24-form-header-description {
             text-align: left;
             color: rgba(90, 113, 132, 1);
+            margin-bottom: 15px;
         }
 
         .b24-form-header {
