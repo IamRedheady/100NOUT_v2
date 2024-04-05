@@ -28,6 +28,7 @@ $text_block = $page_fields['block3'];
             </div>
         </div>
     </section>
+
     <section class="advantages">
         <div class="layout">
             <div class="advantages__wrapp">

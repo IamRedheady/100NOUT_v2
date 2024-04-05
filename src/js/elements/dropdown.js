@@ -8,6 +8,7 @@ if (dropdowns) {
 
         btn.addEventListener("click", () => {
             dropdown.classList.toggle("active")
+            console.log(menu)
         })
 
         menuItems.forEach((item, index) => {
@@ -15,19 +16,16 @@ if (dropdowns) {
 
             listBtn.addEventListener("click", () => {
                 if (dropdown.classList.contains("js-dropdown-wpf")) {
-                    if (btn.children[0].innerHTML !== listBtn.innerHTML) {
-                        const sortFilters = document.querySelectorAll("[data-filter-type='wpfSortBy'] input")
+                    const sortFilters = document.querySelectorAll("[data-filter-type='wpfSortBy'] input")
 
-                        if (sortFilters.length !== 0) {
-                            sortFilters[index].click()
-                        }
-
-                        btn.children[0].innerHTML = listBtn.innerHTML
+                    if (sortFilters.length !== 0) {
+                        sortFilters[index].click()
                     }
+
+                    btn.children[0].innerHTML = listBtn.innerHTML
                 }
                 dropdown.classList.toggle("active")
             })
-
             if (dropdown.classList.contains("js-dropdown-wpf")) {
                 if (document.querySelectorAll("[data-filter-type='wpfSortBy'] input").length !== 0) {
                     if (document.querySelectorAll("[data-filter-type='wpfSortBy'] input")[index].checked) {

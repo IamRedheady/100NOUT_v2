@@ -220,8 +220,8 @@ if (order) {
         }
     }
 
-
     // Tel
+
     deliveryInputTel.addEventListener("keyup", () => {
         errorCheck(deliveryInputTel)
         console.log(deliveryInputTel.value[6])

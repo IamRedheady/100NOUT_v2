@@ -34,9 +34,9 @@
 	<?php if (count($pages)): ?>
 	<section class="condition" id="types">
 		<div class="layout">
-				<h2 class="condition__title">Какую технику мы выкупаем1</h2>
+				<h2 class="condition__title">Какую технику мы выкупаем</h2>
 				<div class="condition__cards" style="flex-wrap: wrap; gap: 40px;">
-					<?php foreach($pages as $page_item):
+					<?php foreach($pages as $page_item): 
 						$card_fields = get_field('card', $page_item);
 
 						if ($card_fields['hide']) {
@@ -312,25 +312,12 @@
                                 </div>
                             </div>
                             <div class="contacts__form" id="form">
-                                <div class="tg-form-header">
-                                    <div class="tg-form-title">Оценка онлайн</div>
-                                    <div class="tg-form-description">Заполните форму и мы отправим вам предварительную стоимость в течении 10 минут</div>
-                                </div>
-
-                                <form class="tg-form">
-                                    <input type="text" id="fname" name="fname" placeholder="Имя"><br>
-                                    <input type="text" id="ftel" name="ftel" required placeholder="Номер телефона*"><br>
-                                    <textarea name="ftext" required placeholder="Опишите ваш товар максимально подробно *"></textarea><br/>
-                                    <input class="tg-form-submit" type="submit"  value="Отправить на оценку">
-                                </form>
-                                <?php /*
                                 <script data-b24-form="inline/3/uhju4i" data-skip-moving="true">
                                     (function (w, d, u) {
                                         var s = d.createElement('script'); s.async = true; s.src = u + '?' + (Date.now() / 180000 | 0);
                                         var h = d.getElementsByTagName('script')[0]; h.parentNode.insertBefore(s, h);
                                     })(window, document, 'https://cdn-ru.bitrix24.ru/b16077710/crm/form/loader_3.js');
                                 </script>
-*/?>
                             </div>
                         </div>
                     </div>
