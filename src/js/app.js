@@ -46,6 +46,7 @@ const formSubmit = document.querySelector(".js-tg-form");
 formSubmit.addEventListener('submit', function (e) {
     e.preventDefault();
     sendMessage();
+    alert("Спасибо за заявку! С вами свяжутся в течении 10 минут");
 });
 
 // Elements
