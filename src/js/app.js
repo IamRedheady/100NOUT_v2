@@ -42,16 +42,17 @@ function sendMessage(event) {
     xht.send(JSON.stringify(obj));
 }
 const formSubmit = document.querySelector(".js-tg-form");
-
+const tgForm = document.querySelector('.tg-form');
 let popupBg = document.querySelector('.tg-form-modal');
-let popup = document.querySelector('.tg-form-modal-wrap'); 
+let popup = document.querySelector('.tg-form-modal-wrap');
 let closePopupButton = document.querySelector('.close_modal');
 
 formSubmit.addEventListener('submit', function (e) {
     e.preventDefault();
     sendMessage();
+    tgForm.reset();
     popupBg.classList.add('active');
-    popup.classList.add('active'); а
+    popup.classList.add('active');
 });
 
 closePopupButton.addEventListener('click',() => {
