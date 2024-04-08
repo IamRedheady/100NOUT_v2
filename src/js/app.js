@@ -14,19 +14,24 @@ let tg = {
     token: "5360345876:AAEyM_sckiSJyjD3ci4QLtPfstR4Uxn9tDk",
     chat_id: "-1001933568755"
 }
+
+
+
 function sendMessage(event) {
     const url = `https://api.telegram.org/bot${tg.token}/sendMessage`
 
     const tgForm = document.querySelector('.tg-form')
     const name = tgForm.querySelector('[name="fname"]'),
         tel = tgForm.querySelector('[name="ftel"]'),
-        txt = tgForm.querySelector('[name="ftext"]');
+        txt = tgForm.querySelector('[name="ftext"]'),
+        file = tgForm.querySelector('[name="ffile"]');
 
     const msg = `Заявка со страницы скупки 100nout.by! 
 
 Имя: ${name.value}
 Телефон: ${tel.value}
 Сообщение: ${txt.value}
+Картинки: ${file.value}
 
 Отправлено со страницы ${window.location.href}
 `
@@ -41,6 +46,13 @@ function sendMessage(event) {
     xht.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xht.send(JSON.stringify(obj));
 }
+
+//
+// function sendPhoto(event) {
+//     const formData = new FormData();
+//
+// }
+
 const formSubmit = document.querySelector(".js-tg-form");
 const tgForm = document.querySelector('.tg-form');
 let popupBg = document.querySelector('.tg-form-modal');
@@ -50,6 +62,7 @@ let closePopupButton = document.querySelector('.close_modal');
 formSubmit.addEventListener('submit', function (e) {
     e.preventDefault();
     sendMessage();
+    // sendPhoto();
     tgForm.reset();
     popupBg.classList.add('active');
     popup.classList.add('active');
