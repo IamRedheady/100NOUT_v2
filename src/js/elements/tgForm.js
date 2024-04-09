@@ -13,6 +13,7 @@ $('.js-tg-form').on('submit', function (event) {
     data.append( 'Имя', 		$('[name="fname"]', form).val() );
     data.append( 'Телефон', 		$('[name="ftel"]', form).val() );
     data.append( 'Описание', 		$('[name="ftext"]', form).val() );
+    data.append('Отправлено со страницы', window.location.href)
 
 
 
@@ -24,7 +25,7 @@ $('.js-tg-form').on('submit', function (event) {
             });
         }
     });
-    
+
 
     $.ajax({
         url: 'https://100nout.by/wp-content/themes/nout/ajax.php',
