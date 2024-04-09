@@ -241,12 +241,27 @@ $text_block = $page_fields['block3'];
                     </div>
                 </div>
                 <div class="contacts__form" id="form">
-                    <script data-b24-form="inline/3/uhju4i" data-skip-moving="true">
-                        (function (w, d, u) {
-                            var s = d.createElement('script'); s.async = true; s.src = u + '?' + (Date.now() / 180000 | 0);
-                            var h = d.getElementsByTagName('script')[0]; h.parentNode.insertBefore(s, h);
-                        })(window, document, 'https://cdn-ru.bitrix24.ru/b16077710/crm/form/loader_3.js');
-                    </script>
+                    <div class="tg-form-header">
+                        <div class="tg-form-title">Оценка онлайн</div>
+                        <div class="tg-form-description">Заполните форму и мы отправим вам предварительную
+                            стоимость в течении 10 минут</div>
+                    </div>
+
+                    <form class="tg-form js-tg-form">
+                        <input type="text" id="fname" name="fname" placeholder="Имя"><br>
+                        <input type="text" id="ftel" name="ftel" required placeholder="Номер телефона*"><br>
+                        <textarea name="ftext" class="ftext" required  placeholder="Опишите ваш товар максимально подробно *"></textarea><br>
+                            <span id="status">Выберите максимум 4 фото для загрузки</span><br/>
+                            <input type="file" class="ffile" name="ffile"  id="file-input" name="file-input" multiple /><br/>
+                        <input class="tg-form-submit" type="submit" value="Отправить на оценку">
+                    </form>
+
+                    <div class="tg-form-modal">
+                        <div class="tg-form-modal-wrap">
+                            <div class="close_modal">+</div>
+                            <div class="tg-form-modal-wrap-text">Спасибо за заявку!<br/> С вами свяжутся в течении 10 минут</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

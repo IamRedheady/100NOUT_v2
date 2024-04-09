@@ -32,9 +32,9 @@
 
     ?>
 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Google Tag Manager -->
-    <!-- 
+    <!--
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -91,9 +91,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- End Google Tag Manager -->
 
-<!-- Google Tag Manager (noscript) --> 
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FSCB3G" 
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> 
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FSCB3G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <script src="<?php echo get_template_directory_uri();?>/dist/swiper/swiper-bundle.min.js"></script>
@@ -192,12 +192,12 @@ _tmr.push({id: "3485157", type: "pageView", start: (new Date()).getTime()});
     }
 
     const onProductClick = (link) => {
-        if (window.innerWidth > 1160) { 
-            location.href = link 
+        if (window.innerWidth > 1160) {
+            location.href = link
         }
     }
 
-    // Favorite 
+    // Favorite
     const checkFavorite = () => {
         document.querySelectorAll(".header__favorite").forEach(btn=>{
             if (document.querySelector(".wishlist_products_counter").classList.contains("wishlist-counter-with-products")) {
@@ -287,7 +287,7 @@ _tmr.push({id: "3485157", type: "pageView", start: (new Date()).getTime()});
         background-color: #439a32;
         opacity: 1;
     }
-  
+
     .dgwt-wcas-sf-wrapp input[type="search"].dgwt-wcas-search-input::placeholder {
         font-style: normal;
         color: #707070;
@@ -425,7 +425,7 @@ _tmr.push({id: "3485157", type: "pageView", start: (new Date()).getTime()});
             height: 44px;
             position: relative;
         }
-        /* .dgwt-wcas-suggestions-wrapp { 
+        /* .dgwt-wcas-suggestions-wrapp {
             min-width: 44px;
             max-width: 44px;
         } */
@@ -746,7 +746,7 @@ _tmr.push({id: "3485157", type: "pageView", start: (new Date()).getTime()});
     .wpfFilterWrapper div.wpfFilterTaxNameWrapper {
         display: block;
     }
-    
+
     @-webkit-keyframes rotate-center {
     0% {
         -webkit-transform: rotate(0);
@@ -1008,7 +1008,7 @@ _tmr.push({id: "3485157", type: "pageView", start: (new Date()).getTime()});
 <!-- Compare -->
 <style>
     .br_compare_added svg path {
-        stroke: #439A32; 
+        stroke: #439A32;
     }
     a.br_compare_button {
         padding: 6px;
@@ -1037,7 +1037,7 @@ _tmr.push({id: "3485157", type: "pageView", start: (new Date()).getTime()});
     }
 </style>
 <!-- Битрикс форма чата и поддержки -->
-<?php 
+<?php
     if (is_page_template('templates/skupka.php')) {
         ?>
                 <script>
@@ -1074,7 +1074,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 </style>
 <div class="js-remove-links">
-    <?php 
+    <?php
         foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
             $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
             $product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
@@ -1344,7 +1344,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             d="M7.80039 21.6002C8.7945 21.6002 9.60039 20.7943 9.60039 19.8002C9.60039 18.8061 8.7945 18.0002 7.80039 18.0002C6.80628 18.0002 6.00039 18.8061 6.00039 19.8002C6.00039 20.7943 6.80628 21.6002 7.80039 21.6002Z"
                             fill="<?php if($c_total == 0) {echo '#21201F';} else {echo '#fff';}?>" />
                     </svg>
-                    <?php 
+                    <?php
                         if ($c_total == 0) {
                             ?>
                                  <span class="to-cart-empty">

@@ -133,6 +133,14 @@
     display: block;
 }
 
+.homepage{
+
+    &__title {
+        margin-top: 40px;
+        text-align: center;
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .intro__pic-img-xl {
         display: none;

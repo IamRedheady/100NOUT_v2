@@ -322,10 +322,8 @@
                                     <input type="text" id="fname" name="fname" placeholder="Имя"><br>
                                     <input type="text" id="ftel" name="ftel" required placeholder="Номер телефона*"><br>
                                     <textarea name="ftext" class="ftext" required  placeholder="Опишите ваш товар максимально подробно *"></textarea><br>
-                                    <?php /*
                                     <span id="status">Выберите максимум 4 фото для загрузки</span><br/>
                                     <input type="file" class="ffile" name="ffile"  id="file-input" name="file-input" multiple /><br/>
- */ ?>
                                     <input class="tg-form-submit" type="submit" value="Отправить на оценку">
                                 </form>
 
