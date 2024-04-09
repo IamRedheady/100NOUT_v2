@@ -5,17 +5,21 @@ $tg_bot_token = "5360345876:AAEyM_sckiSJyjD3ci4QLtPfstR4Uxn9tDk";
 $chat_id = "-1001933568755";
 
 $text = '';
-
+$text .= 'Заявка со страницы скупки 100nout.by!'. "\n" . "\n";
 foreach ($_POST as $key => $val) {
     $text .= $key . ": " . $val . "\n";
 }
+$text .=  "\n" . 'Фотографии (если есть) ниже ⬇️⬇️⬇️';
 
 $param = [
     "chat_id" => $chat_id,
     "text" => $text
 ];
 
+
+
 $url = "https://api.telegram.org/bot" . $tg_bot_token . "/sendMessage?" . http_build_query($param);
+
 
 var_dump($text);
 
