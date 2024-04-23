@@ -9,10 +9,16 @@ $('.js-tg-form').on('submit', function (event) {
         data = new FormData(),
         files = $('input[type=file]')
 
+    submit.disable = true;
+
+    setTimeout(function () {
+        submit.disabled = false;
+    }, 10000);
+
+
     data.append( 'Имя', 		$('[name="fname"]', form).val() );
     data.append( 'Телефон', 		$('[name="ftel"]', form).val() );
     data.append( 'Описание', 		$('[name="ftext"]', form).val() );
-    data.append('Отправлено со страницы', window.location.href);
 
     files.each(function (key, file) {
         let cont = file.files;
