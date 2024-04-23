@@ -253,7 +253,7 @@ $text_block = $page_fields['block3'];
                         <textarea name="ftext" class="ftext" required  placeholder="Опишите ваш товар максимально подробно *"></textarea><br>
                             <span id="status">Выберите максимум 4 фото для загрузки</span><br/>
                             <input type="file" class="ffile" name="ffile"  id="file-input" accept=".jpg,.jpeg,.png" name="file-input" multiple /><br/>
-                        <input class="tg-form-submit" type="submit" value="Отправить на оценку">
+                        <input class="tg-form-submit" id="disbutton" type="submit" value="Отправить на оценку">
                     </form>
 
                     <div class="tg-form-modal">

@@ -4,16 +4,19 @@ $('.js-tg-form').on('submit', function (event) {
     event.stopPropagation();
     event.preventDefault();
 
+    var button = document.getElementById("disbutton");
+
+        button.disabled = true;
+        button.value = "Подождите 10 секунд...";
+        setTimeout(function () {
+            button.disabled = false;
+            button.value = "Отправить на оценку";
+        }, 10000);
+
     let form = this,
         submit = $('.tg-form-submit', form),
         data = new FormData(),
         files = $('input[type=file]')
-
-    submit.disable = true;
-
-    setTimeout(function () {
-        submit.disabled = false;
-    }, 10000);
 
 
     data.append( 'Имя', 		$('[name="fname"]', form).val() );
@@ -65,3 +68,4 @@ $('.js-tg-form').on('submit', function (event) {
     });
     return false;
 });
+
