@@ -323,7 +323,7 @@
                                     <input type="text" id="ftel" name="ftel" required placeholder="Номер телефона*"><br>
                                     <textarea name="ftext" class="ftext" required  placeholder="Опишите ваш товар максимально подробно *"></textarea><br>
                                     <span id="status">Выберите максимум 4 фото для загрузки</span><br/>
-                                    <input type="file" class="ffile" name="ffile"  id="file-input" name="file-input" multiple /><br/>
+                                    <input type="file" class="ffile" name="ffile"  id="file-input" accept=".jpg,.jpeg,.png" name="file-input" multiple /><br/>
                                     <input class="tg-form-submit" type="submit" value="Отправить на оценку">
                                 </form>
 

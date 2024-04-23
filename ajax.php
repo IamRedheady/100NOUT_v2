@@ -2,7 +2,7 @@
 // Токен телеграм бота
 $tg_bot_token = "5360345876:AAEyM_sckiSJyjD3ci4QLtPfstR4Uxn9tDk";
 // ID Чата
-$chat_id = "-1001933568755";
+$chat_id = "-1002134349051";
 
 $text = '';
 $text .= 'Заявка со страницы скупки 100nout.by!'. "\n" . "\n";
