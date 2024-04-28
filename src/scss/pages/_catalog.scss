@@ -121,12 +121,11 @@
         margin-left: 24px;
         &-desc {
             margin-top: 36px;
-            p {
-                margin-bottom: 14px;
-                &:last-child {
-                    margin-bottom: 0;
-                }
+
+            > *:not(span, a, b, em, i, strong) {
+                margin: 14px 0;
             }
+
             h1,
             h2,
             h3,
@@ -134,7 +133,6 @@
             h5,
             h6 {
                 font-weight: 500;
-                margin-bottom: 14px;
             }
             a {
                 transition: color 0.3s ease;
@@ -143,6 +141,14 @@
                 &:hover {
                     color: $B700;
                 }
+            }
+
+            ul, ol {
+                list-style-position: inside;
+            }
+
+            ul {
+                list-style-type: disc;
             }
         }
     }

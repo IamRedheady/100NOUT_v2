@@ -1,129 +1,10 @@
 import '../scss/app.scss';
 
 /* Your JS Code goes here */
-import IMask from 'imask'
-const obmenTel = document.querySelector("input[placeholder='Номер телефона*']")
-
-const maskOptions = {
-    mask: '+{375} (00) 000-00-00'
-};
-const mask = IMask(obmenTel, maskOptions);
-
-
-// let tg = {
-//     token: "5360345876:AAEyM_sckiSJyjD3ci4QLtPfstR4Uxn9tDk",
-//     // chat_id: "-1001933568755",
-//     chat_id: "192150244"
-// }
-//
-// const checkTel = () => {
-//     const checkS = Number(obmenTel.value[6] + obmenTel.value[7])
-//     console.log(checkS)
-//     if (obmenTel.value.length < 19 || checkS !== 29 && checkS !== 33 && checkS !== 44 && checkS !== 25) {
-//         let warning = "Номер телефона должен быть в формате +37529XXXXXXX, +37533XXXXXXX, +37544XXXXXXX, +37525XXXXXXX"
-//
-//         if (!obmenTel.classList.contains("error")) {
-//             obmenTel.offsetParent.insertAdjacentHTML("beforeend", `<span class='text text-sm'>${warning}</span>`)
-//         }
-//
-//         deliveryInputTel.classList.add("error")
-//
-//         return false
-//     } else {
-//         return true
-//     }
-// }
-//
-//
-// function sendPhoto(event) {
-//     const tgForm2 = document.querySelector('.js-tg-form');
-//     const token1 = "5360345876:AAEyM_sckiSJyjD3ci4QLtPfstR4Uxn9tDk";
-//     const url1 = `https://api.telegram.org/bot${token1}/sendDocument`;
-//     const chat_id1 = "192150244";
-//
-//     const elemInput = document.querySelector('[type="file"]');
-//
-//     const formData = new FormData();
-//     formData.append('chat_id' , chat_id1);
-//     formData.append('document' , elemInput.files[0]);
-//
-//     const xhr = new XMLHttpRequest();
-//     xhr.open("POST", url1, true);
-//     xhr.setRequestHeader("Content-type", "application/json");
-//     xhr.send(JSON.stringify(formData));
-// }
-//
-//
-// function sendMessage(event) {
-//     const url = `https://api.telegram.org/bot${tg.token}/sendMessage`
-//
-//     const tgForm = document.querySelector('.tg-form')
-//     const name = tgForm.querySelector('[name="fname"]'),
-//         tel = tgForm.querySelector('[name="ftel"]'),
-//         txt = tgForm.querySelector('[name="ftext"]'),
-//         file = tgForm.querySelector('[name="ffile"]');
-//
-//     const msg = `Заявка со страницы скупки 100nout.by!
-//
-// Имя: ${name.value}
-// Телефон: ${tel.value}
-// Сообщение: ${txt.value}
-//
-//
-// Отправлено со страницы ${window.location.href}
-// `//Картинки: ${file.value}
-//
-//     files.each(function (key, file) {
-//         let cont = file.files;
-//         if ( cont ) {
-//             $.each( cont, function( key, value ) {
-//                 data.append( key, value );
-//             });
-//         }
-//     });
-//
-//     const obj = {
-//         chat_id: tg.chat_id,
-//         text: msg
-//     };
-//
-//
-//     // const xht = new XMLHttpRequest();
-//     // xht.open("POST", url, true);
-//     // xht.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-//     // xht.send(JSON.stringify(obj));
-// }
-//
-// const formSubmit = document.querySelector(".js-tg-form");
-// const tgForm = document.querySelector('.tg-form');
-// let popupBg = document.querySelector('.tg-form-modal');
-// let popup = document.querySelector('.tg-form-modal-wrap');
-// let closePopupButton = document.querySelector('.close_modal');
-//
-// formSubmit.addEventListener('submit', function (e) {
-//     e.preventDefault();
-//     sendMessage();
-//     sendPhoto();
-//     tgForm.reset();
-//     popupBg.classList.add('active');
-//     popup.classList.add('active');
-// });
-let popupBg = document.querySelector('.tg-form-modal');
-let popup = document.querySelector('.tg-form-modal-wrap');
-let closePopupButton = document.querySelector('.close_modal');
-closePopupButton.addEventListener('click',() => {
-    popupBg.classList.remove('active');
-    popup.classList.remove('active');
-});
-
-document.addEventListener('click', (e) => {
-    if(e.target === popupBg) {
-        popupBg.classList.remove('active');
-        popup.classList.remove('active');
-    }
-});
 
 // Elements
+import "./elements/telMask";
+import "./elements/expandableContent";
 import "./elements/dropdown";
 import "./elements/intro";
 import "./elements/menu";
@@ -132,4 +13,3 @@ import "./elements/catalog";
 import "./elements/cartP";
 import "./elements/order";
 import "./elements/popup";
-import "./elements/tgForm";

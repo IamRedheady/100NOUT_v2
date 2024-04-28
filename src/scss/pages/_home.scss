@@ -133,12 +133,15 @@
     display: block;
 }
 
-.homepage{
-
-    &__title {
-        margin-top: 40px;
-        text-align: center;
+.homepage {
+    .intro {
+        margin-bottom: 60px;
     }
+}
+
+.homepage__title {
+    text-align: center;
+    margin-top: 40px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -148,6 +151,12 @@
     .intro__pic-img-l {
         display: block;
     }
+
+    .homepage {
+        .intro {
+            margin-bottom: 60px;
+        }
+    }
 }
 
 @media screen and (max-width: 960px) {
@@ -156,6 +165,18 @@
     }
     .intro__pic-img-m {
         display: block;
+    }
+
+    .homepage {
+        .intro {
+            margin-bottom: 40px;
+        }
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .homepage__title {
+        margin-top: 28px;
     }
 }
 
@@ -880,7 +901,7 @@
 
                     &-gradient {
                         width: 156px;
-                        height: 156x;
+                        height: 156px;
                         left: auto;
                         top: 115px;
                         background: linear-gradient(180deg, #00c9ff 0%, #92fe9d 100%);

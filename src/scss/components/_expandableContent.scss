@@ -1,0 +1,17 @@
+.expandable-content {
+  &--active {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* number of lines to show */
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+  }
+}
+
+.expandable-content__controls {
+  margin-top: 14px;
+}
+
+.expandable-content__toggle {
+  color: #50b83c;
+}

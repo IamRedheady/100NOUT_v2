@@ -83,4 +83,10 @@
             text-transform: capitalize;
         }
     }
+    &--bold {
+        font-weight: 700;
+        &--capitalise {
+            text-transform: capitalize;
+        }
+    }
 }

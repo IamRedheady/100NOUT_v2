@@ -1,0 +1,29 @@
+.shop-rating__title {
+  margin-bottom: 0;
+}
+
+.shop-rating__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.shop-rating__value {
+  margin-right: 12px;
+}
+
+.shop-rating__row span {
+  display: block;
+}
+
+.shop-rating__stars {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.shop-rating__stars svg {
+  width: 12px;
+  height: 12px;
+  margin-right: 0;
+}
