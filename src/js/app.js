@@ -13,3 +13,4 @@ import "./elements/catalog";
 import "./elements/cartP";
 import "./elements/order";
 import "./elements/popup";
+import './elements/tgForm';
