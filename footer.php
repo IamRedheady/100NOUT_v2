@@ -212,6 +212,7 @@
             </div>
         </footer>
     </div>
+    <!-- Сделано в Digital Strategy -->
 
 <?php wp_footer(); ?>
 
