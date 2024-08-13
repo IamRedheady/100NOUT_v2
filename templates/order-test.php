@@ -12,6 +12,74 @@ $c_total = $woocommerce->cart->subtotal;
 if ($c_total == 0) {
     echo 'p-cart-empty';
 } ?>">
+
+<?php 
+    // Функция для удаления товара и его изображений
+    function delete_product_and_images($product_id) {
+        // Получаем все изображения товара
+        $product = wc_get_product($product_id);
+        $attachment_ids = $product->get_gallery_image_ids();
+    
+        // Удаляем каждое изображение
+        foreach ($attachment_ids as $attachment_id) {
+            wp_delete_attachment($attachment_id, true);
+        }
+    
+        // Удаляем главное изображение товара
+        $featured_image_id = get_post_thumbnail_id($product_id);
+        if ($featured_image_id) {
+            wp_delete_attachment($featured_image_id, true);
+        }
+    
+        // Удаляем товар
+        wp_delete_post($product_id, true);
+    }
+    
+    // Функция для проверки и удаления старых товаров
+    function remove_old_products() {
+        // Задаем категории
+        $categories = array('noutbuki', 'smartfony');
+        
+        // Задаем дату для сравнения (3 месяца назад)
+        $date_compare = date('Y-m-d H:i:s', strtotime('-3 months'));
+    
+        // WP_Query для получения всех товаров из заданных категорий
+        $args = array(
+            'post_type' => 'product',
+            'posts_per_page' => -1,
+            'post_status' => 'draft',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'product_cat',
+                    'field' => 'slug',
+                    'terms' => $categories,
+                    'include_children' => true
+                ),
+            ),
+            'date_query' => array(
+                array(
+                    'column' => 'post_modified_gmt',
+                    'before' => $date_compare,
+                ),
+            ),
+            'fields' => 'ids',
+        );
+    
+        $query = new WP_Query($args);
+        
+        print_r(count($query->posts));
+        // Проходим по каждому товару и удаляем его, если он не изменялся более 3 месяцев
+        if ($query->have_posts()) {
+            foreach ($query->posts as $product_id) {
+                // delete_product_and_images($product_id);
+                print_r("");
+            }
+        }
+    }
+    
+    // Привязываем функцию к хуку WordPress, чтобы запускать скрипт через админку или по крону
+    // add_action('init', 'remove_old_products');
+?>
 </div>
 <section class="ordering layout">
     <a href="/" class="btn btn_icon-left text text-base link link-secondary ordering__back">
@@ -24,6 +92,9 @@ if ($c_total == 0) {
         <h1 class="ordering__title text-5xl">
             Корзина
         </h1>
+        <?php 
+            //  remove_old_products();
+        ?>
         <form class="clear-cart" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post" onsubmit="javascript:localStorage.clear();">
             <button type="submit" onclick='javascript:if(!confirm("Удалить все товары из корзины?")) {localStorage.clear(); return false;}' class="ordering__clear btn btn-secondary btn_icon-left" name="clear-cart"><svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.832 4.83333L13.1093 14.9521C13.047 15.8243 12.3212 16.5 11.4468 16.5H4.55056C3.67616 16.5 2.95043 15.8243 2.88813 14.9521L2.16536 4.83333M6.33203 8.16667V13.1667M9.66536 8.16667V13.1667M10.4987 4.83333V2.33333C10.4987 1.8731 10.1256 1.5 9.66536 1.5H6.33203C5.87179 1.5 5.4987 1.8731 5.4987 2.33333V4.83333M1.33203 4.83333H14.6654" stroke="#474747" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
