@@ -5,6 +5,11 @@ if (order) {
   const inputDelivery = document.querySelectorAll(
     "input[name='orderDelivery']",
   );
+
+  const paymentInputsChange = document.querySelectorAll(
+    "input[name='orderPayment']",
+  );
+
   let inputDeliveryChecked = 0;
 
   const deliveryExpress = document.querySelector(".js-express");
@@ -293,9 +298,9 @@ if (order) {
 
   // Смена методов доставки
   inputDelivery.forEach((input, index) => {
-    console.log(input);
     input.addEventListener("change", () => {
       if (input.checked) {
+        console.log(input);
         if (input.value === "0") {
           deliveryExpress.classList.remove("disable");
         } else {
@@ -304,11 +309,28 @@ if (order) {
         }
 
         if (input.value === "1") {
+          console.log(input.value);
           deliveryMapContainer.classList.remove("hide");
           deliveryAddressContainer.classList.add("hide");
+          paymentInputsChange.forEach((paymentInput) => {
+            console.log(paymentInput);
+            paymentInput.parentNode.parentNode.classList.remove(
+              "ordering__input-wrapper--hide",
+            );
+          });
         } else {
           deliveryMapContainer.classList.add("hide");
           deliveryAddressContainer.classList.remove("hide");
+          //Скрытие методов оплаты
+          paymentInputsChange.forEach((paymentInput) => {
+            console.log(paymentInput.value);
+            if (paymentInput.value == "1" || paymentInput.value == "2") {
+              console.log(paymentInput);
+              paymentInput.parentNode.parentNode.classList.add(
+                "ordering__input-wrapper--hide",
+              );
+            }
+          });
         }
 
         if (input.value === "3") {
@@ -344,10 +366,6 @@ if (order) {
 
   inputDelivery[0].click();
 
-  const paymentInputsChange = document.querySelectorAll(
-    "input[name='orderPayment']",
-  );
-
   const paymentInputsHidden = document.querySelectorAll(
     ".js-company-container",
   );
@@ -377,16 +395,42 @@ if (order) {
 
   paymentInputsChange.forEach((input, index) => {
     input.addEventListener("change", () => {
+      console.log(input);
       if (input.checked) {
+        if (input.value == "1" || input.value == "2") {
+          console.log("Рассрочка выбрана");
+          inputDelivery.forEach((input) => {
+            if (input.value == "1") {
+              input.click(); // Устанавливаем checked для инпута с value="1"
+            } else {
+              input.parentNode.classList.add("ordering__label--hide");
+            }
+          });
+        } else {
+          inputDelivery.forEach((input) => {
+            input.parentNode.classList.remove("ordering__label--hide");
+          });
+        }
         if (paymentInputsHidden) {
           paymentInputsHidden.forEach((hiddenContent) => {
             hiddenContent.classList.add("hide");
+            const paymentInputsChange =
+              hiddenContent.querySelectorAll(".required input");
+            paymentInputsChange.forEach((input) => {
+              console.log(input);
+              input.removeAttribute("required"); // Удаляем атрибут required
+            });
           });
           let hideContent = input.parentElement.parentElement.querySelector(
             ".js-company-container",
           );
           if (hideContent) {
             hideContent.classList.remove("hide");
+            const paymentInputsChange =
+              hideContent.querySelectorAll(".required input");
+            paymentInputsChange.forEach((input) => {
+              input.setAttribute("required", ""); // Удаляем атрибут required
+            });
             //console.log(collectInputData(hideContent));
           }
         }

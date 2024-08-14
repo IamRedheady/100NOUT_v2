@@ -13,36 +13,38 @@ if ($c_total == 0) {
     echo 'p-cart-empty';
 } ?>">
 
-<?php 
+    <?php
     // Функция для удаления товара и его изображений
-    function delete_product_and_images($product_id) {
+    function delete_product_and_images($product_id)
+    {
         // Получаем все изображения товара
         $product = wc_get_product($product_id);
         $attachment_ids = $product->get_gallery_image_ids();
-    
+
         // Удаляем каждое изображение
         foreach ($attachment_ids as $attachment_id) {
             wp_delete_attachment($attachment_id, true);
         }
-    
+
         // Удаляем главное изображение товара
         $featured_image_id = get_post_thumbnail_id($product_id);
         if ($featured_image_id) {
             wp_delete_attachment($featured_image_id, true);
         }
-    
+
         // Удаляем товар
         wp_delete_post($product_id, true);
     }
-    
+
     // Функция для проверки и удаления старых товаров
-    function remove_old_products() {
+    function remove_old_products()
+    {
         // Задаем категории
         $categories = array('noutbuki', 'smartfony');
-        
+
         // Задаем дату для сравнения (3 месяца назад)
         $date_compare = date('Y-m-d H:i:s', strtotime('-3 months'));
-    
+
         // WP_Query для получения всех товаров из заданных категорий
         $args = array(
             'post_type' => 'product',
@@ -64,9 +66,9 @@ if ($c_total == 0) {
             ),
             'fields' => 'ids',
         );
-    
+
         $query = new WP_Query($args);
-        
+
         print_r(count($query->posts));
         // Проходим по каждому товару и удаляем его, если он не изменялся более 3 месяцев
         if ($query->have_posts()) {
@@ -76,10 +78,10 @@ if ($c_total == 0) {
             }
         }
     }
-    
+
     // Привязываем функцию к хуку WordPress, чтобы запускать скрипт через админку или по крону
     // add_action('init', 'remove_old_products');
-?>
+    ?>
 </div>
 <section class="ordering layout">
     <a href="/" class="btn btn_icon-left text text-base link link-secondary ordering__back">
@@ -92,8 +94,8 @@ if ($c_total == 0) {
         <h1 class="ordering__title text-5xl">
             Корзина
         </h1>
-        <?php 
-            //  remove_old_products();
+        <?php
+        //  remove_old_products();
         ?>
         <form class="clear-cart" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post" onsubmit="javascript:localStorage.clear();">
             <button type="submit" onclick='javascript:if(!confirm("Удалить все товары из корзины?")) {localStorage.clear(); return false;}' class="ordering__clear btn btn-secondary btn_icon-left" name="clear-cart"><svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -152,7 +154,7 @@ if ($c_total == 0) {
                                 Самовывоз
                             </span>
                             <span class="ordering__label-subtitle text text-xs">
-                                Минск – сегодня, до 20:00
+                                Минск – сегодня, до 21:00
                             </span>
                         </span>
                     </label>
@@ -389,12 +391,12 @@ if ($c_total == 0) {
                                 <span class="ordering__label-title text text-base">
                                     Безналичный расчет для юридических лиц
                                 </span>
-                                <span class="ordering__label-subtitle text text-xs">
+                                <span class="ordering__label-subtitle text text-xs ordering__label-subtitle--warning">
                                     *Для юридических лиц акционная цена, к сожалению, не применяется, однако вы получаете годовую гарантию от нашего магазина бесплатно
                                 </span>
                             </span>
                         </label>
-                        <div class="ordering__flex ordering__flex--column ordering__flex--inner js-company-container hide">
+                        <div class="ordering__flex ordering__flex--column ordering__flex--inner js-company-container <?php echo $paymentType == 3 ? "" : "hide" ?>">
                             <div class="ordering__grid">
                                 <label class="ordering__label">
                                     <input value="Индивидуальный предприниматель" type="radio" name="companyType" placeholder="Тип организации" checked>
@@ -417,36 +419,36 @@ if ($c_total == 0) {
                             </div>
                             <div class="ordering__input-wrapper">
                                 <label class="ordering__label-text required">
-                                    <input class="ordering__input" type="text" name="companyName" placeholder="Название организации">
+                                    <input class="ordering__input" type="text" name="companyName" placeholder="Название организации" <?php echo $paymentType == 3 ? "required" : "" ?>>
                                 </label>
                             </div>
                             <div class="ordering__input-wrapper">
                                 <label class="ordering__label-text required">
-                                    <input class="ordering__input" type="text" name="companyYpn" placeholder="УПН">
+                                    <input class="ordering__input" type="text" name="companyYpn" placeholder="УПН" <?php echo $paymentType == 3 ? "required" : "" ?>>
                                 </label>
                             </div>
                             <div class="ordering__input-wrapper">
-                                <label class="ordering__label-text required">
+                                <label class="ordering__label-text">
                                     <textarea class="ordering__input" type="text" name="companyAdres" placeholder="Юридический адрес, индекст, город, ул, дом, пом\офис"></textarea>
                                 </label>
                             </div>
                             <div class="ordering__input-wrapper">
-                                <label class="ordering__label-text required">
+                                <label class="ordering__label-text">
                                     <input class="ordering__input" type="text" name="companyBank" placeholder="Реквизиты банка">
                                 </label>
                             </div>
                             <div class="ordering__input-wrapper">
-                                <label class="ordering__label-text required">
-                                    <input class="ordering__input" type="text" name="companyBiks" placeholder="бикс">
+                                <label class="ordering__label-text">
+                                    <input class="ordering__input" type="text" name="companyBiks" placeholder="БИК">
                                 </label>
                             </div>
                             <div class="ordering__input-wrapper">
-                                <label class="ordering__label-text required">
+                                <label class="ordering__label-text">
                                     <input class="ordering__input" type="text" name="companyBankName" placeholder="Наименование банка">
                                 </label>
                             </div>
                             <div class="ordering__input-wrapper">
-                                <label class="ordering__label-text required">
+                                <label class="ordering__label-text">
                                     <input class="ordering__input" type="text" name="companyBankAccount" placeholder="Расчётный счёт">
                                 </label>
                             </div>

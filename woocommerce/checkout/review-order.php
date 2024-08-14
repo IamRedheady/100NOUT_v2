@@ -48,7 +48,7 @@ defined('ABSPATH') || exit;
 
         WC()->cart->calculate_totals();
     } */
-    if (current_user_can('administrator')) {
+    /* if (current_user_can('administrator')) {
         $cart = WC()->cart->get_cart();
         foreach ($cart as $cart_item_key => $cart_item) {
             $product = $cart_item['data'];
@@ -60,7 +60,7 @@ defined('ABSPATH') || exit;
             // Вывод данных товара
             echo "Product ID: $product_id, Product Name: $product_name, Product Price: $product_price <br>";
         }
-    }
+    } */
     ?>
     <div class="ordering__sum-row">
         <p class="ordering__sum-row-name text text-lg">
