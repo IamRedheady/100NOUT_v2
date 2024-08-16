@@ -1491,3 +1491,78 @@ Email: ' . $order->get_billing_email();
                 }
             }
         }
+
+
+
+        // Функция, которая регистрирует событие cron
+        function schedule_monthly_product_removal()
+        {
+            if (!wp_next_scheduled('monthly_product_removal_hook')) {
+                wp_schedule_event(time(), 'monthly', 'monthly_product_removal_hook');
+            }
+        }
+        add_action('wp', 'schedule_monthly_product_removal');
+
+        add_action('monthly_product_removal_hook', 'remove_old_products');
+
+
+        function delete_product_and_images($product_id)
+        {
+            // Получаем все изображения товара
+            $product = wc_get_product($product_id);
+            $attachment_ids = $product->get_gallery_image_ids();
+
+            // Удаляем каждое изображение
+            foreach ($attachment_ids as $attachment_id) {
+                wp_delete_attachment($attachment_id, true);
+            }
+
+            // Удаляем главное изображение товара
+            $featured_image_id = get_post_thumbnail_id($product_id);
+            if ($featured_image_id) {
+                wp_delete_attachment($featured_image_id, true);
+            }
+
+            // Удаляем товар
+            wp_delete_post($product_id, true);
+        }
+
+        function remove_old_products()
+        {
+            // Задаем категории
+            $categories = array('noutbuki', 'smartfony');
+
+            // Задаем дату для сравнения (3 месяца назад)
+            $date_compare = date('Y-m-d H:i:s', strtotime('-3 months'));
+
+            // WP_Query для получения всех товаров из заданных категорий
+            $args = array(
+                'post_type' => 'product',
+                'posts_per_page' => -1,
+                'post_status' => 'draft',
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'product_cat',
+                        'field' => 'slug',
+                        'terms' => $categories,
+                        'include_children' => true
+                    ),
+                ),
+                'date_query' => array(
+                    array(
+                        'column' => 'post_modified_gmt',
+                        'before' => $date_compare,
+                    ),
+                ),
+                'fields' => 'ids',
+            );
+
+            $query = new WP_Query($args);
+
+            // Проходим по каждому товару и удаляем его, если он не изменялся более 3 месяцев
+            if ($query->have_posts()) {
+                foreach ($query->posts as $product_id) {
+                    delete_product_and_images($product_id);
+                }
+            }
+        }

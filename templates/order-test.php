@@ -15,7 +15,7 @@ if ($c_total == 0) {
 
     <?php
     // Функция для удаления товара и его изображений
-    function delete_product_and_images($product_id)
+    /* function delete_product_and_images($product_id)
     {
         // Получаем все изображения товара
         $product = wc_get_product($product_id);
@@ -75,10 +75,12 @@ if ($c_total == 0) {
                 delete_product_and_images($product_id);
             }
         }
-    }
+    } */
 
     // Привязываем функцию к хуку WordPress, чтобы запускать скрипт через админку или по крону
     // add_action('init', 'remove_old_products');
+
+
     ?>
 </div>
 <section class="ordering layout">
