@@ -1,19 +1,92 @@
 <?php /* Template Name: Оформление заказа */ ?>
 <?php get_header(); ?>
 
-<div class="p-check-cart <?php
-                            global $woocommerce;
-                            $c_total = $woocommerce->cart->subtotal;
+<div class="p-check-cart 
+<?php
+global $woocommerce;
+$paymentType = WC()->session->get('custom_payment');
+if (!$paymentType) {
+    $paymentType = 0;
+}
+$c_total = $woocommerce->cart->subtotal;
+if ($c_total == 0) {
+    echo 'p-cart-empty';
+} ?>">
 
-                            if ($c_total == 0) {
-                                echo 'p-cart-empty';
-                            }
-                            ?>"></div>
+    <?php
+    // Функция для удаления товара и его изображений
+    /* function delete_product_and_images($product_id)
+    {
+        // Получаем все изображения товара
+        $product = wc_get_product($product_id);
+        $attachment_ids = $product->get_gallery_image_ids();
+
+        // Удаляем каждое изображение
+        foreach ($attachment_ids as $attachment_id) {
+            wp_delete_attachment($attachment_id, true);
+        }
+
+        // Удаляем главное изображение товара
+        $featured_image_id = get_post_thumbnail_id($product_id);
+        if ($featured_image_id) {
+            wp_delete_attachment($featured_image_id, true);
+        }
+
+        // Удаляем товар
+        wp_delete_post($product_id, true);
+    }
+
+    // Функция для проверки и удаления старых товаров
+    function remove_old_products()
+    {
+        // Задаем категории
+        $categories = array('noutbuki', 'smartfony');
+
+        // Задаем дату для сравнения (3 месяца назад)
+        $date_compare = date('Y-m-d H:i:s', strtotime('-3 months'));
+
+        // WP_Query для получения всех товаров из заданных категорий
+        $args = array(
+            'post_type' => 'product',
+            'posts_per_page' => -1,
+            'post_status' => 'draft',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'product_cat',
+                    'field' => 'slug',
+                    'terms' => $categories,
+                    'include_children' => true
+                ),
+            ),
+            'date_query' => array(
+                array(
+                    'column' => 'post_modified_gmt',
+                    'before' => $date_compare,
+                ),
+            ),
+            'fields' => 'ids',
+        );
+
+        $query = new WP_Query($args);
+
+        // Проходим по каждому товару и удаляем его, если он не изменялся более 3 месяцев
+        if ($query->have_posts()) {
+            foreach ($query->posts as $product_id) {
+                delete_product_and_images($product_id);
+            }
+        }
+    } */
+
+    // Привязываем функцию к хуку WordPress, чтобы запускать скрипт через админку или по крону
+    // add_action('init', 'remove_old_products');
+
+
+    ?>
+</div>
 <section class="ordering layout">
     <a href="/" class="btn btn_icon-left text text-base link link-secondary ordering__back">
         <svg width="18" height="8" viewBox="0 0 18 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4.83333 7.33317L1.5 3.99984M1.5 3.99984L4.83333 0.666504M1.5 3.99984L16.5 3.99984"
-                stroke="#8F8F8F" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4.83333 7.33317L1.5 3.99984M1.5 3.99984L4.83333 0.666504M1.5 3.99984L16.5 3.99984" stroke="#8F8F8F" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
         Вернуться в каталог
     </a>
@@ -23,9 +96,7 @@
         </h1>
         <form class="clear-cart" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post" onsubmit="javascript:localStorage.clear();">
             <button type="submit" onclick='javascript:if(!confirm("Удалить все товары из корзины?")) {localStorage.clear(); return false;}' class="ordering__clear btn btn-secondary btn_icon-left" name="clear-cart"><svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M13.832 4.83333L13.1093 14.9521C13.047 15.8243 12.3212 16.5 11.4468 16.5H4.55056C3.67616 16.5 2.95043 15.8243 2.88813 14.9521L2.16536 4.83333M6.33203 8.16667V13.1667M9.66536 8.16667V13.1667M10.4987 4.83333V2.33333C10.4987 1.8731 10.1256 1.5 9.66536 1.5H6.33203C5.87179 1.5 5.4987 1.8731 5.4987 2.33333V4.83333M1.33203 4.83333H14.6654"
-                        stroke="#474747" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M13.832 4.83333L13.1093 14.9521C13.047 15.8243 12.3212 16.5 11.4468 16.5H4.55056C3.67616 16.5 2.95043 15.8243 2.88813 14.9521L2.16536 4.83333M6.33203 8.16667V13.1667M9.66536 8.16667V13.1667M10.4987 4.83333V2.33333C10.4987 1.8731 10.1256 1.5 9.66536 1.5H6.33203C5.87179 1.5 5.4987 1.8731 5.4987 2.33333V4.83333M1.33203 4.83333H14.6654" stroke="#474747" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg> Очистить корзину</button>
         </form>
     </div>
@@ -65,11 +136,8 @@
                     </h2>
                     <a href="/dostavka/" class="ordering__card-link btn btn_icon-right link link-secondary">
                         Подробнее о способах доставки
-                        <svg width="9" height="14" viewBox="0 0 9 14" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M0.912046 13.4224C0.586609 13.097 0.586609 12.5694 0.912046 12.2439L6.15612 6.99984L0.912046 1.75576C0.586609 1.43032 0.586609 0.902685 0.912046 0.577249C1.23748 0.251811 1.76512 0.251811 2.09056 0.577249L7.92389 6.41058C8.24933 6.73602 8.24933 7.26366 7.92389 7.58909L2.09056 13.4224C1.76512 13.7479 1.23748 13.7479 0.912046 13.4224Z"
-                                fill="#8F8F8F" />
+                        <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.912046 13.4224C0.586609 13.097 0.586609 12.5694 0.912046 12.2439L6.15612 6.99984L0.912046 1.75576C0.586609 1.43032 0.586609 0.902685 0.912046 0.577249C1.23748 0.251811 1.76512 0.251811 2.09056 0.577249L7.92389 6.41058C8.24933 6.73602 8.24933 7.26366 7.92389 7.58909L2.09056 13.4224C1.76512 13.7479 1.23748 13.7479 0.912046 13.4224Z" fill="#8F8F8F" />
                         </svg>
 
                     </a>
@@ -166,13 +234,10 @@
                         <label class="ordering__label-express js-express">
                             <input type="checkbox" name="express">
                             <span class="ordering__label-express-circle">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_5658_10415)">
                                         <rect width="20" height="20" rx="6" fill="#69C856" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M15.0611 5.42238C15.5183 5.73229 15.6376 6.35411 15.3277 6.81124L10.2432 14.3112C10.0771 14.5562 9.8111 14.715 9.51671 14.745C9.22232 14.7749 8.92977 14.673 8.71777 14.4665L4.80234 10.6536C4.40667 10.2683 4.39827 9.6352 4.78358 9.23953C5.16888 8.84386 5.80199 8.83546 6.19766 9.22077L9.25771 12.2007L13.6723 5.68895C13.9822 5.23182 14.604 5.11247 15.0611 5.42238Z"
-                                            fill="white" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0611 5.42238C15.5183 5.73229 15.6376 6.35411 15.3277 6.81124L10.2432 14.3112C10.0771 14.5562 9.8111 14.715 9.51671 14.745C9.22232 14.7749 8.92977 14.673 8.71777 14.4665L4.80234 10.6536C4.40667 10.2683 4.39827 9.6352 4.78358 9.23953C5.16888 8.84386 5.80199 8.83546 6.19766 9.22077L9.25771 12.2007L13.6723 5.68895C13.9822 5.23182 14.604 5.11247 15.0611 5.42238Z" fill="white" />
                                     </g>
                                     <defs>
                                         <clipPath id="clip0_5658_10415">
@@ -188,8 +253,7 @@
                     <div class="ordering__flex ordering__flex--address">
                         <div class="ordering__input-wrapper">
                             <label class="ordering__label-text required">
-                                <input class="ordering__input js-address-input" type="text" name="address"
-                                    placeholder="Улица, номер дома">
+                                <input class="ordering__input js-address-input" type="text" name="address" placeholder="Улица, номер дома">
                             </label>
                             <div class="ordering__input-results js-address-result"></div>
                         </div>
@@ -201,14 +265,12 @@
                         </div>
                         <div class="ordering__input-wrapper">
                             <label class="ordering__label-text js-last-val">
-                                <input class="ordering__input" type="text" name="address"
-                                    placeholder="Квартира">
+                                <input class="ordering__input" type="text" name="address" placeholder="Квартира">
                             </label>
                         </div>
                         <div class="ordering__input-wrapper">
                             <label class="ordering__label-text js-last-val">
-                                <input class="ordering__input" type="text" name="address"
-                                    placeholder="Комментарий курьеру">
+                                <input class="ordering__input" type="text" name="address" placeholder="Комментарий курьеру">
                             </label>
                         </div>
                     </div>
@@ -242,26 +304,22 @@
                 <div class="ordering__flex ordering__flex--column">
                     <div class="ordering__input-wrapper">
                         <label class="ordering__label-text required">
-                            <input class="ordering__input js-input-name" type="text" name="orderContacts"
-                                placeholder="Имя">
+                            <input class="ordering__input js-input-name" type="text" name="orderContacts" placeholder="Имя">
                         </label>
                     </div>
                     <div class="ordering__input-wrapper">
                         <label class="ordering__label-text">
-                            <input class="ordering__input" type="text" name="orderContacts"
-                                placeholder="Фамилия">
+                            <input class="ordering__input" type="text" name="orderContacts" placeholder="Фамилия">
                         </label>
                     </div>
                     <div class="ordering__input-wrapper">
                         <label class="ordering__label-text required">
-                            <input class="ordering__input js-input-email" type="text" name="orderContacts"
-                                placeholder="E-mail">
+                            <input class="ordering__input js-input-email" type="text" name="orderContacts" placeholder="E-mail">
                         </label>
                     </div>
                     <div class="ordering__input-wrapper">
                         <label class="ordering__label-text required">
-                            <input class="ordering__input js-input-tel" type="text" name="orderContacts"
-                                placeholder="Номер телефона">
+                            <input class="ordering__input js-input-tel" type="text" name="orderContacts" placeholder="Номер телефона">
                         </label>
                     </div>
                 </div>
@@ -273,11 +331,8 @@
                     </h2>
                     <a href="/oplata/" class="ordering__card-link btn btn_icon-right link link-secondary">
                         Подробнее об оплате
-                        <svg width="9" height="14" viewBox="0 0 9 14" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M0.912046 13.4224C0.586609 13.097 0.586609 12.5694 0.912046 12.2439L6.15612 6.99984L0.912046 1.75576C0.586609 1.43032 0.586609 0.902685 0.912046 0.577249C1.23748 0.251811 1.76512 0.251811 2.09056 0.577249L7.92389 6.41058C8.24933 6.73602 8.24933 7.26366 7.92389 7.58909L2.09056 13.4224C1.76512 13.7479 1.23748 13.7479 0.912046 13.4224Z"
-                                fill="#8F8F8F" />
+                        <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.912046 13.4224C0.586609 13.097 0.586609 12.5694 0.912046 12.2439L6.15612 6.99984L0.912046 1.75576C0.586609 1.43032 0.586609 0.902685 0.912046 0.577249C1.23748 0.251811 1.76512 0.251811 2.09056 0.577249L7.92389 6.41058C8.24933 6.73602 8.24933 7.26366 7.92389 7.58909L2.09056 13.4224C1.76512 13.7479 1.23748 13.7479 0.912046 13.4224Z" fill="#8F8F8F" />
                         </svg>
 
                     </a>
@@ -285,7 +340,7 @@
                 <div class="ordering__flex ordering__flex--column">
                     <div class="ordering__input-wrapper">
                         <label class="ordering__label">
-                            <input value="0" type="radio" name="orderPayment" checked>
+                            <input value="0" type="radio" name="orderPayment" <?php echo $paymentType == 0 ? "checked" : "" ?>>
                             <span class="ordering__label-circle"></span>
                             <span class="ordering__label-content">
                                 <span class="ordering__label-title text text-base">
@@ -299,7 +354,7 @@
                     </div>
                     <div class="ordering__input-wrapper">
                         <label class="ordering__label">
-                            <input value="1" type="radio" name="orderPayment">
+                            <input value="1" type="radio" name="orderPayment" <?php echo $paymentType == 1 ? "checked" : "" ?>>
                             <span class="ordering__label-circle"></span>
                             <span class="ordering__label-content">
                                 <span class="ordering__label-title text text-base">
@@ -313,7 +368,7 @@
                     </div>
                     <div class="ordering__input-wrapper">
                         <label class="ordering__label">
-                            <input value="2" type="radio" name="orderPayment">
+                            <input value="2" type="radio" name="orderPayment" <?php echo $paymentType == 2 ? "checked" : "" ?>>
                             <span class="ordering__label-circle"></span>
                             <span class="ordering__label-content">
                                 <span class="ordering__label-title text text-base">
@@ -324,6 +379,77 @@
                                 </span>
                             </span>
                         </label>
+                    </div>
+                    <div class="ordering__input-wrapper">
+                        <label class="ordering__label">
+                            <input value="3" type="radio" name="orderPayment" <?php echo $paymentType == 3 ? "checked" : "" ?>>
+                            <span class="ordering__label-circle"></span>
+                            <span class="ordering__label-content">
+                                <span class="ordering__label-title text text-base">
+                                    Безналичный расчет для юридических лиц
+                                </span>
+                                <span class="ordering__label-subtitle text text-xs ordering__label-subtitle--warning">
+                                    *Для юридических лиц акционная цена, к сожалению, не применяется, однако вы получаете годовую гарантию от нашего магазина бесплатно
+                                </span>
+                            </span>
+                        </label>
+                        <div class="ordering__flex ordering__flex--column ordering__flex--inner js-company-container <?php echo $paymentType == 3 ? "" : "hide" ?>">
+                            <div class="ordering__grid">
+                                <label class="ordering__label">
+                                    <input value="Индивидуальный предприниматель" type="radio" name="companyType" placeholder="Тип организации" checked>
+                                    <span class="ordering__label-circle"></span>
+                                    <span class="ordering__label-content">
+                                        <span class="ordering__label-title text text-base">
+                                            Индивидуальный предприниматель
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="ordering__label">
+                                    <input value="Юридическое лицо" type="radio" name="companyType" placeholder="Тип организации">
+                                    <span class="ordering__label-circle"></span>
+                                    <span class="ordering__label-content">
+                                        <span class="ordering__label-title text text-base">
+                                            Юридическое лицо
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="ordering__input-wrapper">
+                                <label class="ordering__label-text required">
+                                    <input class="ordering__input" type="text" name="companyName" placeholder="Название организации" <?php echo $paymentType == 3 ? "required" : "" ?>>
+                                </label>
+                            </div>
+                            <div class="ordering__input-wrapper">
+                                <label class="ordering__label-text required">
+                                    <input class="ordering__input" type="text" name="companyYpn" placeholder="УПН" <?php echo $paymentType == 3 ? "required" : "" ?>>
+                                </label>
+                            </div>
+                            <div class="ordering__input-wrapper">
+                                <label class="ordering__label-text">
+                                    <textarea class="ordering__input" type="text" name="companyAdres" placeholder="Юридический адрес, индекс, город, ул, дом, пом\офис"></textarea>
+                                </label>
+                            </div>
+                            <div class="ordering__input-wrapper">
+                                <label class="ordering__label-text">
+                                    <input class="ordering__input" type="text" name="companyBank" placeholder="Реквизиты банка">
+                                </label>
+                            </div>
+                            <div class="ordering__input-wrapper">
+                                <label class="ordering__label-text">
+                                    <input class="ordering__input" type="text" name="companyBiks" placeholder="БИК">
+                                </label>
+                            </div>
+                            <div class="ordering__input-wrapper">
+                                <label class="ordering__label-text">
+                                    <input class="ordering__input" type="text" name="companyBankName" placeholder="Наименование банка">
+                                </label>
+                            </div>
+                            <div class="ordering__input-wrapper">
+                                <label class="ordering__label-text">
+                                    <input class="ordering__input" type="text" name="companyBankAccount" placeholder="Расчётный счёт">
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
