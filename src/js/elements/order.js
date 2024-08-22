@@ -548,9 +548,11 @@ if (order) {
 
       let currentVal = "";
 
-      if (comment.value !== "") {
-        currentVal += `Комментарий курьеру:
-                ${comment.value};`;
+      if (comment) {
+        if (comment.value !== "") {
+          currentVal += `Комментарий курьеру:
+                  ${comment.value};`;
+        }
       }
 
       const paymentInputs = document.querySelectorAll(

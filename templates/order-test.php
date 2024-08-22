@@ -426,7 +426,7 @@ if ($c_total == 0) {
                             </div>
                             <div class="ordering__input-wrapper">
                                 <label class="ordering__label-text">
-                                    <textarea class="ordering__input" type="text" name="companyAdres" placeholder="Юридический адрес, индекст, город, ул, дом, пом\офис"></textarea>
+                                    <textarea class="ordering__input" type="text" name="companyAdres" placeholder="Юридический адрес, индекс, город, ул, дом, пом\офис"></textarea>
                                 </label>
                             </div>
                             <div class="ordering__input-wrapper">
