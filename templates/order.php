@@ -292,7 +292,7 @@ if ($c_total == 0) {
                                     220114, Минск, метро Московская, Проспект Независимости д. 94
                                 </p>
                                 <p class="card__text card__text--mt text text-lg text--semibold">
-                                    Время работы 10:00 до 20:00
+                                    Время работы 10:00 до 21:00
                                 </p>
                             </div>
                         </div>
@@ -363,6 +363,9 @@ if ($c_total == 0) {
                                 <span class="ordering__label-subtitle text text-xs">
                                     Картами рассрочки (Черепаха, Магнит, Халва и д.р.)
                                 </span>
+                                <span class="ordering__label-subtitle text text-xs ordering__label-subtitle--warning">
+                                    *По этому виду оплаты доступен только самовывоз из магазина по адресу пр-т, независимости д.94
+                                </span>
                             </span>
                         </label>
                     </div>
@@ -376,6 +379,9 @@ if ($c_total == 0) {
                                 </span>
                                 <span class="ordering__label-subtitle text text-xs">
                                     Оплата на расчётный счёт или эквайринг
+                                </span>
+                                <span class="ordering__label-subtitle text text-xs ordering__label-subtitle--warning">
+                                    *По этому виду оплаты доступен только самовывоз из магазина по адресу пр-т, независимости д.94
                                 </span>
                             </span>
                         </label>
