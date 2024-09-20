@@ -47,5 +47,12 @@ if (popup.length !== 0) {
     timeWarnings.forEach(function (element) {
       element.classList.add("popup__time-warning--show");
     });
+    const timeWarningsText = document.querySelectorAll(
+      ".popup__time-warning-hidden",
+    );
+    // Добавляем класс show к каждому из найденных элементов
+    timeWarningsText.forEach(function (element) {
+      element.value = "Удобное время для звонка: ";
+    });
   }
 }

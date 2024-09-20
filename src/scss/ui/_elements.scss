@@ -514,6 +514,9 @@
       background-position: right 10px center; /* позиция SVG */
       outline: none;
     }
+    &-hidden {
+      display: none;
+    }
   }
 }
 
