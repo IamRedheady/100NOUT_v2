@@ -324,7 +324,7 @@
 @media screen and (max-width: 480px) {
   .menu {
     top: 60px;
-    height: calc(100% - 32px);
+    height: calc(100% - 120px);
     &__sub {
       &-list {
         height: calc(100vh - 200px);
