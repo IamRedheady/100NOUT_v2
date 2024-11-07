@@ -16,6 +16,7 @@
 @import "./components/prs";
 @import "./components/cartP";
 @import "./components/expandableContent";
+@import "./components/breadcrumbs";
 
 // Sections
 @import "sections/info-block";
@@ -39,3 +40,5 @@
 @import "./pages/prp";
 @import "./pages/ordering";
 @import "./pages/skupka/skupka";
+@import "./pages/blog";
+@import "./pages/blog-post";

@@ -1,0 +1,36 @@
+.blog-post {
+    padding-bottom: 64px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.blog-post__title {
+    margin-bottom: 16px;
+}
+
+.blog-post__date {
+    margin-bottom: 32px;
+    color: $N600;
+}
+
+.blog-post__content {
+    margin-bottom: 48px;
+
+    p {
+        margin-bottom: 16px;
+    }
+
+    h2 {
+        margin: 32px 0 16px;
+    }
+}
+
+.blog-post__content-img {
+    width: 100%;
+    border-radius: 12px;
+    margin: 24px 0;
+}
+
+.related-posts__title {
+    margin-bottom: 24px;
+}
