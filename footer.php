@@ -215,6 +215,8 @@
 </div>
 <!-- Сделано в Digital Strategy -->
 
+<div id="wpfOverlay" style="display: none;"></div>
+
 <?php wp_footer(); ?>
 
 </body>
