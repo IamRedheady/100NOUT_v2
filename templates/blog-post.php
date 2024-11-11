@@ -1,26 +1,42 @@
-<?php /* Template Name: Блог */ ?>
-<?php get_header(); ?>
+<?php /* Template Name: Статья блога */ ?>
+<?php get_header();
+
+$fields = get_field('blog_post_fields');
+
+?>
     
     <div class="layout">
         <div class="breadcrumbs text-sm">
-            <a href="<?= home_url() ?>" class="link link-primary">Главная</a>
+            <a href="<?= home_url(); ?>" class="link link-primary">Главная</a>
             <span class="breadcrumbs__separator">/</span>
-            <a href="<?= get_permalink(wp_get_post_parent_id(get_the_ID())) ?>" class="link link-primary">Блог</a>
+            <a href="<?= get_permalink(wp_get_post_parent_id(get_the_ID())); ?>" class="link link-primary">Блог</a>
             <span class="breadcrumbs__separator">/</span>
             <span class="breadcrumbs__current"><?php the_title(); ?></span>
         </div>
     </div>
 
     <div class="blog-post">
-        <div class="layout">
-            <h1 class="blog-post__title text-5xl"><?php the_title(); ?></h1>
-
-            <div class="blog-post__date text-sm">
-                <?php the_date('d.m.Y'); ?>
+        <div class="layout ur__text">
+            <h1 class="blog-post__title text-5xl"><?= $fields['title']; ?></h1>
+            <div class="blog-post__info">
+                <div class="blog-post__date text-sm">
+                    <?php the_date('d.m.Y'); ?>
+                </div>
+                <?php if (isset($fields['tags']) && count($fields['tags'])): ?>
+                    <div class="blog-post__tags">
+                        <?php foreach ($fields['tags'] as $tag): ?>
+                        <a
+                                href="<?= $tag['link']; ?>"
+                                class="blog-post__tags-item-btn btn btn-secondary"
+                        >
+                            <?= $tag['title']; ?>
+                        </a>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
             </div>
-
-            <div class="blog-post__content ur__text">
-                <?php the_content(); ?>
+            <div class="blog-post__content">
+                <?= $fields['content']; ?>
             </div>
         </div>
     </div>
@@ -30,9 +46,9 @@
             'post_type' => 'page',
             'posts_per_page' => 4,
             'orderby' => 'rand',
-            'post__not_in' => array(get_the_ID()),
             'meta_key' => '_wp_page_template',
-            'meta_value' => 'templates/blog-post.php'
+            'meta_value' => 'templates/blog-post.php',
+            'post__not_in' => array(get_the_ID())
         );
         $related_posts = get_posts($args);
 
@@ -43,19 +59,22 @@
                     <div class="post-catalog">
                     <?php foreach($related_posts as $post):
                         setup_postdata($post);
-                        $card_fields = get_field('card');
+                        $card_fields = get_field('blog_post_fields');
                         
                         if ($card_fields['hide']) {
                             continue;
                         }
                     ?>
                         <div class="post-catalog__item">
-                            <a href="<?php the_permalink(); ?>" class="post-catalog__item-img">
-                                <img src="<?php echo $card_fields['image']['url']; ?>" alt="<?php echo $card_fields['image']['alt']; ?>">
+                            <a href="<?= the_permalink($post); ?>" class="post-catalog__item-img">
+                                <img
+                                    src="<?= $card_fields['card_image']['sizes']['large']; ?>"
+                                    alt="<?= $card_fields['card_title']; ?>"
+                                />
                             </a>
                             <div class="post-catalog__item-info">
-                                <a href="<?php the_permalink(); ?>" class="post-catalog__item-title text-md">
-                                    <?php the_title(); ?>
+                                <a href="<?= the_permalink($post); ?>" class="post-catalog__item-title text-md">
+                                    <?= $card_fields['card_title']; ?>
                                 </a>
                                 <div class="post-catalog__item-date text-sm">
                                     <svg width="52" height="51" viewBox="0 0 52 51" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,14 +90,14 @@
                                         <path d="M16.6671 26.9976C16.6671 28.3066 15.6059 29.3678 14.2969 29.3678C12.9878 29.3678 11.9266 28.3066 11.9266 26.9976C11.9266 25.6885 12.9878 24.6273 14.2969 24.6273C15.6059 24.6273 16.6671 25.6885 16.6671 26.9976Z" fill="#8f8f8f"/>
                                     </svg>
                                     <span>
-                                        <?php the_date('d.m.Y'); ?>
+                                        <?= get_the_date('d-m-Y'); ?>
                                     </span>
                                 </div>
-                                <div class="post-catalog__item-excerpt ur__text text-sm">
-                                    <?php the_excerpt(); ?>
+                                <div class="post-catalog__item-excerpt text-sm">
+                                    <?= $card_fields['card_exceprt']; ?>
                                 </div>
                                 <div class="post-catalog__item-btn">
-                                    <a href="<?php the_permalink(); ?>" class="btn btn_small btn-primary">Читать далее</a>
+                                    <a href="<?= the_permalink($post); ?>" class="btn btn_small btn-primary">Читать далее</a>
                                 </div>
                             </div>
                         </div>
@@ -89,80 +108,7 @@
             </div>
         <?php endif; ?>
 
-    
-    <section class="contacts" id="contacts">
-        <div class="layout">
-            <div class="contacts__wrap">
-                <div class="contacts__content">
-                    <h3 class="contacts__title">Контакты</h3>
 
-                    <ul class="contacts__list">
-                        <li class="contacts__list-item">
-                            <div class="contacts__list-item-svg">
-                                <svg width="25" height="33" viewBox="0 0 25 33" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12.5 0C5.74174 0 0.262388 5.47935 0.262388 12.2376C0.262388 22.2757 12.5 33 12.5 33C12.5 33 24.7376 22.8259 24.7376 12.2383C24.7376 5.47935 19.2583 0 12.5 0ZM12.5 19.6633C8.32314 19.6633 4.93761 16.2764 4.93761 12.1009C4.93761 7.92404 8.32247 4.53851 12.5 4.53851C16.6762 4.53851 20.0624 7.92404 20.0624 12.1009C20.0624 16.2764 16.6762 19.6633 12.5 19.6633Z"
-                                        fill="#58B741" />
-                                </svg>
-                            </div>
-                            <p class="contacts__list-item-text">
-                                <span class="contacts__list-item-text-title">
-                                    Адрес
-                                </span>
-                                <span class="contacts__list-item-text-subtitle">
-                                    г. Минск, <br> пр-т Независимости д. 94
-                                </span>
-                            </p>
-                        </li>
-                        <li class="contacts__list-item">
-                            <div class="contacts__list-item-svg">
-                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M16 0.166748C7.25525 0.166748 0.166667 7.25533 0.166667 16.0001C0.166667 24.7448 7.25525 31.8334 16 31.8334C24.7448 31.8334 31.8333 24.7448 31.8333 16.0001C31.8333 7.25533 24.7448 0.166748 16 0.166748ZM21.2139 23.4528L14.4167 16.6556V6.50008H17.5833V15.3446L23.4528 21.214L21.2139 23.4528Z"
-                                        fill="#58B741" />
-                                </svg>
-                            </div>
-                            <p class="contacts__list-item-text">
-                                <span class="contacts__list-item-text-title">
-                                    Часы работы
-                                </span>
-                                <span class="contacts__list-item-text-subtitle">
-                                    с 10:00 до 21:00
-                                </span>
-                            </p>
-                        </li>
-                        <li class="contacts__list-item">
-                            <div class="contacts__list-item-svg">
-                                <svg width="31" height="33" viewBox="0 0 31 33" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M11.5072 15.0497L16.9143 20.8199C17.5006 21.4455 18.5623 21.5348 19.7451 20.9454C22.7553 19.6833 23.7568 19.3756 24.3286 19.9857L30.5442 26.6187C31.2789 27.4027 31.0828 28.7087 30.2612 29.5855C25.995 34.1382 19.0608 34.1382 14.7946 29.5855L3.18363 17.1949C-1.06121 12.665 -1.06121 5.33649 3.18363 0.806611C4.02257 -0.0886621 5.31093 -0.308944 6.07333 0.504655L12.2889 7.13759C12.8276 7.7125 12.5388 8.78331 11.3625 11.9738C10.8157 13.2192 10.9034 14.4053 11.5072 15.0497Z"
-                                        fill="#58B741" />
-                                </svg>
-                            </div>
-                            <p class="contacts__list-item-text">
-                                <span class="contacts__list-item-text-title">
-                                    Контактный номер
-                                </span>
-                                <a href="tel:+375 33 375 74 00"
-                                    class="contacts__list-item-text-subtitle line-hover">
-                                    +375 33 375 74 00
-                                </a>
-                            </p>
-                        </li>
-                    </ul>
 
-                    <div class="contacts__btn">
-                        <button type="button" class="js-popup-btn" data-popup="1">Перезвоните мне</button>
-                    </div>
-                </div>
-                <div class="contacts__img _ibg">
-                    <img src="https://100nout.by/wp-content/uploads/2023/07/rectangle-114.png" alt="" />
-                </div>
-            </div>
-        </div>
-    </section>
 </div>
 <?php get_footer();

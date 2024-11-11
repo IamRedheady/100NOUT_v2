@@ -319,6 +319,36 @@
       }
     }
   }
+
+  .mobile-menu-accordion.menu__mobile-list-item,
+  .mobile-menu-accordion {
+
+    & > .btn {
+      position: relative;
+      padding-right: 0;
+      max-width: calc(100% + 20px);
+    }
+
+    .mobile-menu-accordion__toggle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 36px;
+      min-width: unset;
+      padding: 0;
+
+      svg {
+        margin: 0;
+      }
+    }
+
+    .mobile-menu-accordion__subnav {
+      display: none;
+      padding-left: 20px;
+      padding-bottom: 48px;
+    }
+  }
 }
 
 @media screen and (max-width: 480px) {

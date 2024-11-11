@@ -125,6 +125,11 @@
                             </a>
                         </li>
                         <li class="footer__nav-item">
+                            <a href="/blog/" class="footer__nav-item-link link link_big link-secondary text">
+                                Блог
+                            </a>
+                        </li>
+                        <li class="footer__nav-item">
                             <a href="/kontakty/" class="footer__nav-item-link link link_big link-secondary text">
                                 Контакты
                             </a>

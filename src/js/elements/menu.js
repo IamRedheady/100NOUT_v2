@@ -200,4 +200,12 @@ if (menu) {
     },
     true,
   );
+
+  document.addEventListener('DOMContentLoaded', () => {
+    jQuery('.mobile-menu-accordion__toggle').on('click', function(event) {
+      event.preventDefault();
+
+      $(this).closest('.mobile-menu-accordion')?.find('.mobile-menu-accordion__subnav')?.slideToggle();
+    })
+  })
 }
