@@ -210,14 +210,17 @@ class WmsStockController
         $s_offset = 0;
         $s_limit = 1000;
 
-        // Готовая продукция (минус) – https://api.moysklad.ru/api/remap/1.2/entity/store/aad3dac1-ebd4-11ec-0a80-0c32001fe3b7
-        // Независимости – https://api.moysklad.ru/api/remap/1.2/entity/store/1581bede-1ed4-11ec-0a80-06650037e169
-        // Независимости сервис – https://api.moysklad.ru/api/remap/1.2/entity/store/6cc303d7-dde0-11ed-0a80-0830000fbf5c
+        // Готовая продукция (минус) – https://online.moysklad.ru/api/remap/1.2/entity/store/aad3dac1-ebd4-11ec-0a80-0c32001fe3b7
+        // Независимости – https://online.moysklad.ru/api/remap/1.2/entity/store/1581bede-1ed4-11ec-0a80-06650037e169
+        // Независимости сервис – https://online.moysklad.ru/api/remap/1.2/entity/store/6cc303d7-dde0-11ed-0a80-0830000fbf5c
         // Независимости приемка – https://api.moysklad.ru/api/remap/1.2/entity/store/476658d3-ab92-11ee-0a80-07a9004572e9
         // ТЦ Радиомаркет – https://api.moysklad.ru/api/remap/1.2/entity/store/fc9022b7-926b-11ed-0a80-071b000f2474
-        // Кульман готовое – https://api.moysklad.ru/api/remap/1.2/entity/store/565324a1-cefc-11ee-0a80-14120034de0b
+        // Подзаказ Iphone https://api.moysklad.ru/api/remap/1.2/entity/store/3e71ca84-9857-11ef-0a80-0b92001125ef
+        // Подзаказ Цифра https://api.moysklad.ru/api/remap/1.2/entity/store/1194b3f3-7b93-11ed-0a80-011100257ff5
+        // ГП Кульман https://api.moysklad.ru/api/remap/1.2/entity/store/01de1406-8fa0-11ef-0a80-19b700267bd1
 
-        $pre_url = WMS_URL_API_V2 . '/report/stock/all?offset='.$s_offset.'&limit='.$s_limit.'&filter=stockMode=all;store=https://api.moysklad.ru/api/remap/1.2/entity/store/1581bede-1ed4-11ec-0a80-06650037e169;store=https://api.moysklad.ru/api/remap/1.2/entity/store/6cc303d7-dde0-11ed-0a80-0830000fbf5c;store=https://api.moysklad.ru/api/remap/1.2/entity/store/476658d3-ab92-11ee-0a80-07a9004572e9;store=https://api.moysklad.ru/api/remap/1.2/entity/store/fc9022b7-926b-11ed-0a80-071b000f2474;store=https://api.moysklad.ru/api/remap/1.2/entity/store/565324a1-cefc-11ee-0a80-14120034de0b;';
+
+        $pre_url = WMS_URL_API_V2 . '/report/stock/all?offset='.$s_offset.'&limit='.$s_limit.'&filter=stockMode=all;store=https://api.moysklad.ru/api/remap/1.2/entity/store/1581bede-1ed4-11ec-0a80-06650037e169;store=https://api.moysklad.ru/api/remap/1.2/entity/store/6cc303d7-dde0-11ed-0a80-0830000fbf5c;store=https://api.moysklad.ru/api/remap/1.2/entity/store/476658d3-ab92-11ee-0a80-07a9004572e9;store=https://api.moysklad.ru/api/remap/1.2/entity/store/fc9022b7-926b-11ed-0a80-071b000f2474;store=https://api.moysklad.ru/api/remap/1.2/entity/store/3e71ca84-9857-11ef-0a80-0b92001125ef;store=https://api.moysklad.ru/api/remap/1.2/entity/store/1194b3f3-7b93-11ed-0a80-011100257ff5;store=https://api.moysklad.ru/api/remap/1.2/entity/store/01de1406-8fa0-11ef-0a80-19b700267bd1;';
 
         $pre_stock = WmsConnectApi::get_instance()->send_request($pre_url);
 
@@ -230,11 +233,24 @@ class WmsStockController
             // WmsLogs::set_logs("Попали куда надо", true);
             $s_offset = 1000;
 
-            $s_pre_url = WMS_URL_API_V2 . '/report/stock/all?offset='.$s_offset.'&limit='.$s_limit.'&filter=stockMode=all;store=https://api.moysklad.ru/api/remap/1.2/entity/store/1581bede-1ed4-11ec-0a80-06650037e169;store=https://api.moysklad.ru/api/remap/1.2/entity/store/6cc303d7-dde0-11ed-0a80-0830000fbf5c;store=https://api.moysklad.ru/api/remap/1.2/entity/store/476658d3-ab92-11ee-0a80-07a9004572e9;store=https://api.moysklad.ru/api/remap/1.2/entity/store/fc9022b7-926b-11ed-0a80-071b000f2474;store=https://api.moysklad.ru/api/remap/1.2/entity/store/565324a1-cefc-11ee-0a80-14120034de0b;';
+            $s_pre_url = WMS_URL_API_V2 . '/report/stock/all?offset='.$s_offset.'&limit='.$s_limit.'&filter=stockMode=all;store=https://api.moysklad.ru/api/remap/1.2/entity/store/1581bede-1ed4-11ec-0a80-06650037e169;store=https://api.moysklad.ru/api/remap/1.2/entity/store/6cc303d7-dde0-11ed-0a80-0830000fbf5c;store=https://api.moysklad.ru/api/remap/1.2/entity/store/476658d3-ab92-11ee-0a80-07a9004572e9;store=https://api.moysklad.ru/api/remap/1.2/entity/store/fc9022b7-926b-11ed-0a80-071b000f2474;store=https://api.moysklad.ru/api/remap/1.2/entity/store/3e71ca84-9857-11ef-0a80-0b92001125ef;store=https://api.moysklad.ru/api/remap/1.2/entity/store/1194b3f3-7b93-11ed-0a80-011100257ff5;store=https://api.moysklad.ru/api/remap/1.2/entity/store/01de1406-8fa0-11ef-0a80-19b700267bd1;';
 
             $s_pre_stock = WmsConnectApi::get_instance()->send_request($s_pre_url);
 
             $finaly_rows = $s_pre_stock['rows'];
+
+            if (2000 < intval($pre_stock['meta']['size'])) {
+                // WmsLogs::set_logs("Попали куда надо", true);
+                $s_offset = 2000;
+    
+                $s_pre_url = WMS_URL_API_V2 . '/report/stock/all?offset='.$s_offset.'&limit='.$s_limit.'&filter=stockMode=all;store=https://api.moysklad.ru/api/remap/1.2/entity/store/1581bede-1ed4-11ec-0a80-06650037e169;store=https://api.moysklad.ru/api/remap/1.2/entity/store/6cc303d7-dde0-11ed-0a80-0830000fbf5c;store=https://api.moysklad.ru/api/remap/1.2/entity/store/476658d3-ab92-11ee-0a80-07a9004572e9;store=https://api.moysklad.ru/api/remap/1.2/entity/store/fc9022b7-926b-11ed-0a80-071b000f2474;store=https://api.moysklad.ru/api/remap/1.2/entity/store/3e71ca84-9857-11ef-0a80-0b92001125ef;store=https://api.moysklad.ru/api/remap/1.2/entity/store/1194b3f3-7b93-11ed-0a80-011100257ff5;store=https://api.moysklad.ru/api/remap/1.2/entity/store/01de1406-8fa0-11ef-0a80-19b700267bd1;';
+    
+                $ss_pre_stock = WmsConnectApi::get_instance()->send_request($s_pre_url);
+    
+                $s_finaly_rows = $ss_pre_stock['rows'];
+
+                $finaly_rows = array_merge($s_finaly_rows, $finaly_rows);
+            }
         }
 
         // WmsLogs::set_logs(count($finaly_rows)." 2 ссылка", true);
@@ -471,16 +487,18 @@ class WmsStockController
             // $url = apply_filters('wms_get_stock_url', add_query_arg($args, $url) . $parametr_url);
 
 
-            // Готовая продукция (минус) – https://api.moysklad.ru/api/remap/1.2/entity/store/aad3dac1-ebd4-11ec-0a80-0c32001fe3b7
-            // Независимости – https://api.moysklad.ru/api/remap/1.2/entity/store/1581bede-1ed4-11ec-0a80-06650037e169
-            // Независимости сервис – https://api.moysklad.ru/api/remap/1.2/entity/store/6cc303d7-dde0-11ed-0a80-0830000fbf5c
+            // Готовая продукция (минус) – https://online.moysklad.ru/api/remap/1.2/entity/store/aad3dac1-ebd4-11ec-0a80-0c32001fe3b7
+            // Независимости – https://online.moysklad.ru/api/remap/1.2/entity/store/1581bede-1ed4-11ec-0a80-06650037e169
+            // Независимости сервис – https://online.moysklad.ru/api/remap/1.2/entity/store/6cc303d7-dde0-11ed-0a80-0830000fbf5c
             // Независимости приемка – https://api.moysklad.ru/api/remap/1.2/entity/store/476658d3-ab92-11ee-0a80-07a9004572e9
             // ТЦ Радиомаркет – https://api.moysklad.ru/api/remap/1.2/entity/store/fc9022b7-926b-11ed-0a80-071b000f2474
-            // Кульман готовое – https://api.moysklad.ru/api/remap/1.2/entity/store/565324a1-cefc-11ee-0a80-14120034de0b
+            // Подзаказ Iphone https://api.moysklad.ru/api/remap/1.2/entity/store/3e71ca84-9857-11ef-0a80-0b92001125ef
+            // Подзаказ Цифра https://api.moysklad.ru/api/remap/1.2/entity/store/1194b3f3-7b93-11ed-0a80-011100257ff5
+            // ГП Кульман https://api.moysklad.ru/api/remap/1.2/entity/store/01de1406-8fa0-11ef-0a80-19b700267bd1
 
 
             // ////////
-            $url = WMS_URL_API_V2 . '/report/stock/all?offset='.$offset.'&limit='.$this->limit.'&filter=stockMode=all;store=https://api.moysklad.ru/api/remap/1.2/entity/store/1581bede-1ed4-11ec-0a80-06650037e169;store=https://api.moysklad.ru/api/remap/1.2/entity/store/6cc303d7-dde0-11ed-0a80-0830000fbf5c;store=https://api.moysklad.ru/api/remap/1.2/entity/store/476658d3-ab92-11ee-0a80-07a9004572e9;store=https://api.moysklad.ru/api/remap/1.2/entity/store/fc9022b7-926b-11ed-0a80-071b000f2474;store=https://api.moysklad.ru/api/remap/1.2/entity/store/565324a1-cefc-11ee-0a80-14120034de0b;';
+            $url = WMS_URL_API_V2 . '/report/stock/all?offset='.$offset.'&limit='.$this->limit.'&filter=stockMode=all;store=https://api.moysklad.ru/api/remap/1.2/entity/store/1581bede-1ed4-11ec-0a80-06650037e169;store=https://api.moysklad.ru/api/remap/1.2/entity/store/6cc303d7-dde0-11ed-0a80-0830000fbf5c;store=https://api.moysklad.ru/api/remap/1.2/entity/store/476658d3-ab92-11ee-0a80-07a9004572e9;store=https://api.moysklad.ru/api/remap/1.2/entity/store/fc9022b7-926b-11ed-0a80-071b000f2474;store=https://api.moysklad.ru/api/remap/1.2/entity/store/3e71ca84-9857-11ef-0a80-0b92001125ef;store=https://api.moysklad.ru/api/remap/1.2/entity/store/1194b3f3-7b93-11ed-0a80-011100257ff5;store=https://api.moysklad.ru/api/remap/1.2/entity/store/01de1406-8fa0-11ef-0a80-19b700267bd1;';
             // ////////
 
             $stock = WmsConnectApi::get_instance()->send_request($url);

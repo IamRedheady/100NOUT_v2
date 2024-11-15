@@ -254,7 +254,7 @@ class WmsStockApi
         $checkPodZakaz = true;
         
         foreach ($s_stocks as $s_istock){
-            if ($s_istock['name'] == "Независимости сервис" or $s_istock['name'] == "Независимости приёмка") {
+            if ($s_istock['name'] == "материальный, нез." or $s_istock['name'] == "Независимости приёмка") {
                 if ($s_istock['stock'] != 0) {
                     $checkDraft = true;
                 }
@@ -264,6 +264,16 @@ class WmsStockApi
                 if ($s_istock['stock'] != "0" and $s_product->get_price() > 0 and $s_product->get_stock_quantity() != "0") {
                     // if ($s_istock['name'] == "Независимости" ) {
                     $checkVmagazine = $s_istock['stock'];
+                    // }
+
+                    $checkInStock = true;
+                }
+            }
+
+            if ($s_istock['name'] == "iPhone") {
+                if ($s_istock['stock'] != "0" and $s_product->get_price() > 0 and $s_product->get_stock_quantity() != "0") {
+                    // if ($s_istock['name'] == "Независимости" ) {
+                    $checkPodZakaz = $s_istock['stock'];
                     // }
 
                     $checkInStock = true;
@@ -279,7 +289,7 @@ class WmsStockApi
                 )
             );
 
-            WmsLogs::set_logs($s_product->get_sku()." находится на складе Независимости сервис. Скрываем до следующей синхронизации.", true);
+            WmsLogs::set_logs($s_product->get_sku()." находится на складе материальный, нез. Скрываем до следующей синхронизации.", true);
         } else {
             wp_update_post(
                 array( 
