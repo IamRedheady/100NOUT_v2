@@ -110,4 +110,4 @@ setTimeout(function () {
   if (!checkCookie()) {
     showModal();
   }
-}, 3000);
+}, 30000);
