@@ -1,11 +1,10 @@
 const popup = document.querySelectorAll(".js-popup");
-
+const body = document.querySelector("body");
 if (popup.length !== 0) {
   const popupCloseBtn = document.querySelectorAll(".js-popup-btn");
-  const body = document.querySelector("body");
-
   popupCloseBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
+      console.log(btn.getAttribute("data-popup"));
       popup.forEach((el) => {
         if (el.getAttribute("data-popup") === btn.getAttribute("data-popup")) {
           if (el.classList.contains("active")) {
@@ -56,3 +55,59 @@ if (popup.length !== 0) {
     });
   }
 }
+
+const popupTg = document.querySelector(".js-popup-tg");
+const popupTgContainer = popupTg.querySelector(".popup__container");
+if (popupTg) {
+  popupTg.addEventListener("click", function (event) {
+    // Проверяем, произошел ли клик на контейнере
+    const isClickInside =
+      popupTgContainer.contains(event.target) || popupTg === event.target;
+
+    // Если клик не на js-popup и не на popup__container, удаляем класс active
+    if (isClickInside) {
+      popupTg.classList.add("quit");
+      body.classList.remove("scroll-disabled");
+      setTimeout(() => {
+        popupTg.classList.remove("quit");
+        popupTg.classList.remove("active");
+      }, 500);
+    }
+  });
+}
+// Функция для проверки наличия куки
+function checkCookie() {
+  const cookieName = "popupTg"; // Имя куки, которую мы проверяем
+  const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
+    const [name, value] = cookie.split("=");
+    acc[name] = value;
+    return acc;
+  }, {});
+
+  return cookies[cookieName] !== undefined;
+}
+
+// Функция для установки куки
+function setCookie(name, value, days) {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie =
+    name +
+    "=" +
+    encodeURIComponent(value) +
+    "; expires=" +
+    expires +
+    "; path=/";
+}
+
+// Функция для показа модального окна
+function showModal() {
+  body.classList.add("scroll-disabled");
+  popupTg.classList.add("active");
+  setCookie("popupTg", "true", 1);
+}
+
+setTimeout(function () {
+  if (!checkCookie()) {
+    showModal();
+  }
+}, 3000);

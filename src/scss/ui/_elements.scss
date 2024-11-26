@@ -426,6 +426,15 @@
     padding-right: 60px;
     align-items: center;
     animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    &--tg {
+      max-width: 1160px;
+      border-radius: 16px;
+      padding: 0;
+      overflow: hidden;
+      .popup__btn svg path {
+        fill: #fff;
+      }
+    }
   }
 
   &.quit &__container {
@@ -518,6 +527,75 @@
       display: none;
     }
   }
+
+  &__tg {
+    display: flex;
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+    }
+    &__content {
+      flex: 0 0 530px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 50px 40px 50px 50px;
+      @media screen and (max-width: 768px) {
+        flex: 0 0 345px;
+        padding: 40px 20px 40px 20px;
+      }
+      @media screen and (max-width: 600px) {
+        padding: 20px;
+        flex: 0 0 auto;
+        order: 2;
+      }
+    }
+    &__content-title {
+      margin: 0 0 15px;
+      @media screen and (max-width: 768px) {
+        font-size: 24px;
+        line-height: 120%;
+      }
+    }
+    &__content-desc {
+    }
+    &__content-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      margin: 30px 0 0;
+      padding: 16px;
+      background: $InStock;
+      border-radius: 8px;
+      color: $white;
+      cursor: pointer;
+    }
+    &__content-agreement {
+      margin: 10px 0 0;
+      color: $N400;
+      a {
+        color: $N400;
+        &:hover {
+          color: $InStock;
+        }
+      }
+    }
+    &__pic {
+      flex: 1 1 auto;
+      @media screen and (max-width: 600px) {
+        order: 1;
+      }
+    }
+    &__img {
+      height: 100%;
+      display: block;
+      width: auto;
+      max-width: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+  }
 }
 
 @media screen and (max-width: 960px) {
@@ -527,6 +605,9 @@
     }
     &__container {
       padding: 50px 110px;
+      &--tg {
+        padding: 0;
+      }
     }
   }
 }
@@ -536,6 +617,9 @@
     padding-right: 20px;
     &__container {
       padding: 50px 30px;
+      &--tg {
+        padding: 0;
+      }
     }
   }
 }
@@ -546,6 +630,9 @@
     padding-right: 20px;
     &__container {
       padding: 45px 15px;
+      &--tg {
+        padding: 0;
+      }
     }
     &__form {
       .btn {
