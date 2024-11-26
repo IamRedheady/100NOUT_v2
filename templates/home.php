@@ -95,9 +95,9 @@
                     <ul class="intro__list">
                         <li class="intro__list-item">
                             <a class="link text-lg link-primary"
-                                href="/product-category/smartfony-tv-i-elektronika/smartfony-telefony/smartfony/apple/new/">
+                                href="/product-category/novaya-produkcziya-apple/">
                                 <img src="<?php nout_image_directory() ?>i-list-00.png" alt="Б/у техника Apple">
-                                <span>Новые iPhone</span>
+                                <span>New техника Apple</span>
                             </a>
                         </li>
                         <li class="intro__list-item">
