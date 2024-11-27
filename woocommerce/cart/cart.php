@@ -128,14 +128,14 @@ do_action('woocommerce_before_cart'); ?>
                             <div class="ordering__cart-content-center">
                                 <a href="<?php echo $link; ?>" class="ordering__cart-title text text-lg text--semibold">
                                     <?php
-                                    $productNameSost = "";
-                                    if ($_product->get_attribute('sostoyanie') == "новый") {
+                                    $productNameSost = $product->get_name();
+                                    /* if ($_product->get_attribute('sostoyanie') == "новый") {
                                         $productNameSost = "Новый " . $_product->get_name() . "";
                                     } else if ($_product->get_attribute('sostoyanie') == "5") {
                                         $productNameSost = "" . $_product->get_name() . ", отличное состояние";
                                     } else {
                                         $productNameSost = "Б/у " . $_product->get_name() . "";
-                                    }
+                                    } */
                                     echo $productNameSost;
                                     ?>
                                 </a>

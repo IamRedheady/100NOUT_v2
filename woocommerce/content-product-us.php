@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying product content within loops
  *
@@ -15,40 +16,40 @@
  * @version 3.6.0
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 global $product;
-$p_image_url = wp_get_attachment_url( $product->get_image_id());
-$link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product );
+$p_image_url = wp_get_attachment_url($product->get_image_id());
+$link = apply_filters('woocommerce_loop_product_link', get_the_permalink(), $product);
 $product_id = $product->get_id();
 $photos_ids = $product->get_gallery_image_ids();
 
-$productNameSost = "";
-if ($product->get_attribute('sostoyanie') == "новый") {
-    $productNameSost = "Новый ".$product->get_name()."";
+$productNameSost = $product->get_name();
+/* if ($product->get_attribute('sostoyanie') == "новый") {
+    $productNameSost = "Новый " . $product->get_name() . "";
 } else if ($product->get_attribute('sostoyanie') == "5") {
-    $productNameSost = "".$product->get_name().", отличное состояние";
+    $productNameSost = "" . $product->get_name() . ", отличное состояние";
 } else {
-    $productNameSost = "Б/у ".$product->get_name()."";
-}
+    $productNameSost = "Б/у " . $product->get_name() . "";
+} */
 
 // Ensure visibility.
-if ( empty( $product ) || ! $product->is_visible() ) {
-	return;
+if (empty($product) || ! $product->is_visible()) {
+    return;
 }
 ?>
- <li class="prs__list-item">
+<li class="prs__list-item">
     <div class="product">
         <div class="product__center">
             <?php woocommerce_template_loop_add_to_cart(); ?>
-            <a href="<?php echo $link;?>" class="product__title">
-                <?php echo $productNameSost;?>
+            <a href="<?php echo $link; ?>" class="product__title">
+                <?php echo $productNameSost; ?>
             </a>
             <p class="product__price">
-            <?php 
-                        if ($product->get_price()) {
-                            echo number_format($product->get_price(), 0, '', ' ');
-                        }?>
+                <?php
+                if ($product->get_price()) {
+                    echo number_format($product->get_price(), 0, '', ' ');
+                } ?>
                 <span>BYN</span>
             </p>
         </div>

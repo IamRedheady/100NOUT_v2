@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying product content in the single-product.php template
  *
@@ -15,7 +16,7 @@
  * @version 3.6.0
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 global $product;
 
@@ -25,27 +26,27 @@ global $product;
  * @hooked woocommerce_output_all_notices - 10
  */
 // do_action( 'woocommerce_before_single_product' );
-if ( post_password_required() ) {
-	echo get_the_password_form(); // WPCS: XSS ok.
-	return;
+if (post_password_required()) {
+    echo get_the_password_form(); // WPCS: XSS ok.
+    return;
 }
 
 $cat = $product->get_category_ids();
-$category_link = get_category_link( $cat[0] );
-$ancestors = get_ancestors( $cat[0], 'product_cat' );
+$category_link = get_category_link($cat[0]);
+$ancestors = get_ancestors($cat[0], 'product_cat');
 
-$productNameSost = "";
-if ($product->get_attribute('sostoyanie') == "новый") {
+$productNameSost = $product->get_name();
+/* if ($product->get_attribute('sostoyanie') == "новый") {
     $productNameSost = "Новый ".$product->get_name()."";
 } else if ($product->get_attribute('sostoyanie') == "5") {
     $productNameSost = "".$product->get_name().", отличное состояние";
 } else {
     $productNameSost = "Б/у ".$product->get_name()."";
-}
+} */
 
 $status = $product->get_status();
 $photos_ids = $product->get_gallery_image_ids();
-$p_image_url = wp_get_attachment_url( $product->get_image_id());
+$p_image_url = wp_get_attachment_url($product->get_image_id());
 
 // $catss = $product->get_categories();
 
@@ -60,7 +61,11 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
 <div class="prp__header js-prp-header">
     <div class="layout prp__header-inner">
         <div class="prp__header-pic">
-            <img src="<?php if ($p_image_url) { echo $p_image_url;} else {echo "https://100nout.by/wp-content/uploads/2023/03/zagl.png";}?>" alt="Фото">
+            <img src="<?php if ($p_image_url) {
+                            echo $p_image_url;
+                        } else {
+                            echo "https://100nout.by/wp-content/uploads/2023/03/zagl.png";
+                        } ?>" alt="Фото">
         </div>
         <div class="prp__header-content">
             <h3 class="prp__header-title text-sm">
@@ -69,13 +74,13 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
             <p class="text-sm prp__header-status">В наличии</p>
         </div>
         <p class="prp__price text text-3xl">
-        <?php 
-                        if ($product->get_price()) {
-                            echo number_format($product->get_price(), 0, '', ' ');
-                        }?><span class="prp__price-currency text-xs">BYN</span>
+            <?php
+            if ($product->get_price()) {
+                echo number_format($product->get_price(), 0, '', ' ');
+            } ?><span class="prp__price-currency text-xs">BYN</span>
         </p>
         <p class="prp__price-old text-xs">
-            <?php echo $product->get_regular_price();?>
+            <?php echo $product->get_regular_price(); ?>
         </p>
         <?php woocommerce_template_loop_add_to_cart(); ?>
     </div>
@@ -91,12 +96,12 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
         </button>
         <div class="prp__big-slider js-prp-slider-big">
             <div class='swiper-wrapper'>
-                <?php  if($photos_ids) {?>
-                    <?php foreach ( $photos_ids as $photo_id ) { ?>
+                <?php if ($photos_ids) { ?>
+                    <?php foreach ($photos_ids as $photo_id) { ?>
                         <div class='swiper-slide'>
                             <div class="prp__big-slider-pic">
-                                <div class="swiper-zoom-container" style="background: url('<?php echo wp_get_attachment_url( $photo_id ); ?>') 10000% -10000% / 130% no-repeat;">
-                                    <img src="<?php echo wp_get_attachment_url( $photo_id ); ?>" alt="<?php echo $product->get_name(); ?>">
+                                <div class="swiper-zoom-container" style="background: url('<?php echo wp_get_attachment_url($photo_id); ?>') 10000% -10000% / 130% no-repeat;">
+                                    <img src="<?php echo wp_get_attachment_url($photo_id); ?>" alt="<?php echo $product->get_name(); ?>">
                                 </div>
                             </div>
                         </div>
@@ -105,33 +110,35 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
                     <div class='swiper-slide'>
                         <img src="https://100nout.by/wp-content/uploads/2023/03/zagl.png" alt="Здесь ДОЛЖНО быть фото товара...">
                     </div>
-                <?php }?>
+                <?php } ?>
             </div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
         </div>
         <div thumbsSlider="" class="prp__big-slider-thumbs js-prp-thumbs-big">
             <div class='swiper-wrapper'>
-                <?php  if($photos_ids) {?>
-                    <?php foreach ( $photos_ids as $photo_id ) { ?>
+                <?php if ($photos_ids) { ?>
+                    <?php foreach ($photos_ids as $photo_id) { ?>
                         <div class='swiper-slide'>
-                            <img src="<?php echo wp_get_attachment_url( $photo_id ); ?>" alt="<?php echo $product->get_name(); ?>">
+                            <img src="<?php echo wp_get_attachment_url($photo_id); ?>" alt="<?php echo $product->get_name(); ?>">
                         </div>
                     <?php } ?>
                 <?php } else { ?>
                     <div class='swiper-slide'>
                         <img src="https://100nout.by/wp-content/uploads/2023/03/zagl.png " alt="Здесь ДОЛЖНО быть фото товара...">
                     </div>
-                <?php }?>
+                <?php } ?>
             </div>
         </div>
     </div>
-    <?php echo woocommerce_breadcrumb();?>
+    <?php echo woocommerce_breadcrumb(); ?>
     <h1 class="prp__title text-3xl">
-    <?php echo $productNameSost; ?>
+        <?php echo $productNameSost; ?>
     </h1>
     <p class="prp__subtitle">
-        <span class="text-sm prp__subtitle-status"><?php if ($status == 'publish') {echo 'В наличии';} ?></span>
+        <span class="text-sm prp__subtitle-status"><?php if ($status == 'publish') {
+                                                        echo 'В наличии';
+                                                    } ?></span>
         <span class="text-sm prp__subtitle-code-name">Код товара:</span>
         <span class="text-sm prp__subtitle-code-val"><?php echo $product->get_sku(); ?></span>
     </p>
@@ -139,32 +146,32 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
         <div class="prp__slider-wrap">
             <div thumbsSlider="" class="prp__thumbs js-prp-thumbs">
                 <div class='swiper-wrapper'>
-                    <?php  if($photos_ids) {?>
-                        <?php foreach ( $photos_ids as $photo_id ) { ?>
+                    <?php if ($photos_ids) { ?>
+                        <?php foreach ($photos_ids as $photo_id) { ?>
                             <div class='swiper-slide'>
-                                <img src="<?php echo wp_get_attachment_url( $photo_id ); ?>" alt="<?php echo $product->get_name(); ?>">
+                                <img src="<?php echo wp_get_attachment_url($photo_id); ?>" alt="<?php echo $product->get_name(); ?>">
                             </div>
                         <?php } ?>
                     <?php } else { ?>
                         <div class='swiper-slide'>
                             <img src="https://100nout.by/wp-content/uploads/2023/03/zagl.png " alt="Здесь ДОЛЖНО быть фото товара...">
                         </div>
-                    <?php }?>
+                    <?php } ?>
                 </div>
             </div>
             <div class="prp__slider js-prp-slider">
                 <div class='swiper-wrapper'>
-                    <?php  if($photos_ids) {?>
-                        <?php foreach ( $photos_ids as $photo_id ) { ?>
+                    <?php if ($photos_ids) { ?>
+                        <?php foreach ($photos_ids as $photo_id) { ?>
                             <div class='swiper-slide js-prp-slider-toggle'>
-                                <img src="<?php echo wp_get_attachment_url( $photo_id ); ?>" alt="<?php echo $product->get_name(); ?>">
+                                <img src="<?php echo wp_get_attachment_url($photo_id); ?>" alt="<?php echo $product->get_name(); ?>">
                             </div>
                         <?php } ?>
                     <?php } else { ?>
                         <div class='swiper-slide'>
                             <img src="https://100nout.by/wp-content/uploads/2023/03/zagl.png " alt="Здесь ДОЛЖНО быть фото товара...">
                         </div>
-                    <?php }?>
+                    <?php } ?>
                 </div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
@@ -174,50 +181,50 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
             <div class="prp__content-center">
                 <div class="product__tags hide-scroll">
                     <?php
-                        // Product Status
-                        if ($product->get_attribute('sostoyanie') == 'новый') {
-                            ?>
-                                <div class="product__tags-label product__tags-label--new">
-                                    Новый
-                                </div>
-                            <?php
-                        }
+                    // Product Status
+                    if ($product->get_attribute('sostoyanie') == 'новый') {
+                    ?>
+                        <div class="product__tags-label product__tags-label--new">
+                            Новый
+                        </div>
+                    <?php
+                    }
 
-                        if ($product->get_attribute('sostoyanie') == '5') {
-                            ?>
-                                <div class="product__tags-label product__tags-label--new">
-                                    Как новый
-                                </div>
-                            <?php
-                        }
+                    if ($product->get_attribute('sostoyanie') == '5') {
+                    ?>
+                        <div class="product__tags-label product__tags-label--new">
+                            Как новый
+                        </div>
+                    <?php
+                    }
 
-                        if ($product->get_attribute('sostoyanie') == '4' or $product->get_attribute('sostoyanie') == '3') {
-                            ?>
-                                <div class="product__tags-label product__tags-label--used">
-                                    Б/У
-                                </div>
-                            <?php
-                        }
+                    if ($product->get_attribute('sostoyanie') == '4' or $product->get_attribute('sostoyanie') == '3') {
+                    ?>
+                        <div class="product__tags-label product__tags-label--used">
+                            Б/У
+                        </div>
+                    <?php
+                    }
 
-                        // Shop status
-                        $in_shop = get_field( 'v_magazine' );
-                        $to_order = get_field('pod_zakaz');
+                    // Shop status
+                    $in_shop = get_field('v_magazine');
+                    $to_order = get_field('pod_zakaz');
 
-                        if ( $in_shop >= 1 )  {
-                           ?>
-                                <div class="product__tags-label product__tags-label--in-stock">
-                                    В магазине
-                                </div>
-                           <?php
-                        } elseif ( $to_order >= 1 )  {
-                            ?>
-                                <div class="product__tags-label product__tags-label--order">
-                                    Под заказ
-                                </div>
-                           <?php
-                        } else {
-                            echo '';
-                        }
+                    if ($in_shop >= 1) {
+                    ?>
+                        <div class="product__tags-label product__tags-label--in-stock">
+                            В магазине
+                        </div>
+                    <?php
+                    } elseif ($to_order >= 1) {
+                    ?>
+                        <div class="product__tags-label product__tags-label--order">
+                            Под заказ
+                        </div>
+                    <?php
+                    } else {
+                        echo '';
+                    }
 
 
                     ?>
@@ -228,37 +235,37 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
                 <h3 class="text-lg text--semibold">Основные характеристики</h3>
                 <ul class="product__info">
                     <?php
-                        if( get_field('harakteristiki', 'option') ): ?>
+                    if (get_field('harakteristiki', 'option')): ?>
 
-                            <?php while( has_sub_field('harakteristiki', 'option') ): 
-                                $productAttrCats = get_sub_field('kategoriya_tovarov');
-                                $currentCat = $product->get_category_ids()[0];
+                        <?php while (has_sub_field('harakteristiki', 'option')):
+                            $productAttrCats = get_sub_field('kategoriya_tovarov');
+                            $currentCat = $product->get_category_ids()[0];
 
-                                if (in_array($currentCat, $productAttrCats)) {
-                                     if( get_sub_field('atributy', 'option') ) {
-                                        while( has_sub_field('atributy', 'option') ): ?>
-                                            <?php
-                                                $attrSlug = get_sub_field('slug_atributa', 'option');
-                                                if ($product->get_attribute($attrSlug)) {
-                                                    ?>
-                                                     <li class="product__info-item">
-                                                        <p class="product__info-item-name">
-                                                            <?php
-                                                            echo wc_attribute_label( 'pa_'.$attrSlug );?>
-                                                        </p>
-                                                        <p class="product__info-item-val">
-                                                            <?php echo $product->get_attribute($attrSlug)?>
-                                                        </p>
-                                                    </li>
+                            if (in_array($currentCat, $productAttrCats)) {
+                                if (get_sub_field('atributy', 'option')) {
+                                    while (has_sub_field('atributy', 'option')): ?>
+                                        <?php
+                                        $attrSlug = get_sub_field('slug_atributa', 'option');
+                                        if ($product->get_attribute($attrSlug)) {
+                                        ?>
+                                            <li class="product__info-item">
+                                                <p class="product__info-item-name">
                                                     <?php
-                                                }
-                                            ?>
-                                        <?php endwhile; 
-                                    }
+                                                    echo wc_attribute_label('pa_' . $attrSlug); ?>
+                                                </p>
+                                                <p class="product__info-item-val">
+                                                    <?php echo $product->get_attribute($attrSlug) ?>
+                                                </p>
+                                            </li>
+                                        <?php
+                                        }
+                                        ?>
+                            <?php endwhile;
                                 }
-                                ?>                        
-                            <?php endwhile; ?>
-                        
+                            }
+                            ?>
+                        <?php endwhile; ?>
+
                     <?php endif; ?>
                 </ul>
                 <a href="#chars" class="link link-primary text-sm">
@@ -268,28 +275,28 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
                     <p class="text-lg text--semibold">
                         Состояние
                         <span class="text text-xs"><?php
-                             echo $product->get_attribute('sostoyanie');
-                        ?></span>
+                                                    echo $product->get_attribute('sostoyanie');
+                                                    ?></span>
                     </p>
                     <div class="prp__state">
                         <div class="prp__state-line" style="width: <?php
-                            // Product Status
-                        if ($product->get_attribute('sostoyanie') == 'новый') {
-                            ?>100<?php
-                        }
+                                                                    // Product Status
+                                                                    if ($product->get_attribute('sostoyanie') == 'новый') {
+                                                                    ?>100<?php
+                                                                        }
 
-                        if ($product->get_attribute('sostoyanie') == '5') {
-                            ?>90<?php
-                        }
+                                                                        if ($product->get_attribute('sostoyanie') == '5') {
+                                                                            ?>90<?php
+                                                                        }
 
-                        if ($product->get_attribute('sostoyanie') == '4' or $product->get_attribute('sostoyanie') == '3') {
-                            ?>80<?php
-                        }
-                        ?>%;"></div>
+                                                                        if ($product->get_attribute('sostoyanie') == '4' or $product->get_attribute('sostoyanie') == '3') {
+                                        ?>80<?php
+                                                                        }
+                                    ?>%;"></div>
                     </div>
                     <p class="text text-xs">
                         <?php
-                             echo $product->get_attribute('vneshnij-vid');
+                        echo $product->get_attribute('vneshnij-vid');
                         ?></p>
                 </div>
             </div>
@@ -297,15 +304,15 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
                 <div class="prp__content-more-card">
                     <div class="prp__content-more-top">
                         <p class="prp__price text text-3xl">
-                        <?php 
-                        if ($product->get_price()) {
-                            echo number_format($product->get_price(), 0, '', ' ');
-                        }?><span class="prp__price-currency text-xs">BYN</span>
+                            <?php
+                            if ($product->get_price()) {
+                                echo number_format($product->get_price(), 0, '', ' ');
+                            } ?><span class="prp__price-currency text-xs">BYN</span>
                         </p>
                         <p class="prp__price-old text-xs">
-                            <?php echo $product->get_regular_price();?>
+                            <?php echo $product->get_regular_price(); ?>
                         </p>
-                        <?php echo do_shortcode('[ti_wishlists_addtowishlist]');?>
+                        <?php echo do_shortcode('[ti_wishlists_addtowishlist]'); ?>
                     </div>
                     <?php woocommerce_template_loop_add_to_cart(); ?>
                 </div>
@@ -314,8 +321,8 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
                         <a href="/dostavka/" class="link link-primary text-lg">
                             Доставка
                         </a>
-                        <?php 
-                            $todayH = date("H") + 3;
+                        <?php
+                        $todayH = date("H") + 3;
                         ?>
                         <ul class="prp__content-more-list">
                             <li class="prp__content-more-list-item">
@@ -324,46 +331,46 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
                             </li>
                             <li class="prp__content-more-list-item">
                                 <p class="text text-sm text--semibold">Доставка курьером</p>
-                                <p class="text text-xs">Минск — 
+                                <p class="text text-xs">Минск —
                                     <?php
-                                        if ($todayH < 16) {
-                                            ?>
-                                                Сегодня, с 18:00 до 21:00
-                                            <?php
-                                        } else {
-                                            ?>
-                                                завтра, до 21:00
-                                            <?php
-                                        }
+                                    if ($todayH < 16) {
+                                    ?>
+                                        Сегодня, с 18:00 до 21:00
+                                    <?php
+                                    } else {
+                                    ?>
+                                        завтра, до 21:00
+                                    <?php
+                                    }
                                     ?></p>
                             </li>
                             <li class="prp__content-more-list-item">
                                 <p class="text text-sm text--semibold">Доставка по Беларуси</p>
                                 <p class="text text-xs">
                                     <?php
-                                        $arr = [
-                                            'января',
-                                            'февраля',
-                                            'марта',
-                                            'апреля',
-                                            'мая',
-                                            'июня',
-                                            'июля',
-                                            'августа',
-                                            'сентября',
-                                            'октября',
-                                            'ноября',
-                                            'декабря'
-                                        ];
+                                    $arr = [
+                                        'января',
+                                        'февраля',
+                                        'марта',
+                                        'апреля',
+                                        'мая',
+                                        'июня',
+                                        'июля',
+                                        'августа',
+                                        'сентября',
+                                        'октября',
+                                        'ноября',
+                                        'декабря'
+                                    ];
 
-                                        $d = strtotime("+2 day");
-                                        $todayM = date("n", $d);
-                                        $nextDay = date("d", $d);
+                                    $d = strtotime("+2 day");
+                                    $todayM = date("n", $d);
+                                    $nextDay = date("d", $d);
                                     ?>
-                                Курьером до <?php 
-                                echo $nextDay;
-                                echo " ";
-                                echo $arr[$todayM - 1];?></p>
+                                    Курьером до <?php
+                                                echo $nextDay;
+                                                echo " ";
+                                                echo $arr[$todayM - 1]; ?></p>
                             </li>
                         </ul>
                     </div>
@@ -388,149 +395,149 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
         </div>
     </div>
     <div class="prp__tabs" id="chars">
-        <?php 
-            if ($product->get_description()) {
-                ?>
-                 <input id="prp1" type="radio" name="prp-tabs" checked>
-                 <input id="prp2" type="radio" name="prp-tabs">
-                <?php
-            } else {
-                ?>
-                 <input id="prp2" type="radio" name="prp-tabs" checked>
-                <?php
-            }
+        <?php
+        if ($product->get_description()) {
+        ?>
+            <input id="prp1" type="radio" name="prp-tabs" checked>
+            <input id="prp2" type="radio" name="prp-tabs">
+        <?php
+        } else {
+        ?>
+            <input id="prp2" type="radio" name="prp-tabs" checked>
+        <?php
+        }
 
-            if ($ancestors[0] == 2309) {
-                ?>
-                 <input id="prp4" type="radio" name="prp-tabs">
-                <?php
-            }
+        if ($ancestors[0] == 2309) {
+        ?>
+            <input id="prp4" type="radio" name="prp-tabs">
+        <?php
+        }
         ?>
         <input id="prp3" type="radio" name="prp-tabs">
         <div class="prp__tabs-inner hide-scroll">
-        <?php 
+            <?php
             if ($product->get_description()) {
-                ?>
-                 <label for="prp1" class="prp__tabs-label prp__tabs-label-1">
+            ?>
+                <label for="prp1" class="prp__tabs-label prp__tabs-label-1">
                     О товаре
                 </label>
-                <?php
+            <?php
             }
-        ?>
+            ?>
             <label for="prp2" class="prp__tabs-label prp__tabs-label-2">
                 Характеристики
             </label>
             <label for="prp3" class="prp__tabs-label prp__tabs-label-3">
                 Отзывы о магазине
             </label>
-            <?php 
-                 if ($ancestors[0] == 2309) {
-                    ?>
-                    <label for="prp4" class="prp__tabs-label prp__tabs-label-4">
-                        Аксессуары
-                    </label>    
-                    <?php
-                 }
+            <?php
+            if ($ancestors[0] == 2309) {
+            ?>
+                <label for="prp4" class="prp__tabs-label prp__tabs-label-4">
+                    Аксессуары
+                </label>
+            <?php
+            }
             ?>
         </div>
-        <?php 
-            if ($product->get_description()) {
-                ?>
-                    <div class="prp__tabs-body prp__tabs-body-1">
-                        <div class="text text-base">
-                            <?php 
-                                echo $product->get_description();
-                            ?>
-                        </div>
-                    </div>
-                <?php
-            }
+        <?php
+        if ($product->get_description()) {
+        ?>
+            <div class="prp__tabs-body prp__tabs-body-1">
+                <div class="text text-base">
+                    <?php
+                    echo $product->get_description();
+                    ?>
+                </div>
+            </div>
+        <?php
+        }
         ?>
         <div class="prp__tabs-body prp__tabs-body-2">
-            <?php echo do_shortcode( '[woocommerce_group_attributes_table]' );?>
+            <?php echo do_shortcode('[woocommerce_group_attributes_table]'); ?>
         </div>
         <div class="prp__tabs-body prp__tabs-body-3">
-        <div class="reviews__body">
-        <div class="reviews__column">
-            <ul class="reviews__list">
-                <?php
+            <div class="reviews__body">
+                <div class="reviews__column">
+                    <ul class="reviews__list">
+                        <?php
 
-                /*
+                        /*
                 *  Перебираем Повторитель
                 */
 
-                if( get_field('otzyvy-ya', 62) ): ?>
+                        if (get_field('otzyvy-ya', 62)): ?>
 
-                    <?php while( has_sub_field('otzyvy-ya', 62) ): ?>
-                        <li class="reviews__list-item">
-                            <div class="card reviews__card">
-                                <div class="reviews__list-item-pic">
-                                    <img src="<?php the_sub_field('otzyvy-ya-izobrazhenie', 62); ?>" alt="Фото"
-                                        class="reviews__list-item-pic-img">
-                                </div>
-                                <div class="reviews__content">
-                                    <h4 class="reviews__content-title text-2xl">
-                                        <?php the_sub_field('otzyvy-ya-imya_i_familiya', 62); ?>
-                                    </h4>
-                                    <p class="text-base">
-                                        <?php the_sub_field('otzyvy-ya-text', 62); ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                    <?php endwhile; ?>
-
-                <?php endif; ?>
-            </ul>
-            <a class="btn btn-primary reviews__btn" href="<?php the_field('ssylka_na_vse_otzyvy-ya', 62);?>">Больше отзывов на Яндекс Картах</a>
-        </div>
-        <div class="reviews__column">
-            <ul class="reviews__list">
-                <?php
-                    if( get_field('otzyvy-go', 62) ): ?>
-
-                        <?php while( has_sub_field('otzyvy-go', 62) ): ?>
-                            <li class="reviews__list-item">
-                                <div class="card reviews__card">
-                                    <div class="reviews__list-item-pic">
-                                        <img src="<?php the_sub_field('otzyvy-go-izobrazhenie', 62); ?>" alt="Фото"
-                                            class="reviews__list-item-pic-img">
+                            <?php while (has_sub_field('otzyvy-ya', 62)): ?>
+                                <li class="reviews__list-item">
+                                    <div class="card reviews__card">
+                                        <div class="reviews__list-item-pic">
+                                            <img src="<?php the_sub_field('otzyvy-ya-izobrazhenie', 62); ?>" alt="Фото"
+                                                class="reviews__list-item-pic-img">
+                                        </div>
+                                        <div class="reviews__content">
+                                            <h4 class="reviews__content-title text-2xl">
+                                                <?php the_sub_field('otzyvy-ya-imya_i_familiya', 62); ?>
+                                            </h4>
+                                            <p class="text-base">
+                                                <?php the_sub_field('otzyvy-ya-text', 62); ?>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="reviews__content">
-                                        <h4 class="reviews__content-title text-2xl">
-                                            <?php the_sub_field('otzyvy-go-imya_i_familiya', 62); ?>
-                                        </h4>
-                                        <p class="text-base">
-                                            <?php the_sub_field('otzyvy-go-text', 62); ?>
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        <?php endwhile; ?>
+                                </li>
+                            <?php endwhile; ?>
 
-                    <?php endif; ?>
-            </ul>
-            <a class="btn btn-primary reviews__btn" href="<?php the_field('ssylka_na_vse_otzyvy-go', 62);?>">Смотреть все отзывы в Google</a>
-        </div>
-    </div>
+                        <?php endif; ?>
+                    </ul>
+                    <a class="btn btn-primary reviews__btn" href="<?php the_field('ssylka_na_vse_otzyvy-ya', 62); ?>">Больше отзывов на Яндекс Картах</a>
+                </div>
+                <div class="reviews__column">
+                    <ul class="reviews__list">
+                        <?php
+                        if (get_field('otzyvy-go', 62)): ?>
+
+                            <?php while (has_sub_field('otzyvy-go', 62)): ?>
+                                <li class="reviews__list-item">
+                                    <div class="card reviews__card">
+                                        <div class="reviews__list-item-pic">
+                                            <img src="<?php the_sub_field('otzyvy-go-izobrazhenie', 62); ?>" alt="Фото"
+                                                class="reviews__list-item-pic-img">
+                                        </div>
+                                        <div class="reviews__content">
+                                            <h4 class="reviews__content-title text-2xl">
+                                                <?php the_sub_field('otzyvy-go-imya_i_familiya', 62); ?>
+                                            </h4>
+                                            <p class="text-base">
+                                                <?php the_sub_field('otzyvy-go-text', 62); ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php endwhile; ?>
+
+                        <?php endif; ?>
+                    </ul>
+                    <a class="btn btn-primary reviews__btn" href="<?php the_field('ssylka_na_vse_otzyvy-go', 62); ?>">Смотреть все отзывы в Google</a>
+                </div>
+            </div>
         </div>
         <?php
-             if ($ancestors[0] == 2309) {
-                ?>
-                    <div class="prp__tabs-body prp__tabs-body-4">
-                        <div class="prs">
-                            <h2 class="prs__title text-3xl" style="margin: 24px 0;">
-                                С этим товаром часто покупают
-                            </h2>
-                            <ul class="prs__list hide-scroll">
-                                <?php 
-                                    nout_show_products_by_id(2330);
-                                    ?>
-                            </ul>
-                        </div>
-                    </div>
-                <?php
-             }
+        if ($ancestors[0] == 2309) {
+        ?>
+            <div class="prp__tabs-body prp__tabs-body-4">
+                <div class="prs">
+                    <h2 class="prs__title text-3xl" style="margin: 24px 0;">
+                        С этим товаром часто покупают
+                    </h2>
+                    <ul class="prs__list hide-scroll">
+                        <?php
+                        nout_show_products_by_id(2330);
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        <?php
+        }
         ?>
     </div>
     <div class="prs prp__cats">
@@ -538,75 +545,73 @@ $p_image_url = wp_get_attachment_url( $product->get_image_id());
             Похожие товары
         </h2>
         <ul class="prs__list prs__list-2334 hide-scroll">
-            <?php 
-                nout_show_products_by_id($cat[0]);
-                ?>
+            <?php
+            nout_show_products_by_id($cat[0]);
+            ?>
         </ul>
     </div>
-        <?php 
-            $args = array(
-                'taxonomy'     => 'product_cat',
-                'child_of'     => 0,
-                'parent'       => $ancestors[0],
-                'orderby'      => 'name',
-                'order'        => 'ASC',
-                'hide_empty'   => 1,
-                'hierarchical' => 1,
-                // 'number'       => 0, // сколько выводить?
-                // полный список параметров смотрите в описании функции http://wp-kama.ru/function/get_terms
-            );
-        
-            $categories = get_categories( $args );
-            if( $categories ){
-                ?>
-                <div class="prp__cats">
-                    <h3 class="prp__cats-title text-3xl">
-                        Подборки товаров в категории <?php echo single_cat_title();?>
-                    </h3>
-                    <ul class="prp__cats-list hide-scroll">
-                        <?php
-                            foreach( $categories as $sub_cat ){
-                            ?>
-                                <li class="prp__cats-list-item">
-                                    <a href="<?php echo get_category_link( $sub_cat->term_id );?>" type="button" class="prp__cats-list-item-btn btn btn-secondary">
-                                        <?php echo $sub_cat->name;?>
-                                    </a>
-                                </li>
-                            <?php
-                            }
-                        ?>
-                    </ul>
-                </div>
+    <?php
+    $args = array(
+        'taxonomy'     => 'product_cat',
+        'child_of'     => 0,
+        'parent'       => $ancestors[0],
+        'orderby'      => 'name',
+        'order'        => 'ASC',
+        'hide_empty'   => 1,
+        'hierarchical' => 1,
+        // 'number'       => 0, // сколько выводить?
+        // полный список параметров смотрите в описании функции http://wp-kama.ru/function/get_terms
+    );
+
+    $categories = get_categories($args);
+    if ($categories) {
+    ?>
+        <div class="prp__cats">
+            <h3 class="prp__cats-title text-3xl">
+                Подборки товаров в категории <?php echo single_cat_title(); ?>
+            </h3>
+            <ul class="prp__cats-list hide-scroll">
                 <?php
-            }
-        ?>
-    
-        <?php 
-            echo nout_recently_viewed_products();
-            ?>
-       
+                foreach ($categories as $sub_cat) {
+                ?>
+                    <li class="prp__cats-list-item">
+                        <a href="<?php echo get_category_link($sub_cat->term_id); ?>" type="button" class="prp__cats-list-item-btn btn btn-secondary">
+                            <?php echo $sub_cat->name; ?>
+                        </a>
+                    </li>
+                <?php
+                }
+                ?>
+            </ul>
+        </div>
+    <?php
+    }
+    ?>
+
+    <?php
+    echo nout_recently_viewed_products();
+    ?>
+
 </section>
 <script>
-   document.querySelectorAll('a[href^="#"').forEach(link => {
+    document.querySelectorAll('a[href^="#"').forEach(link => {
 
-link.addEventListener('click', function(e) {
-    e.preventDefault();
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
 
-    let href = this.getAttribute('href').substring(1);
+            let href = this.getAttribute('href').substring(1);
 
-    const scrollTarget = document.getElementById(href);
+            const scrollTarget = document.getElementById(href);
 
-    // const topOffset = document.querySelector('.prp__tabs').offsetHeight;
-    const topOffset = 100; // если не нужен отступ сверху 
-    const elementPosition = scrollTarget.getBoundingClientRect().top;
-    const offsetPosition = elementPosition - topOffset;
+            // const topOffset = document.querySelector('.prp__tabs').offsetHeight;
+            const topOffset = 100; // если не нужен отступ сверху 
+            const elementPosition = scrollTarget.getBoundingClientRect().top;
+            const offsetPosition = elementPosition - topOffset;
 
-    window.scrollBy({
-        top: offsetPosition,
-        behavior: 'smooth'
+            window.scrollBy({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        });
     });
-});
-});
 </script>
-
-
