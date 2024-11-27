@@ -366,6 +366,9 @@ if ($c_total == 0) {
                                 <span class="ordering__label-subtitle text text-xs ordering__label-subtitle--warning">
                                     *По этому виду оплаты доступен только самовывоз из магазина по адресу пр-т, независимости д.94
                                 </span>
+                                <span class="ordering__label-subtitle text text-xs ordering__label-subtitle--warning">
+                                    *По этому виду оплаты акционная цена не применяется
+                                </span>
                             </span>
                         </label>
                     </div>

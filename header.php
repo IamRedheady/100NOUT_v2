@@ -1976,7 +1976,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <div class="popup__tg__content-agreement text-xs">Нажимая кнопку «Подписаться» вы соглашаетесь с условиями политики конфиденциальности <a href="/politika-konfidenczialnosti/">политики конфиденциальности</a></div>
                         </div>
                         <div class="popup__tg__pic">
-                            <img class="popup__tg__img" src="<?php nout_image_directory() ?>modal-tg/banner.jpg" alt="Подписаться на наш телеграм" />
+                            <img class="popup__tg__img" src="<?php nout_image_directory() ?>modal-tg/banner-tg.jpg" alt="Подписаться на наш телеграм" />
                         </div>
                     </div>
                 </div>

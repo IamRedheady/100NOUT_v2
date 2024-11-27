@@ -592,14 +592,65 @@ function warp_ajax_product_remove()
 add_action('wp_ajax_product_remove', 'warp_ajax_product_remove');
 add_action('wp_ajax_nopriv_product_remove', 'warp_ajax_product_remove');
 
-// Мини корзина
+function get_custom_cart_total()
+{
+    // Получаем текущую корзину
+    $cart = WC()->cart;
+    $cart_total = 0;
+
+    if (!$cart) {
+        return $cart_total;
+    }
+
+    // Получаем выбранный способ оплаты из сессии
+    $payment_method = WC()->session->get('custom_payment');
+    $specific_payment_method = '3'; // ID нужного способа оплаты
+    $specific_payment_method_2 = '1';
+
+    // Проверяем способ оплаты
+    if ($payment_method === $specific_payment_method || $payment_method === $specific_payment_method_2) {
+        foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
+            $product = $cart_item['data'];
+            $quantity = $cart_item['quantity'];
+
+            // Проверяем, относится ли продукт к категории, которую нужно исключить
+            if (has_term(2992, 'product_cat', $product->get_id())) {
+                // Пропускаем этот товар, как будто он удалён
+                continue;
+            }
+
+            // Убираем скидочную цену для остальных товаров
+            if ($product->is_on_sale()) {
+                $product_price = $product->get_regular_price();
+            } else {
+                $product_price = $product->get_price();
+            }
+
+            // Увеличиваем итоговую сумму
+            $cart_total += $product_price * $quantity;
+        }
+    } else {
+        // Если способ оплаты не специфический, просто считаем обычную сумму корзины
+        foreach ($cart->get_cart() as $cart_item) {
+            $product = $cart_item['data'];
+            $quantity = $cart_item['quantity'];
+            $cart_total += $product->get_price() * $quantity;
+        }
+    }
+
+    // Возвращаем форматированное значение
+    return number_format($cart_total, 0, '', ' ');
+}
+
+
+
 add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
 
     ob_start();
     ?>
     <?php
     global $woocommerce;
-    $c_total = number_format($woocommerce->cart->subtotal, 0, '', ' ');
+    $c_total = get_custom_cart_total();
     ?>
     <a href="<?php if ($c_total == 0) {
                     echo '##';
@@ -1469,10 +1520,11 @@ Email: ' . $order->get_billing_email();
             // Получаем выбранный способ оплаты из сессии
             $payment_method = WC()->session->get('custom_payment');
             $specific_payment_method = '3'; // Замените на ID нужного вам способа оплаты
+            $specific_payment_method_2 = '1';
 
             // Проходимся по всем товарам в корзине
             $keys_to_remove = [];
-            if ($payment_method === $specific_payment_method) {
+            if ($payment_method === $specific_payment_method || $payment_method === $specific_payment_method_2) {
                 foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
                     $product = $cart_item['data'];
                     // Проверяем, имеет ли продукт скидочную цену
