@@ -19,7 +19,7 @@
 defined('ABSPATH') || exit;
 
 global $product;
-$p_image_url = wp_get_attachment_url($product->get_image_id());
+$p_image_url = wp_get_attachment_image_src($product->get_image_id(), ('large'))[0] ?? wp_get_attachment_url($product->get_image_id());
 $link = apply_filters('woocommerce_loop_product_link', get_the_permalink(), $product);
 $product_id = $product->get_id();
 $photos_ids = $product->get_gallery_image_ids();
@@ -77,9 +77,10 @@ if (empty($product) || ! $product->is_visible()) {
                         foreach ($photos_ids as $photo_id) {
                             if ($arrCount != 0  and $arrCount < 5) {
                     ?>
+
                                 <div class='swiper-slide'>
                                     <a href="<?php echo $link; ?>" class="product__pic">
-                                        <img src="<?php echo wp_get_attachment_url($photo_id); ?>" alt="Фото" class="product__pic-img"
+                                        <img src="<?php echo wp_get_attachment_image_src($photo_id, 'large')[0] ?? wp_get_attachment_url($product->get_image_id()); ?>" alt="Фото" class="product__pic-img"
                                             loading="lazy">
                                         <div class="swiper-lazy-preloader ">
                                         </div>
@@ -94,6 +95,7 @@ if (empty($product) || ! $product->is_visible()) {
                 <div class="swiper-pagination"></div>
             </div>
         </div>
+
         <div class="product__center">
             <a href="<?php echo $link; ?>" class="product__title">
                 <?php echo $productNameSost; ?>

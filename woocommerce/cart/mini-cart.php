@@ -41,7 +41,7 @@ do_action('woocommerce_before_mini_cart'); ?>
                 $product_price     = apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key);
                 $product_permalink = apply_filters('woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink($cart_item) : '', $cart_item, $cart_item_key);
 
-                $p_image_url = wp_get_attachment_url($_product->get_image_id());
+                $p_image_url = wp_get_attachment_image_src($_product->get_image_id(), ('large'))[0] ?? wp_get_attachment_url($_product->get_image_id());
                 $link = apply_filters('woocommerce_loop_product_link', get_the_permalink(), $_product);
 
     ?>
