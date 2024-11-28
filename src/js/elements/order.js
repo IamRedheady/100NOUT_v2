@@ -546,7 +546,23 @@ if (order) {
         "textarea[name='order_comments']",
       );
 
+      const phonePlaceholder = document.querySelector(
+        "input[name='order-hidden-text']",
+      );
+
+      const phoneComment = document.querySelector(
+        "select[name='order-call-time']",
+      );
+
       let currentVal = "";
+
+      if (phonePlaceholder && phoneComment) {
+        if (phonePlaceholder.value !== "" && phoneComment.value !== "") {
+          currentVal += `
+          ${phonePlaceholder.value} ${phoneComment.value};
+                         `;
+        }
+      }
 
       if (comment) {
         if (comment.value !== "") {

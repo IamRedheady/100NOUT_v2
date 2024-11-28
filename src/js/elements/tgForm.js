@@ -21,10 +21,10 @@ $(".js-tg-form").on("submit", function (event) {
   data.append("Имя", $('[name="fname"]', form).val());
   data.append("Телефон", $('[name="ftel"]', form).val());
   data.append("Описание", $('[name="ftext"]', form).val());
-  if ($('[name="call-time"]', form).val()) {
+  if ($('[name="fcall-time"]', form).val()) {
     data.append(
-      $('[name="hidden-text"]', form).val(),
-      $('[name="call-time"]', form).val(),
+      $('[name="fhidden-text"]', form).val(),
+      $('[name="fcall-time"]', form).val(),
     );
   }
 

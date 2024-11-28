@@ -325,11 +325,11 @@
                         <input type="text" id="ftel" name="ftel" required placeholder="Номер телефона*"><br>
                         <textarea name="ftext" class="ftext" required placeholder="Опишите ваш товар максимально подробно *"></textarea><br>
                         <div class="popup__time-warning" style="margin: 10px 0;">
-                            <input size="40" maxlength="400" class="popup__time-warning-hidden" aria-invalid="false" value="" type="text" name="hidden-text">
-                            <div class="popup__time-warning-text" style="margin-bottom: 5px;">
+                            <input size="40" maxlength="400" class="popup__time-warning-hidden" aria-invalid="false" value="" type="text" name="fhidden-text">
+                            <div class="popup__time-warning-text">
                                 Рабочий день уже завершён. Пожалуйста, выберите удобное время, и мы свяжемся с вами завтра!
                             </div>
-                            <select class="popup__time-warning-select popup__form-input" aria-invalid="false" name="call-time">
+                            <select class="popup__time-warning-select popup__form-input" aria-invalid="false" name="fcall-time">
                                 <option value="">—Выберите вариант—</option>
                                 <option value="с 9:00 до 10:00">с 9:00 до 10:00</option>
                                 <option value="с 10:00 до 11:00">с 10:00 до 11:00</option>

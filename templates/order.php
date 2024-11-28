@@ -322,6 +322,27 @@ if ($c_total == 0) {
                             <input class="ordering__input js-input-tel" type="text" name="orderContacts" placeholder="Номер телефона">
                         </label>
                     </div>
+                    <div class="popup__time-warning">
+                        <input size="40" maxlength="400" class="popup__time-warning-hidden" aria-invalid="false" value="" type="text" name="order-hidden-text">
+                        <div class="popup__time-warning-text">
+                            Рабочий день уже завершён. Пожалуйста, выберите удобное время, и мы свяжемся с вами завтра!
+                        </div>
+                        <select class="popup__time-warning-select popup__form-input" aria-invalid="false" name="order-call-time">
+                            <option value="">—Выберите вариант—</option>
+                            <option value="с 9:00 до 10:00">с 9:00 до 10:00</option>
+                            <option value="с 10:00 до 11:00">с 10:00 до 11:00</option>
+                            <option value="с 11:00 до 12:00">с 11:00 до 12:00</option>
+                            <option value="с 12:00 до 13:00">с 12:00 до 13:00</option>
+                            <option value="с 13:00 до 14:00">с 13:00 до 14:00</option>
+                            <option value="с 14:00 до 15:00">с 14:00 до 15:00</option>
+                            <option value="с 15:00 до 16:00">с 15:00 до 16:00</option>
+                            <option value="с 16:00 до 17:00">с 16:00 до 17:00</option>
+                            <option value="с 17:00 до 18:00">с 17:00 до 18:00</option>
+                            <option value="с 18:00 до 19:00">с 18:00 до 19:00</option>
+                            <option value="с 19:00 до 20:00">с 19:00 до 20:00</option>
+                            <option value="с 20:00 до 21:00">с 20:00 до 21:00</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="ordering__card">
