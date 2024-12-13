@@ -137,12 +137,11 @@
 
   &__to-cart {
     position: relative;
-    color: $white;
     &:hover {
-      color: $white;
     }
     &:hover .to-cart-empty {
       opacity: 1;
+      z-index: 5;
     }
   }
 
