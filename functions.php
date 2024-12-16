@@ -10,7 +10,7 @@
 
 if (!defined('_S_VERSION')) {
     // Replace the version number of the theme on each release.
-    define('_S_VERSION', '1.1.1');
+    define('_S_VERSION', '1.1.2');
 }
 
 /**
@@ -143,9 +143,17 @@ add_action('widgets_init', 'nout_widgets_init');
  */
 function nout_scripts()
 {
-    wp_enqueue_style('nout-style', get_template_directory_uri() . '/dist/css/app.css', array(), _S_VERSION);
+    // Получаем путь до файлов
+    $style_file = get_template_directory() . '/dist/css/app.css';
+    $script_file = get_template_directory() . '/dist/js/app.js';
 
-    wp_enqueue_script('nout-js', get_template_directory_uri() . '/dist/js/app.js', array(), _S_VERSION, true);
+    // Используем filemtime() для получения времени изменения файла
+    $style_version = file_exists($style_file) ? filemtime($style_file) : false;
+    $script_version = file_exists($script_file) ? filemtime($script_file) : false;
+
+    // Подключаем стили и скрипты с уникальной версией
+    wp_enqueue_style('nout-style', get_template_directory_uri() . '/dist/css/app.css', array(), $style_version);
+    wp_enqueue_script('nout-js', get_template_directory_uri() . '/dist/js/app.js', array(), $script_version, true);
 
     wp_dequeue_style('wp-block-library');
     wp_dequeue_style('wc-blocks-vendors-style');
