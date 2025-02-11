@@ -214,7 +214,7 @@
                             </a>
                         </li>
                         <li class="footer__nav-item">
-                            <a href="https://t.me/stonoutby" class="footer__nav-item-link link link_big link-secondary text">
+                            <a href="https://t.me/+LexdUf25ZUFhNzY6" class="footer__nav-item-link link link_big link-secondary text">
                                 Телеграм
                             </a>
                         </li>

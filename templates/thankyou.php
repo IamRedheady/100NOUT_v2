@@ -107,7 +107,7 @@ $data = $order->get_data();
     </p>
     <br>
     <br>
-    <a href="https://t.me/stonoutby" class="hide-s__banner banner">
+    <a href="https://t.me/+LexdUf25ZUFhNzY6" class="hide-s__banner banner">
         <img class="banner-xl" src="https://100nout.by/wp-content/themes/nout/dist/images/tgb/xl1.jpg" alt="Баннер">
         <img class="banner-l" src="https://100nout.by/wp-content/themes/nout/dist/images/tgb/l1.jpg" alt="Баннер">
         <img class="banner-m" src="https://100nout.by/wp-content/themes/nout/dist/images/tgb/m1.jpg" alt="Баннер">

@@ -46,7 +46,7 @@
                         </a>
                     </li>
                     <li class="card__list-item">
-                        <a href="https://t.me/stonoutby" target="_blank" class="card__list-item-link text text-base link link-secondary">
+                        <a href="https://t.me/+LexdUf25ZUFhNzY6" target="_blank" class="card__list-item-link text text-base link link-secondary">
                             Телеграм
                         </a>
                     </li>
