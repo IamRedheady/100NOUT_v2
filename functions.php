@@ -1590,10 +1590,10 @@ Email: ' . $order->get_billing_email();
         function remove_old_products()
         {
             // Задаем категории
-            $categories = array('noutbuki', 'smartfony');
+            $categories = array('noutbuki', 'smartfony', 'zapchasti-dlya-noutbukov', 'komplektuyushhie-dlya-noutbukov', 'periferiya-i-aksessuary', 'avto-i-moto');
 
             // Задаем дату для сравнения (3 месяца назад)
-            $date_compare = date('Y-m-d H:i:s', strtotime('-3 months'));
+            $date_compare = date('Y-m-d H:i:s', strtotime('-2 months'));
 
             // WP_Query для получения всех товаров из заданных категорий
             $args = array(
