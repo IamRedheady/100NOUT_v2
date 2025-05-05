@@ -195,6 +195,19 @@ if (empty($product) || ! $product->is_visible()) {
                         echo '';
                     }
 
+                    // Укажите ID нужных категорий
+                    $target_category_ids = array(23861); // замените на нужные ID категорий
+
+                    // Получаем ID категорий текущего товара
+                    $product_category_ids = wc_get_product_term_ids($product->get_id(), 'product_cat');
+
+                    // Проверяем пересечение массивов
+                    if (array_intersect($target_category_ids, $product_category_ids)) {
+                        echo '<div class="product__tags-label product__tags-label--in-stoc">
+                        Гарантия 1 год
+                    </div>';
+                    }
+
 
                     ?>
                     <div class="product__tags-label product__tags-label--credit">
