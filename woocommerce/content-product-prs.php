@@ -53,10 +53,52 @@ if (empty($product) || ! $product->is_visible()) {
         }
         ?>
 
-        <div class="product__swiper-wrap"
+        <div class="product__swiper-wrap relative"
             onmouseleave="onLeaveProductPhoto(event, 'js-product-<?php echo $product_id; ?>')"
             onmousemove="onInitProductByMouse(event, 'js-product-<?php echo $product_id; ?>')"
             ontouchstart="onInitProductByTouch(event, 'js-product-<?php echo $product_id; ?>')">
+            <?php 
+                // Укажите нужные ID категорий
+                $target_category_ids = array(23861); // замените на свои
+
+                // Получаем все категории товара
+                $terms = get_the_terms($product->get_id(), 'product_cat');
+
+                if (!$terms || is_wp_error($terms)) {
+                    return;
+                }
+
+                $all_category_ids = array();
+
+                // Собираем ID всех категорий и их родителей
+                foreach ($terms as $term) {
+                    $all_category_ids[] = $term->term_id;
+
+                    // Поднимаемся по иерархии родительских категорий
+                    $parent_id = $term->parent;
+                    while ($parent_id) {
+                        $parent = get_term($parent_id, 'product_cat');
+                        if ($parent && !is_wp_error($parent)) {
+                            $all_category_ids[] = $parent->term_id;
+                            $parent_id = $parent->parent;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+
+                // Удаляем дубликаты
+                $all_category_ids = array_unique($all_category_ids);
+
+                // print_r($all_category_ids);
+
+                 // Проверяем пересечение массивов
+                 if (array_intersect($target_category_ids, $all_category_ids)) {
+                     echo '<div class="product__garrany">
+                     Гарантия 1 год
+                 </div>';
+                 } 
+            ?>
             <div class="product__swiper js-product-swiper">
                 <div class='swiper-wrapper' onclick="onProductClick('<?php echo $link; ?>')">
                     <div class='swiper-slide'>

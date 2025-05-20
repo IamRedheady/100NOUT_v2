@@ -142,12 +142,52 @@ do_action('woocommerce_before_cart'); ?>
                                 <p class="ordering__cart-sku text text-sm">
                                     Код товара: <span class="ordering__cart-sku-num"><?php echo $_product->get_sku(); ?></span>
                                 </p>
+                                <?php 
+                                    // Укажите нужные ID категорий
+                                    $target_category_ids = array(23861); // замените на свои
+
+                                    // Получаем все категории товара
+                                    $terms = get_the_terms($_product->get_id(), 'product_cat');
+
+                                    if (!$terms || is_wp_error($terms)) {
+                                        return;
+                                    }
+
+                                    $all_category_ids = array();
+
+                                    // Собираем ID всех категорий и их родителей
+                                    foreach ($terms as $term) {
+                                        $all_category_ids[] = $term->term_id;
+
+                                        // Поднимаемся по иерархии родительских категорий
+                                        $parent_id = $term->parent;
+                                        while ($parent_id) {
+                                            $parent = get_term($parent_id, 'product_cat');
+                                            if ($parent && !is_wp_error($parent)) {
+                                                $all_category_ids[] = $parent->term_id;
+                                                $parent_id = $parent->parent;
+                                            } else {
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    // Удаляем дубликаты
+                                    $all_category_ids = array_unique($all_category_ids);
+
+                                    $year_garranty = false;
+
+                                    // print_r($all_category_ids);
+
+                                    // Проверяем пересечение массивов
+                                    if (array_intersect($target_category_ids, $all_category_ids)) {
+                                        $year_garranty = true;
+                                    } 
+                                ?>
                                 <?php
                                 if (get_field('garantii', 'option')) : ?>
                                     <?php while (has_sub_field('garantii', 'option')) : ?>
-
                                         <?php
-
                                         if ($_product->get_price() > get_sub_field('minimalnaya_czena', 'option') and $_product->get_price() <= get_sub_field('maksimalnaya_czena', 'option')) {
                                         ?>
                                             <div class="ordering__cart-dropdown">
@@ -158,7 +198,13 @@ do_action('woocommerce_before_cart'); ?>
                                                 <?php } else { ?>
                                                     <div class="dropdown js-dropdown">
                                                         <button type="button" class="dropdown__btn">
-                                                            <span class="text-base text js-dropdown-value">Гарантия 30 дней</span>
+                                                            <span class="text-base text js-dropdown-value"><?php 
+                                                                if ($year_garranty == true) {
+                                                                    echo 'Гарантия 1 год';
+                                                                } else {
+                                                                    echo 'Гарантия 30 дней';
+                                                                }
+                                                            ?></span>
                                                             <svg class="dropdown__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.70711 7.29289L10 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68342 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z" fill="#B8B8B8" />
                                                             </svg>
@@ -166,7 +212,13 @@ do_action('woocommerce_before_cart'); ?>
                                                         <ul class="dropdown__list">
                                                             <li class="dropdown__list-item">
                                                                 <button type="button" class="dropdown__list-item-btn text-sm button wp-element-button product_type_simple" data-free-dso="1" data-parent-product_id="<?php echo $_product->get_id(); ?>">
-                                                                    Гарантия 30 дней
+                                                                    <?php 
+                                                                        if ($year_garranty == true) {
+                                                                            echo 'Гарантия 1 год';
+                                                                        } else {
+                                                                            echo 'Гарантия 30 дней';
+                                                                        }
+                                                                    ?>
                                                                 </button>
                                                             </li>
                                                             <?php if (get_sub_field('garantii_r', 'option')) : ?>

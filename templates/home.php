@@ -102,9 +102,9 @@ $page_title = get_field('title');
             </li>
             <li class="intro__list-item">
                 <a class="link text-lg link-primary"
-                    href="/product-category/smartfony-tv-i-elektronika/smartfony-telefony/">
-                    <img src="<?php nout_image_directory() ?>i-list-01.png" alt="Б/у смартфоны">
-                    <span>Б/у смартфоны</span>
+                    href="/product-category/smartfony-tv-i-elektronika/planshety-elektronnye-knigi/planshety/">
+                    <img src="/wp-content/uploads/2025/05/ipad-air-13-2024-starlight.webp" alt="Планшеты">
+                    <span>Планшеты</span>
                 </a>
             </li>
             <li class="intro__list-item">
@@ -112,6 +112,27 @@ $page_title = get_field('title');
                     href="/product-category/kompyuternaya-tehnika/noutbuki/">
                     <img src="<?php nout_image_directory() ?>i-list-02.png" alt="Б/у ноутбуки">
                     <span>Б/у ноутбуки</span>
+                </a>
+            </li>
+            <li class="intro__list-item">
+                <a class="link text-lg link-primary"
+                    href="/product-category/novye-smartofny-android/">
+                    <img src="/wp-content/uploads/2025/05/samsung-geleksi-25.png" alt="Новые андроид">
+                    <span>NEW Android</span>
+                </a>
+            </li>
+            <li class="intro__list-item">
+                <a class="link text-lg link-primary"
+                    href="/product-category/smartfony-telefony/apple/">
+                    <img src="/wp-content/uploads/2025/05/16e.png" alt="б/у iphone">
+                    <span>Б/у iPhone</span>
+                </a>
+            </li>
+             <li class="intro__list-item">
+                <a class="link text-lg link-primary"
+                    href="/product-category/smartfony-telefony/b-u-android/">
+                    <img src="/wp-content/uploads/2025/05/ksyaomi.png" alt="Новые iphone">
+                    <span>Б/у Android</span>
                 </a>
             </li>
         </ul>
