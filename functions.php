@@ -1208,7 +1208,7 @@ Email: ' . $order->get_billing_email();
                 $new_msg = $msg;
                 $userId = '-1001933568755'; // 100NOUT группы id в телеграм
                 $myId = '192150244'; // Мой id в телеграм
-                $token = '5360345876:AAEyM_sckiSJyjD3ci4QLtPfstR4Uxn9tDk'; // Token бота
+                $token = '5360345876:AAGggqTq3e1yLvT7SLnQb9oo5qAEgS2jvEQ'; // Token бота
 
                 file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?chat_id=' . $userId . '&text=' . urlencode($new_msg) . ''); // Отправляем сообщение
 
