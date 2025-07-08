@@ -1189,6 +1189,9 @@
 
 <!-- Контактная форма -->
 <style>
+    .hidden-fields-container{
+        display: none;
+    }
     .wpcf7-spinner {
         display: none;
     }
