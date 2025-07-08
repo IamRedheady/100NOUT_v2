@@ -32,155 +32,168 @@
         }
     }
 
+    $showCounters = true;
+    if (isset($_COOKIE['cookieconsent_status']) && $_COOKIE['cookieconsent_status']=="deny") {
+        $showCounters = false;
+    } 
+
+
     ?>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Google Tag Manager -->
-    <!--
-	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5FSCB3G');</script>
-	-->
-    <!-- End Google Tag Manager -->
 
-    <!-- Meta Pixel Code -->
-    <script>
-        ! function(f, b, e, v, n, t, s) {
-            if (f.fbq) return;
-            n = f.fbq = function() {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1248920185697062');
-        fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=1248920185697062&ev=PageView&noscript=1" /></noscript>
-    <!-- End Meta Pixel Code -->
+    <?php if($showCounters){ ?>
+        <!-- Google Tag Manager -->
+        <!--
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5FSCB3G');</script>
+        -->
+        <!-- End Google Tag Manager -->
+
+        <!-- Meta Pixel Code -->
+        <script>
+            ! function(f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function() {
+                    n.callMethod ?
+                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = '2.0';
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1248920185697062');
+            fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+                src="https://www.facebook.com/tr?id=1248920185697062&ev=PageView&noscript=1" /></noscript>
+        <!-- End Meta Pixel Code -->
+    <?php } ?>
+
     <?php wp_head(); ?>
 </head>
 
-<!-- HEAD SCRIPTS FOR SITE -->
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m, e, t, r, i, k, a) {
-        m[i] = m[i] || function() {
-            (m[i].a = m[i].a || []).push(arguments)
-        };
-        m[i].l = 1 * new Date();
-        for (var j = 0; j < document.scripts.length; j++) {
-            if (document.scripts[j].src === r) {
-                return;
+<?php if($showCounters){ ?>
+    <!-- HEAD SCRIPTS FOR SITE -->
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m, e, t, r, i, k, a) {
+            m[i] = m[i] || function() {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) {
+                    return;
+                }
             }
-        }
-        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-    })
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-    ym(89452498, "init", {
-        clickmap: true,
-        trackLinks: true,
-        accurateTrackBounce: true,
-        webvisor: true,
-        ecommerce: "dataLayer"
-    });
-</script>
-<noscript>
-    <div><img src="https://mc.yandex.ru/watch/89452498" style="position:absolute; left:-9999px;" alt="" /></div>
-</noscript>
-<!-- /Yandex.Metrika counter -->
-<!-- Google Tag Manager -->
-<script>
-    (function(w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-            'gtm.start': new Date().getTime(),
-            event: 'gtm.js'
+        ym(89452498, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true,
+            ecommerce: "dataLayer"
         });
-        var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-5FSCB3G');
-</script>
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/89452498" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5FSCB3G');
+    </script>
 
-<!-- End Google Tag Manager -->
+    <!-- End Google Tag Manager -->
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FSCB3G"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FSCB3G"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10908582157"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-10908582157');
+    </script>
+    <!-- Event snippet for put_cart conversion page -->
+    <script>
+        gtag('event', 'conversion', {
+            'send_to': 'AW-10908582157/gU96CNXSjcIDEI2Cz9Eo',
+            'value': 2.0,
+            'currency': 'USD'
+        });
+    </script>
+    <!-- Top.Mail.Ru counter -->
+    <script type="text/javascript">
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({
+            id: "3485157",
+            type: "pageView",
+            start: (new Date()).getTime()
+        });
+        (function(d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script");
+            ts.type = "text/javascript";
+            ts.async = true;
+            ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function() {
+                var s = d.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(ts, s);
+            };
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else {
+                f();
+            }
+        })(document, window, "tmr-code");
+    </script>
+    <noscript>
+        <div><img src="https://top-fwz1.mail.ru/counter?id=3485157;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div>
+    </noscript>
+    <!-- /Top.Mail.Ru counter -->
+<?php } ?>
 
 <script src="<?php echo get_template_directory_uri(); ?>/dist/swiper/swiper-bundle.min.js"></script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-10908582157"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'AW-10908582157');
-</script>
-<!-- Event snippet for put_cart conversion page -->
-<script>
-    gtag('event', 'conversion', {
-        'send_to': 'AW-10908582157/gU96CNXSjcIDEI2Cz9Eo',
-        'value': 2.0,
-        'currency': 'USD'
-    });
-</script>
-<!-- Top.Mail.Ru counter -->
-<script type="text/javascript">
-    var _tmr = window._tmr || (window._tmr = []);
-    _tmr.push({
-        id: "3485157",
-        type: "pageView",
-        start: (new Date()).getTime()
-    });
-    (function(d, w, id) {
-        if (d.getElementById(id)) return;
-        var ts = d.createElement("script");
-        ts.type = "text/javascript";
-        ts.async = true;
-        ts.id = id;
-        ts.src = "https://top-fwz1.mail.ru/js/code.js";
-        var f = function() {
-            var s = d.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(ts, s);
-        };
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else {
-            f();
-        }
-    })(document, window, "tmr-code");
-</script>
-<noscript>
-    <div><img src="https://top-fwz1.mail.ru/counter?id=3485157;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div>
-</noscript>
-<!-- /Top.Mail.Ru counter -->
-
 
 <script>
     const onInitProductByTouch = (e, productClass) => {
@@ -279,6 +292,7 @@
         }, 1000);
     }
 </script>
+
 
 <!-- TI WISHLIST -->
 <style>
@@ -601,7 +615,7 @@
     @media screen and (max-width: 480px) and (orientation: portrait),
     screen and (max-width: 736px) and (orientation: landscape) {
         .cc-window.cc-floating {
-            max-width: 170px;
+            max-width: 285px;
             left: 20px;
             bottom: 70px;
         }
