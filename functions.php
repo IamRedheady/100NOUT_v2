@@ -1626,3 +1626,29 @@ Email: ' . $order->get_billing_email();
                 }
             }
         }
+
+
+        add_action('webp_express_scheduled_conversion', 'run_webp_express_bulk_convert');
+        function run_webp_express_bulk_convert() {
+            if (class_exists('WebPExpress\Convert')) {
+                $convert = new WebPExpress\Convert();
+                $convert->convert();
+            }
+        }
+
+        /**
+         * Установка расписания при загрузке темы
+         */
+        function setup_webp_express_schedule() {
+            if (!wp_next_scheduled('webp_express_scheduled_conversion')) {
+                // Установка времени 4:00 по Москве (UTC+3)
+                $time = strtotime('04:00:00 +3 hours');
+                
+                wp_schedule_event(
+                    $time,
+                    'daily',
+                    'webp_express_scheduled_conversion'
+                );
+            }
+        }
+        add_action('init', 'setup_webp_express_schedule');

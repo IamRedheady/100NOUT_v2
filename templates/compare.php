@@ -10,9 +10,7 @@
         overflow: initial !important;
         line-height: 36px !important;
     }
-    .br_new_compare .br_right_table p.product__price-old {
-        margin-left: auto !important;
-    }
+    
     .br_new_compare_block_wrap {
         margin-top: 42px;
     }
