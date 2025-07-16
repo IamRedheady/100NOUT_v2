@@ -202,8 +202,6 @@ if (class_exists('WooCommerce')) {
 // ––––––––––––––––––––
 // Custom Functions
 // ––––––––––––––––––––
-// Полное отключение генерации дополнительных размеров
-add_filter('intermediate_image_sizes_advanced', '__return_empty_array');
 
 // Get image link from theme
 function nout_image_directory()
@@ -1627,73 +1625,4 @@ Email: ' . $order->get_billing_email();
                     delete_product_and_images($product_id);
                 }
             }
-        }
-
-
-        add_action('webp_express_scheduled_conversion', 'run_webp_express_bulk_convert');
-        function run_webp_express_bulk_convert() {
-            if (class_exists('WebPExpress\Convert')) {
-                $convert = new WebPExpress\Convert();
-                $convert->convert();
-            }
-        }
-
-        /**
-         * Установка расписания при загрузке темы
-         */
-        function setup_webp_express_schedule() {
-            if (!wp_next_scheduled('webp_express_scheduled_conversion')) {
-                // Установка времени 4:00 по Москве (UTC+3)
-                $time = strtotime('04:00:00 +3 hours');
-                
-                wp_schedule_event(
-                    $time,
-                    'daily',
-                    'webp_express_scheduled_conversion'
-                );
-            }
-        }
-        add_action('init', 'setup_webp_express_schedule');
-
-
-        // Скрываем кнопку "Обновить" для конкретных плагинов
-        add_filter('plugin_row_meta', 'hide_update_notice_on_plugins_page', 10, 2);
-        function hide_update_notice_on_plugins_page($plugin_meta, $plugin_file) {
-            $blocked_plugins = [
-                'woo-product-filter/woo-product-filter.php',
-                'products-compare-for-woocommerce/products-compare.php',
-                'load-more-products-for-woocommerce/load-more-products.php',
-                'advanced-custom-fields-pro/acf.php'
-            ];
-            
-            if (in_array($plugin_file, $blocked_plugins)) {
-                // Удаляем строку "Доступна новая версия..."
-                foreach ($plugin_meta as $key => $meta) {
-                    if (strpos($meta, 'update-now') !== false) {
-                        unset($plugin_meta[$key]);
-                        break;
-                    }
-                }
-            }
-            return $plugin_meta;
-        }
-
-        add_filter('site_transient_update_plugins', 'disable_plugin_updates');
-        function disable_plugin_updates($value) {
-            // Список плагинов для блокировки (укажите свои)
-            $plugins_to_disable = [
-                'woo-product-filter/woo-product-filter.php',          
-                'products-compare-for-woocommerce/products-compare.php',
-                'load-more-products-for-woocommerce/load-more-products.php',
-                'advanced-custom-fields-pro/acf.php'
-            ];
-            
-            if (!empty($value->response)) {
-                foreach ($plugins_to_disable as $plugin) {
-                    if (isset($value->response[$plugin])) {
-                        unset($value->response[$plugin]);
-                    }
-                }
-            }
-            return $value;
         }

@@ -1,5 +1,39 @@
 <?php /* Template Name: Политика конфиденциальности */ ?>
 <?php get_header(); ?>
+
+<?php
+// Скрипт для удаления всех копий изображений (размерных версий) из uploads
+
+// function delete_double_webp_images($dir) {
+//     $files = scandir($dir);
+
+//     foreach ($files as $file) {
+//         if ($file === '.' || $file === '..') continue;
+
+//         $fullPath = $dir . DIRECTORY_SEPARATOR . $file;
+
+//         if (is_dir($fullPath)) {
+//             delete_double_webp_images($fullPath);
+//         } else {
+//             // Удаляет файлы, заканчивающиеся на .jpg.webp или .jpeg.webp
+//             if (preg_match('/\.(jpe?g)\.webp$/i', $file)) {
+//                 if (unlink($fullPath)) {
+//                     echo "Удалено: $fullPath\n";
+//                 } else {
+//                     echo "Ошибка удаления: $fullPath\n";
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// // Путь к папке uploads
+// $upload_dir = wp_get_upload_dir()['basedir'];
+// delete_double_webp_images($upload_dir);
+
+// echo "Готово!";
+?>
+
 <section class="layout policy">
     <h1 class="policy__title text-5xl">
         Политика конфиденциальности
