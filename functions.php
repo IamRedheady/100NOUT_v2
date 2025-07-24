@@ -203,7 +203,7 @@ if (class_exists('WooCommerce')) {
 // Custom Functions
 // ––––––––––––––––––––
 // Полное отключение генерации дополнительных размеров
-add_filter('intermediate_image_sizes_advanced', '__return_empty_array');
+// add_filter('intermediate_image_sizes_advanced', '__return_empty_array');
 
 // Get image link from theme
 function nout_image_directory()
