@@ -1,0 +1,65 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: feed
+      POSTGRES_PASSWORD: feed
+      POSTGRES_DB: feeddb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # Порт наружу не нужен: postgres только внутри сети compose (меньше iptables/конфликтов на хосте).
+
+  redis:
+    image: redis:7-alpine
+    # Аналогично — redis только для api/worker внутри Docker.
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgresql://feed:feed@db:5432/feeddb
+      REDIS_URL: redis://redis:6379/0
+      FERNET_KEY: ${FERNET_KEY}
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://localhost:8000}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173,http://127.0.0.1:5173}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      PYTHONUNBUFFERED: "1"
+      MEDIA_DIR: /app/media
+    ports:
+      - "8000:8000"
+    volumes:
+      - media:/app/media
+    depends_on:
+      - db
+      - redis
+
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: ["arq", "app.worker.WorkerSettings"]
+    environment:
+      DATABASE_URL: postgresql://feed:feed@db:5432/feeddb
+      REDIS_URL: redis://redis:6379/0
+      FERNET_KEY: ${FERNET_KEY}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      PYTHONUNBUFFERED: "1"
+    depends_on:
+      - db
+      - redis
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      VITE_API_BASE: http://localhost:8000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
+  media:

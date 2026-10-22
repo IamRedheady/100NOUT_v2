@@ -1,0 +1,1 @@
+{"nodes": [{"id": "catalog", "label": "catalog.js", "file_type": "code", "source_file": "src/js/elements/catalog.js", "source_location": "L1"}], "edges": [{"source": "catalog", "target": "bundle", "relation": "imports_from", "confidence": "EXTRACTED", "source_file": "src/js/elements/catalog.js", "source_location": "L13", "weight": 1.0}]}

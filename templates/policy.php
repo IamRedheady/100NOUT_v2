@@ -2,13 +2,204 @@
 <?php get_header(); ?>
 
 <?php
+// Скрипт для удаления фоток у старых товаров (черновики из заданных категорий, не менялись 2+ месяца)
+if (!function_exists('delete_product_and_images')) {
+    function delete_product_and_images($product_id)
+    {
+        if (!class_exists('WooCommerce')) {
+            return;
+        }
+        $product = wc_get_product($product_id);
+        if (!$product) {
+            return;
+        }
+        $attachment_ids = $product->get_gallery_image_ids();
+        foreach ($attachment_ids as $attachment_id) {
+            wp_delete_attachment($attachment_id, true);
+        }
+        $featured_image_id = get_post_thumbnail_id($product_id);
+        if ($featured_image_id) {
+            wp_delete_attachment($featured_image_id, true);
+        }
+        wp_delete_post($product_id, true);
+    }
+}
+
+if (!function_exists('remove_old_products')) {
+    function remove_old_products()
+    {
+        if (!class_exists('WooCommerce')) {
+            return;
+        }
+        $categories = array('noutbuki', 'smartfony', 'zapchasti-dlya-noutbukov', 'komplektuyushhie-dlya-noutbukov', 'periferiya-i-aksessuary', 'avto-i-moto');
+        $date_compare = date('Y-m-d H:i:s', strtotime('-2 months'));
+        $args = array(
+            'post_type' => 'product',
+            'posts_per_page' => -1,
+            'post_status' => 'draft',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'product_cat',
+                    'field' => 'slug',
+                    'terms' => $categories,
+                    'include_children' => true
+                ),
+            ),
+            'date_query' => array(
+                array(
+                    'column' => 'post_modified_gmt',
+                    'before' => $date_compare,
+                ),
+            ),
+            'fields' => 'ids',
+        );
+        $query = new WP_Query($args);
+        if ($query->have_posts()) {
+            foreach ($query->posts as $product_id) {
+                delete_product_and_images($product_id);
+            }
+        }
+    }
+}
+
+// Запуск: раскомментируйте для выполнения удаления старых товаров и их изображений
+// remove_old_products();
+
+// Скрипт для удаления дублей товаров по артикулу (удаляет товар без изображений)
+function delete_duplicate_products_by_sku()
+{
+    if (!class_exists('WooCommerce')) {
+        return;
+    }
+
+    // Получаем все товары
+    $args = array(
+        'status' => 'publish',
+        'limit' => -1,
+        'return' => 'ids'
+    );
+
+    $product_ids = wc_get_products($args);
+
+    if (empty($product_ids)) {
+        return;
+    }
+
+    // Группируем товары по SKU
+    $products_by_sku = array();
+
+    foreach ($product_ids as $product_id) {
+        $product = wc_get_product($product_id);
+
+        if (!$product) {
+            continue;
+        }
+
+        $sku = $product->get_sku();
+
+        // Пропускаем товары без SKU
+        if (empty($sku)) {
+            continue;
+        }
+
+        if (!isset($products_by_sku[$sku])) {
+            $products_by_sku[$sku] = array();
+        }
+
+        $products_by_sku[$sku][] = $product_id;
+    }
+
+    $deleted_count = 0;
+    $duplicates_found = 0;
+
+    // Обрабатываем каждый SKU
+    foreach ($products_by_sku as $sku => $product_ids) {
+        // Пропускаем, если товар один (нет дублей)
+        if (count($product_ids) < 2) {
+            continue;
+        }
+
+        $duplicates_found++;
+
+        // Проверяем наличие изображений у каждого товара
+        $products_with_images = array();
+        $products_without_images = array();
+
+        foreach ($product_ids as $product_id) {
+            $product = wc_get_product($product_id);
+
+            if (!$product) {
+                continue;
+            }
+
+            // Проверяем наличие основного изображения
+            $image_id = $product->get_image_id();
+            $gallery_ids = $product->get_gallery_image_ids();
+
+            if ($image_id > 0 || !empty($gallery_ids)) {
+                $products_with_images[] = $product_id;
+            } else {
+                $products_without_images[] = $product_id;
+            }
+        }
+
+        // Если есть товары с изображениями и без, удаляем те, что без изображений
+        if (!empty($products_with_images) && !empty($products_without_images)) {
+            foreach ($products_without_images as $product_id_to_delete) {
+                $product_to_delete = wc_get_product($product_id_to_delete);
+
+                if ($product_to_delete) {
+                    $product_name = $product_to_delete->get_name();
+
+                    // Удаляем товар (переводим в корзину)
+                    wp_trash_post($product_id_to_delete);
+
+                    $deleted_count++;
+
+                    // Логируем удаление (если нужно)
+                    error_log("Удален дубль товара: ID {$product_id_to_delete}, SKU: {$sku}, Название: {$product_name} (без изображений)");
+                }
+            }
+        }
+        // Если все товары без изображений или все с изображениями, удаляем все кроме первого
+        elseif (count($product_ids) > 1) {
+            // Оставляем первый товар, остальные удаляем
+            $first_product_id = array_shift($product_ids);
+
+            foreach ($product_ids as $product_id_to_delete) {
+                $product_to_delete = wc_get_product($product_id_to_delete);
+
+                if ($product_to_delete) {
+                    $product_name = $product_to_delete->get_name();
+
+                    wp_trash_post($product_id_to_delete);
+
+                    $deleted_count++;
+
+                    error_log("Удален дубль товара: ID {$product_id_to_delete}, SKU: {$sku}, Название: {$product_name}");
+                }
+            }
+        }
+    }
+
+    // Выводим результат (можно закомментировать после проверки)
+    if ($deleted_count > 0 || $duplicates_found > 0) {
+        echo "<!-- Найдено дублей по SKU: {$duplicates_found}, Удалено товаров: {$deleted_count} -->";
+    }
+}
+
+// Запускаем скрипт (раскомментируйте для выполнения)
+// delete_duplicate_products_by_sku();
+
 // Скрипт для удаления всех копий изображений (размерных версий) из uploads
 
-// function delete_double_webp_images($dir) {
+// function delete_double_webp_images($dir)
+// {
 //     $files = scandir($dir);
 
 //     foreach ($files as $file) {
-//         if ($file === '.' || $file === '..') continue;
+//         if ($file === '.' || $file === '..')
+//             continue;
 
 //         $fullPath = $dir . DIRECTORY_SEPARATOR . $file;
 
@@ -32,6 +223,8 @@
 // delete_double_webp_images($upload_dir);
 
 // echo "Готово!";
+
+
 ?>
 
 <section class="layout policy">
@@ -207,7 +400,8 @@
             если иное не предусмотрено новой редакцией Политики конфиденциальности.<br>
             9.3. Все предложения или вопросы по настоящей Политике конфиденциальности следует направлять
             на электронный адрес Администрации сайта: info@100nout.by<br>
-            9.4. Действующая Политика конфиденциальности размещена на странице по адресу https://100nout.by/politika-konfidenczialnosti/!
+            9.4. Действующая Политика конфиденциальности размещена на странице по адресу
+            https://100nout.by/politika-konfidenczialnosti/!
         </p>
     </div>
 </section>

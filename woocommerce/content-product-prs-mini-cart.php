@@ -96,14 +96,10 @@ if (empty($product) || ! $product->is_visible()) {
                 <?php echo $productNameSost; ?>
             </a>
             <?php
-            $status = $product->get_status();
+            $availability = nout_product_availability($product);
             ?>
-            <p class="product__status <?php if ($status == 'publish') {
-                                            echo 'product__status--in-stock';
-                                        } ?>">
-                <?php if ($status == 'publish') {
-                    echo 'В наличии';
-                } ?>
+            <p class="product__status <?php echo esc_attr($availability['class']); ?>">
+                <?php echo esc_html($availability['label']); ?>
             </p>
         </div>
         <div class="product__box">

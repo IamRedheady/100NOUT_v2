@@ -1,0 +1,1 @@
+# MoySklad YML feed service

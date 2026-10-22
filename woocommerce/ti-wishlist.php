@@ -120,13 +120,11 @@ wp_enqueue_script( 'tinvwl' );
                                     <a href="<?php echo $link;?>" class="product__title">
                                         <?php echo $product->get_name();?>
                                     </a>
-                                    <?php 
-                                        $status = $product->get_status();
-
-                                        
+                                    <?php
+                                        $availability = nout_product_availability($product);
                                     ?>
-                                    <p class="product__status <?php if ($status == 'publish') {echo 'product__status--in-stock';}?>">
-                                        <?php if ($status == 'publish') {echo 'В наличии';} ?>
+                                    <p class="product__status <?php echo esc_attr($availability['class']); ?>">
+                                        <?php echo esc_html($availability['label']); ?>
                                     </p>
                                     <div class="product__info-wrap">
                                         <?php woocommerce_template_loop_add_to_cart(); ?>
@@ -192,28 +190,10 @@ wp_enqueue_script( 'tinvwl' );
                                                     <?php
                                                 }
 
-                                                // Shop status
-                                                $in_shop = get_field( 'v_magazine' );
-                                                $to_order = get_field('pod_zakaz');
-
-                                                if ( $in_shop >= 1 )  {
                                                 ?>
-                                                        <div class="product__tags-label product__tags-label--in-stock">
-                                                            В магазине
-                                                        </div>
-                                                <?php
-                                                } elseif ( $to_order >= 1 )  {
-                                                    ?>
-                                                        <div class="product__tags-label product__tags-label--order">
-                                                            Под заказ
-                                                        </div>
-                                                <?php
-                                                } else {
-                                                    echo '';
-                                                }
-
-
-                                            ?>
+                                                <div class="product__tags-label <?php echo esc_attr($availability['badge_class']); ?>">
+                                                    <?php echo esc_html($availability['label']); ?>
+                                                </div>
                                             <div class="product__tags-label product__tags-label--credit">
                                                 В рассрочку
                                             </div>

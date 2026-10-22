@@ -1,15 +1,15 @@
 <?php
 // Токен телеграм бота
-$tg_bot_token = "5360345876:AAGggqTq3e1yLvT7SLnQb9oo5qAEgS2jvEQ";
+$tg_bot_token = "5360345876:AAH07JbtstIIv8jN0asmxgajfqm82Q85f7A";
 // ID Чата
 $chat_id = "-1002134349051";
 
 $text = '';
-$text .= 'Заявка со страницы скупки 100nout.by!'. "\n" . "\n";
+$text .= 'Заявка со страницы скупки 100nout.by!' . "\n" . "\n";
 foreach ($_POST as $key => $val) {
     $text .= $key . ": " . $val . "\n";
 }
-$text .=  "\n" . 'Фотографии (если есть) ниже ⬇️⬇️⬇️';
+$text .= "\n" . 'Фотографии (если есть) ниже ⬇️⬇️⬇️';
 
 $param = [
     "chat_id" => $chat_id,
@@ -25,7 +25,7 @@ var_dump($text);
 
 file_get_contents($url);
 
-foreach ( $_FILES as $file ) {
+foreach ($_FILES as $file) {
 
     $url = "https://api.telegram.org/bot" . $tg_bot_token . "/sendDocument";
 

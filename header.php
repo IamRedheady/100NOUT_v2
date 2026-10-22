@@ -33,16 +33,16 @@
     }
 
     $showCounters = true;
-    if (isset($_COOKIE['cookieconsent_status']) && $_COOKIE['cookieconsent_status']=="deny") {
+    if (isset($_COOKIE['cookieconsent_status']) && $_COOKIE['cookieconsent_status'] == "deny") {
         $showCounters = false;
-    } 
+    }
 
 
     ?>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <?php if($showCounters){ ?>
+    <?php if ($showCounters) { ?>
         <!-- Google Tag Manager -->
         <!--
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -55,9 +55,9 @@
 
         <!-- Meta Pixel Code -->
         <script>
-            ! function(f, b, e, v, n, t, s) {
+            ! function (f, b, e, v, n, t, s) {
                 if (f.fbq) return;
-                n = f.fbq = function() {
+                n = f.fbq = function () {
                     n.callMethod ?
                         n.callMethod.apply(n, arguments) : n.queue.push(arguments)
                 };
@@ -84,12 +84,12 @@
     <?php wp_head(); ?>
 </head>
 
-<?php if($showCounters){ ?>
+<?php if ($showCounters) { ?>
     <!-- HEAD SCRIPTS FOR SITE -->
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
-        (function(m, e, t, r, i, k, a) {
-            m[i] = m[i] || function() {
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
                 (m[i].a = m[i].a || []).push(arguments)
             };
             m[i].l = 1 * new Date();
@@ -100,7 +100,7 @@
             }
             k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
         })
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
         ym(89452498, "init", {
             clickmap: true,
@@ -116,7 +116,7 @@
     <!-- /Yandex.Metrika counter -->
     <!-- Google Tag Manager -->
     <script>
-        (function(w, d, s, l, i) {
+        (function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
                 'gtm.start': new Date().getTime(),
@@ -135,11 +135,11 @@
     <!-- End Google Tag Manager -->
 
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FSCB3G"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FSCB3G" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    
+
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10908582157"></script>
@@ -169,14 +169,14 @@
             type: "pageView",
             start: (new Date()).getTime()
         });
-        (function(d, w, id) {
+        (function (d, w, id) {
             if (d.getElementById(id)) return;
             var ts = d.createElement("script");
             ts.type = "text/javascript";
             ts.async = true;
             ts.id = id;
             ts.src = "https://top-fwz1.mail.ru/js/code.js";
-            var f = function() {
+            var f = function () {
                 var s = d.getElementsByTagName("script")[0];
                 s.parentNode.insertBefore(ts, s);
             };
@@ -188,7 +188,8 @@
         })(document, window, "tmr-code");
     </script>
     <noscript>
-        <div><img src="https://top-fwz1.mail.ru/counter?id=3485157;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div>
+        <div><img src="https://top-fwz1.mail.ru/counter?id=3485157;js=na" style="position:absolute;left:-9999px;"
+                alt="Top.Mail.Ru" /></div>
     </noscript>
     <!-- /Top.Mail.Ru counter -->
 <?php } ?>
@@ -1189,9 +1190,10 @@
 
 <!-- Контактная форма -->
 <style>
-    .hidden-fields-container{
+    .hidden-fields-container {
         display: none;
     }
+
     .wpcf7-spinner {
         display: none;
     }
@@ -1230,6 +1232,99 @@
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
 
+    <!-- Праздничная плашка с графиком работы -->
+    <style>
+        .holiday-banner {
+            background: linear-gradient(90deg, #50B83C 0%, #439A32 100%);
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 20px;
+            position: relative;
+            z-index: 1000;
+            display: none !important;
+        }
+
+        .holiday-banner__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .holiday-banner__icon {
+            font-size: 18px;
+        }
+
+        .holiday-banner__text {
+            font-weight: 400;
+        }
+
+        .holiday-banner__text strong {
+            font-weight: 600;
+        }
+
+        .holiday-banner__close {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 5px;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+
+        .holiday-banner__close:hover {
+            opacity: 1;
+        }
+
+        .holiday-banner.hidden {
+            display: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            .holiday-banner {
+                padding: 8px 40px 8px 15px;
+                font-size: 12px;
+                line-height: 18px;
+            }
+
+            .holiday-banner__inner {
+                gap: 6px;
+            }
+
+            .holiday-banner__icon {
+                font-size: 16px;
+            }
+        }
+    </style>
+    <div class="holiday-banner" id="holidayBanner">
+        <div class="holiday-banner__inner">
+            <span class="holiday-banner__icon">🎄</span>
+            <span class="holiday-banner__text">
+                <strong>31 декабря</strong> работаем до 16:00 · <strong>1 января</strong> — выходной · Далее с 9:00 до
+                21:00 как обычно
+            </span>
+            <span class="holiday-banner__icon">🎄</span>
+        </div>
+        <button class="holiday-banner__close" onclick="document.getElementById('holidayBanner').classList.add('hidden')"
+            aria-label="Закрыть">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 13L13 1M1 1L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </button>
+    </div>
+    <!-- /Праздничная плашка -->
+
     <style>
         @media screen and (max-width: 480px) {
             .b24-widget-button-position-bottom-right {
@@ -1249,9 +1344,9 @@
     <!-- Битрикс форма чата и поддержки -->
     <?php
     if (is_page_template('templates/skupka.php')) {
-    ?>
+        ?>
         <script>
-            (function(w, d, u) {
+            (function (w, d, u) {
                 var s = d.createElement('script');
                 s.async = true;
                 s.src = u + '?' + (Date.now() / 60000 | 0);
@@ -1259,11 +1354,11 @@
                 h.parentNode.insertBefore(s, h);
             })(window, document, 'https://cdn-ru.bitrix24.ru/b16077710/crm/site_button/loader_3_990vyx.js');
         </script>
-    <?php
+        <?php
     } else {
-    ?>
+        ?>
         <script>
-            (function(w, d, u) {
+            (function (w, d, u) {
                 var s = d.createElement('script');
                 s.async = true;
                 s.src = u + '?' + (Date.now() / 60000 | 0);
@@ -1271,7 +1366,7 @@
                 h.parentNode.insertBefore(s, h);
             })(window, document, 'https://cdn-ru.bitrix24.ru/b16077710/crm/site_button/loader_5_r5xxwz.js');
         </script>
-    <?php
+        <?php
 
     }
     ?>
@@ -1292,15 +1387,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="js-remove-links">
         <?php
         foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
-            $_product   = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
+            $_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
             $product_id = apply_filters('woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key);
 
             if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_widget_cart_item_visible', true, $cart_item, $cart_item_key)) {
-        ?>
+                ?>
                 <span class="js-remove-link" data-id="<?php echo $_product->get_id(); ?>" data-url="<?php
-                                                                                                    echo esc_url(wc_get_cart_remove_url($cart_item_key));
-                                                                                                    ?>" data-item-key="<?php echo $cart_item_key; ?>"></span>
-        <?php
+                   echo esc_url(wc_get_cart_remove_url($cart_item_key));
+                   ?>" data-item-key="<?php echo $cart_item_key; ?>"></span>
+                <?php
             }
         }
         ?>
@@ -1325,16 +1420,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     transform="matrix(0.705932 -0.70828 0.708096 0.706116 16.9238 29.5586)" fill="#67D34D" />
                             </svg>*/
                             ?>
-                            <svg width="60" height="49" viewBox="0 0 60 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="60" height="49" viewBox="0 0 60 49" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_7055_30678)">
                                     <path d="M28.436 15.9619H25.2334V19.1343H28.436V15.9619Z" fill="#50B83C" />
-                                    <path d="M26.835 16.8681C26.835 16.8681 30.0903 12.4843 29.58 5.10254" stroke="#50B83C" stroke-width="0.865166" stroke-miterlimit="10" />
+                                    <path d="M26.835 16.8681C26.835 16.8681 30.0903 12.4843 29.58 5.10254"
+                                        stroke="#50B83C" stroke-width="0.865166" stroke-miterlimit="10" />
                                     <path d="M53.2163 16.5503H50.0137V19.7226H53.2163V16.5503Z" fill="#50B83C" />
-                                    <path d="M51.6191 17.4521C51.6191 17.4521 54.8745 13.0683 54.3642 5.68652" stroke="#50B83C" stroke-width="0.865166" stroke-miterlimit="10" />
-                                    <path d="M0.303272 11.2251C-0.281815 10.8111 -0.198231 9.40363 2.14212 7.25097C4.48246 5.0983 8.07657 1.1198 8.07657 1.1198C8.07657 1.1198 9.41391 -0.453297 10.4169 0.126266C11.4199 0.705829 13.5095 2.89771 12.9244 5.60815C12.3393 8.32294 8.16015 21.9013 7.32431 28.442C6.48848 34.9828 6.9064 34.4033 7.32431 35.3968C7.74223 36.3903 7.9094 37.8806 7.32431 37.9634C6.73923 38.0462 3.10113 37.7368 1.38986 35.3968C-0.572159 32.7125 1.95295 19.6266 4.64963 13.0379L6.77442 7.85232C6.77442 7.85232 2.13332 11.5781 1.2139 11.5781C0.694796 11.5781 0.303272 11.2251 0.303272 11.2251Z" fill="#50B83C" />
-                                    <path d="M29.5356 2.25272C28.6074 0.67962 27.5252 0.832136 26.3199 1.39863C25.1145 1.96512 20.3502 6.34888 17.8207 11.2381C15.2956 16.1274 12.2514 24.6029 14.8337 30.4639C17.416 36.3206 22.8137 39.2227 27.4065 35.2965C31.9992 31.3703 35.5009 24.8862 35.9628 18.4064C36.4203 11.9223 36.3631 7.31627 33.4949 3.44671C31.6824 1.00644 31.1765 2.84535 31.0445 4.53611C30.9698 5.49914 31.1589 6.45782 31.5329 7.35113C32.0212 8.52333 32.5931 10.9941 31.8848 15.5739C31.0445 20.9905 25.0441 31.7233 20.8649 32.0544C19.4308 32.1677 18.111 26.0845 20.0599 20.7377C22.0571 15.2646 26.0867 9.53429 27.9827 7.99606C29.8788 6.46217 30.9126 4.58404 29.5312 2.25272H29.5356Z" fill="#50B83C" />
-                                    <path d="M54.9896 2.989C54.0262 1.81244 53.6303 0.967065 51.5187 1.43769C49.4071 1.90831 40.5604 6.89778 38.5192 20.1798C36.478 33.4618 42.9448 36.8956 45.4611 37.3706C47.9774 37.8412 50.2913 37.5057 51.4483 36.1592C52.6053 34.8127 57.7787 28.5421 58.9357 23.4175C60.0926 18.2929 60.8405 10.0701 58.2538 5.95653C55.6671 1.84295 53.8986 4.61003 54.035 5.41619C54.1714 6.22235 56.5513 8.6539 55.8035 14.6543C54.7917 22.7726 48.9408 32.7166 45.7514 32.4857C43.3539 32.3114 43.2835 28.0627 44.1017 21.3912C44.92 14.7197 51.246 7.97847 52.4733 7.43812C53.7007 6.89778 56.2346 4.51416 54.9896 2.989Z" fill="#50B83C" />
-                                    <path d="M0 44.6524C0 46.4041 1.31095 48.1646 3.77007 47.5545C6.2292 46.9445 18.7536 44.7526 29.1048 45.0576C39.456 45.3626 54.1095 48.1036 54.831 48.1036C55.5525 48.1036 55.856 46.8835 55.5481 46.378C55.2401 45.8725 54.4219 45.1578 52.2663 44.6524C50.1107 44.1469 34.8941 38.5996 17.6274 40.0856C3.30376 41.3144 0 40.9963 0 44.6524Z" fill="#50B83C" />
+                                    <path d="M51.6191 17.4521C51.6191 17.4521 54.8745 13.0683 54.3642 5.68652"
+                                        stroke="#50B83C" stroke-width="0.865166" stroke-miterlimit="10" />
+                                    <path
+                                        d="M0.303272 11.2251C-0.281815 10.8111 -0.198231 9.40363 2.14212 7.25097C4.48246 5.0983 8.07657 1.1198 8.07657 1.1198C8.07657 1.1198 9.41391 -0.453297 10.4169 0.126266C11.4199 0.705829 13.5095 2.89771 12.9244 5.60815C12.3393 8.32294 8.16015 21.9013 7.32431 28.442C6.48848 34.9828 6.9064 34.4033 7.32431 35.3968C7.74223 36.3903 7.9094 37.8806 7.32431 37.9634C6.73923 38.0462 3.10113 37.7368 1.38986 35.3968C-0.572159 32.7125 1.95295 19.6266 4.64963 13.0379L6.77442 7.85232C6.77442 7.85232 2.13332 11.5781 1.2139 11.5781C0.694796 11.5781 0.303272 11.2251 0.303272 11.2251Z"
+                                        fill="#50B83C" />
+                                    <path
+                                        d="M29.5356 2.25272C28.6074 0.67962 27.5252 0.832136 26.3199 1.39863C25.1145 1.96512 20.3502 6.34888 17.8207 11.2381C15.2956 16.1274 12.2514 24.6029 14.8337 30.4639C17.416 36.3206 22.8137 39.2227 27.4065 35.2965C31.9992 31.3703 35.5009 24.8862 35.9628 18.4064C36.4203 11.9223 36.3631 7.31627 33.4949 3.44671C31.6824 1.00644 31.1765 2.84535 31.0445 4.53611C30.9698 5.49914 31.1589 6.45782 31.5329 7.35113C32.0212 8.52333 32.5931 10.9941 31.8848 15.5739C31.0445 20.9905 25.0441 31.7233 20.8649 32.0544C19.4308 32.1677 18.111 26.0845 20.0599 20.7377C22.0571 15.2646 26.0867 9.53429 27.9827 7.99606C29.8788 6.46217 30.9126 4.58404 29.5312 2.25272H29.5356Z"
+                                        fill="#50B83C" />
+                                    <path
+                                        d="M54.9896 2.989C54.0262 1.81244 53.6303 0.967065 51.5187 1.43769C49.4071 1.90831 40.5604 6.89778 38.5192 20.1798C36.478 33.4618 42.9448 36.8956 45.4611 37.3706C47.9774 37.8412 50.2913 37.5057 51.4483 36.1592C52.6053 34.8127 57.7787 28.5421 58.9357 23.4175C60.0926 18.2929 60.8405 10.0701 58.2538 5.95653C55.6671 1.84295 53.8986 4.61003 54.035 5.41619C54.1714 6.22235 56.5513 8.6539 55.8035 14.6543C54.7917 22.7726 48.9408 32.7166 45.7514 32.4857C43.3539 32.3114 43.2835 28.0627 44.1017 21.3912C44.92 14.7197 51.246 7.97847 52.4733 7.43812C53.7007 6.89778 56.2346 4.51416 54.9896 2.989Z"
+                                        fill="#50B83C" />
+                                    <path
+                                        d="M0 44.6524C0 46.4041 1.31095 48.1646 3.77007 47.5545C6.2292 46.9445 18.7536 44.7526 29.1048 45.0576C39.456 45.3626 54.1095 48.1036 54.831 48.1036C55.5525 48.1036 55.856 46.8835 55.5481 46.378C55.2401 45.8725 54.4219 45.1578 52.2663 44.6524C50.1107 44.1469 34.8941 38.5996 17.6274 40.0856C3.30376 41.3144 0 40.9963 0 44.6524Z"
+                                        fill="#50B83C" />
                                 </g>
                                 <defs>
                                     <clipPath id="clip0_7055_30678">
@@ -1344,7 +1450,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </svg>
                         </a>
                         <button class="header__menu-toggle btn btn-primary btn_icon-left js-menu-toggle">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M3 5C3 4.44772 3.44772 4 4 4H16C16.5523 4 17 4.44772 17 5C17 5.55228 16.5523 6 16 6H4C3.44772 6 3 5.55228 3 5Z"
                                     fill="white" />
@@ -1362,8 +1469,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="header__search">
                             <?php echo do_shortcode('[fibosearch]'); ?>
                         </div>
-                        <button class="header__to-call-toggle btn btn-secondary btn_icon-left js-popup-btn" data-popup="1">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <button class="header__to-call-toggle btn btn-secondary btn_icon-left js-popup-btn"
+                            data-popup="1">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M7.93919 9.29682L10.73 12.0945C11.0325 12.3978 11.5805 12.4411 12.191 12.1553C13.7447 11.5434 14.2616 11.3942 14.5567 11.6901L17.7647 14.906C18.1439 15.2862 18.0427 15.9194 17.6187 16.3445C15.4168 18.5518 11.8378 18.5518 9.63592 16.3445L3.64316 10.3369C1.45228 8.1406 1.45228 4.58739 3.64316 2.39108C4.07617 1.95701 4.74112 1.85021 5.13462 2.24468L8.34266 5.46065C8.62071 5.73939 8.47162 6.25857 7.86454 7.80549C7.58232 8.40933 7.62754 8.9844 7.93919 9.29682Z"
                                     fill="#21201F" />
@@ -1378,40 +1487,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         $c_total = number_format($woocommerce->cart->subtotal, 0, '', ' ');
                         ?>
                         <a href="<?php if ($c_total == 0) {
-                                        echo '##';
-                                    } else {
-                                        echo '/cart';
-                                    } ?>" class="header__to-cart btn <?php if ($c_total == 0) {
-                                                                            echo 'btn-secondary';
-                                                                        } else {
-                                                                            echo 'btn-primary';
-                                                                        } ?> btn_icon-left">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            echo '##';
+                        } else {
+                            echo '/cart';
+                        } ?>" class="header__to-cart btn <?php if ($c_total == 0) {
+                             echo 'btn-secondary';
+                         } else {
+                             echo 'btn-primary';
+                         } ?> btn_icon-left">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M3 1C2.44772 1 2 1.44772 2 2C2 2.55228 2.44772 3 3 3H4.21922L4.52478 4.22224C4.52799 4.23637 4.5315 4.25039 4.5353 4.26429L5.89253 9.69321L4.99995 10.5858C3.74002 11.8457 4.63235 14 6.41416 14H15C15.5522 14 16 13.5523 16 13C16 12.4477 15.5522 12 15 12L6.41417 12L7.41416 11H14C14.3788 11 14.725 10.786 14.8944 10.4472L17.8944 4.44721C18.0494 4.13723 18.0329 3.76909 17.8507 3.47427C17.6684 3.17945 17.3466 3 17 3H6.28078L5.97014 1.75746C5.85885 1.3123 5.45887 1 5 1H3Z"
                                     fill="<?php if ($c_total == 0) {
-                                                echo '#21201F';
-                                            } else {
-                                                echo '#fff';
-                                            } ?>" />
+                                        echo '#21201F';
+                                    } else {
+                                        echo '#fff';
+                                    } ?>" />
                                 <path
                                     d="M16 16.5C16 17.3284 15.3284 18 14.5 18C13.6716 18 13 17.3284 13 16.5C13 15.6716 13.6716 15 14.5 15C15.3284 15 16 15.6716 16 16.5Z"
                                     fill="<?php if ($c_total == 0) {
-                                                echo '#21201F';
-                                            } else {
-                                                echo '#fff';
-                                            } ?>" />
+                                        echo '#21201F';
+                                    } else {
+                                        echo '#fff';
+                                    } ?>" />
                                 <path
                                     d="M6.5 18C7.32843 18 8 17.3284 8 16.5C8 15.6716 7.32843 15 6.5 15C5.67157 15 5 15.6716 5 16.5C5 17.3284 5.67157 18 6.5 18Z"
                                     fill="<?php if ($c_total == 0) {
-                                                echo '#21201F';
-                                            } else {
-                                                echo '#fff';
-                                            } ?>" />
+                                        echo '#21201F';
+                                    } else {
+                                        echo '#fff';
+                                    } ?>" />
                             </svg>
                             <?php
                             if ($c_total == 0) {
-                            ?>
+                                ?>
                                 <span>
                                     Корзина
                                 </span>
@@ -1442,18 +1552,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     </svg>
                                     В вашей корзине пока пусто
                                 </span>
-                            <?php
+                                <?php
                             } else {
-                            ?>
+                                ?>
                                 <span>
                                     <?php echo $c_total; ?>
                                 </span>
-                            <?php
+                                <?php
                             }
                             ?>
                         </a>
                         <button class="header__search-toggle btn btn-icon btn-primary">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
                                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -1504,10 +1615,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                             <a class="link link_big link-secondary text" href="/skupka-smartfonov/">
                                                 Скупка смартфонов
                                             </a>
-                                            <a class="link link_big link-secondary text" href="/skupka-bytovoj-tehniki/">
+                                            <a class="link link_big link-secondary text"
+                                                href="/skupka-bytovoj-tehniki/">
                                                 Скупка бытовой техники
                                             </a>
-                                            <a class="link link_big link-secondary text" href="/skupka-kompyuternoi-tehniki-i-komplektuyushhih/">
+                                            <a class="link link_big link-secondary text"
+                                                href="/skupka-kompyuternoi-tehniki-i-komplektuyushhih/">
                                                 Скупка компьютерной техники и комплектующих
                                             </a>
                                             <a class="link link_big link-secondary text" href="/skupka-noutbukov/">
@@ -1516,16 +1629,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                             <a class="link link_big link-secondary text" href="/skupka-iphone/">
                                                 Скупка iPhone
                                             </a>
-                                            <a class="link link_big link-secondary text" href="/skupka-b-u-televizorov/">
+                                            <a class="link link_big link-secondary text"
+                                                href="/skupka-b-u-televizorov/">
                                                 Скупка б/у телевизоров
                                             </a>
                                             <a class="link link_big link-secondary text" href="/skupka-tehniki-apple/">
                                                 Скупка техники Apple
                                             </a>
-                                            <a class="link link_big link-secondary text" href="/skupka-monitorov-v-minske/">
+                                            <a class="link link_big link-secondary text"
+                                                href="/skupka-monitorov-v-minske/">
                                                 Скупка мониторов в Минске
                                             </a>
-                                            <a class="link link_big link-secondary text" href="/skupka-planshetov-v-minske/">
+                                            <a class="link link_big link-secondary text"
+                                                href="/skupka-planshetov-v-minske/">
                                                 Скупка планшетов в Минске
                                             </a>
                                         </li>
@@ -1549,17 +1665,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                         </button>
                                         <ul class="dropdown__list">
                                             <li class="dropdown__list-item">
-                                                <a href="tel:+375 44 415 74 00" class="dropdown__list-item-btn text-sm text">
+                                                <a href="tel:+375 44 415 74 00"
+                                                    class="dropdown__list-item-btn text-sm text">
                                                     +375 44 415 74 00
                                                 </a>
                                             </li>
                                             <li class="dropdown__list-item">
-                                                <a href="tel:+375 33 375 74 00" class="dropdown__list-item-btn text-sm text">
+                                                <a href="tel:+375 33 375 74 00"
+                                                    class="dropdown__list-item-btn text-sm text">
                                                     +375 33 375 74 00
                                                 </a>
                                             </li>
                                             <li class="dropdown__list-item">
-                                                <a href="tel:+375 25 977 74 00" class="dropdown__list-item-btn text-sm text">
+                                                <a href="tel:+375 25 977 74 00"
+                                                    class="dropdown__list-item-btn text-sm text">
                                                     +375 25 977 74 00
                                                 </a>
                                             </li>
@@ -1599,40 +1718,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </li>
                 <li class="bar__item">
                     <a href="<?php if ($c_total == 0) {
-                                    echo '##';
-                                } else {
-                                    echo '/cart';
-                                } ?>" class="bar__item-link bar__item-link-to-cart btn <?php if ($c_total == 0) {
-                                                                                            echo 'btn-secondary';
-                                                                                        } else {
-                                                                                            echo 'btn-primary';
-                                                                                        } ?> btn-icon">
+                        echo '##';
+                    } else {
+                        echo '/cart';
+                    } ?>" class="bar__item-link bar__item-link-to-cart btn <?php if ($c_total == 0) {
+                         echo 'btn-secondary';
+                     } else {
+                         echo 'btn-primary';
+                     } ?> btn-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M3.60039 1.2002C2.93765 1.2002 2.40039 1.73745 2.40039 2.4002C2.40039 3.06294 2.93765 3.6002 3.60039 3.6002H5.06346L5.43013 5.06689C5.43398 5.08384 5.43819 5.10067 5.44275 5.11734L7.07142 11.632L6.00033 12.7031C4.48842 14.215 5.55921 16.8002 7.69739 16.8002H18.0003C18.6631 16.8002 19.2003 16.2629 19.2003 15.6002C19.2003 14.9375 18.6631 14.4002 18.0003 14.4002L7.69739 14.4002L8.89739 13.2002H16.8004C17.2549 13.2002 17.6704 12.9434 17.8737 12.5368L21.4737 5.33685C21.6597 4.96487 21.6398 4.5231 21.4212 4.16932C21.2025 3.81554 20.8163 3.6002 20.4004 3.6002H7.53732L7.16456 2.10915C7.03101 1.57495 6.55103 1.2002 6.00039 1.2002H3.60039Z"
                                 fill="<?php if ($c_total == 0) {
-                                            echo '#21201F';
-                                        } else {
-                                            echo '#fff';
-                                        } ?>" />
+                                    echo '#21201F';
+                                } else {
+                                    echo '#fff';
+                                } ?>" />
                             <path
                                 d="M19.2004 19.8002C19.2004 20.7943 18.3945 21.6002 17.4004 21.6002C16.4063 21.6002 15.6004 20.7943 15.6004 19.8002C15.6004 18.8061 16.4063 18.0002 17.4004 18.0002C18.3945 18.0002 19.2004 18.8061 19.2004 19.8002Z"
                                 fill="<?php if ($c_total == 0) {
-                                            echo '#21201F';
-                                        } else {
-                                            echo '#fff';
-                                        } ?>" />
+                                    echo '#21201F';
+                                } else {
+                                    echo '#fff';
+                                } ?>" />
                             <path
                                 d="M7.80039 21.6002C8.7945 21.6002 9.60039 20.7943 9.60039 19.8002C9.60039 18.8061 8.7945 18.0002 7.80039 18.0002C6.80628 18.0002 6.00039 18.8061 6.00039 19.8002C6.00039 20.7943 6.80628 21.6002 7.80039 21.6002Z"
                                 fill="<?php if ($c_total == 0) {
-                                            echo '#21201F';
-                                        } else {
-                                            echo '#fff';
-                                        } ?>" />
+                                    echo '#21201F';
+                                } else {
+                                    echo '#fff';
+                                } ?>" />
                         </svg>
                         <?php
                         if ($c_total == 0) {
-                        ?>
+                            ?>
                             <span class="to-cart-empty">
                                 <svg width="110" height="74" viewBox="0 0 110 74" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -1660,7 +1779,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 </svg>
                                 В вашей корзине пока пусто
                             </span>
-                        <?php
+                            <?php
                         }
                         ?>
                     </a>
@@ -1682,9 +1801,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="cartP__inner">
                     <div class="cartP__container hide-scroll">
                         <button class="cartP__btn btn-icon" onclick="onCartClose()">
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 13L13 1M1 1L13 13" stroke="#8F8F8F" stroke-width="1.2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13L13 1M1 1L13 13" stroke="#8F8F8F" stroke-width="1.2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </button>
                         <h3 class="cartP__title text-3xl">
@@ -1698,10 +1818,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="menu__inner layout">
                     <div class="menu__content">
                         <div class="menu__banner js-menu-banner">
-                            <img class="menu__banner-img menu__banner-img--base" src="<?php nout_image_directory() ?>menu-b-base.jpg"
-                                alt="Баннер">
-                            <img class="menu__banner-img menu__banner-img--long" src="<?php nout_image_directory() ?>menu-b-long.jpg"
-                                alt="Баннер">
+                            <img class="menu__banner-img menu__banner-img--base"
+                                src="<?php nout_image_directory() ?>menu-b-base.jpg" alt="Баннер">
+                            <img class="menu__banner-img menu__banner-img--long"
+                                src="<?php nout_image_directory() ?>menu-b-long.jpg" alt="Баннер">
                         </div>
                         <div class="menu__mobile">
                             <ul class="menu__mobile-list">
@@ -1754,21 +1874,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 </li>
                                 <li class="menu__mobile-list-item">
                                     <a href="/blog/" class="btn btn_icon-left text-sm text">
-                                        <svg fill="#000000" width="20" height="20" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+                                        <svg fill="#000000" width="20" height="20" version="1.1" id="Layer_1"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"
+                                            xml:space="preserve">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round"></g>
                                             <g id="SVGRepo_iconCarrier">
                                                 <g>
                                                     <g>
                                                         <g>
-                                                            <path d="M93.238,220.968h172.463c4.466,0,8.084-3.619,8.084-8.084s-3.618-8.084-8.084-8.084H93.238 c-4.466,0-8.084,3.619-8.084,8.084S88.772,220.968,93.238,220.968z"></path>
-                                                            <path d="M93.238,177.853h97.01c4.466,0,8.084-3.619,8.084-8.084s-3.618-8.084-8.084-8.084h-97.01 c-4.466,0-8.084,3.619-8.084,8.084S88.772,177.853,93.238,177.853z"></path>
-                                                            <path d="M114.796,398.282h280.253c16.344,0,29.642-13.298,29.642-29.642v-91.082c0-5.206-1.371-10.333-3.968-14.822 c-2.233-3.865-7.179-5.189-11.044-2.953c-3.866,2.233-5.188,7.179-2.953,11.044c1.176,2.034,1.797,4.362,1.797,6.732v91.082 c0,7.43-6.044,13.474-13.474,13.474H114.796c-7.43,0-13.474-6.044-13.474-13.474v-91.082c0-7.43,6.044-13.474,13.474-13.474 h150.905c4.466,0,8.084-3.619,8.084-8.084c0-4.466-3.618-8.084-8.084-8.084H114.796c-16.344,0-29.642,13.298-29.642,29.642 v91.082C85.154,384.984,98.452,398.282,114.796,398.282z"></path>
-                                                            <path d="M477.068,412.237c1.684-5.067,2.596-10.484,2.596-16.11V158.989c0-28.231-22.969-51.2-51.2-51.2h-45.81V29.642 C382.653,13.298,369.355,0,353.01,0h-21.558c-16.344,0-29.642,13.298-29.642,29.642v78.147H83.537 c-28.231,0-51.2,22.969-51.2,51.2v237.137c0,5.627,0.912,11.043,2.596,16.11C14.43,419.065,0,438.368,0,460.8 C0,489.031,22.969,512,51.2,512h409.6c28.231,0,51.2-22.969,51.2-51.2C512,438.368,497.57,419.065,477.068,412.237z M317.979,29.642c0-7.43,6.044-13.474,13.474-13.474h21.558c7.43,0,13.474,6.044,13.474,13.474v13.474h-48.505V29.642z M366.484,59.284v188.632h-16.168V59.284H366.484z M317.979,59.284h16.168v188.632h-16.168V59.284z M317.979,264.084h48.505 v20.66c0,0.579-0.192,1.153-0.539,1.617l-21.558,28.743c-0.704,0.938-1.652,1.078-2.156,1.078c-0.503,0-1.452-0.14-2.156-1.078 l-21.557-28.741c-0.348-0.466-0.54-1.04-0.54-1.619V264.084z M48.505,158.989c0-19.317,15.715-35.032,35.032-35.032h218.274 v37.726h-57.667c-4.466,0-8.084,3.619-8.084,8.084s3.618,8.084,8.084,8.084h57.667v106.892c0,4.053,1.339,8.071,3.773,11.318 l21.558,28.743c3.596,4.796,9.096,7.545,15.091,7.545c5.994,0,11.495-2.75,15.091-7.545l21.559-28.745 c2.433-3.244,3.772-7.263,3.772-11.316v-63.776h33.954c4.466,0,8.084-3.619,8.084-8.084s-3.619-8.084-8.084-8.084h-33.954 v-26.947h33.954c4.466,0,8.084-3.619,8.084-8.084s-3.619-8.084-8.084-8.084h-33.954v-37.726h45.81 c19.317,0,35.032,15.715,35.032,35.032v237.137c0,19.317-15.715,35.032-35.032,35.032H83.537 c-19.317,0-35.032-15.715-35.032-35.032V158.989z M460.8,495.832H51.2c-19.317,0-35.032-15.715-35.032-35.032 c0-16.257,11.071-30.113,26.426-33.963c9.349,12.434,24.222,20.49,40.943,20.49h344.926c16.72,0,31.594-8.056,40.943-20.49 c15.355,3.85,26.426,17.707,26.426,33.963C495.832,480.117,480.117,495.832,460.8,495.832z"></path>
-                                                            <path d="M235.52,463.495h-1.078c-4.466,0-8.084,3.618-8.084,8.084c0,4.466,3.618,8.084,8.084,8.084h1.078 c4.466,0,8.084-3.618,8.084-8.084C243.604,467.113,239.986,463.495,235.52,463.495z"></path>
-                                                            <path d="M433.853,463.495H272.168c-4.466,0-8.084,3.618-8.084,8.084c0,4.466,3.618,8.084,8.084,8.084h161.684 c4.466,0,8.084-3.618,8.084-8.084C441.937,467.113,438.318,463.495,433.853,463.495z"></path>
-                                                            <path d="M202.105,463.495h-1.078c-4.466,0-8.084,3.618-8.084,8.084c0,4.466,3.618,8.084,8.084,8.084h1.078 c4.466,0,8.084-3.618,8.084-8.084C210.189,467.113,206.571,463.495,202.105,463.495z"></path>
-                                                            <path d="M164.379,463.495H78.147c-4.466,0-8.084,3.618-8.084,8.084c0,4.466,3.618,8.084,8.084,8.084h86.232 c4.466,0,8.084-3.618,8.084-8.084C172.463,467.113,168.845,463.495,164.379,463.495z"></path>
+                                                            <path
+                                                                d="M93.238,220.968h172.463c4.466,0,8.084-3.619,8.084-8.084s-3.618-8.084-8.084-8.084H93.238 c-4.466,0-8.084,3.619-8.084,8.084S88.772,220.968,93.238,220.968z">
+                                                            </path>
+                                                            <path
+                                                                d="M93.238,177.853h97.01c4.466,0,8.084-3.619,8.084-8.084s-3.618-8.084-8.084-8.084h-97.01 c-4.466,0-8.084,3.619-8.084,8.084S88.772,177.853,93.238,177.853z">
+                                                            </path>
+                                                            <path
+                                                                d="M114.796,398.282h280.253c16.344,0,29.642-13.298,29.642-29.642v-91.082c0-5.206-1.371-10.333-3.968-14.822 c-2.233-3.865-7.179-5.189-11.044-2.953c-3.866,2.233-5.188,7.179-2.953,11.044c1.176,2.034,1.797,4.362,1.797,6.732v91.082 c0,7.43-6.044,13.474-13.474,13.474H114.796c-7.43,0-13.474-6.044-13.474-13.474v-91.082c0-7.43,6.044-13.474,13.474-13.474 h150.905c4.466,0,8.084-3.619,8.084-8.084c0-4.466-3.618-8.084-8.084-8.084H114.796c-16.344,0-29.642,13.298-29.642,29.642 v91.082C85.154,384.984,98.452,398.282,114.796,398.282z">
+                                                            </path>
+                                                            <path
+                                                                d="M477.068,412.237c1.684-5.067,2.596-10.484,2.596-16.11V158.989c0-28.231-22.969-51.2-51.2-51.2h-45.81V29.642 C382.653,13.298,369.355,0,353.01,0h-21.558c-16.344,0-29.642,13.298-29.642,29.642v78.147H83.537 c-28.231,0-51.2,22.969-51.2,51.2v237.137c0,5.627,0.912,11.043,2.596,16.11C14.43,419.065,0,438.368,0,460.8 C0,489.031,22.969,512,51.2,512h409.6c28.231,0,51.2-22.969,51.2-51.2C512,438.368,497.57,419.065,477.068,412.237z M317.979,29.642c0-7.43,6.044-13.474,13.474-13.474h21.558c7.43,0,13.474,6.044,13.474,13.474v13.474h-48.505V29.642z M366.484,59.284v188.632h-16.168V59.284H366.484z M317.979,59.284h16.168v188.632h-16.168V59.284z M317.979,264.084h48.505 v20.66c0,0.579-0.192,1.153-0.539,1.617l-21.558,28.743c-0.704,0.938-1.652,1.078-2.156,1.078c-0.503,0-1.452-0.14-2.156-1.078 l-21.557-28.741c-0.348-0.466-0.54-1.04-0.54-1.619V264.084z M48.505,158.989c0-19.317,15.715-35.032,35.032-35.032h218.274 v37.726h-57.667c-4.466,0-8.084,3.619-8.084,8.084s3.618,8.084,8.084,8.084h57.667v106.892c0,4.053,1.339,8.071,3.773,11.318 l21.558,28.743c3.596,4.796,9.096,7.545,15.091,7.545c5.994,0,11.495-2.75,15.091-7.545l21.559-28.745 c2.433-3.244,3.772-7.263,3.772-11.316v-63.776h33.954c4.466,0,8.084-3.619,8.084-8.084s-3.619-8.084-8.084-8.084h-33.954 v-26.947h33.954c4.466,0,8.084-3.619,8.084-8.084s-3.619-8.084-8.084-8.084h-33.954v-37.726h45.81 c19.317,0,35.032,15.715,35.032,35.032v237.137c0,19.317-15.715,35.032-35.032,35.032H83.537 c-19.317,0-35.032-15.715-35.032-35.032V158.989z M460.8,495.832H51.2c-19.317,0-35.032-15.715-35.032-35.032 c0-16.257,11.071-30.113,26.426-33.963c9.349,12.434,24.222,20.49,40.943,20.49h344.926c16.72,0,31.594-8.056,40.943-20.49 c15.355,3.85,26.426,17.707,26.426,33.963C495.832,480.117,480.117,495.832,460.8,495.832z">
+                                                            </path>
+                                                            <path
+                                                                d="M235.52,463.495h-1.078c-4.466,0-8.084,3.618-8.084,8.084c0,4.466,3.618,8.084,8.084,8.084h1.078 c4.466,0,8.084-3.618,8.084-8.084C243.604,467.113,239.986,463.495,235.52,463.495z">
+                                                            </path>
+                                                            <path
+                                                                d="M433.853,463.495H272.168c-4.466,0-8.084,3.618-8.084,8.084c0,4.466,3.618,8.084,8.084,8.084h161.684 c4.466,0,8.084-3.618,8.084-8.084C441.937,467.113,438.318,463.495,433.853,463.495z">
+                                                            </path>
+                                                            <path
+                                                                d="M202.105,463.495h-1.078c-4.466,0-8.084,3.618-8.084,8.084c0,4.466,3.618,8.084,8.084,8.084h1.078 c4.466,0,8.084-3.618,8.084-8.084C210.189,467.113,206.571,463.495,202.105,463.495z">
+                                                            </path>
+                                                            <path
+                                                                d="M164.379,463.495H78.147c-4.466,0-8.084,3.618-8.084,8.084c0,4.466,3.618,8.084,8.084,8.084h86.232 c4.466,0,8.084-3.618,8.084-8.084C172.463,467.113,168.845,463.495,164.379,463.495z">
+                                                            </path>
                                                         </g>
                                                     </g>
                                                 </g>
@@ -1817,8 +1957,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                         Скупка техники
 
                                         <button class="mobile-menu-accordion__toggle">
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.082 5.25L6.9987 9.33333L2.91536 5.25" stroke="#DEDEDE" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M11.082 5.25L6.9987 9.33333L2.91536 5.25" stroke="#DEDEDE"
+                                                    stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
                                     </a>
@@ -1846,7 +1988,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/skupka-kompyuternoi-tehniki-i-komplektuyushhih/" class="btn btn_icon-left text-sm text">
+                                            <a href="/skupka-kompyuternoi-tehniki-i-komplektuyushhih/"
+                                                class="btn btn_icon-left text-sm text">
                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -1901,7 +2044,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/skupka-monitorov-v-minske/" class="btn btn_icon-left text-sm text">
+                                            <a href="/skupka-monitorov-v-minske/"
+                                                class="btn btn_icon-left text-sm text">
                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -1912,7 +2056,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/skupka-planshetov-v-minske/" class="btn btn_icon-left text-sm text">
+                                            <a href="/skupka-planshetov-v-minske/"
+                                                class="btn btn_icon-left text-sm text">
                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -2001,18 +2146,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </button>
                     <div class="popup__tg">
                         <div class="popup__tg__content">
-                            <div class="popup__tg__content-title text-4xl">Получайте интересные предложения первыми</div>
-                            <div class="popup__tg__content-desc text-base">Новые поступления, скидки и новости компании в нашем Телеграм-канале</div>
-                            <a href="https://t.me/+LexdUf25ZUFhNzY6" target="_blank" class="popup__tg__content-btn  text-base">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.0955 9.03809C7.38958 7.06858 10.2482 5.7599 11.6837 5.12499C15.7692 3.32393 16.628 3.01296 17.1801 3C17.3028 3 17.5727 3.02591 17.7567 3.1814C17.904 3.31097 17.9408 3.47942 17.9653 3.60899C17.9898 3.73856 18.0144 4.01067 17.9898 4.21798C17.769 6.67986 16.812 12.6532 16.3213 15.4001C16.1127 16.5663 15.7078 16.955 15.3152 16.9938C14.4564 17.0716 13.8062 16.3978 12.9842 15.8277C11.6837 14.9336 10.9598 14.3765 9.69612 13.4954C8.23613 12.4847 9.18083 11.9276 10.0151 11.0205C10.2359 10.7873 14.0025 7.15928 14.0761 6.83535C14.0884 6.79648 14.0884 6.64099 14.0025 6.56325C13.9166 6.4855 13.7939 6.51142 13.6958 6.53733C13.5608 6.56325 11.4996 8.01446 7.48773 10.878C6.89883 11.3056 6.37127 11.5129 5.89279 11.5C5.36523 11.487 4.35919 11.189 3.59852 10.9298C2.67836 10.6189 1.94223 10.4504 2.00357 9.90622C2.04038 9.62116 2.40845 9.3361 3.0955 9.03809Z" fill="white" />
+                            <div class="popup__tg__content-title text-4xl">Получайте интересные предложения первыми
+                            </div>
+                            <div class="popup__tg__content-desc text-base">Новые поступления, скидки и новости компании
+                                в нашем Телеграм-канале</div>
+                            <a href="https://t.me/+LexdUf25ZUFhNzY6" target="_blank"
+                                class="popup__tg__content-btn  text-base">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M3.0955 9.03809C7.38958 7.06858 10.2482 5.7599 11.6837 5.12499C15.7692 3.32393 16.628 3.01296 17.1801 3C17.3028 3 17.5727 3.02591 17.7567 3.1814C17.904 3.31097 17.9408 3.47942 17.9653 3.60899C17.9898 3.73856 18.0144 4.01067 17.9898 4.21798C17.769 6.67986 16.812 12.6532 16.3213 15.4001C16.1127 16.5663 15.7078 16.955 15.3152 16.9938C14.4564 17.0716 13.8062 16.3978 12.9842 15.8277C11.6837 14.9336 10.9598 14.3765 9.69612 13.4954C8.23613 12.4847 9.18083 11.9276 10.0151 11.0205C10.2359 10.7873 14.0025 7.15928 14.0761 6.83535C14.0884 6.79648 14.0884 6.64099 14.0025 6.56325C13.9166 6.4855 13.7939 6.51142 13.6958 6.53733C13.5608 6.56325 11.4996 8.01446 7.48773 10.878C6.89883 11.3056 6.37127 11.5129 5.89279 11.5C5.36523 11.487 4.35919 11.189 3.59852 10.9298C2.67836 10.6189 1.94223 10.4504 2.00357 9.90622C2.04038 9.62116 2.40845 9.3361 3.0955 9.03809Z"
+                                        fill="white" />
                                 </svg>
                                 Подписаться
                             </a>
-                            <div class="popup__tg__content-agreement text-xs">Нажимая кнопку «Подписаться» вы соглашаетесь с условиями <a href="/politika-konfidenczialnosti/">политики конфиденциальности</a></div>
+                            <div class="popup__tg__content-agreement text-xs">Нажимая кнопку «Подписаться» вы
+                                соглашаетесь с условиями <a href="/politika-konfidenczialnosti/">политики
+                                    конфиденциальности</a></div>
                         </div>
                         <div class="popup__tg__pic">
-                            <img class="popup__tg__img" src="<?php nout_image_directory() ?>modal-tg/banner-tg.jpg" alt="Подписаться на наш телеграм" />
+                            <img class="popup__tg__img" src="<?php nout_image_directory() ?>modal-tg/banner-tg.jpg"
+                                alt="Подписаться на наш телеграм" />
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The template for displaying product content within loops
  *
@@ -19,97 +18,52 @@
 defined('ABSPATH') || exit;
 
 global $product;
-$p_image_url = wp_get_attachment_image_src($product->get_image_id(), ('full'))[0] ?? wp_get_attachment_url($product->get_image_id());
+$p_image_url = wp_get_attachment_url($product->get_image_id());
 $link = apply_filters('woocommerce_loop_product_link', get_the_permalink(), $product);
 $product_id = $product->get_id();
 $photos_ids = $product->get_gallery_image_ids();
 
-$productNameSost = $product->get_name();
-/* if ($product->get_attribute('sostoyanie') == "новый") {
-    $productNameSost = "Новый ".$product->get_name()."";
+$productNameSost = "";
+if ($product->get_attribute('sostoyanie') == "новый") {
+    $productNameSost = "" . $product->get_name() . "";
 } else if ($product->get_attribute('sostoyanie') == "5") {
-    $productNameSost = "".$product->get_name().", отличное состояние";
+    $productNameSost = "" . $product->get_name() . ", отличное состояние";
 } else {
-    $productNameSost = "Б/у ".$product->get_name()."";
-} */
+    $productNameSost = "" . $product->get_name() . "";
+}
 
 // Ensure visibility.
-if (empty($product) || ! $product->is_visible()) {
+if (empty($product) || !$product->is_visible()) {
     return;
 }
 ?>
 <li class="catalog__list-item">
-    <div
-        class="product js-product-<?php echo $product_id; ?>"
-        data-swiper="false">
+    <div class="product js-product-<?php echo $product_id; ?>" data-swiper="false">
         <?php
         $right_now = date("Y-m-d H:i:s");
         $product_date = $product->get_date_created();
 
         if (strtotime('+10 day', strtotime($product_date)) > strtotime($right_now)) {
-        ?>
+            ?>
             <span class="product__tag product__tag--green">
                 Новинка
             </span>
-        <?php
+            <?php
         }
         ?>
-        <div class="product__swiper-wrap relative"
+        <div class="product__swiper-wrap"
             onmouseleave="onLeaveProductPhoto(event, 'js-product-<?php echo $product_id; ?>')"
             onmousemove="onInitProductByMouse(event, 'js-product-<?php echo $product_id; ?>')"
             ontouchstart="onInitProductByTouch(event, 'js-product-<?php echo $product_id; ?>')">
-            <?php 
-                // Укажите нужные ID категорий
-                $target_category_ids = array(23861); // замените на свои
-
-                // Получаем все категории товара
-                $terms = get_the_terms($product->get_id(), 'product_cat');
-
-                if (!$terms || is_wp_error($terms)) {
-                    return;
-                }
-
-                $all_category_ids = array();
-
-                // Собираем ID всех категорий и их родителей
-                foreach ($terms as $term) {
-                    $all_category_ids[] = $term->term_id;
-
-                    // Поднимаемся по иерархии родительских категорий
-                    $parent_id = $term->parent;
-                    while ($parent_id) {
-                        $parent = get_term($parent_id, 'product_cat');
-                        if ($parent && !is_wp_error($parent)) {
-                            $all_category_ids[] = $parent->term_id;
-                            $parent_id = $parent->parent;
-                        } else {
-                            break;
-                        }
-                    }
-                }
-
-                // Удаляем дубликаты
-                $all_category_ids = array_unique($all_category_ids);
-
-                // print_r($all_category_ids);
-
-                 // Проверяем пересечение массивов
-                 if (array_intersect($target_category_ids, $all_category_ids)) {
-                     echo '<div class="product__garrany">
-                     Гарантия 1 год
-                 </div>';
-                 } 
-            ?>
             <div class="product__swiper js-product-swiper">
                 <div class='swiper-wrapper' onclick="onProductClick('<?php echo $link; ?>')">
                     <div class='swiper-slide'>
                         <a href="<?php echo $link; ?>" class="product__pic">
                             <img src="<?php if ($p_image_url) {
-                                            echo $p_image_url;
-                                        } else {
-                                            echo "https://100nout.by/wp-content/uploads/2023/03/zagl.png";
-                                        } ?>" class="product__pic-img"
-                                loading="lazy">
+                                echo $p_image_url;
+                            } else {
+                                echo "https://100nout.by/wp-content/uploads/2023/03/zagl.png";
+                            } ?>" class="product__pic-img" loading="lazy">
                             <div class="swiper-lazy-preloader ">
                             </div>
                         </a>
@@ -119,16 +73,16 @@ if (empty($product) || ! $product->is_visible()) {
                     if ($photos_ids) {
                         foreach ($photos_ids as $photo_id) {
                             if ($arrCount != 0 and $arrCount < 5) {
-                    ?>
+                                ?>
                                 <div class='swiper-slide'>
                                     <a href="<?php echo $link; ?>" class="product__pic">
-                                        <img src="<?php echo wp_get_attachment_image_src($photo_id, 'full')[0] ?? wp_get_attachment_url($product->get_image_id()); ?>" class="product__pic-img"
+                                        <img src="<?php echo wp_get_attachment_url($photo_id); ?>" class="product__pic-img"
                                             loading="lazy">
                                         <div class="swiper-lazy-preloader ">
                                         </div>
                                     </a>
                                 </div>
-                    <?php
+                                <?php
                             }
                             $arrCount = $arrCount + 1;
                         }
@@ -142,16 +96,10 @@ if (empty($product) || ! $product->is_visible()) {
                 <?php echo $productNameSost; ?>
             </a>
             <?php
-            $status = $product->get_status();
-
-
+            $availability = nout_product_availability($product);
             ?>
-            <p class="product__status <?php if ($status == 'publish') {
-                                            echo 'product__status--in-stock';
-                                        } ?>">
-                <?php if ($status == 'publish') {
-                    echo 'В наличии';
-                } ?>
+            <p class="product__status <?php echo esc_attr($availability['class']); ?>">
+                <?php echo esc_html($availability['label']); ?>
             </p>
             <div class="product__info-wrap">
                 <?php woocommerce_template_loop_add_to_cart(); ?>
@@ -169,7 +117,7 @@ if (empty($product) || ! $product->is_visible()) {
                                         <?php
                                         $attrSlug = get_sub_field('slug_atributa', 'option');
                                         if ($product->get_attribute($attrSlug)) {
-                                        ?>
+                                            ?>
                                             <li class="product__info-item">
                                                 <p class="product__info-item-name">
                                                     <?php
@@ -179,10 +127,10 @@ if (empty($product) || ! $product->is_visible()) {
                                                     <?php echo $product->get_attribute($attrSlug) ?>
                                                 </p>
                                             </li>
-                                        <?php
+                                            <?php
                                         }
                                         ?>
-                            <?php endwhile;
+                                    <?php endwhile;
                                 }
                             }
                             ?>
@@ -194,50 +142,33 @@ if (empty($product) || ! $product->is_visible()) {
                     <?php
                     // Product Status
                     if ($product->get_attribute('sostoyanie') == 'новый') {
-                    ?>
+                        ?>
                         <div class="product__tags-label product__tags-label--new">
                             Новый
                         </div>
-                    <?php
+                        <?php
                     }
 
                     if ($product->get_attribute('sostoyanie') == '5') {
-                    ?>
+                        ?>
                         <div class="product__tags-label product__tags-label--new">
                             Как новый
                         </div>
-                    <?php
+                        <?php
                     }
 
                     if ($product->get_attribute('sostoyanie') == '4' or $product->get_attribute('sostoyanie') == '3') {
-                    ?>
+                        ?>
                         <div class="product__tags-label product__tags-label--used">
                             Б/У
                         </div>
-                    <?php
-                    }
-
-                    // Shop status
-                    $in_shop = get_field('v_magazine');
-                    $to_order = get_field('pod_zakaz');
-
-                    if ($in_shop >= 1) {
-                    ?>
-                        <div class="product__tags-label product__tags-label--in-stock">
-                            В магазине
-                        </div>
-                    <?php
-                    } elseif ($to_order >= 1) {
-                    ?>
-                        <div class="product__tags-label product__tags-label--order">
-                            Под заказ
-                        </div>
-                    <?php
-                    } else {
-                        echo '';
+                        <?php
                     }
 
                     ?>
+                    <div class="product__tags-label <?php echo esc_attr($availability['badge_class']); ?>">
+                        <?php echo esc_html($availability['label']); ?>
+                    </div>
                     <div class="product__tags-label product__tags-label--credit">
                         В рассрочку
                     </div>

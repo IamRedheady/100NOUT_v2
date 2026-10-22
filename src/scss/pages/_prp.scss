@@ -20,6 +20,9 @@
         margin-top: 4px;
         &-status {
             color: $B600;
+            &.product__status--order {
+                color: $Order;
+            }
         }
         &-code {
             &-name {
@@ -488,6 +491,9 @@
 
     &__header-status {
         color: $B600;
+        &.product__status--order {
+            color: $Order;
+        }
     }
 }
 
